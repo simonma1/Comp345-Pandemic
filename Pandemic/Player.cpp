@@ -1,22 +1,26 @@
 #include "Player.h"
 
 
-	
-
-	Player Player::generatePlayer()
-	{
-		return Player();
-	}
-
-	int Player::getRole()
-	{
-		return role;
-	}
-
-	Player::Player() {
-
-	role = 2;
-
+Player Player::generatePlayer()
+{
+	Player p = Player();
+	return p;
 }
 
+Role Player::getRole()
+{
+	return role;
+}
+
+//The player will move the Pawn 
+City Player::movePawn()
+{
+	return playerPawn.getCurrentLocation();//Returns the current location for now
+}
+
+//Constructor for the player. 
+Player::Player() {
+
+
+}
 
