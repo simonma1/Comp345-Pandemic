@@ -17,7 +17,7 @@ int main()
 	json j;
 	i >> j;
 
-	std::cout << j << endl;
+	std::cout << j["map"]["areas"][1]["area"] << endl;
 	system("Pause");
 	
 }
