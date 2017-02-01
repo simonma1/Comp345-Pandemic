@@ -1,7 +1,7 @@
 #include "Cards.h";
 
 
-City Pawn::getCurrentLocation()
+Location Pawn::getCurrentLocation()
 {
-	return City();
+	return Location();
 }

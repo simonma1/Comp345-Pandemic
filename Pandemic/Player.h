@@ -21,7 +21,7 @@ private:
 public:
 	Player generatePlayer();//Used to handle the logic of player creation
 	Role getRole();
-	City movePawn();
+	Location movePawn();
 	Player();
 };
 

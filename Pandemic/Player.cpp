@@ -13,7 +13,7 @@ Role Player::getRole()
 }
 
 //The player will move the Pawn 
-City Player::movePawn()
+Location Player::movePawn()
 {
 	return playerPawn.getCurrentLocation();//Returns the current location for now
 }
