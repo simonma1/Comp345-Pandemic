@@ -1,0 +1,46 @@
+{
+	"map": {
+
+		"areas": [
+
+			{
+				"area": "black",
+				"cities": [{
+						"city": "Montreal",
+						"adjacent": [{
+							"adj": "New York"
+						}, {
+							"city": "Toronto",
+							"adjacent": [{
+								"adj": "Chicago"
+							}]
+						}]
+					}
+
+				]
+
+			}, {
+				"area": "yellow",
+				"cities": [{
+						"city": "Paris",
+						"adjacent": [{
+							"adj": "London"
+						}, {
+							"city": "Rome",
+							"adjacent": [{
+								"adj": "Vienna"
+							}]
+						}]
+					}
+
+				]
+
+			}
+
+		]
+
+
+	}
+
+
+}
