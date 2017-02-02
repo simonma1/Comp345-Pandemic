@@ -7,11 +7,13 @@ class Location
 {
 
 public:
-	
+	string toString();
+	Location();
+	Location(string, string);
 
 private:
-	string city;
-	string area;
+	string lcity;
+	string larea;
 };
 
 

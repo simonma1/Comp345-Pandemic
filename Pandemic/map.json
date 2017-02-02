@@ -1,59 +1,24 @@
 {
-	"map": {
-
-    "areas": [
-
-      {
-        "area": "black",
-        "cities": [
-          {
-            "city": "Montreal",
-            "adjacent": [
-              {
-                "adj": "New York"
-              }
-            ]
-          },
-          {
-            "city": "Toronto",
-            "adjacent": [
-              {
-                "adj": "Chicago"
-              }
-            ]
-          }
-
-        ]
-
-      },
-      {
-        "area": "yellow",
-        "cities": [
-          {
-            "city": "Paris",
-            "adjacent": [
-              {
-                "adj": "London"
-              }
-            ]
-          },
-          {
-            "city": "Tokyo",
-            "adjacent": [
-              {
-                "adj": "Beijing"
-              }
-            ]
-          }
-
-        ]
-
-      }
-
-    ]
-
-
-	}
-
-
+  "location": [
+    {
+      "city": "Montreal",
+      "area": "Blue",
+      "adjacent": ["New York"],
+      "infection0": 0,
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "city": "New York",
+      "area": "Blue",
+      "adjacent": ["Montreal"],
+      "infection0": 0,
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    }
+  ]
 }
