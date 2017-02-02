@@ -5,6 +5,10 @@ using namespace std;
 
 class Map {
 
+public:
+	Map();
+	void setMapLocation(vector<Location>);
+
 private:
 	vector<Location> cities;
 };
