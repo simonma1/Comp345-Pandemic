@@ -1,24 +1,485 @@
 {
   "location": [
     {
+      "id": 1,
       "city": "Montreal",
       "area": "Blue",
-      "adjacent": ["New York"],
-      "infection0": 0,
+      "adjacent": [ "New York" ],
       "infection1": 0,
       "infection2": 0,
       "infection3": 0,
       "infection4": 0
     },
     {
+      "id": 2,
       "city": "New York",
       "area": "Blue",
-      "adjacent": ["Montreal"],
-      "infection0": 0,
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 3,
+      "city": "Washington",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 4,
+      "city": "Chicago",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 5,
+      "city": "Atlanta",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 6,
+      "city": "San Francisco",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 7,
+      "city": "London",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 8,
+      "city": "Paris",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 9,
+      "city": "Madrid",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 10,
+      "city": "Milan",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 11,
+      "city": "Essen",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 12,
+      "city": "St-Petersburg",
+      "area": "Blue",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 13,
+      "city": "Los Angeles",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 14,
+      "city": "Miami",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 15,
+      "city": "Mexico City",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 16,
+      "city": "Bogota",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 17,
+      "city": "Lima",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 18,
+      "city": "Santiago",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 19,
+      "city": "Buenos Aires",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 20,
+      "city": "Sao Polo",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 21,
+      "city": "Lagos",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 22,
+      "city": "Kinshasa",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 23,
+      "city": "Johannesburg",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 24,
+      "city": "Khartoum",
+      "area": "Yellow",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 25,
+      "city": "Algiers",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 26,
+      "city": "Cairo",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 27,
+      "city": "Istanbul",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 28,
+      "city": "Baghdad",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 29,
+      "city": "Riyadh",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 30,
+      "city": "Moscow",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 31,
+      "city": "Tehran",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 32,
+      "city": "Karachi",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 33,
+      "city": "Delhi",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 34,
+      "city": "Mumbai",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 35,
+      "city": "Kolkata",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id": 36,
+      "city": "Chennai",
+      "area": "Black",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":37,
+      "city": "Bangkok",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":38,
+      "city": "Jakarta",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":39,
+      "city": "Hong Kong",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":40,
+      "city": "Ho Chi Minh City",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":41,
+      "city": "Shanghai",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":42,
+      "city": "Beijing",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":43,
+      "city": "Seoul",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":44,
+      "city": "Tokyo",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":45,
+      "city": "Osaka",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":46,
+      "city": "Taipei",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":47,
+      "city": "Manila",
+      "area": "Red",
+      "adjacent": [],
+      "infection1": 0,
+      "infection2": 0,
+      "infection3": 0,
+      "infection4": 0
+    },
+    {
+      "id":48,
+      "city": "Sydney",
+      "area": "Red",
+      "adjacent": [],
       "infection1": 0,
       "infection2": 0,
       "infection3": 0,
       "infection4": 0
     }
+
   ]
 }
