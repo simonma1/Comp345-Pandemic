@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
