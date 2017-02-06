@@ -11,6 +11,7 @@ std::vector<Location> Loader::loadMap() {
 	for (int i = 0; i < j["location"].size(); i++) {
 		//Loops through all cities in the JSON and puts them in a list that will be given to the map
 		Location l{
+			j["location"][i]["id"].get<int>(),
 			j["location"][i]["city"].get<std::string>(),
 			j["location"][i]["area"].get<std::string>()
 		};

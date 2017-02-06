@@ -2,15 +2,16 @@
 
 string Location::toString()
 {
-	return "The city is : " + lcity + " The area is: " + larea;
+	return "The city at id: " + std::to_string(id) + " is : " + city + " The area is: " + area;
 }
 
 Location::Location()
 {
 }
 
-Location::Location(string city, string area)
+Location::Location(int id, string city, string area)
 {
-	lcity = city;
-	larea = area;
+	this->id = id;
+	this ->city = city;
+	this -> area =  area;
 }

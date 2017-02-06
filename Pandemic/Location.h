@@ -9,11 +9,12 @@ class Location
 public:
 	string toString();
 	Location();
-	Location(string, string);
+	Location(int,string, string);
 
 private:
-	string lcity;
-	string larea;
+	int id;
+	string city;
+	string area;
 };
 
 
