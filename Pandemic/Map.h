@@ -7,8 +7,8 @@ class Map {
 
 public:
 	Map();
-	void setMapLocation(vector<Location>);
+	void setMapLocation(map<int,Location>);
 
 private:
-	vector<Location> cities;
+	map<int,Location> cities;
 };

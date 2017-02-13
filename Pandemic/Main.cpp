@@ -11,7 +11,7 @@ int main()
 	Loader* loader;
 	Board board;
 	Player p1;
-	vector<Location> cityList;//List of cities that will be created for the map
+	map<int,Location> cityMap;//List of cities that will be created for the map
 	Map currentMap;
 	int startOrLoad=0;
 	
@@ -42,12 +42,12 @@ int main()
 	}
 
 
-	cityList = loader->loadMap();
+	cityMap = loader->loadMap();
 	//Pass the list of city created to the map. Useful for when we will have to print it
-	currentMap.setMapLocation(cityList);
+	currentMap.setMapLocation(cityMap);
 
 
-	std::cout << cityList.size() << endl;
+	std::cout << cityMap[16].toString() << endl;
 
 	delete loader;//Deletes the loader pointer
 	system("Pause");

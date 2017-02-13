@@ -5,7 +5,8 @@ Map::Map()
 
 }
 
-void Map::setMapLocation(vector<Location> cityList)
+void Map::setMapLocation(map<int, Location> map)
 {
-	cities = cityList;
+	cities = map;
 }
+

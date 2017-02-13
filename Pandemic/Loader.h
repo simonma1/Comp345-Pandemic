@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "json.hpp"
 #include <fstream>
+using namespace std;
 using json = nlohmann::json;
 #pragma once
 
@@ -11,6 +12,6 @@ private:
 
 public:
 	Loader(string filename);
-	std::vector<Location> loadMap();
+	std::map<int,Location> loadMap();
 	Player loadPlayers();
 };

@@ -11,7 +11,7 @@ Location::Location()
 
 Location::Location(int id, string city, string area)
 {
-	this->id = id;
-	this ->city = city;
-	this -> area =  area;
+	this -> id = id;
+	this -> city = city;
+	this -> area = area;
 }

@@ -5,23 +5,24 @@ Loader::Loader(string filename) {
 	i >> this->j;
 }
 
-std::vector<Location> Loader::loadMap() {
-	vector<Location> cityList;
+std::map<int, Location> Loader::loadMap() {
+	map<int, Location> cityMap;
 	//j[location] is the array with all the different cities
 	for (int i = 0; i < j["location"].size(); i++) {
 		//Loops through all cities in the JSON and puts them in a list that will be given to the map
+		int cityId = j["location"][i]["id"].get<int>();
 		Location l{
-			j["location"][i]["id"].get<int>(),
+			cityId,
 			j["location"][i]["city"].get<std::string>(),
 			j["location"][i]["area"].get<std::string>()
 		};
 
-		cityList.push_back(l);
+		cityMap[cityId] = l;
 		std::cout << l.toString() << endl;
 	}
-	return cityList;
+	return cityMap;
 }
 
-Player loadPlayers() {
+Player Loader::loadPlayers() {
 	return Player();
 }
