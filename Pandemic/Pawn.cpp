@@ -1,7 +1,7 @@
 #include "Pawn.h"
 
-Pawn::Pawn(string color) {
-
+Pawn::Pawn(string newColor) {
+	color = newColor;
 }
 
 void Pawn::setPosition(Square newPosition) {
@@ -11,4 +11,12 @@ void Pawn::setPosition(Square newPosition) {
 
 Square Pawn::getPosition() {
 	return position;
+}
+
+void Pawn::setColor(string newColor) {
+	color = newColor;
+}
+
+string Pawn::getColor() {
+	return color;
 }

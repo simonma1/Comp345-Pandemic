@@ -8,11 +8,11 @@ class Pawn {
 private:
 	Square position;
 	string color;
-	ReferenceCard reference;
-	RoleCard role;
 
 public:
-	Pawn(string color);
+	Pawn(string newColor);
 	void setPosition(Square newPosition);
 	Square getPosition();
+	void setColor(string newColor);
+	string getColor();
 };

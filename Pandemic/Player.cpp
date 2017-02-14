@@ -1,15 +1,34 @@
 #include "Player.h";
+#include "RoleCard.h"
 #include <string>
+#include <iostream>
 
-Player::Player() {}
+Player::Player() {
+	referenceCard = new ReferenceCard();
 
-void Player::setRole(RoleCard role) {
-	roleCard.setColor(role.getColor());
-	roleCard.setRoleName(role.getRoleName());
+	cout << "Player created." << endl;
 }
 
-RoleCard Player::getRole() {
+Player::~Player() {
+	delete referenceCard;
+	delete roleCard;
+	referenceCard = NULL;
+	roleCard = NULL;
+}
+
+
+RoleCard* Player::getRole() {
 	return roleCard;
 }
 
+void Player::setRole(RoleCard* newRoleCard) {
+	roleCard = newRoleCard;
+}
 
+Pawn* Player::getPawn() {
+	return pawn;
+}
+
+void Player::setPawn(Pawn* newPawn) {
+	pawn = newPawn;
+}

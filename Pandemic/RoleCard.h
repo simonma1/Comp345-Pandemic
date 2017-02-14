@@ -10,6 +10,7 @@ public:
 	void setRoleName(string newRoleName);
 	string getColor();
 	void setColor(string color);
+	RoleCard();
 
 private:
 	string roleName;

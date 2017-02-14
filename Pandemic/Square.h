@@ -11,9 +11,9 @@ private:
 
 public:
 	Square();
-	Square(string city, Area area);
-	void setCity(string city);
+	Square(string newCity, Area newArea);
+	void setCity(string newCity);
 	string getCity();
-	void setArea(Area area);
+	void setArea(Area newArea);
 	Area getArea();
 };

@@ -9,14 +9,15 @@
 class Player {
 public:
 	Player();
-	void setRole(RoleCard role);
-	RoleCard getRole();
-	
-
+	~Player();
+	RoleCard* getRole();
+	void setRole(RoleCard* newRoleCard);
+	Pawn* getPawn();
+	void setPawn(Pawn* newPawn);
 
 private:
 	Pawn* pawn;
-	ReferenceCard referenceCard;
-	RoleCard roleCard;
+	ReferenceCard* referenceCard;
+	RoleCard* roleCard;
 	vector<PlayerCard> playerCards;
 };
