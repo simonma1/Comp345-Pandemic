@@ -23,9 +23,18 @@ std::map<int, Location> Loader::loadMap() {
 	return cityMap;
 }
 
-void Loader::save(string filename) {
+//Given the filename, will save the state of the board to a json file of that name
+void Loader::save(string filename, map<int, Location> cities) {
+	for (int i = 1; i < (cities.size() + 1); i++) {
+	
+		out["location"][i-1]["area"] = cities.at(i).getArea();
+		out["location"][i-1]["city"] = cities.at(i).getCity();
+		out["location"][i-1]["id"] = cities.at(i).getId();
+	
+	}
+
 	std::ofstream o(filename + ".json");
-	o << std::setw(4) << this->j << std::endl;
+	o << std::setw(4) << this->out << std::endl;
 }
 
 Player Loader::loadPlayers() {

@@ -1,0 +1,244 @@
+{
+    "location": [
+        {
+            "area": "Blue",
+            "city": "Montreal",
+            "id": 1
+        },
+        {
+            "area": "Blue",
+            "city": "New York",
+            "id": 2
+        },
+        {
+            "area": "Blue",
+            "city": "Washington",
+            "id": 3
+        },
+        {
+            "area": "Blue",
+            "city": "Chicago",
+            "id": 4
+        },
+        {
+            "area": "Blue",
+            "city": "Atlanta",
+            "id": 5
+        },
+        {
+            "area": "Blue",
+            "city": "San Francisco",
+            "id": 6
+        },
+        {
+            "area": "Blue",
+            "city": "London",
+            "id": 7
+        },
+        {
+            "area": "Blue",
+            "city": "Paris",
+            "id": 8
+        },
+        {
+            "area": "Blue",
+            "city": "Madrid",
+            "id": 9
+        },
+        {
+            "area": "Blue",
+            "city": "Milan",
+            "id": 10
+        },
+        {
+            "area": "Blue",
+            "city": "Essen",
+            "id": 11
+        },
+        {
+            "area": "Blue",
+            "city": "St-Petersburg",
+            "id": 12
+        },
+        {
+            "area": "Yellow",
+            "city": "Los Angeles",
+            "id": 13
+        },
+        {
+            "area": "Yellow",
+            "city": "Miami",
+            "id": 14
+        },
+        {
+            "area": "Yellow",
+            "city": "Mexico City",
+            "id": 15
+        },
+        {
+            "area": "Yellow",
+            "city": "Bogota",
+            "id": 16
+        },
+        {
+            "area": "Yellow",
+            "city": "Lima",
+            "id": 17
+        },
+        {
+            "area": "Yellow",
+            "city": "Santiago",
+            "id": 18
+        },
+        {
+            "area": "Yellow",
+            "city": "Buenos Aires",
+            "id": 19
+        },
+        {
+            "area": "Yellow",
+            "city": "Sao Polo",
+            "id": 20
+        },
+        {
+            "area": "Yellow",
+            "city": "Lagos",
+            "id": 21
+        },
+        {
+            "area": "Yellow",
+            "city": "Kinshasa",
+            "id": 22
+        },
+        {
+            "area": "Yellow",
+            "city": "Johannesburg",
+            "id": 23
+        },
+        {
+            "area": "Yellow",
+            "city": "Khartoum",
+            "id": 24
+        },
+        {
+            "area": "Black",
+            "city": "Algiers",
+            "id": 25
+        },
+        {
+            "area": "Black",
+            "city": "Cairo",
+            "id": 26
+        },
+        {
+            "area": "Black",
+            "city": "Istanbul",
+            "id": 27
+        },
+        {
+            "area": "Black",
+            "city": "Baghdad",
+            "id": 28
+        },
+        {
+            "area": "Black",
+            "city": "Riyadh",
+            "id": 29
+        },
+        {
+            "area": "Black",
+            "city": "Moscow",
+            "id": 30
+        },
+        {
+            "area": "Black",
+            "city": "Tehran",
+            "id": 31
+        },
+        {
+            "area": "Black",
+            "city": "Karachi",
+            "id": 32
+        },
+        {
+            "area": "Black",
+            "city": "Delhi",
+            "id": 33
+        },
+        {
+            "area": "Black",
+            "city": "Mumbai",
+            "id": 34
+        },
+        {
+            "area": "Black",
+            "city": "Kolkata",
+            "id": 35
+        },
+        {
+            "area": "Black",
+            "city": "Chennai",
+            "id": 36
+        },
+        {
+            "area": "Red",
+            "city": "Bangkok",
+            "id": 37
+        },
+        {
+            "area": "Red",
+            "city": "Jakarta",
+            "id": 38
+        },
+        {
+            "area": "Red",
+            "city": "Hong Kong",
+            "id": 39
+        },
+        {
+            "area": "Red",
+            "city": "Ho Chi Minh City",
+            "id": 40
+        },
+        {
+            "area": "Red",
+            "city": "Shanghai",
+            "id": 41
+        },
+        {
+            "area": "Red",
+            "city": "Beijing",
+            "id": 42
+        },
+        {
+            "area": "Red",
+            "city": "Seoul",
+            "id": 43
+        },
+        {
+            "area": "Red",
+            "city": "Tokyo",
+            "id": 44
+        },
+        {
+            "area": "Red",
+            "city": "Osaka",
+            "id": 45
+        },
+        {
+            "area": "Red",
+            "city": "Taipei",
+            "id": 46
+        },
+        {
+            "area": "Red",
+            "city": "Manila",
+            "id": 47
+        },
+        {
+            "area": "Red",
+            "city": "Sydney",
+            "id": 48
+        }
+    ]
+}

@@ -9,10 +9,11 @@ using json = nlohmann::json;
 class Loader {
 private:
 	json j;
+	json out;
 
 public:
 	Loader(string filename);
 	map<int,Location> loadMap();
 	Player loadPlayers();
-	void save(string filename);
+	void save(string filename, map<int,Location>);
 };
