@@ -12,6 +12,7 @@ private:
 
 public:
 	Loader(string filename);
-	std::map<int,Location> loadMap();
+	map<int,Location> loadMap();
 	Player loadPlayers();
+	void save(string filename);
 };

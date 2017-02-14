@@ -23,6 +23,11 @@ std::map<int, Location> Loader::loadMap() {
 	return cityMap;
 }
 
+void Loader::save(string filename) {
+	std::ofstream o(filename + ".json");
+	o << std::setw(4) << this->j << std::endl;
+}
+
 Player Loader::loadPlayers() {
 	return Player();
 }

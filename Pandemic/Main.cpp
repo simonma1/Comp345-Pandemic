@@ -49,6 +49,9 @@ int main()
 
 	std::cout << cityMap[16].toString() << endl;
 
+	string saveFileName = "save";
+	loader->save(saveFileName);
+
 	delete loader;//Deletes the loader pointer
 	system("Pause");
 	
