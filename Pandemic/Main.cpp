@@ -18,6 +18,28 @@ int main()
 	RoleCard* scientist = new RoleCard();
 	RoleCard* explorer = new RoleCard();
 
+	//Creating the player cards for each player
+	for (int i = 0; i < 4; i++) {
+		PlayerCard* playerCard = new PlayerCard();
+		harrison->addPlayerCard(playerCard);
+	}
+	for (int i = 0; i < 4; i++) {
+		PlayerCard* playerCard = new PlayerCard();
+		simon->addPlayerCard(playerCard);
+	}
+
+	//Status update
+	for (auto const &playerCard : harrison->getPlayerCards())
+	{
+		int i = 1;
+		cout << "Harrison card number " << i << " is " << playerCard << endl;
+	}
+	for (auto const &playerCard : simon->getPlayerCards())
+	{
+		int i = 1;
+		cout << "Simon card number " << i << " is " << playerCard << endl;
+	}
+
 	//Setting the role's colors
 	scientist->setColor("blue");
 	explorer->setColor("red");

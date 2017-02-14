@@ -32,3 +32,11 @@ Pawn* Player::getPawn() {
 void Player::setPawn(Pawn* newPawn) {
 	pawn = newPawn;
 }
+
+vector<PlayerCard*> Player::getPlayerCards() {
+	return playerCards;
+}
+
+void Player::addPlayerCard(PlayerCard* playerCard) {
+	playerCards.push_back(playerCard);
+}
