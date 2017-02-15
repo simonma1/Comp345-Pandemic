@@ -11,7 +11,7 @@ int main()
 	Loader* loader;
 	Board board;
 	Player p1;
-	Map currentMap;
+	Map* currentMap;
 	int startOrLoad=0;
 	
 
@@ -39,15 +39,18 @@ int main()
 		//Loading to be implemented
 		loader = new Loader("map.json");
 	}
-
+	currentMap = new Map();
 	//sets the map from the json in the Map object
-	currentMap.setMapLocation(loader->loadMap());
+	currentMap->setMapLocation(loader->loadMap());
+	currentMap->printConnectionMatrix();
 
 
 	string saveFileName = "save";
-	loader->save(saveFileName, currentMap.getMapLocation());
+	loader->save(saveFileName, currentMap->getMapLocation());
 
-	delete loader;//Deletes the loader pointer
+	//Deletes the pointer used
+	delete loader;
+	delete currentMap;
 	system("Pause");
 	
 }
