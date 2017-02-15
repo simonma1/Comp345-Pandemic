@@ -11,7 +11,6 @@ int main()
 	Loader* loader;
 	Board board;
 	Player p1;
-	map<int,Location> cityMap;//List of cities that will be created for the map
 	Map currentMap;
 	int startOrLoad=0;
 	
@@ -41,16 +40,12 @@ int main()
 		loader = new Loader("map.json");
 	}
 
+	//sets the map from the json in the Map object
+	currentMap.setMapLocation(loader->loadMap());
 
-	cityMap = loader->loadMap();
-	//Pass the list of city created to the map. Useful for when we will have to print it
-	currentMap.setMapLocation(cityMap);
-
-
-	std::cout << cityMap[16].toString() << endl;
 
 	string saveFileName = "save";
-	loader->save(saveFileName, cityMap);
+	loader->save(saveFileName, currentMap.getMapLocation());
 
 	delete loader;//Deletes the loader pointer
 	system("Pause");

@@ -7,7 +7,8 @@ class Map {
 
 public:
 	Map();
-	void setMapLocation(map<int,Location>);
+	void setMapLocation(map<int, Location>);
+	map<int, Location> getMapLocation() { return cities; };
 
 private:
 	map<int,Location> cities;
