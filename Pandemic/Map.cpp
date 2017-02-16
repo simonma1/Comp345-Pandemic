@@ -26,18 +26,44 @@ void Map::printConnections()
 
 string Map::toString() {
 
-	string result = "";
+	string result = "The Map\n";
+	
+	string tab = "    ";
+
+	int j = 0;
+
 
 	// Yellow Area. Assumed to be the first 12 cities
+	result += tab + "Yellow:\n";
+	result += tab + tab + "ID" + tab + "City\n";
 	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
-		int j = i + 1;
-		result += cities.at(j).toString();
+		j = i + 1;
+		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
 	}
 
 	// Red Area. Assumed to be the following 12 cities
+	result += tab + "Red:\n";
+	result += tab + tab + "ID" + tab + "City\n";
+	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
+		j = i + 1;
+		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
+	}
 
 	// Blue Area. Assumed to be the following 12 cities
+	result += tab + "Blue:\n";
+	result += tab + tab + "ID" + tab + "City\n";
+	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
+		j = i + 1;
+		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
+	}
 
 	// Black Area. Assumed to be the following 12 cities
+	result += tab + "Black:\n";
+	result += tab + tab + "ID" + tab + "City\n";
+	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
+		j = i + 1;
+		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
+	}
+	return result;
 }
 
