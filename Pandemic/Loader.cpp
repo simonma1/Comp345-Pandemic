@@ -15,6 +15,7 @@ std::map<int, Location> Loader::loadMap() {
 			cityId,
 			j["location"][i]["city"].get<std::string>(),
 			j["location"][i]["area"].get<std::string>(),
+			j["location"][i]["adjacent"].get<std::vector<int>>(),
 			j["location"][i]["yellow"].get<int>(),
 			j["location"][i]["blue"].get<int>(),
 			j["location"][i]["black"].get<int>(),

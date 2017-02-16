@@ -44,6 +44,8 @@ int main()
 	currentMap->setMapLocation(loader->loadMap());
 	currentMap->printConnectionMatrix();
 
+	currentMap->printConnections();
+
 
 	string saveFileName = "save";
 	loader->save(saveFileName, currentMap->getMapLocation());

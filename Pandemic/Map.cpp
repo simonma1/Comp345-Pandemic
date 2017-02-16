@@ -1,4 +1,5 @@
 #include "Map.h"
+#include <iostream>
 
 Map::Map() 
 {
@@ -22,6 +23,18 @@ void Map::setConnections(vector<vector <bool>> connections)
 	this->connectionVector = connections;
 }
 
+void Map::printConnections()
+{
+	for (int i = 1; i <= cities.size(); i++) {
+		cout << cities.at(i).getCity() << " has the following connection: ";
+		vector<int> cityConnection = cities.at(i).getConnections();
+		for (int j = 0; j < cityConnection.size(); j++) {
+			cout << cities.at(cityConnection[j]).getCity()<< ", ";
+		}
+		cout << endl;
+	}
+}
+
 //Mostly for testing that the data in the matrix is actually correct
 //Will print all the connections between the city 
 void Map::printConnectionMatrix()
@@ -36,7 +49,7 @@ void Map::printConnectionMatrix()
 				lineOfMatrix += " F";
 			}
 		}
-		cout << lineOfMatrix << endl;
+		//cout << lineOfMatrix << endl;
 	}
 }
 

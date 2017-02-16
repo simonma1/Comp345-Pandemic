@@ -9,11 +9,12 @@ Location::Location()
 {
 }
 
-Location::Location(int id, string city, string area, int yellow, int blue, int black, int red)
+Location::Location(int id, string city, string area, vector<int> connections, int yellow, int blue, int black, int red)
 {
 	this -> id = id;
 	this -> city = city;
 	this -> area = area;
+	this->connections = connections;
 	this->numOfYellow = yellow;
 	this->numOfBlue = blue;
 	this->numOfBlack = black;

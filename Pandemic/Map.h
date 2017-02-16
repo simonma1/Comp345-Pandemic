@@ -12,6 +12,7 @@ public:
 	map<int, Location> getMapLocation() { return cities; };
 	vector<vector <bool>> getConnections() { return connectionVector; };
 	void setConnections(vector<vector <bool>> connections);
+	void printConnections();
 	void printConnectionMatrix();
 
 private:
