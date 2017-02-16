@@ -42,8 +42,6 @@ int main()
 	currentMap = new Map();
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
-	currentMap->printConnectionMatrix();
-
 	currentMap->printConnections();
 
 
