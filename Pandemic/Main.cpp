@@ -36,8 +36,13 @@ int main()
 		loader = new Loader("map.json");
 	}
 	else {
-		//Loading to be implemented
-		loader = new Loader("map.json");
+		//Asks the user for the save file name
+		string filename = "";
+		cout << "What is the name of the file you want to load? (No need to put the extension)" << endl;
+		cin >> filename;
+		filename += ".json";
+
+		loader = new Loader(filename);
 	}
 	currentMap = new Map();
 	//sets the map from the json in the Map object

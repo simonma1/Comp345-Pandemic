@@ -1,8 +1,16 @@
 #include "Loader.h"
 
 Loader::Loader(string filename) {
-	std::ifstream i("map.json");
-	i >> this->j;
+	try {
+		ifstream i(filename);
+		i >> this->j;
+	}
+	catch (const std::invalid_argument& ia) {
+		ifstream i("map.json");
+		i >> this->j;
+		std::cerr << "Invalid argument: " << ia.what() << '\n';
+		cerr << "Starting a New Game";
+	}
 }
 
 std::map<int, Location> Loader::loadMap() {
