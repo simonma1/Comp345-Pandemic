@@ -2,7 +2,13 @@
 
 string Location::toString()
 {
-	return to_string(id) + " " + city + ": " + to_string(numOfYellow) + " yellows, " + to_string(numOfRed) + " reds, " + to_string(numOfBlue) + " blues, " + to_string(numOfBlue) + " blacks, connected to: <connected cities>";
+	string result = to_string(id) + " " + city + ": " + to_string(numOfYellow) + " yellows, " + to_string(numOfRed) + " reds, " + to_string(numOfBlue) + " blues, " + to_string(numOfBlue) + " blacks, connected to:";
+	string connectionResult = "";
+	for (auto &connection : connections) {
+		connectionResult += " " + to_string(connection);
+	}
+	result += connectionResult + ".";
+	return result ;
 }
 
 Location::Location()
