@@ -2,7 +2,7 @@
 
 string Location::toString()
 {
-	return "The city at id: " + std::to_string(id) + " is : " + city + " The area is: " + area + " The blue infection level is: " + to_string(numOfBlue);
+	return to_string(id) + " " + city + ": " + to_string(numOfYellow) + " yellows, " + to_string(numOfRed) + " reds, " + to_string(numOfBlue) + " blues, " + to_string(numOfBlue) + " blacks, connected to: <connected cities>";
 }
 
 Location::Location()
