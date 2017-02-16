@@ -3,7 +3,6 @@
 
 Map::Map() 
 {
-	
 }
 
 void Map::setMapLocation(map<int, Location> map)

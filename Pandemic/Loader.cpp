@@ -35,6 +35,11 @@ void Loader::save(string filename, map<int, Location> cities) {
 		out["location"][i-1]["area"] = cities.at(i).getArea();
 		out["location"][i-1]["city"] = cities.at(i).getCity();
 		out["location"][i-1]["id"] = cities.at(i).getId();
+		out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
+		out["location"][i - 1]["blue"] = cities.at(i).getBlue();
+		out["location"][i - 1]["black"] = cities.at(i).getBlack();
+		out["location"][i - 1]["red"] = cities.at(i).getRed();
+		out["location"][i - 1]["adjacent"] = cities.at(i).getConnections();
 	
 	}
 
