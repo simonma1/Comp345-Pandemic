@@ -13,6 +13,6 @@ public:
 	void printConnections();
 
 private:
-	map<int,Location> cities;
+	map<int,Location> cities;//An int id will serve as the key to every location in the map
 	const int numOfCities = 48;
 };

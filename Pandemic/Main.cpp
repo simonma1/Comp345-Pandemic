@@ -14,16 +14,17 @@ int main()
 	Map* currentMap;
 	int startOrLoad=0;
 	
-
+	//Welcome message
 	std::cout << "Welcome to Pandemic!!!!" << endl;
 	std::cout << "Do you want to:" << endl;
 	std::cout << "1. Start New Game" << endl;
 	std::cout << "2. Load a Game" << endl;
 
-	cin >> startOrLoad;
-	cin.clear();
+	cin >> startOrLoad;//User's choice of starting a new game or loading an existing one
+	cin.clear();//New line for input
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');//Ignores data that is not an integer
 
+	//Will keep asking the user until a valid response has been given
 	while ((startOrLoad != 1) && (startOrLoad != 2)) {
 		std::cout << "You entered an invalid value. Please Try Again." << endl;
 		cin >> startOrLoad;
@@ -33,10 +34,10 @@ int main()
 
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
-		loader = new Loader("map.json");
+		loader = new Loader("map.json");//map.json is the default file name
 	}
 	else {
-		//Asks the user for the save file name
+		//Asks the user for the save file name to load
 		string filename = "";
 		cout << "What is the name of the file you want to load? (No need to put the extension)" << endl;
 		cin >> filename;
@@ -44,13 +45,14 @@ int main()
 
 		loader = new Loader(filename);
 	}
+
 	currentMap = new Map();
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
 	currentMap->printConnections();
 
 
-	string saveFileName = "save";
+	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
 
 	//Deletes the pointer used
