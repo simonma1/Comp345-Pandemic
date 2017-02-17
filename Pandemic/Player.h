@@ -1,6 +1,7 @@
 #include <vector>
-#include "Location.h";
-#include "Cards.h";
+#include "Location.h"
+#include "Cards.h"
+#include "Pawn.h"
 using namespace std;
 #pragma once
 

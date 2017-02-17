@@ -13,6 +13,7 @@ int main()
 	Player p1;
 	Map* currentMap;
 	int startOrLoad=0;
+
 	
 	//Welcome message
 	std::cout << "Welcome to Pandemic!!!!" << endl;
