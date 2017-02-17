@@ -48,7 +48,9 @@ int main()
 	}
 
 	//Creates the player object. This implementation will be moved later on
-	p1 = new Player();
+	string role = "scientist";
+	ReferenceCard* reference = new ReferenceCard("Template Reference Card");
+	p1 = new Player(role, reference);
 	
 	cout << p1->toString()<< endl;
 

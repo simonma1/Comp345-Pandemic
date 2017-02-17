@@ -65,5 +65,5 @@ void Loader::save(string filename, map<int, Location> cities) {
 }
 
 Player Loader::loadPlayers() {
-	return Player();
+	return Player(NULL, NULL);
 }

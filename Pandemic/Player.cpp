@@ -2,10 +2,6 @@
 
 
 
-Role Player::getRole()
-{
-	return role;
-}
 
 //The player will move the Pawn 
 Location Player::movePawn()
@@ -14,18 +10,21 @@ Location Player::movePawn()
 }
 
 //Constructor for the player. 
-Player::Player() {
-	playerPawn = new Pawn();
-
+Player::Player(string role, ReferenceCard* reference) {
+	playerPawn = new Pawn();//The pawn should be created in the Board and passed to the player to prevent duplicate
+	this->role = role;
+	this->referenceCard = reference;
 }
 
 string Player::toString(){
-	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n";
+	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
+		+ "Role: " + role + "\n" + "Reference Card: " + referenceCard->getName();
 
 	return playerInfo;
 }
 
 Player::~Player() {
 	delete playerPawn;
+	delete referenceCard;
 }
 
