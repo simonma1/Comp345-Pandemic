@@ -13,18 +13,20 @@ class Player
 
 */
 private:
-	Role role; //Role will later be define as a class
+	Role* role; //Role will later be define as a class
 	ReferenceCard referenceCard;
 	vector<PlayerCard*> playerCards;
-	Pawn playerPawn;//Each Player has a Pawn which will have a Location on the Board
+	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
 	Player generatePlayer();//Used to handle the logic of player creation
-	Role getRole();
+	Role* getRole();
 	Location movePawn();
+	Player(Role* role, Pawn* playerPawn);
 	Player();
 	vector<PlayerCard*> getPlayerCards();
-	Pawn getPlayerPawn();
+	Pawn* getPlayerPawn();
+	void setPlayerCards(vector<PlayerCard*> playerCards);
 };
 
 

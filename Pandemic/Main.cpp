@@ -10,7 +10,7 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Player p1;
+	Player* p1;
 	Map* currentMap;
 	int startOrLoad=0;
 	

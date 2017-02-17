@@ -1,13 +1,12 @@
 #include "Player.h"
 
+//Player Player::generatePlayer()
+//{
+//	Player p = Player();
+//	return p;
+//}
 
-Player Player::generatePlayer()
-{
-	Player p = Player();
-	return p;
-}
-
-Role Player::getRole()
+Role* Player::getRole()
 {
 	return role;
 }
@@ -15,12 +14,16 @@ Role Player::getRole()
 //The player will move the Pawn 
 Location Player::movePawn()
 {
-	return playerPawn.getCurrentLocation();//Returns the current location for now
+	return playerPawn->getCurrentLocation();//Returns the current location for now
 }
 
 //Constructor for the player. 
-Player::Player() {
+Player::Player(Role* role, Pawn* playerPawn) {
+	this->role = role;
+	this->playerPawn = playerPawn;
+}
 
+Player::Player() {
 
 }
 
@@ -28,6 +31,10 @@ vector<PlayerCard*> Player::getPlayerCards() {
 	return playerCards;
 }
 
-Pawn Player::getPlayerPawn() {
+void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
+	this->playerCards = playerCards;
+}
+
+Pawn* Player::getPlayerPawn() {
 	return playerPawn;
 }

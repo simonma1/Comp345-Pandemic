@@ -10,6 +10,8 @@ class Pawn {
 public:
 	Location getCurrentLocation();
 	Color getPawnColor();
+	Pawn(Color pawnColor);
+	void setPawnLocation(Location location);
 
 private:
 	Color pawnColor;
@@ -32,6 +34,7 @@ private:
 
 public:
 	string getCardName();
+	PlayerCard(string cardName);
 
 };
 
@@ -42,5 +45,5 @@ private:
 
 public:
 	string getName();
-
+	Role(string name);
 };
