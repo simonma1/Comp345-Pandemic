@@ -30,39 +30,43 @@ string Map::toString() {
 	
 	string tab = "    ";
 
-	int j = 0;
+	for (int j = 1; j <= numOfCities; j++) {
+		
+		if (j / 12 == 0 && j % 12 ==1) {//Cities with Ids from 1 to 12. Color will only be printed for the 1st one
+			// Blue Area. Assumed to be the first 12 cities
+			result += tab + "Blue:\n";
+			result += tab + tab + "ID" + tab + "City\n";
+		}
+		else if (j / 12 == 1 && j % 12 == 1) {
+			// Yellow Area. Assumed to be the following 12 cities
+			result += tab + "Yellow:\n";
+			result += tab + tab + "ID" + tab + "City\n";
+		}
+		else if (j / 12 == 2 && j % 12 == 1) {
+			// Blue Area. Assumed to be the following 12 cities
+			result += tab + "Black:\n";
+			result += tab + tab + "ID" + tab + "City\n";
+		}
+		else if (j / 12 == 3 && j % 12 == 1)
+		{
+			// Black Area. Assumed to be the following 12 cities
+			result += tab + "Red:\n";
+			result += tab + tab + "ID" + tab + "City\n";
+		}
+		result += tab + tab + to_string(j) + tab + cities.at(j).toString();
 
-
-	// Yellow Area. Assumed to be the first 12 cities
-	result += tab + "Yellow:\n";
-	result += tab + tab + "ID" + tab + "City\n";
-	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
-		j = i + 1;
-		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
-	}
-
-	// Red Area. Assumed to be the following 12 cities
-	result += tab + "Red:\n";
-	result += tab + tab + "ID" + tab + "City\n";
-	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
-		j = i + 1;
-		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
-	}
-
-	// Blue Area. Assumed to be the following 12 cities
-	result += tab + "Blue:\n";
-	result += tab + tab + "ID" + tab + "City\n";
-	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
-		j = i + 1;
-		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
-	}
-
-	// Black Area. Assumed to be the following 12 cities
-	result += tab + "Black:\n";
-	result += tab + tab + "ID" + tab + "City\n";
-	for (int i = 0; i < NUM_OF_CITIES_IN_AREA; i++) {
-		j = i + 1;
-		result += tab + tab + to_string(j) + tab + cities.at(j).toString() + "\n";
+		//The following will print the Id and city name of all cities connected to the current city
+		vector<int> cityConnection = cities.at(j).getConnections();
+		for (int i = 0; i < cityConnection.size(); i++) {
+			result += to_string(cities.at(cityConnection[i]).getId()) + "."
+				+ cities.at(cityConnection[i]).getCity();
+			
+			//Prints a coma to separate the cities except for the last one
+			if (i != (cityConnection.size() - 1)) {
+				result += ", ";
+			}
+		}
+		result += "\n";
 	}
 	return result;
 }

@@ -49,14 +49,12 @@ int main()
 	currentMap = new Map();
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
-	currentMap->printConnections();
-
-
+	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
 
 	cout << currentMap->toString();
-	system("PAUSE");
+
 	//Deletes the pointer used
 	delete loader;
 	delete currentMap;

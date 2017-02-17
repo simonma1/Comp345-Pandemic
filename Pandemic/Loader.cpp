@@ -38,7 +38,6 @@ std::map<int, Location> Loader::loadMap() {
 		};
 
 		cityMap[cityId] = l;
-		std::cout << l.toString() << endl;
 	}
 	return cityMap;
 }
