@@ -10,6 +10,7 @@ class Pawn {
 public:
 	Location getCurrentLocation();
 	string assignColor();
+	string getColor() { return pawnColor; };
 	Pawn();
 
 private:

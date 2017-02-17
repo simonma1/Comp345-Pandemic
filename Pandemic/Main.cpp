@@ -10,7 +10,7 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Player p1;
+	Player* p1;
 	Map* currentMap;
 	int startOrLoad=0;
 
@@ -47,6 +47,11 @@ int main()
 		loader = new Loader(filename);
 	}
 
+	//Creates the player object. This implementation will be moved later on
+	p1 = new Player();
+	
+	cout << p1->toString()<< endl;
+
 	currentMap = new Map();
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
@@ -59,6 +64,7 @@ int main()
 	//Deletes the pointer used
 	delete loader;
 	delete currentMap;
+	delete p1;
 	system("Pause");
 	
 }

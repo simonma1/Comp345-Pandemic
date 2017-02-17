@@ -17,13 +17,14 @@ private:
 	Role role; //Role will later be define as a class
 	ReferenceCard referenceCard;
 	vector<PlayerCard> playerCards;
-	Pawn playerPawn;//Each Player has a Pawn which will have a Location on the Board
+	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
-	Player generatePlayer();//Used to handle the logic of player creation
 	Role getRole();
 	Location movePawn();
 	Player();
+	string toString();
+	~Player();
 };
 
 

@@ -15,7 +15,6 @@ string Pawn::assignColor()
 	int randomNum = rand() % 7;
 	string pawnCol = colors[randomNum];
 	this->pawnColor = pawnCol;
-	cout << "The pawn color is " << randomNum << pawnCol;
 	return pawnCol;
 }
 
