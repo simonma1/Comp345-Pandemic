@@ -16,4 +16,5 @@ public:
 	map<int,Location> loadMap();
 	Player loadPlayers();
 	void save(string filename, map<int,Location>);
+	void save(string filename, Player* player1, Player* player2);
 };

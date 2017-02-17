@@ -1,6 +1,6 @@
 #include <vector>
-#include "Location.h";
-#include "Cards.h";
+#include "Location.h"
+#include "Cards.h"
 using namespace std;
 #pragma once
 
@@ -15,7 +15,7 @@ class Player
 private:
 	Role role; //Role will later be define as a class
 	ReferenceCard referenceCard;
-	vector<PlayerCard> playerCards;
+	vector<PlayerCard*> playerCards;
 	Pawn playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
@@ -23,6 +23,8 @@ public:
 	Role getRole();
 	Location movePawn();
 	Player();
+	vector<PlayerCard*> getPlayerCards();
+	Pawn getPlayerPawn();
 };
 
 

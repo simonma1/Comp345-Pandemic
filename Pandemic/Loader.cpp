@@ -67,3 +67,48 @@ void Loader::save(string filename, map<int, Location> cities) {
 Player Loader::loadPlayers() {
 	return Player();
 }
+
+//Save the state of the players in the json.
+void Loader::save(string filename, Player* player1, Player* player2) {
+
+	// Save player1's role
+	out["Players"][0]["role"] = player1->getRole().getName();
+
+	// Save player1's cards
+	int i = 0;
+	for (auto &card : player1->getPlayerCards()) {
+		out["Players"][0]["playercards"][i] = card->getCardName();;
+	}
+
+	// Save player1's pawn color, and locationID. The reason why we don't want to save the entire location class is because the state
+	// of the location will be saved in the locations part of the json. We will only be using the id from here to fetch the information
+	// in that part of the json.
+	out["Players"][0]["pawn"][0]["color"] = player1->getPlayerPawn().getPawnColor();
+	out["Players"][0]["pawn"][0]["locationId"] = player1->getPlayerPawn().getCurrentLocation().getId();
+
+
+	
+	//--------------------
+
+
+
+	// Save player2's role
+	out["Players"][1]["role"] = player2->getRole().getName();
+
+	// Save player2's cards
+	i = 0;
+	for (auto &card : player2->getPlayerCards()) {
+		out["Players"][1]["playercards"][i] = card->getCardName();;
+	}
+
+	// Save player2's pawn color, and locationID. The reason why we don't want to save the entire location class is because the state
+	// of the location will be saved in the locations part of the json. We will only be using the id from here to fetch the information
+	// in that part of the json.
+	out["Players"][1]["pawn"][0]["color"] = player2->getPlayerPawn().getPawnColor();
+	out["Players"][1]["pawn"][0]["locationId"] = player2->getPlayerPawn().getCurrentLocation().getId();
+
+
+	//Saves the game information to a new or existing file of the specified name
+	std::ofstream o(filename + ".json");
+	o << std::setw(4) << this->out << std::endl;
+}

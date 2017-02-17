@@ -24,3 +24,10 @@ Player::Player() {
 
 }
 
+vector<PlayerCard*> Player::getPlayerCards() {
+	return playerCards;
+}
+
+Pawn Player::getPlayerPawn() {
+	return playerPawn;
+}

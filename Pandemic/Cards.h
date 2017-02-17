@@ -9,11 +9,11 @@ class Pawn {
 
 public:
 	Location getCurrentLocation();
+	Color getPawnColor();
 
 private:
 	Color pawnColor;
 	Location currentLocation;
-
 
 };
 
@@ -27,12 +27,20 @@ class ReferenceCard
 
 class PlayerCard
 {
+private:
+	string cardName;
 
+public:
+	string getCardName();
 
 };
 
 class Role
 {
+private:
+	string name;
 
+public:
+	string getName();
 
 };
