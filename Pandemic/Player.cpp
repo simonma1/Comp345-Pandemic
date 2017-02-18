@@ -1,12 +1,29 @@
 #include "Player.h"
 
-
-
-
 //The player will move the Pawn 
 Location Player::movePawn()
 {
 	return playerPawn->getCurrentLocation();//Returns the current location for now
+}
+
+Pawn Player::setPawn(string color)
+{
+	this->playerPawn = new Pawn(color);
+	return *playerPawn;
+}
+
+void Player::setReferenceCard(ReferenceCard * ref)
+{
+	this->referenceCard = ref;
+}
+
+void Player::setRole(string role)
+{
+	this->role = role;
+}
+
+Player::Player()
+{
 }
 
 //Constructor for the player. 

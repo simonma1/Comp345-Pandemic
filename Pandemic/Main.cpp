@@ -10,7 +10,6 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Player* p1;
 	Map* currentMap;
 	int startOrLoad=0;
 
@@ -47,26 +46,39 @@ int main()
 		loader = new Loader(filename);
 	}
 
-	//Creates the player object. This implementation will be moved later on
-	string role = "scientist";
-	ReferenceCard* reference = new ReferenceCard("Template Reference Card");
-	p1 = new Player(role, reference);
-	
-	cout << p1->toString()<< endl;
+	//Creates some value to be passed to the player object. This is for demo purpose
+	string role = "Scientist";
+	string role2 = "Medic";
+	ReferenceCard* reference = new ReferenceCard("Template Reference Card");	
+	ReferenceCard* reference2 = new ReferenceCard("Other Template Reference Card");
 
 	currentMap = new Map();
+
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
 	
+	//Creates 2 players
+	board.initializeNewPlayer(role, reference);
+	board.initializeNewPlayer(role2, reference2);
+
+		
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
 
 	cout << currentMap->toString();
 
+	//Prints the players detail
+	vector<Player*> players = board.getListOfPlayer();
+	for (int i = 0; i < players.size(); i++) {
+		cout << (*players[i]).toString() << endl;
+		cout << endl;
+	}
+	
+
 	//Deletes the pointer used
 	delete loader;
 	delete currentMap;
-	delete p1;
+	
 	system("Pause");
 	
 }

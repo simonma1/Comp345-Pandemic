@@ -23,6 +23,10 @@ private:
 
 public:
 	Location movePawn();
+	Pawn setPawn(string);
+	void setReferenceCard(ReferenceCard*);
+	void setRole(string);
+	Player();
 	Player(string, ReferenceCard*);
 	string toString();
 	~Player();

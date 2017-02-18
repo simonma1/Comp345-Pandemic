@@ -8,17 +8,12 @@ Location Pawn::getCurrentLocation()
 	return Location();
 }
 
-string Pawn::assignColor()
+
+Pawn::Pawn(string color)
 {
-	vector<string> colors = { "Pink", "Orange", "Blue", "Green", "Red", "White", "Brown" };
-	srand(time(NULL));
-	int randomNum = rand() % 7;
-	string pawnCol = colors[randomNum];
-	this->pawnColor = pawnCol;
-	return pawnCol;
+	this->pawnColor = color;
 }
 
 Pawn::Pawn()
 {
-	assignColor();
 }
