@@ -1,4 +1,46 @@
 {
+    "Players": [
+        {
+            "pawn": {
+                "color": 1,
+                "location": {
+                    "adjacent": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "area": "testarea",
+                    "black": 1,
+                    "blue": 1,
+                    "city": "testcity",
+                    "id": 1,
+                    "red": 1,
+                    "yellow": 1
+                }
+            },
+            "role": "testrole"
+        },
+        {
+            "pawn": {
+                "color": 2,
+                "location": {
+                    "adjacent": [
+                        2,
+                        3,
+                        4
+                    ],
+                    "area": "testarea",
+                    "black": 2,
+                    "blue": 2,
+                    "city": "testcity",
+                    "id": 2,
+                    "red": 2,
+                    "yellow": 2
+                }
+            },
+            "role": "testrole"
+        }
+    ],
     "location": [
         {
             "adjacent": [

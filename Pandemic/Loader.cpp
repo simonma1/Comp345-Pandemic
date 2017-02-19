@@ -69,100 +69,97 @@ vector<Player *> Loader::loadPlayers() {
 	Player *player2;
 	vector<Player *> players;
 
-	Role r1{
-		j["Players"][0]["role"].get<string>()
-	};
-
-	vector<string> playerCardNames1 = j["Players"][0]["playercards"].get<vector<string>>();
-	vector<PlayerCard *> pc1;
-
-	for (auto &cardName : playerCardNames1) { // for each playerCardName, create a new player card and store it in a vector. 
-		PlayerCard *pc = new PlayerCard(cardName);
-		pc1.push_back(pc);
-	}
-
-	Pawn pawn1{
-		Color(j["Players"][0]["pawn"][0]["color"].get<int>()) // The color int is read from the json (since enum stored as int) 
-															  //and dynamically created and allocated
-	};
-
-	Location p1location{
-		j["location"][0]["id"].get<int>(),
-		j["location"][0]["city"].get<std::string>(),
-		j["location"][0]["area"].get<std::string>(),
-		j["location"][0]["adjacent"].get<std::vector<int>>(),
-		j["location"][0]["yellow"].get<int>(),
-		j["location"][0]["blue"].get<int>(),
-		j["location"][0]["black"].get<int>(),
-		j["location"][0]["red"].get<int>()
-	};
-
-	pawn1.setPawnLocation(p1location);
-
-	Player p1{ // Create the player with the role, and the pawn
-		&r1,
-		&pawn1
-	};
-	
-	player1 = &p1;
-	player1->setPlayerCards(pc1);
-
 	players.push_back(player1);
 	players.push_back(player2);
+
+	int i = 0;
+	for (auto &player : players) {
+
+		Role r{
+			j["Players"][i]["role"].get<string>()
+		};
+
+		vector<string> playerCardNames = j["Players"][i]["playercards"].get<vector<string>>();
+		vector<PlayerCard *> pcards;
+
+		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
+			PlayerCard *pc = new PlayerCard(cardName);
+			pcards.push_back(pc);
+		}
+
+		Pawn pawn{
+			Color(j["Players"][i]["pawn"]["color"].get<int>()) // The color int is read from the json (since enum stored as int) 
+																  //and dynamically created and allocated
+		};
+
+		Location playerLocation{
+			j["Players"][i]["pawn"]["location"]["id"].get<int>(),
+			j["Players"][i]["pawn"]["location"]["city"].get<std::string>(),
+			j["Players"][i]["pawn"]["location"]["area"].get<std::string>(),
+			j["Players"][i]["pawn"]["location"]["adjacent"].get<std::vector<int>>(),
+			j["Players"][i]["pawn"]["location"]["yellow"].get<int>(),
+			j["Players"][i]["pawn"]["location"]["blue"].get<int>(),
+			j["Players"][i]["pawn"]["location"]["black"].get<int>(),
+			j["Players"][i]["pawn"]["location"]["red"].get<int>()
+		};
+
+		pawn.setPawnLocation(playerLocation);
+
+		Player p{ // Create the player with the role, and the pawn
+			&r,
+			&pawn
+		};
+
+		player = &p;
+		player->setPlayerCards(pcards);
+
+		i++;
+	}
+
 
 	return players;
 }
 
 //Save the state of the players in the json.
 void Loader::save(string filename, Player *player1, Player *player2) {
+	for (int j = 0; j < 2; j++) {
+		// Save player's role
+		//out["Players"][0]["role"] = player1->getRole()->getName();
+		out["Players"][j]["role"] = "testrole";
 
-	// Save player1's role
-	out["Players"][0]["role"] = player1->getRole()->getName();
 
-	// Save player1's cards 
-	int i = 0;
-	for (auto &card : player1->getPlayerCards()) {
-		out["Players"][0]["playercards"][i] = card->getCardName();
+		// Save player's cards 
+		int i = 0;
+		for (int k = 0; k < player1->getPlayerCards().size(); k++) {
+			//out["Players"][j]["playercards"][i] = card->getCardName();
+			out["Players"][j]["playercards"][k] = "testcard" + to_string(k);
+			i++;
+		}
+
+
+		// Save player's pawn color, and location.
+		/*out["Players"][0]["pawn"]["color"] = player1->getPlayerPawn()->getPawnColor();
+		out["Players"][0]["pawn"]["location"]["id"] = player1->getPlayerPawn()->getCurrentLocation().getId();
+		out["Players"][0]["pawn"]["location"]["city"] = player1->getPlayerPawn()->getCurrentLocation().getCity();
+		out["Players"][0]["pawn"]["location"]["area"] = player1->getPlayerPawn()->getCurrentLocation().getArea();
+		out["Players"][0]["pawn"]["location"]["yellow"] = player1->getPlayerPawn()->getCurrentLocation().getYellow();
+		out["Players"][0]["pawn"]["location"]["red"] = player1->getPlayerPawn()->getCurrentLocation().getRed();
+		out["Players"][0]["pawn"]["location"]["blue"] = player1->getPlayerPawn()->getCurrentLocation().getBlue();
+		out["Players"][0]["pawn"]["location"]["black"] = player1->getPlayerPawn()->getCurrentLocation().getBlack();
+		out["Players"][0]["pawn"]["location"]["adjacent"] = player1->getPlayerPawn()->getCurrentLocation().getConnections();
+		*/
+		out["Players"][j]["pawn"]["color"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["id"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["city"] = "testcity";
+		out["Players"][j]["pawn"]["location"]["area"] = "testarea";
+		out["Players"][j]["pawn"]["location"]["yellow"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["red"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["blue"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["black"] = j + 1;
+		out["Players"][j]["pawn"]["location"]["adjacent"] = { j + 1, j + 2, j + 3 };
+
 	}
-
-	// Save player1's pawn color, and location.
-	out["Players"][0]["pawn"][0]["color"] = player1->getPlayerPawn()->getPawnColor();
-	out["Players"][0]["pawn"][0]["location"][0]["id"] = player1->getPlayerPawn()->getCurrentLocation().getId();
-	out["Players"][0]["pawn"][0]["location"][0]["city"] = player1->getPlayerPawn()->getCurrentLocation().getCity();
-	out["Players"][0]["pawn"][0]["locationId"][0]["area"] = player1->getPlayerPawn()->getCurrentLocation().getArea();
-	out["Players"][0]["pawn"][0]["locationId"][0]["yellow"] = player1->getPlayerPawn()->getCurrentLocation().getYellow();
-	out["Players"][0]["pawn"][0]["locationId"][0]["red"] = player1->getPlayerPawn()->getCurrentLocation().getRed();
-	out["Players"][0]["pawn"][0]["locationId"][0]["blue"] = player1->getPlayerPawn()->getCurrentLocation().getBlue();
-	out["Players"][0]["pawn"][0]["locationId"][0]["black"] = player1->getPlayerPawn()->getCurrentLocation().getBlack();
-	out["Players"][0]["pawn"][0]["locationId"][0]["adjacent"] = player1->getPlayerPawn()->getCurrentLocation().getConnections();
-
-
 	
-	//--------------------
-
-
-
-	// Save player2's role
-	out["Players"][1]["role"] = player2->getRole()->getName();
-
-	// Save player2's cards
-	i = 0;
-	for (auto &card : player2->getPlayerCards()) {
-		out["Players"][1]["playercards"][i] = card->getCardName();
-	}
-
-	// Save player2's pawn color, and location. 
-	out["Players"][1]["pawn"][0]["color"] = player2->getPlayerPawn()->getPawnColor();
-	out["Players"][1]["pawn"][0]["location"][0]["id"] = player2->getPlayerPawn()->getCurrentLocation().getId();
-	out["Players"][1]["pawn"][0]["location"][0]["city"] = player2->getPlayerPawn()->getCurrentLocation().getCity();
-	out["Players"][1]["pawn"][0]["location"][0]["area"] = player2->getPlayerPawn()->getCurrentLocation().getArea();
-	out["Players"][1]["pawn"][0]["location"][0]["yellow"] = player2->getPlayerPawn()->getCurrentLocation().getYellow();
-	out["Players"][1]["pawn"][0]["location"][0]["red"] = player2->getPlayerPawn()->getCurrentLocation().getRed();
-	out["Players"][1]["pawn"][0]["location"][0]["blue"] = player2->getPlayerPawn()->getCurrentLocation().getBlue();
-	out["Players"][1]["pawn"][0]["location"][0]["black"] = player2->getPlayerPawn()->getCurrentLocation().getBlack();
-	out["Players"][1]["pawn"][0]["location"][0]["adjacent"] = player2->getPlayerPawn()->getCurrentLocation().getCity();
-
-
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");

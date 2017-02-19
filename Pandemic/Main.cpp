@@ -10,7 +10,8 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Player* p1;
+	Player *p1;
+	Player *p2;
 	Map* currentMap;
 	int startOrLoad=0;
 	
@@ -49,9 +50,14 @@ int main()
 	currentMap = new Map();
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
+
+	vector<Player *> loadedPlayers = loader->loadPlayers();
+	p1 = loadedPlayers.at(0);
+	p2 = loadedPlayers.at(1);
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
+	loader->save(saveFileName, p1, p2);
 
 	cout << currentMap->toString();
 
