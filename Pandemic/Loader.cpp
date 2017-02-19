@@ -75,9 +75,7 @@ vector<Player *> Loader::loadPlayers() {
 	int i = 0;
 	for (auto &player : players) {
 
-		Role r{
-			j["Players"][i]["role"].get<string>()
-		};
+		Role *r = new Role (j["Players"][i]["role"].get<string>());
 
 		vector<string> playerCardNames = j["Players"][i]["playercards"].get<vector<string>>();
 		vector<PlayerCard *> pcards;
@@ -87,30 +85,20 @@ vector<Player *> Loader::loadPlayers() {
 			pcards.push_back(pc);
 		}
 
-		Pawn pawn{
-			Color(j["Players"][i]["pawn"]["color"].get<int>()) // The color int is read from the json (since enum stored as int) 
+		Pawn *pawn = new Pawn(Color(j["Players"][i]["pawn"]["color"].get<int>())); // The color int is read from the json (since enum stored as int) 
 																  //and dynamically created and allocated
-		};
+		
 
-		Location playerLocation{
-			j["Players"][i]["pawn"]["location"]["id"].get<int>(),
-			j["Players"][i]["pawn"]["location"]["city"].get<std::string>(),
-			j["Players"][i]["pawn"]["location"]["area"].get<std::string>(),
-			j["Players"][i]["pawn"]["location"]["adjacent"].get<std::vector<int>>(),
-			j["Players"][i]["pawn"]["location"]["yellow"].get<int>(),
-			j["Players"][i]["pawn"]["location"]["blue"].get<int>(),
-			j["Players"][i]["pawn"]["location"]["black"].get<int>(),
-			j["Players"][i]["pawn"]["location"]["red"].get<int>()
-		};
+		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
-		pawn.setPawnLocation(playerLocation);
+		pawn->setPawnLocation(playerLocation);
 
-		Player p{ // Create the player with the role, and the pawn
-			&r,
-			&pawn
-		};
+		Player* p = new Player( // Create the player with the role, and the pawn
+			r,
+			pawn
+		);
 
-		player = &p;
+		player = p;
 		player->setPlayerCards(pcards);
 
 		i++;
@@ -121,43 +109,21 @@ vector<Player *> Loader::loadPlayers() {
 }
 
 //Save the state of the players in the json.
-void Loader::save(string filename, Player *player1, Player *player2) {
-	for (int j = 0; j < 2; j++) {
+void Loader::save(string filename, vector<Player *> players) {
+	for (int i = 0; i < 2; i++) {
 		// Save player's role
-		//out["Players"][0]["role"] = player1->getRole()->getName();
-		out["Players"][j]["role"] = "testrole";
+		out["Players"][i]["role"] = players[i]->getRole()->getName();
 
 
 		// Save player's cards 
-		int i = 0;
-		for (int k = 0; k < player1->getPlayerCards().size(); k++) {
-			//out["Players"][j]["playercards"][i] = card->getCardName();
-			out["Players"][j]["playercards"][k] = "testcard" + to_string(k);
-			i++;
+		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
+			out["Players"][i]["playercards"][j] = players[i]->getPlayerCards()[j]->getCardName();
 		}
 
 
 		// Save player's pawn color, and location.
-		/*out["Players"][0]["pawn"]["color"] = player1->getPlayerPawn()->getPawnColor();
-		out["Players"][0]["pawn"]["location"]["id"] = player1->getPlayerPawn()->getCurrentLocation().getId();
-		out["Players"][0]["pawn"]["location"]["city"] = player1->getPlayerPawn()->getCurrentLocation().getCity();
-		out["Players"][0]["pawn"]["location"]["area"] = player1->getPlayerPawn()->getCurrentLocation().getArea();
-		out["Players"][0]["pawn"]["location"]["yellow"] = player1->getPlayerPawn()->getCurrentLocation().getYellow();
-		out["Players"][0]["pawn"]["location"]["red"] = player1->getPlayerPawn()->getCurrentLocation().getRed();
-		out["Players"][0]["pawn"]["location"]["blue"] = player1->getPlayerPawn()->getCurrentLocation().getBlue();
-		out["Players"][0]["pawn"]["location"]["black"] = player1->getPlayerPawn()->getCurrentLocation().getBlack();
-		out["Players"][0]["pawn"]["location"]["adjacent"] = player1->getPlayerPawn()->getCurrentLocation().getConnections();
-		*/
-		out["Players"][j]["pawn"]["color"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["id"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["city"] = "testcity";
-		out["Players"][j]["pawn"]["location"]["area"] = "testarea";
-		out["Players"][j]["pawn"]["location"]["yellow"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["red"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["blue"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["black"] = j + 1;
-		out["Players"][j]["pawn"]["location"]["adjacent"] = { j + 1, j + 2, j + 3 };
-
+		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getPawnColor();
+		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation();
 	}
 	
 

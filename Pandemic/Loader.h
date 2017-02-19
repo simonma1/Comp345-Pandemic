@@ -16,5 +16,5 @@ public:
 	map<int,Location> loadMap();
 	vector<Player *> loadPlayers();
 	void save(string filename, map<int,Location>);
-	void save(string filename, Player* player1, Player* player2);
+	void save(string filename, vector<Player *> players);
 };

@@ -8,14 +8,14 @@ enum Color { Pink, Orange, Blue, Green, Red, White, Brown };
 class Pawn {
 
 public:
-	Location getCurrentLocation();
+	int getCurrentLocation();
 	Color getPawnColor();
 	Pawn(Color pawnColor);
-	void setPawnLocation(Location location);
+	void setPawnLocation(int location);
 
 private:
 	Color pawnColor;
-	Location currentLocation;
+	int currentLocation;
 
 };
 

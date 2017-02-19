@@ -1,9 +1,9 @@
 #include "Cards.h"
 
 
-Location Pawn::getCurrentLocation()
+int Pawn::getCurrentLocation()
 {
-	return Location();
+	return currentLocation;
 }
 
 string Role::getName() {
@@ -22,7 +22,7 @@ Pawn::Pawn(Color pawnColor) {
 	this->pawnColor = pawnColor;
 }
 
-void Pawn::setPawnLocation(Location location) {
+void Pawn::setPawnLocation(int location) {
 	this->currentLocation = location;
 }
 

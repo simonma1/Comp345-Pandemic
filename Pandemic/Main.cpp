@@ -52,12 +52,12 @@ int main()
 	currentMap->setMapLocation(loader->loadMap());
 
 	vector<Player *> loadedPlayers = loader->loadPlayers();
-	p1 = loadedPlayers.at(0);
-	p2 = loadedPlayers.at(1);
+	p1 = loadedPlayers[0];
+	p2 = loadedPlayers[1];
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
-	loader->save(saveFileName, p1, p2);
+	loader->save(saveFileName, loadedPlayers);
 
 	cout << currentMap->toString();
 

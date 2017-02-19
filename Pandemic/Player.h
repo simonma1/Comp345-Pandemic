@@ -21,7 +21,7 @@ private:
 public:
 	Player generatePlayer();//Used to handle the logic of player creation
 	Role* getRole();
-	Location movePawn();
+	int movePawn();
 	Player(Role* role, Pawn* playerPawn);
 	Player();
 	vector<PlayerCard*> getPlayerCards();
