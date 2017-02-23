@@ -22,6 +22,7 @@ public:
 	Player generatePlayer();//Used to handle the logic of player creation
 	Role* getRole();
 	int movePawn();
+	~Player();
 	Player(Role* role, Pawn* playerPawn);
 	Player();
 	vector<PlayerCard*> getPlayerCards();

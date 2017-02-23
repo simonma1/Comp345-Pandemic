@@ -64,6 +64,8 @@ int main()
 	//Deletes the pointer used
 	delete loader;
 	delete currentMap;
+	delete p1;
+	delete p2;
 	system("Pause");
 	
 }

@@ -27,6 +27,13 @@ Player::Player() {
 
 }
 
+Player::~Player() {
+	delete playerPawn;
+	playerPawn = NULL;
+	delete role;
+	role = NULL;
+}
+
 vector<PlayerCard*> Player::getPlayerCards() {
 	return playerCards;
 }
