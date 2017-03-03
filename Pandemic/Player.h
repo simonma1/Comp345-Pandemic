@@ -1,6 +1,8 @@
 #include <vector>
 #include "Location.h"
 #include "Cards.h"
+#include "Pawn.h"
+
 using namespace std;
 #pragma once
 
@@ -14,20 +16,25 @@ class Player
 */
 private:
 	Role* role; //Role will later be define as a class
-	ReferenceCard referenceCard;
+	ReferenceCard *referenceCard; // THIS POINTER IS NOT EVER DELETED!!!!! Need to address this issue.
 	vector<PlayerCard*> playerCards;
 	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
 	Player generatePlayer();//Used to handle the logic of player creation
-	Role* getRole();
-	int movePawn();
+	Role* getRole() { return role; };
+	Location movePawn();
 	~Player();
 	Player(Role* role, Pawn* playerPawn);
 	Player();
 	vector<PlayerCard*> getPlayerCards();
 	Pawn* getPlayerPawn();
 	void setPlayerCards(vector<PlayerCard*> playerCards);
+	//void setReferenceCard(ReferenceCard*);
+	void setRole(Role*);
+	string toString();
+	Pawn setPawn(string);
+
 };
 
 

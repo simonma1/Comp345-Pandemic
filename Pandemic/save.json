@@ -2,8 +2,7 @@
     "Players": [
         {
             "pawn": {
-                "color": 1,
-                "location": 5
+                "color": "Orange"
             },
             "playercards": [
                 "card1",
@@ -16,8 +15,7 @@
         },
         {
             "pawn": {
-                "color": 2,
-                "location": 5
+                "color": "Blue"
             },
             "playercards": [
                 "card1",

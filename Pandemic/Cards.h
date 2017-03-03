@@ -1,49 +1,33 @@
-#include "Location.h"
+#include <string>
 #pragma once
-
-
-//Each player will be represented by a pawn of a different color, which is an enum type. It is linked with the Role Card
-enum Color { Pink, Orange, Blue, Green, Red, White, Brown };
-
-class Pawn {
-
-public:
-	int getCurrentLocation();
-	Color getPawnColor();
-	Pawn(Color pawnColor);
-	void setPawnLocation(int location);
-
-private:
-	Color pawnColor;
-	int currentLocation;
-
-};
-
-
 
 class ReferenceCard
 {
+private:
+	std::string name;
 
-
+public:
+	std::string getName(){ return name; };
+	ReferenceCard(std::string);
 };
 
 class PlayerCard
 {
 private:
-	string cardName;
+	std::string cardName;
 
 public:
-	string getCardName();
-	PlayerCard(string cardName);
+	std::string getCardName();
+	PlayerCard(std::string cardName);
 
 };
 
 class Role
 {
 private:
-	string name;
+	std::string name;
 
 public:
-	string getName();
-	Role(string name);
+	std::string getName() { return name; };
+	Role(std::string name);
 };

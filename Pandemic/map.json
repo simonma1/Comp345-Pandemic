@@ -493,7 +493,7 @@
         "card5"
       ],
       "pawn": {
-        "color": 1,
+        "color": "Orange",
         "location": 5
       }
     },
@@ -507,7 +507,7 @@
         "card5"
       ],
       "pawn": {
-        "color": 2,
+        "color": "Blue",
         "location": 5
       }
     }

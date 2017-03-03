@@ -1,35 +1,22 @@
 #include "Cards.h"
 
 
-int Pawn::getCurrentLocation()
+ReferenceCard::ReferenceCard(std::string cardName)
 {
-	return currentLocation;
+	name = cardName;
 }
 
-string Role::getName() {
-	return name;
-}
 
-string PlayerCard::getCardName() {
+std::string PlayerCard::getCardName() {
 	return cardName;
 }
 
-Color Pawn::getPawnColor() {
-	return pawnColor;
-}
 
-Pawn::Pawn(Color pawnColor) {
-	this->pawnColor = pawnColor;
-}
 
-void Pawn::setPawnLocation(int location) {
-	this->currentLocation = location;
-}
-
-Role::Role(string name) {
+Role::Role(std::string name) {
 	this->name = name;
 }
 
-PlayerCard::PlayerCard(string cardName) {
+PlayerCard::PlayerCard(std::string cardName) {
 	this->cardName = cardName;
 }

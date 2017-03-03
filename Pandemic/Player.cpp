@@ -1,26 +1,27 @@
 #include "Player.h"
 
-//Player Player::generatePlayer()
-//{
-//	Player p = Player();
-//	return p;
-//}
-
-Role* Player::getRole()
-{
-	return role;
-}
-
 //The player will move the Pawn 
-int Player::movePawn()
+Location Player::movePawn()
 {
 	return playerPawn->getCurrentLocation();//Returns the current location for now
 }
+
+Pawn Player::setPawn(string color)
+{
+	this->playerPawn = new Pawn(color);
+	return *playerPawn;
+}
+
+//void Player::setReferenceCard(ReferenceCard * ref)
+//{
+//	this->referenceCard = ref;
+//}
 
 //Constructor for the player. 
 Player::Player(Role* role, Pawn* playerPawn) {
 	this->role = role;
 	this->playerPawn = playerPawn;
+	//this->referenceCard = referenceCard;
 }
 
 Player::Player() {
@@ -32,6 +33,10 @@ Player::~Player() {
 	playerPawn = NULL;
 	delete role;
 	role = NULL;
+	for (auto card : this->getPlayerCards()) {
+		delete card;
+	}
+	this->getPlayerCards().clear();
 }
 
 vector<PlayerCard*> Player::getPlayerCards() {
@@ -40,6 +45,18 @@ vector<PlayerCard*> Player::getPlayerCards() {
 
 void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
 	this->playerCards = playerCards;
+}
+
+void Player::setRole(Role* role)
+{
+	this->role = role;
+}
+
+string Player::toString(){
+	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
+		+ "Role: " + role->getName();
+
+	return playerInfo;
 }
 
 Pawn* Player::getPlayerPawn() {

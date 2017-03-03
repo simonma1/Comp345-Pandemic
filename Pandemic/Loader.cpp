@@ -85,13 +85,13 @@ vector<Player *> Loader::loadPlayers() {
 			pcards.push_back(pc);
 		}
 
-		Pawn *pawn = new Pawn(Color(j["Players"][i]["pawn"]["color"].get<int>())); // The color int is read from the json (since enum stored as int) 
+		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 
 																  //and dynamically created and allocated
 		
 
-		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
+		//int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
-		pawn->setPawnLocation(playerLocation);
+		//pawn->setPawnLocation(playerLocation);
 
 		Player* p = new Player( // Create the player with the role, and the pawn
 			r,
@@ -122,8 +122,8 @@ void Loader::save(string filename, vector<Player *> players) {
 
 
 		// Save player's pawn color, and location.
-		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getPawnColor();
-		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation();
+		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
+		//out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
 	}
 	
 

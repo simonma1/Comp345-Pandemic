@@ -14,6 +14,7 @@ int main()
 	Player *p2;
 	Map* currentMap;
 	int startOrLoad=0;
+
 	
 	//Welcome message
 	std::cout << "Welcome to Pandemic!!!!" << endl;
@@ -32,10 +33,31 @@ int main()
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	}
-
+	vector<Player *> players;
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
 		loader = new Loader("map.json");//map.json is the default file name
+		
+		//Creates some value to be passed to the player object. This is for demo purpose
+		Role* role = new Role("Scientist");
+		Role* role2 = new Role("Medic");
+
+		PlayerCard* card1 = new PlayerCard("Bitch ass");
+		PlayerCard* card2 = new PlayerCard("Bitch ass nigguh");
+
+		vector<PlayerCard* > cards1;
+		cards1.push_back(card1);
+
+		vector<PlayerCard* > cards2;
+		cards2.push_back(card2);
+
+		//Creates 2 players
+		board.initializeNewPlayer(role);
+		board.initializeNewPlayer(role2);
+
+		players = board.getListOfPlayer();
+		p1 = players[0];
+		p2 = players[1];
 	}
 	else {
 		//Asks the user for the save file name to load
@@ -45,27 +67,32 @@ int main()
 		filename += ".json";
 
 		loader = new Loader(filename);
+		players = loader->loadPlayers();
+		p1 = players[0];
+		p2 = players[1];
 	}
 
+
 	currentMap = new Map();
+
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
 
-	vector<Player *> loadedPlayers = loader->loadPlayers();
-	p1 = loadedPlayers[0];
-	p2 = loadedPlayers[1];
+
+	cout << currentMap->toString();
+
+	//Prints the players detail
+	for (int i = 0; i < players.size(); i++) {
+		cout << (*players[i]).toString() << endl;
+		cout << endl;
+	}
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, currentMap->getMapLocation());
-	loader->save(saveFileName, loadedPlayers);
-
-	cout << currentMap->toString();
+	loader->save(saveFileName, players);
 
 	//Deletes the pointer used
 	delete loader;
 	delete currentMap;
-	delete p1;
-	delete p2;
 	system("Pause");
-	
 }
