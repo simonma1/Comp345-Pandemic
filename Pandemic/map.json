@@ -481,5 +481,35 @@
       "blue": 0
     }
 
+  ],
+  "Players": [
+    {
+      "role": "none",
+      "playercards": [
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5"
+      ],
+      "pawn": {
+        "color": "Orange",
+        "location": 5
+      }
+    },
+    {
+      "role": "none",
+      "playercards": [
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5"
+      ],
+      "pawn": {
+        "color": "Blue",
+        "location": 5
+      }
+    }
   ]
 }

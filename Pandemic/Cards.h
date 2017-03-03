@@ -1,7 +1,6 @@
 #include <string>
 #pragma once
 
-
 class ReferenceCard
 {
 private:
@@ -14,12 +13,21 @@ public:
 
 class PlayerCard
 {
+private:
+	std::string cardName;
 
+public:
+	std::string getCardName();
+	PlayerCard(std::string cardName);
 
 };
 
 class Role
 {
+private:
+	std::string name;
 
-
+public:
+	std::string getName() { return name; };
+	Role(std::string name);
 };

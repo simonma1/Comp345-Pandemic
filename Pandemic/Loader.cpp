@@ -64,6 +64,70 @@ void Loader::save(string filename, map<int, Location> cities) {
 	o << std::setw(4) << this->out << std::endl;
 }
 
-Player Loader::loadPlayers() {
-	return Player(NULL, NULL);
+vector<Player *> Loader::loadPlayers() {
+	Player *player1;
+	Player *player2;
+	vector<Player *> players;
+
+	players.push_back(player1);
+	players.push_back(player2);
+
+	int i = 0;
+	for (auto &player : players) {
+
+		Role *r = new Role (j["Players"][i]["role"].get<string>());
+
+		vector<string> playerCardNames = j["Players"][i]["playercards"].get<vector<string>>();
+		vector<PlayerCard *> pcards;
+
+		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
+			PlayerCard *pc = new PlayerCard(cardName);
+			pcards.push_back(pc);
+		}
+
+		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 
+																  //and dynamically created and allocated
+		
+
+		//int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
+
+		//pawn->setPawnLocation(playerLocation);
+
+		Player* p = new Player( // Create the player with the role, and the pawn
+			r,
+			pawn
+		);
+
+		player = p;
+		player->setPlayerCards(pcards);
+
+		i++;
+	}
+
+
+	return players;
+}
+
+//Save the state of the players in the json.
+void Loader::save(string filename, vector<Player *> players) {
+	for (int i = 0; i < 2; i++) {
+		// Save player's role
+		out["Players"][i]["role"] = players[i]->getRole()->getName();
+
+
+		// Save player's cards 
+		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
+			out["Players"][i]["playercards"][j] = players[i]->getPlayerCards()[j]->getCardName();
+		}
+
+
+		// Save player's pawn color, and location.
+		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
+		//out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
+	}
+	
+
+	//Saves the game information to a new or existing file of the specified name
+	std::ofstream o(filename + ".json");
+	o << std::setw(4) << this->out << std::endl;
 }

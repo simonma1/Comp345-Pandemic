@@ -1,6 +1,22 @@
 #include "Cards.h"
 
-ReferenceCard::ReferenceCard(std::string roleName)
+
+ReferenceCard::ReferenceCard(std::string cardName)
 {
-	name = roleName;
+	name = cardName;
+}
+
+
+std::string PlayerCard::getCardName() {
+	return cardName;
+}
+
+
+
+Role::Role(std::string name) {
+	this->name = name;
+}
+
+PlayerCard::PlayerCard(std::string cardName) {
+	this->cardName = cardName;
 }

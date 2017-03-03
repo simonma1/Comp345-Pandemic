@@ -14,6 +14,7 @@ private:
 public:
 	Loader(string filename);
 	map<int,Location> loadMap();
-	Player loadPlayers();
+	vector<Player *> loadPlayers();
 	void save(string filename, map<int,Location>);
+	void save(string filename, vector<Player *> players);
 };

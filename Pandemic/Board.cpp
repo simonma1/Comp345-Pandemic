@@ -27,13 +27,12 @@ Creates a new player to be put in the list of player. The player will be given a
 random color. No 2 players will receive the same one. The pawn will be link to the class of 
 that color
 */
-void Board::initializeNewPlayer(string role, ReferenceCard* card)
+void Board::initializeNewPlayer(Role* role)
 {
 	Player* player = new Player();
 	string color = getRandomColorFromRemaining();//Returns the color of the pawn
 	player->setPawn(color);//Sets the pawn with the color for the player
 	player->setRole(role);
-	player->setReferenceCard(card);
 	addPlayer(player);//adds the player to the list of player
 
 }

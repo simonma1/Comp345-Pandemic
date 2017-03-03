@@ -17,3 +17,4 @@ Pawn::Pawn(string color)
 Pawn::Pawn()
 {
 }
+

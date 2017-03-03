@@ -12,7 +12,7 @@ public:
 	Board();
 	~Board();
 	void addPlayer(Player* p);
-	void initializeNewPlayer(string, ReferenceCard*);
+	void initializeNewPlayer(Role*);
 	vector<Player*> getListOfPlayer() { return players; };
 
 private: 

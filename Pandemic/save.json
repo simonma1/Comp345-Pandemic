@@ -1,4 +1,32 @@
 {
+    "Players": [
+        {
+            "pawn": {
+                "color": "Orange"
+            },
+            "playercards": [
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
+            ],
+            "role": "none"
+        },
+        {
+            "pawn": {
+                "color": "Blue"
+            },
+            "playercards": [
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
+            ],
+            "role": "none"
+        }
+    ],
     "location": [
         {
             "adjacent": [

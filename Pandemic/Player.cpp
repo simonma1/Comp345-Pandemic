@@ -12,36 +12,53 @@ Pawn Player::setPawn(string color)
 	return *playerPawn;
 }
 
-void Player::setReferenceCard(ReferenceCard * ref)
-{
-	this->referenceCard = ref;
-}
-
-void Player::setRole(string role)
-{
-	this->role = role;
-}
-
-Player::Player()
-{
-}
+//void Player::setReferenceCard(ReferenceCard * ref)
+//{
+//	this->referenceCard = ref;
+//}
 
 //Constructor for the player. 
-Player::Player(string role, ReferenceCard* reference) {
-	playerPawn = new Pawn();//The pawn should be created in the Board and passed to the player to prevent duplicate
+Player::Player(Role* role, Pawn* playerPawn) {
 	this->role = role;
-	this->referenceCard = reference;
+	this->playerPawn = playerPawn;
+	//this->referenceCard = referenceCard;
 }
 
-string Player::toString(){
-	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
-		+ "Role: " + role + "\n" + "Reference Card: " + referenceCard->getName();
+Player::Player() {
 
-	return playerInfo;
 }
 
 Player::~Player() {
 	delete playerPawn;
-	delete referenceCard;
+	playerPawn = NULL;
+	delete role;
+	role = NULL;
+	for (auto card : this->getPlayerCards()) {
+		delete card;
+	}
+	this->getPlayerCards().clear();
 }
 
+vector<PlayerCard*> Player::getPlayerCards() {
+	return playerCards;
+}
+
+void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
+	this->playerCards = playerCards;
+}
+
+void Player::setRole(Role* role)
+{
+	this->role = role;
+}
+
+string Player::toString(){
+	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
+		+ "Role: " + role->getName();
+
+	return playerInfo;
+}
+
+Pawn* Player::getPlayerPawn() {
+	return playerPawn;
+}
