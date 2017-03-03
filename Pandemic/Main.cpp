@@ -3,6 +3,7 @@
 #include "Board.h"
 #include "Location.h"
 #include "Loader.h"
+#include "Cards.h"
 #include <vector>
 using namespace std;
 
@@ -72,6 +73,13 @@ int main()
 		p2 = players[1];
 	}
 
+	//Creates Reference card for the players. To be modified later on
+	ReferenceCard* ref1 = new ReferenceCard;
+	ReferenceCard* ref2 = new ReferenceCard;
+	p1->setReferenceCard(ref1);
+	p2->setReferenceCard(ref2);
+
+	ref1->displayPossibleActions();
 
 	currentMap = new Map();
 

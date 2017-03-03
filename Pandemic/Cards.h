@@ -1,33 +1,39 @@
 #include <string>
+#include <vector>
+#include <iostream>
+using namespace std;
 #pragma once
 
 class ReferenceCard
 {
 private:
-	std::string name;
+	vector<string> actions;
 
 public:
-	std::string getName(){ return name; };
-	ReferenceCard(std::string);
+	vector<string> getReferenceCard(){ return actions; };
+	ReferenceCard(string);
+	ReferenceCard();
+	void displayPossibleActions();//Shows all the actions that player can do throughout the game. 
+
 };
 
 class PlayerCard
 {
 private:
-	std::string cardName;
+	string cardName;
 
 public:
-	std::string getCardName();
-	PlayerCard(std::string cardName);
+	string getCardName();
+	PlayerCard(string cardName);
 
 };
 
 class Role
 {
 private:
-	std::string name;
+	string name;
 
 public:
-	std::string getName() { return name; };
-	Role(std::string name);
+	string getName() { return name; };
+	Role(string name);
 };

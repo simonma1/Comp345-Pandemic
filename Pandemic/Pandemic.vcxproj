@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CityCard.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -122,6 +123,8 @@
   <ItemGroup>
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="CityCard.h" />
+    <ClInclude Include="GeneralCards.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Location.h" />

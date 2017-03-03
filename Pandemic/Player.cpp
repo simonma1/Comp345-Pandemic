@@ -12,10 +12,6 @@ Pawn Player::setPawn(string color)
 	return *playerPawn;
 }
 
-//void Player::setReferenceCard(ReferenceCard * ref)
-//{
-//	this->referenceCard = ref;
-//}
 
 //Constructor for the player. 
 Player::Player(Role* role, Pawn* playerPawn) {
@@ -33,6 +29,8 @@ Player::~Player() {
 	playerPawn = NULL;
 	delete role;
 	role = NULL;
+	delete referenceCard;
+	referenceCard = NULL;
 	for (auto card : this->getPlayerCards()) {
 		delete card;
 	}
@@ -45,6 +43,11 @@ vector<PlayerCard*> Player::getPlayerCards() {
 
 void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
 	this->playerCards = playerCards;
+}
+
+void Player::setReferenceCard(ReferenceCard * ref)
+{
+	this->referenceCard = ref;
 }
 
 void Player::setRole(Role* role)
