@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	Loader* loader;
-	Board board = Board();
+	Board board;
 	Player *p1;
 	Player *p2;
 	Map* currentMap;
@@ -39,7 +39,8 @@ int main()
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
 		loader = new Loader("map.json");//map.json is the default file name
-		
+		board = Board();
+
 		//Creates some value to be passed to the player object. This is for demo purpose
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
@@ -69,7 +70,8 @@ int main()
 		filename += ".json";
 
 		loader = new Loader(filename);
-		players = loader->loadPlayers();
+		loader->load(players);
+		board = loader -> loadBoard();
 		p1 = players[0];
 		p2 = players[1];
 	}

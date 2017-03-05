@@ -10,6 +10,7 @@ class Board
 
 public:
 	Board();
+	Board(int);
 	~Board();
 	void addPlayer(Player* p);
 	void setMap(Map*);

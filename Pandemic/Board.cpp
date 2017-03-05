@@ -6,6 +6,13 @@ The board class will act as an intermediary between location and player
 
 Board::Board()
 {
+	outbreakMarker = 0;
+	boardMap = new Map;
+}
+
+Board::Board(int outbreak) {
+	outbreakMarker = outbreak;
+	boardMap = NULL;
 }
 
 //Destructor for the Board object. Will delete every player from the vector of player pointer
@@ -15,7 +22,9 @@ Board::~Board()
 	{
 		delete players[i];
 	}
-	delete boardMap;
+	if (boardMap != NULL) {
+		delete boardMap;
+	}
 }
 
 void Board::addPlayer(Player * p)
@@ -50,8 +59,8 @@ string Board::toString()
 	value += boardMap->toString() + "\n";
 	value += "-------------------------------------------------------------------------------\n";
 
-	value += "Board Info";
-	value += "The Oubreak Level is at: " + to_string(outbreakMarker) + "\n";
+	value += "Board Info:\n";
+	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
 	return value;
 }
 

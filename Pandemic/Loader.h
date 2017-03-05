@@ -1,6 +1,7 @@
 #include "Location.h"
 #include "Player.h"
 #include "json.hpp"
+#include "Board.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;
@@ -15,6 +16,8 @@ public:
 	Loader(string filename);
 	map<int,Location> loadMap();
 	vector<Player *> loadPlayers();
+	Board loadBoard();
 	void save(string filename, map<int,Location>);
 	void save(string filename, vector<Player *> players);
+	void load(vector<Player*> &);
 };

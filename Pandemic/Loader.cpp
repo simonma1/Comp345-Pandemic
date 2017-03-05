@@ -108,6 +108,15 @@ vector<Player *> Loader::loadPlayers() {
 	return players;
 }
 
+Board Loader::loadBoard()
+{
+	Board b{
+		j["Board"]["outbreakLevel"].get<int>()
+	};
+
+	return b;
+}
+
 //Save the state of the players in the json.
 void Loader::save(string filename, vector<Player *> players) {
 	for (int i = 0; i < 2; i++) {
@@ -130,4 +139,10 @@ void Loader::save(string filename, vector<Player *> players) {
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
 	o << std::setw(4) << this->out << std::endl;
+}
+
+void Loader::load(vector<Player*> & players)
+{
+	players = loadPlayers();
+
 }
