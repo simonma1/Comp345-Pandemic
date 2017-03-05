@@ -10,7 +10,7 @@ class Board
 
 public:
 	Board();
-	Board(int);
+	Board(int, int, int, int, int ,int, bool, bool, bool, bool);
 	~Board();
 	void addPlayer(Player* p);
 	void setMap(Map*);
@@ -29,6 +29,8 @@ private:
 	int infectionRateMarker;
 	int outbreakMarker;
 	vector<int> InfectionDeck;
+	int numOfBlackPieces, numOfYellowPieces, numOfBluePieces, numOfRedPieces;
+	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
 
 
 };

@@ -4,13 +4,27 @@
             "pawn": {
                 "color": "Orange"
             },
-            "role": "Scientist"
+            "playercards": [
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
+            ],
+            "role": "none"
         },
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Blue"
             },
-            "role": "Medic"
+            "playercards": [
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
+            ],
+            "role": "none"
         }
     ],
     "location": [

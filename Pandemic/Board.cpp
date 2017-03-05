@@ -10,8 +10,21 @@ Board::Board()
 	boardMap = new Map;
 }
 
-Board::Board(int outbreak) {
-	outbreakMarker = outbreak;
+Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int redPieces, 
+	int bluePieces, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
+	
+	this->outbreakMarker = outbreak;
+	this->infectionRateMarker = infection;
+
+	this->numOfBlackPieces = blackPieces;
+	this->numOfYellowPieces = yellowPieces;
+	this->numOfRedPieces = redPieces;
+	this->numOfBluePieces = bluePieces;
+
+	this->blackCureFound = blackCure;
+	this->yellowCureFound = yellowCure;
+	this->redCureFound = redCure;
+	this->blueCureFound = blueCure;
 	boardMap = NULL;
 }
 
@@ -57,10 +70,55 @@ string Board::toString()
 	string value = "";
 
 	value += boardMap->toString() + "\n";
-	value += "-------------------------------------------------------------------------------\n";
+	string line = "-------------------------------------------------------------------------------\n";
+	value += line;
 
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
+	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
+	value += "\tThere is " + to_string(numOfBlackPieces) + " black pieces still available\n";
+	value += "\tThere is " + to_string(numOfYellowPieces) + " yellow pieces still available\n";
+	value += "\tThere is " + to_string(numOfRedPieces) + " red pieces still available\n";
+	value += "\tThere is " + to_string(numOfBluePieces) + " blue pieces still available\n\n";
+
+	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
+		value += "\tAll diseases have been cured!!!\n";
+	}
+	else if (!blackCureFound && !blueCureFound && !redCureFound && !yellowCureFound) {
+		value += "\tNo diseases have been cured yet\n";
+	}
+	else {
+		if (blackCureFound) {
+			value += "\tThe black disease has been cured!!\n";
+		}else {
+			value += "\tThe black disease has not been cured\n";
+		}
+
+		if (yellowCureFound) {
+			value += "\tThe yellow disease has been cured!!\n";
+		}
+		else {
+			value += "\tThe yellow disease has not been cured\n";
+		}
+
+		if (redCureFound) {
+			value += "\tThe red disease has been cured!!\n";
+		}
+		else {
+			value += "\tThe red disease has not been cured\n";
+		}
+
+		if (blueCureFound) {
+			value += "\tThe blue disease has been cured!!\n";
+		}
+		else {
+			value += "\tThe blue disease has not been cured\n";
+		}
+	}
+	value += "\n";
+
+	value += line;
+
 	return value;
 }
 

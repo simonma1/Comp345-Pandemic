@@ -513,6 +513,19 @@
     }
   ],
   "Board": {
-    "outbreakLevel":  1
+    "outbreakLevel": 1,
+    "infectionLevel": 0,
+    "Pieces": {
+      "blackPiecesAv": 24,
+      "yellowPiecesAv": 23,
+      "redPiecesAv": 22,
+      "bluePiecesAv": 21
+    },
+    "diseaseEradicated": {
+      "black": false,
+      "yellow": true,
+      "red": false,
+      "blue": false
+    }
   }
 }

@@ -111,7 +111,16 @@ vector<Player *> Loader::loadPlayers() {
 Board Loader::loadBoard()
 {
 	Board b{
-		j["Board"]["outbreakLevel"].get<int>()
+		j["Board"]["outbreakLevel"].get<int>(),
+		j["Board"]["infectionLevel"].get<int>(),
+		j["Board"]["Pieces"]["blackPiecesAv"].get<int>(),
+		j["Board"]["Pieces"]["yellowPiecesAv"].get<int>(),
+		j["Board"]["Pieces"]["redPiecesAv"].get<int>(),
+		j["Board"]["Pieces"]["bluePiecesAv"].get<int>(),
+		j["Board"]["diseaseEradicated"]["black"].get<bool>(),
+		j["Board"]["diseaseEradicated"]["yellow"].get<bool>(),
+		j["Board"]["diseaseEradicated"]["red"].get<bool>(),
+		j["Board"]["diseaseEradicated"]["blue"].get<bool>()
 	};
 
 	return b;
