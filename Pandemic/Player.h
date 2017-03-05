@@ -17,7 +17,7 @@ class Player
 */
 private:
 	Role* role; //Role will later be define as a class
-	ReferenceCard *referenceCard; // THIS POINTER IS NOT EVER DELETED!!!!! Need to address this issue.
+	ReferenceCard *referenceCard; 
 	vector<PlayerCard*> playerCards;
 	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
@@ -34,6 +34,7 @@ public:
 	void setRole(Role*);
 	string toString();
 	Pawn setPawn(string);
+	void lookAtReferenceCard();
 
 };
 

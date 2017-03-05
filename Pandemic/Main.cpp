@@ -71,14 +71,9 @@ int main()
 	}
 
 	//Creates Reference card for the players. To be modified later on
-	ReferenceCard* ref1 = new ReferenceCard;
-	ReferenceCard* ref2 = new ReferenceCard;
-
-	players[0]->setReferenceCard(ref1);
-	players[1]->setReferenceCard(ref2);
-
-	ref1->displayPossibleActions();
-
+	
+	players[0]->lookAtReferenceCard();
+	
 	currentMap = new Map();
 
 	//sets the map from the json in the Map object

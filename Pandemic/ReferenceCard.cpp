@@ -12,7 +12,7 @@ ReferenceCard::ReferenceCard() {
 	actions.push_back("DIRECT FLIGHT\n Discard a City card to move to the city named on the card.");
 	actions.push_back("CHARTER FLIGHT\n Discard the City card that matches the city you are in to move to any city.");
 	actions.push_back("SHUTTLE FLIGHT\n Move from a city with a research station o any other city that has a research station.");
-	actions.push_back("BUILD A RESEARCH STATION\n Discard the Cit card that matches the city you are in to place a research station there.");
+	actions.push_back("BUILD A RESEARCH STATION\n Discard the City card that matches the city you are in to place a research station there.");
 	actions.push_back("TREAT DISEASE\n Remove 1 disease cube from the city you are in. If this color is cured, remove all cubes of that color from the city.");
 	actions.push_back("SHARE KNOWLEDGE\n Either give the card that maches the ciy you are in to another player, or take that card from another player. The other player must also be in the city with you.");
 	actions.push_back("DISCOVER A CURE\n At any research station, discard 5 city cards of the same disease color to cure that disease.");

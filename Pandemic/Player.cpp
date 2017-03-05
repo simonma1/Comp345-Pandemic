@@ -17,11 +17,11 @@ Pawn Player::setPawn(string color)
 Player::Player(Role* role, Pawn* playerPawn) {
 	this->role = role;
 	this->playerPawn = playerPawn;
-	//this->referenceCard = referenceCard;
+	this->referenceCard = new ReferenceCard;
 }
 
 Player::Player() {
-
+	this->referenceCard = new ReferenceCard;
 }
 
 Player::~Player() {
@@ -64,4 +64,9 @@ string Player::toString(){
 
 Pawn* Player::getPlayerPawn() {
 	return playerPawn;
+}
+
+//The player can call this method at any time to display the content of the reference card
+void Player::lookAtReferenceCard() {
+	referenceCard -> displayPossibleActions();
 }
