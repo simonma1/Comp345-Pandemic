@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	Loader* loader;
-	Board board;
+	Board board = Board();
 	Player *p1;
 	Player *p2;
 	Map* currentMap;
@@ -86,9 +86,9 @@ int main()
 
 	//sets the map from the json in the Map object
 	currentMap->setMapLocation(loader->loadMap());
+	board.setMap(currentMap);
 
-
-	cout << currentMap->toString();
+	cout << board.toString();
 
 	//Prints the players detail
 	for (int i = 0; i < players.size(); i++) {
@@ -102,6 +102,5 @@ int main()
 
 	//Deletes the pointer used
 	delete loader;
-	delete currentMap;
 	system("Pause");
 }

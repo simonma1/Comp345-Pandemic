@@ -15,11 +15,17 @@ Board::~Board()
 	{
 		delete players[i];
 	}
+	delete boardMap;
 }
 
 void Board::addPlayer(Player * p)
 {
 	players.push_back(p);
+}
+
+void Board::setMap(Map* map)
+{
+	boardMap = map;
 }
 
 /*
@@ -35,6 +41,18 @@ void Board::initializeNewPlayer(Role* role)
 	player->setRole(role);
 	addPlayer(player);//adds the player to the list of player
 
+}
+
+string Board::toString()
+{
+	string value = "";
+
+	value += boardMap->toString() + "\n";
+	value += "-------------------------------------------------------------------------------\n";
+
+	value += "Board Info";
+	value += "The Oubreak Level is at: " + to_string(outbreakMarker) + "\n";
+	return value;
 }
 
 //Generates a random color from the colors list for a new player
