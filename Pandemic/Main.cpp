@@ -44,8 +44,8 @@ int main()
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
 
-		PlayerCard* card1 = new PlayerCard("Bitch ass");
-		PlayerCard* card2 = new PlayerCard("Bitch ass nigguh");
+		PlayerCard* card1 = new CityCard("Bitch ass");
+		PlayerCard* card2 = new CityCard("Bitch ass nigguh");
 
 		vector<PlayerCard* > cards1;
 		cards1.push_back(card1);

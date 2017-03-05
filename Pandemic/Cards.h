@@ -4,23 +4,27 @@
 using namespace std;
 #pragma once
 
-class Card {
+class PlayerCard {
 
 protected:
-	 
+	int id;
+	string cardName;
+
+public:
+	virtual void cardEffect() = 0;
+	string getCardName() { return cardName; };
 
 };
 
 
 
-class PlayerCard
+class CityCard: public PlayerCard
 {
-private:
-	string cardName;
-
 public:
-	string getCardName();
-	PlayerCard(string cardName);
+	CityCard();
+	CityCard(string);
+	void cardEffect();
+
 
 };
 

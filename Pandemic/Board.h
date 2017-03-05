@@ -15,11 +15,14 @@ public:
 	void initializeNewPlayer(Role*);
 	vector<Player*> getListOfPlayer() { return players; };
 
+
 private: 
 	vector<Player*> players;
 	Map boardMap;
 	vector<string> colors = { "Pink", "Orange", "Blue", "Green", "Red", "White", "Brown" };
 	string getRandomColorFromRemaining();
+	int infectionRateMarker;
+	vector<int> InfectionDeck;
 
 
 };

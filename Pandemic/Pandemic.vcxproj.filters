@@ -45,6 +45,9 @@
     <ClCompile Include="ReferenceCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InfectionCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ReferenceCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InfectionCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

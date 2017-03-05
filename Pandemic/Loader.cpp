@@ -81,7 +81,7 @@ vector<Player *> Loader::loadPlayers() {
 		vector<PlayerCard *> pcards;
 
 		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
-			PlayerCard *pc = new PlayerCard(cardName);
+			PlayerCard *pc = new CityCard(cardName);
 			pcards.push_back(pc);
 		}
 
