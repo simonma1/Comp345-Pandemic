@@ -12,8 +12,6 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Player *p1;
-	Player *p2;
 	Map* currentMap;
 	int startOrLoad=0;
 
@@ -59,8 +57,6 @@ int main()
 		board.initializeNewPlayer(role2);
 
 		players = board.getListOfPlayer();
-		p1 = players[0];
-		p2 = players[1];
 	}
 	else {
 		//Asks the user for the save file name to load
@@ -72,15 +68,14 @@ int main()
 		loader = new Loader(filename);
 		loader->load(players);
 		board = loader -> loadBoard();
-		p1 = players[0];
-		p2 = players[1];
 	}
 
 	//Creates Reference card for the players. To be modified later on
 	ReferenceCard* ref1 = new ReferenceCard;
 	ReferenceCard* ref2 = new ReferenceCard;
-	p1->setReferenceCard(ref1);
-	p2->setReferenceCard(ref2);
+
+	players[0]->setReferenceCard(ref1);
+	players[1]->setReferenceCard(ref2);
 
 	ref1->displayPossibleActions();
 
