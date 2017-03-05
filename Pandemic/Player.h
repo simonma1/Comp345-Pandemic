@@ -2,6 +2,7 @@
 #include "Location.h"
 #include "Cards.h"
 #include "Pawn.h"
+#include "ReferenceCard.h"
 
 using namespace std;
 #pragma once

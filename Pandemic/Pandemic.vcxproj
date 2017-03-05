@@ -119,12 +119,14 @@
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Cards.cpp" />
+    <ClCompile Include="ReferenceCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CityCard.h" />
     <ClInclude Include="GeneralCards.h" />
+    <ClInclude Include="ReferenceCard.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Location.h" />

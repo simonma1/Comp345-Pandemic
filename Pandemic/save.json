@@ -2,13 +2,13 @@
     "Players": [
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Blue"
             },
             "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Red"
+                "color": "Green"
             },
             "role": "Medic"
         }

@@ -4,6 +4,7 @@
 #include "Location.h"
 #include "Loader.h"
 #include "Cards.h"
+#include "ReferenceCard.h"
 #include <vector>
 using namespace std;
 
