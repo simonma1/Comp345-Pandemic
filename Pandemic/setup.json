@@ -1,0 +1,34 @@
+{
+  "GameSetup": {
+    "rolesAvailable": [
+      {
+        "color": "Blue",
+        "role": "Contingency Planner"
+      },
+      {
+        "color": "Pink",
+        "role": "Dispatcher"
+      },
+      {
+        "color": "Orange",
+        "role": "Medic"
+      },
+      {
+        "color": "Green",
+        "role": "Quarantine Specialist"
+      },
+      {
+        "color": "Brown",
+        "role": "Researcher"
+      },
+      {
+        "color": "White",
+        "role": "Scientist"
+      },
+      {
+        "color": "Red",
+        "role": "Operations Expert"
+      }
+    ]
+  }
+}
