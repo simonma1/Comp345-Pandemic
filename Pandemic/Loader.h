@@ -17,7 +17,7 @@ public:
 	map<int,Location> loadMap();
 	vector<Player *> loadPlayers();
 	Board loadBoard();
-	void save(string filename, map<int,Location>);
+	void save(string filename, map<int,Location>, Board board);
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
 };

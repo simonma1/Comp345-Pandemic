@@ -18,7 +18,18 @@ public:
 	vector<Player*> getListOfPlayer() { return players; };
 	string toString();
 	void setOutbreakMarker(int i);
-	int getoutBreakMarker; 
+	Board(const Board&);
+
+	int getOutBreakMarker() { return outbreakMarker; };
+	int getInfectionRateMarker() { return infectionRateMarker; };
+	int getNumOfBlackPieces() { return numOfBlackPieces; };
+	int getNumOfBluePieces() { return numOfBluePieces; };
+	int getNumOfRedPieces() { return numOfRedPieces; };
+	int getNumOfYellowPieces() { return numOfYellowPieces; };
+	bool isYellowCured() { return yellowCureFound; };
+	bool isBlackCured() { return blackCureFound; };
+	bool isRedCured() { return redCureFound; };
+	bool isBlueCured() { return blueCureFound; };
 
 
 private: 

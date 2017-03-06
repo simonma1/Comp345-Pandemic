@@ -1,4 +1,20 @@
 {
+    "Board": {
+        "diseaseEradicated": {
+            "black": false,
+            "blue": false,
+            "red": false,
+            "yellow": true
+        },
+        "infectionLevel": 0,
+        "outbreakLevel": 1,
+        "pieces": {
+            "blackPiecesAv": 24,
+            "bluePiecesAv": 21,
+            "redPiecesAv": 22,
+            "yellowPiecesAv": 23
+        }
+    },
     "Players": [
         {
             "pawn": {

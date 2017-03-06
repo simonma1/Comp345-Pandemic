@@ -44,7 +44,7 @@ std::map<int, Location> Loader::loadMap() {
 
 //Given the filename, will save the state of the board to a json file of that name
 //The order will not be as the original file since it is stored alphabetically in the json
-void Loader::save(string filename, map<int, Location> cities) {
+void Loader::save(string filename, map<int, Location> cities, Board board) {
 	for (int i = 1; i < (cities.size() + 1); i++) {
 	
 		//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
@@ -58,6 +58,18 @@ void Loader::save(string filename, map<int, Location> cities) {
 		out["location"][i - 1]["adjacent"] = cities.at(i).getConnections();
 	
 	}
+
+	out["Board"]["outbreakLevel"] = board.getOutBreakMarker();
+	out["Board"]["infectionLevel"] = board.getInfectionRateMarker();
+	out["Board"]["pieces"]["blackPiecesAv"] = board.getNumOfBlackPieces();
+	out["Board"]["pieces"]["yellowPiecesAv"] = board.getNumOfYellowPieces();
+	out["Board"]["pieces"]["redPiecesAv"] = board.getNumOfRedPieces();
+	out["Board"]["pieces"]["bluePiecesAv"] = board.getNumOfBluePieces();
+	out["Board"]["diseaseEradicated"]["black"] = board.isBlackCured();
+	out["Board"]["diseaseEradicated"]["yellow"] = board.isYellowCured();
+	out["Board"]["diseaseEradicated"]["red"] = board.isRedCured();
+	out["Board"]["diseaseEradicated"]["blue"] = board.isBlueCured();
+
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
@@ -113,10 +125,10 @@ Board Loader::loadBoard()
 	Board b{
 		j["Board"]["outbreakLevel"].get<int>(),
 		j["Board"]["infectionLevel"].get<int>(),
-		j["Board"]["Pieces"]["blackPiecesAv"].get<int>(),
-		j["Board"]["Pieces"]["yellowPiecesAv"].get<int>(),
-		j["Board"]["Pieces"]["redPiecesAv"].get<int>(),
-		j["Board"]["Pieces"]["bluePiecesAv"].get<int>(),
+		j["Board"]["pieces"]["blackPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["yellowPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["redPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["bluePiecesAv"].get<int>(),
 		j["Board"]["diseaseEradicated"]["black"].get<bool>(),
 		j["Board"]["diseaseEradicated"]["yellow"].get<bool>(),
 		j["Board"]["diseaseEradicated"]["red"].get<bool>(),

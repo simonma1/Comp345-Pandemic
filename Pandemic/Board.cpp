@@ -25,7 +25,7 @@ Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int 
 	this->yellowCureFound = yellowCure;
 	this->redCureFound = redCure;
 	this->blueCureFound = blueCure;
-	boardMap = NULL;
+	boardMap = new Map;
 }
 
 //Destructor for the Board object. Will delete every player from the vector of player pointer
@@ -130,4 +130,23 @@ string Board::getRandomColorFromRemaining()
 	string color = colors[randomNum];//Gets the color at the index randomly chosen
 	colors.erase(colors.begin() + randomNum);//Removes the color from the list
 	return color;
+}
+
+Board::Board(const Board& board) {
+
+	this->outbreakMarker = board.outbreakMarker;
+	this->infectionRateMarker = board.infectionRateMarker;
+
+	this->numOfBlackPieces = board.numOfBlackPieces;
+	this->numOfYellowPieces = board.numOfYellowPieces;
+	this->numOfRedPieces = board.numOfRedPieces;
+	this->numOfBluePieces = board.numOfBluePieces;
+
+	this->blackCureFound = board.blackCureFound;
+	this->yellowCureFound = board.yellowCureFound;
+	this->redCureFound = board.redCureFound;
+	this->blueCureFound = board.blueCureFound;
+
+	this->boardMap = new Map;
+	*boardMap = *board.boardMap;
 }

@@ -515,7 +515,7 @@
   "Board": {
     "outbreakLevel": 1,
     "infectionLevel": 0,
-    "Pieces": {
+    "pieces": {
       "blackPiecesAv": 24,
       "yellowPiecesAv": 23,
       "redPiecesAv": 22,
