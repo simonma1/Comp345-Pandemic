@@ -43,8 +43,8 @@ int main()
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
 
-		PlayerCard* card1 = new CityCard("Bitch ass");
-		PlayerCard* card2 = new CityCard("Bitch ass nigguh");
+		PlayerCard* card1 = new CityCard("Peanut");
+		PlayerCard* card2 = new CityCard("Bolt");
 
 		vector<PlayerCard* > cards1;
 		cards1.push_back(card1);
@@ -57,6 +57,9 @@ int main()
 		board.initializeNewPlayer(role2);
 
 		players = board.getListOfPlayer();
+		players[0]->setPlayerCards(cards1);
+		players[1]->setPlayerCards(cards2);
+
 	}
 	else {
 		//Asks the user for the save file name to load
