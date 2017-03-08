@@ -132,7 +132,7 @@ string Board::toString()
 //Generates a random color from the colors list for a new player
 int Board::getRandomNumber()
 {
-	cout << "A role is randomly getting generated for the player!!!" << endl;
+	cout << "A ROLE IS BEING RANDOMLY GENERATED FOR THE PLAYER\n" << endl;
 	srand(time(NULL));//Allows for the randomness
 	int randomNum = rand() % listOfRoles.size();//Normalizes the value by the amount of pawns available
 	return randomNum;

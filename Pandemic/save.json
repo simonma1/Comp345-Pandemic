@@ -18,21 +18,29 @@
     "Players": [
         {
             "pawn": {
-                "color": "Green"
+                "color": "Orange"
             },
             "playercards": [
-                "Peanut"
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
             ],
-            "role": "Quarantine Specialist"
+            "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "White"
+                "color": "Blue"
             },
             "playercards": [
-                "Bolt"
+                "card1",
+                "card2",
+                "card3",
+                "card4",
+                "card5"
             ],
-            "role": "Scientist"
+            "role": "Dispatcher"
         }
     ],
     "location": [

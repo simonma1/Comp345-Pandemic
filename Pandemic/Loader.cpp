@@ -98,24 +98,6 @@ vector<Player *> Loader::loadPlayers() {
 	return players;
 }
 
-Board Loader::loadBoard()
-{
-	Board b{
-		j["Board"]["outbreakLevel"].get<int>(),
-		j["Board"]["infectionLevel"].get<int>(),
-		j["Board"]["pieces"]["blackPiecesAv"].get<int>(),
-		j["Board"]["pieces"]["yellowPiecesAv"].get<int>(),
-		j["Board"]["pieces"]["redPiecesAv"].get<int>(),
-		j["Board"]["pieces"]["bluePiecesAv"].get<int>(),
-		j["Board"]["diseaseEradicated"]["black"].get<bool>(),
-		j["Board"]["diseaseEradicated"]["yellow"].get<bool>(),
-		j["Board"]["diseaseEradicated"]["red"].get<bool>(),
-		j["Board"]["diseaseEradicated"]["blue"].get<bool>()
-	};
-
-	return b;
-}
-
 //Save the state of the players in the json.
 void Loader::save(string filename, vector<Player *> players) {
 	for (int i = 0; i < 2; i++) {
