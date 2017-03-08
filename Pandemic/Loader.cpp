@@ -146,6 +146,23 @@ void Loader::load(vector<Player*> & players)
 
 }
 
+//Loads the board data that is related to a game
+void Loader::loadBoardInfo(Board * board)
+{
+	board->setOutbreakMarker(j["Board"]["outbreakLevel"].get<int>());
+	board->setInfectionMarker(j["Board"]["infectionLevel"].get<int>());
+
+	board->setNumOfBlackPieces(j["Board"]["pieces"]["blackPiecesAv"].get<int>());
+	board->setNumOfYellowPieces(j["Board"]["pieces"]["yellowPiecesAv"].get<int>());
+	board->setNumOfRedPieces(j["Board"]["pieces"]["redPiecesAv"].get<int>());
+	board->setNumOfBluePieces(j["Board"]["pieces"]["bluePiecesAv"].get<int>());
+
+	board->setBlackCureFound(j["Board"]["diseaseEradicated"]["black"].get<bool>());
+	board->setYellowCureFound(j["Board"]["diseaseEradicated"]["yellow"].get<bool>());
+	board->setRedCureFound(j["Board"]["diseaseEradicated"]["red"].get<bool>());
+	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
+}
+
 vector<Pawn> Loader::gameSetup(Map* initMap) {
 	map<int, Location> cityMap;
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array

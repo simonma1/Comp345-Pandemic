@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	Loader* loader;
-	Board board;
+	Board* board = new Board;
 	int startOrLoad=0;
 
 	
@@ -37,6 +37,8 @@ int main()
 	if (startOrLoad == 1) {//Starts a new game
 		loader = new Loader("map.json");//map.json is the default file name
 
+		loader->loadBoardInfo(board);
+
 		//Creates some value to be passed to the player object. This is for demo purpose
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
@@ -51,10 +53,10 @@ int main()
 		cards2.push_back(card2);
 
 		//Creates 2 players
-		board.initializeNewPlayer();
-		board.initializeNewPlayer();
+		board->initializeNewPlayer();
+		board->initializeNewPlayer();
 
-		players = board.getListOfPlayer();
+		players = board->getListOfPlayer();
 		players[0]->setPlayerCards(cards1);
 		players[1]->setPlayerCards(cards2);
 
@@ -67,6 +69,7 @@ int main()
 		filename += ".json";
 
 		loader = new Loader(filename);
+		loader->loadBoardInfo(board);
 		loader->load(players);
 	}
 
@@ -75,7 +78,7 @@ int main()
 	players[0]->lookAtReferenceCard();
 	
 
-	cout << board.toString();
+	cout << board->toString();
 
 	//Prints the players detail
 	for (int i = 0; i < players.size(); i++) {
@@ -84,10 +87,11 @@ int main()
 	}
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
-	loader->save(saveFileName, board);
+	loader->save(saveFileName, *board);
 	loader->save(saveFileName, players);
 
 	//Deletes the pointer used
 	delete loader;
+	delete board;
 	system("Pause");
 }

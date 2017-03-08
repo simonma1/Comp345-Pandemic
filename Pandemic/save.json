@@ -4,35 +4,35 @@
             "black": false,
             "blue": false,
             "red": false,
-            "yellow": false
+            "yellow": true
         },
         "infectionLevel": 0,
-        "outbreakLevel": 0,
+        "outbreakLevel": 1,
         "pieces": {
-            "blackPiecesAv": 0,
-            "bluePiecesAv": 0,
-            "redPiecesAv": 0,
-            "yellowPiecesAv": 0
+            "blackPiecesAv": 24,
+            "bluePiecesAv": 21,
+            "redPiecesAv": 22,
+            "yellowPiecesAv": 23
         }
     },
     "Players": [
         {
             "pawn": {
-                "color": "Orange"
+                "color": "Green"
             },
             "playercards": [
                 "Peanut"
             ],
-            "role": "Medic"
+            "role": "Quarantine Specialist"
         },
         {
             "pawn": {
-                "color": "Red"
+                "color": "White"
             },
             "playercards": [
                 "Bolt"
             ],
-            "role": "Operations Expert"
+            "role": "Scientist"
         }
     ],
     "location": [

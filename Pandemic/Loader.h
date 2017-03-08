@@ -19,5 +19,6 @@ public:
 	void save(string filename, Board board);
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
+	void loadBoardInfo(Board* board);
 	vector<Pawn> gameSetup(Map* initMap);
 };

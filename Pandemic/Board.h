@@ -17,7 +17,6 @@ public:
 	void initializeNewPlayer();
 	vector<Player*> getListOfPlayer() { return players; };
 	string toString();
-	void setOutbreakMarker(int i);
 	Map* getMap() { return boardMap; };
 	Board(const Board&);
 
@@ -31,6 +30,17 @@ public:
 	bool isBlackCured() { return blackCureFound; };
 	bool isRedCured() { return redCureFound; };
 	bool isBlueCured() { return blueCureFound; };
+
+	void setOutbreakMarker(int outbreak) { outbreakMarker = outbreak; };
+	void setInfectionMarker(int infection) { infectionRateMarker = infection; };
+	void setNumOfBlackPieces(int numOfPieces) { this->numOfBlackPieces = numOfPieces; };
+	void setNumOfYellowPieces(int numOfPieces) { this->numOfYellowPieces = numOfPieces; };
+	void setNumOfRedPieces(int numOfPieces) { this->numOfRedPieces = numOfPieces; };
+	void setNumOfBluePieces(int numOfPieces) { this->numOfBluePieces = numOfPieces; };
+	void setBlackCureFound(bool isCured) { this->blackCureFound = isCured; };
+	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
+	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
+	void setBlueCureFound(bool isCured) { this->blueCureFound = isCured; };
 
 
 private: 

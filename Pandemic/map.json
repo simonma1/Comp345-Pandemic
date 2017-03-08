@@ -1,7 +1,7 @@
 {
   "Players": [
     {
-      "role": "none",
+      "role": "Scientist",
       "playercards": [
         "card1",
         "card2",
@@ -15,7 +15,7 @@
       }
     },
     {
-      "role": "none",
+      "role": "Dispatcher",
       "playercards": [
         "card1",
         "card2",
