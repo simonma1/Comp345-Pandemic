@@ -36,4 +36,5 @@ private:
 public:
 	string getName() { return name; };
 	Role(string name);
+	Role();
 };

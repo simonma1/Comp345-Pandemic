@@ -7,14 +7,14 @@ class Pawn {
 public:
 	Location getCurrentLocation();
 	string getColor() { return pawnColor; };
-	string getName() { return name; };
+	string getRole() { return role; };
 	Pawn(string, string);
 	Pawn(string);
 	Pawn();
 
 private:
 	string pawnColor;
-	string name;
+	string role;
 	Location currentLocation;
 
 

@@ -16,7 +16,7 @@ Pawn::Pawn(string color)
 
 Pawn::Pawn(string color, string name) {
 	this->pawnColor = color;
-	this->name = name;
+	this->role = name;
 }
 
 Pawn::Pawn()

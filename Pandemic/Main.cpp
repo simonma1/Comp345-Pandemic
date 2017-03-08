@@ -51,8 +51,8 @@ int main()
 		cards2.push_back(card2);
 
 		//Creates 2 players
-		board.initializeNewPlayer(role);
-		board.initializeNewPlayer(role2);
+		board.initializeNewPlayer();
+		board.initializeNewPlayer();
 
 		players = board.getListOfPlayer();
 		players[0]->setPlayerCards(cards1);

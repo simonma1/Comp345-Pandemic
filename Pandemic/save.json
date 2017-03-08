@@ -18,21 +18,21 @@
     "Players": [
         {
             "pawn": {
-                "color": "Red"
+                "color": "Orange"
             },
             "playercards": [
                 "Peanut"
             ],
-            "role": "Scientist"
+            "role": "Medic"
         },
         {
             "pawn": {
-                "color": "Pink"
+                "color": "Red"
             },
             "playercards": [
                 "Bolt"
             ],
-            "role": "Medic"
+            "role": "Operations Expert"
         }
     ],
     "location": [
