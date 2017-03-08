@@ -18,6 +18,7 @@ public:
 	vector<Player*> getListOfPlayer() { return players; };
 	string toString();
 	void setOutbreakMarker(int i);
+	Map* getMap() { return boardMap; };
 	Board(const Board&);
 
 	int getOutBreakMarker() { return outbreakMarker; };

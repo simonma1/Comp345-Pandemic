@@ -37,8 +37,6 @@ int main()
 	if (startOrLoad == 1) {//Starts a new game
 		loader = new Loader("map.json");//map.json is the default file name
 
-		//board = loader->loadBoard();
-
 		//Creates some value to be passed to the player object. This is for demo purpose
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
@@ -70,7 +68,6 @@ int main()
 
 		loader = new Loader(filename);
 		loader->load(players);
-		board = loader -> loadBoard();
 	}
 
 	//Creates Reference card for the players. To be modified later on
@@ -87,8 +84,8 @@ int main()
 	}
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
-	//loader->save(saveFileName, currentMap->getMapLocation(), board);
-	//loader->save(saveFileName, players);
+	loader->save(saveFileName, board);
+	loader->save(saveFileName, players);
 
 	//Deletes the pointer used
 	delete loader;

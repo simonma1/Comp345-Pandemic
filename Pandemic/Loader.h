@@ -14,10 +14,9 @@ private:
 
 public:
 	Loader(string filename);
-	map<int,Location> loadMap();
 	vector<Player *> loadPlayers();
 	Board loadBoard();
-	void save(string filename, map<int,Location>, Board board);
+	void save(string filename, Board board);
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
 	void gameSetup(Map* initMap);
