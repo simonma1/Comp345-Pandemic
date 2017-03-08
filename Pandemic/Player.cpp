@@ -6,12 +6,6 @@ Location Player::movePawn()
 	return playerPawn->getCurrentLocation();//Returns the current location for now
 }
 
-Pawn Player::setPawn(string color)
-{
-	this->playerPawn = new Pawn(color);
-	return *playerPawn;
-}
-
 
 //Constructor for the player. 
 Player::Player(Role* role, Pawn* playerPawn) {

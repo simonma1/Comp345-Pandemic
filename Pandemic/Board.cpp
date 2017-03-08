@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Loader.h"
 
 /*
 The board class will act as an intermediary between location and player
@@ -8,6 +9,8 @@ Board::Board()
 {
 	outbreakMarker = 0;
 	boardMap = new Map;
+
+	boardSetup();
 }
 
 Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int redPieces, 
@@ -55,14 +58,18 @@ Creates a new player to be put in the list of player. The player will be given a
 random color. No 2 players will receive the same one. The pawn will be link to the class of 
 that color
 */
-void Board::initializeNewPlayer(Role* role)
+void Board::initializeNewPlayer()
 {
 	Player* player = new Player();
-	string color = getRandomColorFromRemaining();//Returns the color of the pawn
-	player->setPawn(color);//Sets the pawn with the color for the player
+	int randNum = getRandomNumber();
+
+	Role* role = new Role(listOfRoles[randNum].getRole());
+	Pawn* pawn = new Pawn;
+	*pawn = listOfRoles[randNum];
+	player->setPawn(pawn);//Sets the pawn with the color for the player
 	player->setRole(role);
 	addPlayer(player);//adds the player to the list of player
-
+	listOfRoles.erase(listOfRoles.begin() + randNum);//Removes the color from the list
 }
 
 string Board::toString()
@@ -123,13 +130,25 @@ string Board::toString()
 }
 
 //Generates a random color from the colors list for a new player
-string Board::getRandomColorFromRemaining()
+int Board::getRandomNumber()
 {
+	cout << "A role is randomly getting generated for the player!!!" << endl;
 	srand(time(NULL));//Allows for the randomness
-	int randomNum = rand() % colors.size();//Normalizes the value by the amount of colors available
-	string color = colors[randomNum];//Gets the color at the index randomly chosen
-	colors.erase(colors.begin() + randomNum);//Removes the color from the list
-	return color;
+	int randomNum = rand() % listOfRoles.size();//Normalizes the value by the amount of pawns available
+	return randomNum;
+}
+
+//Instantiates the part common for all boards. Mainly the roles and location. Location will have to be refactored here  
+void Board::boardSetup()
+{
+	string setupFileName = "setup.json";	
+	Loader loadCommon = Loader(setupFileName);
+	Map* map = new Map();
+
+	this->listOfRoles = loadCommon.gameSetup(map);
+	*boardMap = *map;
+	map = NULL;
+
 }
 
 Board::Board(const Board& board) {

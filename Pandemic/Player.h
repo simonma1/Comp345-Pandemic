@@ -33,7 +33,7 @@ public:
 	void setReferenceCard(ReferenceCard*);
 	void setRole(Role*);
 	string toString();
-	Pawn setPawn(string);
+	void setPawn(Pawn* p) { playerPawn = p; };
 	void lookAtReferenceCard();
 
 };
