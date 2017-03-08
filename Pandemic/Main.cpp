@@ -12,7 +12,6 @@ int main()
 {
 	Loader* loader;
 	Board board;
-	Map* currentMap;
 	int startOrLoad=0;
 
 	
@@ -37,7 +36,8 @@ int main()
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
 		loader = new Loader("map.json");//map.json is the default file name
-		board = loader->loadBoard();
+
+		//board = loader->loadBoard();
 
 		//Creates some value to be passed to the player object. This is for demo purpose
 		Role* role = new Role("Scientist");
@@ -77,11 +77,6 @@ int main()
 	
 	players[0]->lookAtReferenceCard();
 	
-	currentMap = new Map();
-
-	//sets the map from the json in the Map object
-	currentMap->setMapLocation(loader->loadMap());
-	board.setMap(currentMap);
 
 	cout << board.toString();
 
@@ -92,8 +87,8 @@ int main()
 	}
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
-	loader->save(saveFileName, currentMap->getMapLocation(), board);
-	loader->save(saveFileName, players);
+	//loader->save(saveFileName, currentMap->getMapLocation(), board);
+	//loader->save(saveFileName, players);
 
 	//Deletes the pointer used
 	delete loader;

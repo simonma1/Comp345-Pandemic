@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Loader.h"
 
 /*
 The board class will act as an intermediary between location and player
@@ -8,6 +9,8 @@ Board::Board()
 {
 	outbreakMarker = 0;
 	boardMap = new Map;
+
+	boardSetup();
 }
 
 Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int redPieces, 
@@ -130,6 +133,18 @@ string Board::getRandomColorFromRemaining()
 	string color = colors[randomNum];//Gets the color at the index randomly chosen
 	colors.erase(colors.begin() + randomNum);//Removes the color from the list
 	return color;
+}
+
+//Instantiates the part common for all boards. Mainly the roles and location. Location will have to be refactored here  
+void Board::boardSetup()
+{
+	string setupFileName = "setup.json";	
+	Loader loadCommon = Loader(setupFileName);
+	Map* map = new Map();
+
+	loadCommon.gameSetup(map);
+	*boardMap = *map;
+	map = NULL;
 }
 
 Board::Board(const Board& board) {

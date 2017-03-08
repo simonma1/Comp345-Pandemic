@@ -42,6 +42,7 @@ private:
 	vector<int> InfectionDeck;
 	int numOfBlackPieces, numOfYellowPieces, numOfBluePieces, numOfRedPieces;
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
+	void boardSetup();
 
 
 };

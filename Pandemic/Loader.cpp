@@ -167,3 +167,26 @@ void Loader::load(vector<Player*> & players)
 	players = loadPlayers();
 
 }
+
+void Loader::gameSetup(Map* initMap) {
+	map<int, Location> cityMap;
+	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
+	for (int i = 0; i < j["location"].size(); i++) {
+		//Loops through all cities in the JSON and puts them in a list that will be given to the map
+		int cityId = j["location"][i]["id"].get<int>();
+		Location l{//Calls the constructor of Location object, thus order is important to be the same
+			cityId,
+			j["location"][i]["city"].get<std::string>(),
+			j["location"][i]["area"].get<std::string>(),
+			j["location"][i]["adjacent"].get<std::vector<int>>(),
+			j["location"][i]["yellow"].get<int>(),
+			j["location"][i]["blue"].get<int>(),
+			j["location"][i]["black"].get<int>(),
+			j["location"][i]["red"].get<int>()
+		};
+
+		cityMap[cityId] = l;
+	}
+
+	initMap->setMapLocation(cityMap);
+}
