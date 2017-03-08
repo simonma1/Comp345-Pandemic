@@ -13,34 +13,27 @@
             "bluePiecesAv": 21,
             "redPiecesAv": 22,
             "yellowPiecesAv": 23
-        }
+        },
+        "researchStations": []
     },
     "Players": [
         {
             "pawn": {
-                "color": "Orange"
+                "color": "White"
             },
             "playercards": [
-                "card1",
-                "card2",
-                "card3",
-                "card4",
-                "card5"
+                "Peanut"
             ],
             "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Blue"
+                "color": "Brown"
             },
             "playercards": [
-                "card1",
-                "card2",
-                "card3",
-                "card4",
-                "card5"
+                "Bolt"
             ],
-            "role": "Dispatcher"
+            "role": "Researcher"
         }
     ],
     "location": [

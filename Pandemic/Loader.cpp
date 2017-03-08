@@ -47,7 +47,7 @@ void Loader::save(string filename, Board board) {
 	out["Board"]["diseaseEradicated"]["yellow"] = board.isYellowCured();
 	out["Board"]["diseaseEradicated"]["red"] = board.isRedCured();
 	out["Board"]["diseaseEradicated"]["blue"] = board.isBlueCured();
-
+	out["Board"]["researchStations"] = board.getResearchStations();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
@@ -143,6 +143,8 @@ void Loader::loadBoardInfo(Board * board)
 	board->setYellowCureFound(j["Board"]["diseaseEradicated"]["yellow"].get<bool>());
 	board->setRedCureFound(j["Board"]["diseaseEradicated"]["red"].get<bool>());
 	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
+
+	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
 }
 
 vector<Pawn> Loader::gameSetup(Map* initMap) {

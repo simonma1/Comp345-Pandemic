@@ -19,6 +19,9 @@ public:
 	string toString();
 	Map* getMap() { return boardMap; };
 	Board(const Board&);
+	vector<int> getResearchStations() { return researchStations; };
+	void setResearchStations(vector<int> researchStations) { this->researchStations = researchStations; };
+	string printResearchStationsLocation();
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
@@ -41,8 +44,7 @@ public:
 	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
 	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
 	void setBlueCureFound(bool isCured) { this->blueCureFound = isCured; };
-
-
+	
 private: 
 	vector<Player*> players;
 	Map* boardMap;
@@ -54,5 +56,6 @@ private:
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
 	void boardSetup();
 	vector<Pawn> listOfRoles;
+	vector<int> researchStations;
 
 };

@@ -43,6 +43,7 @@
       "yellow": true,
       "red": false,
       "blue": false
-    }
+    },
+    "researchStations": [5]
   }
 }

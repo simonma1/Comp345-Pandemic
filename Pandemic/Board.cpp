@@ -126,6 +126,8 @@ string Board::toString()
 
 	value += line;
 
+	value += printResearchStationsLocation();
+
 	return value;
 }
 
@@ -169,3 +171,15 @@ Board::Board(const Board& board) {
 	this->boardMap = new Map;
 	*boardMap = *board.boardMap;
 }
+
+string Board::printResearchStationsLocation() {
+	string value = "The Research Stations are located in the following cities: \n";
+
+	for (int i = 0; i < researchStations.size(); i++) {
+		string cityName = boardMap->getMapLocation().at(researchStations[i]).getCity();
+		value += "\t" + to_string(researchStations[i]) + ". " + cityName + "\n";
+	}
+
+	value += "\n";
+	return value;
+};
