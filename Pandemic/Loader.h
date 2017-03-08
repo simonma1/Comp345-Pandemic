@@ -16,7 +16,7 @@ public:
 	Loader(string filename);
 	vector<Player *> loadPlayers();
 	Board loadBoard();
-	void save(string filename, Board board);
+	void save(string filename, Board* board);
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
 	void loadBoardInfo(Board* board);

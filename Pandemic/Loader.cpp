@@ -22,9 +22,9 @@ Loader::Loader(string filename) {
 
 //Given the filename, will save the state of the board to a json file of that name
 //The order will not be as the original file since it is stored alphabetically in the json
-void Loader::save(string filename, Board board) {
+void Loader::save(string filename, Board* board) {
 
-	map<int, Location> cities = board.getMap()->getMapLocation();
+	map<int, Location> cities = board->getMap()->getMapLocation();
 
 	for (int i = 1; i < (cities.size() + 1); i++) {
 	
@@ -37,17 +37,17 @@ void Loader::save(string filename, Board board) {
 	
 	}
 
-	out["Board"]["outbreakLevel"] = board.getOutBreakMarker();
-	out["Board"]["infectionLevel"] = board.getInfectionRateMarker();
-	out["Board"]["pieces"]["blackPiecesAv"] = board.getNumOfBlackPieces();
-	out["Board"]["pieces"]["yellowPiecesAv"] = board.getNumOfYellowPieces();
-	out["Board"]["pieces"]["redPiecesAv"] = board.getNumOfRedPieces();
-	out["Board"]["pieces"]["bluePiecesAv"] = board.getNumOfBluePieces();
-	out["Board"]["diseaseEradicated"]["black"] = board.isBlackCured();
-	out["Board"]["diseaseEradicated"]["yellow"] = board.isYellowCured();
-	out["Board"]["diseaseEradicated"]["red"] = board.isRedCured();
-	out["Board"]["diseaseEradicated"]["blue"] = board.isBlueCured();
-	out["Board"]["researchStations"] = board.getResearchStations();
+	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
+	out["Board"]["infectionLevel"] = board->getInfectionRateMarker();
+	out["Board"]["pieces"]["blackPiecesAv"] = board->getNumOfBlackPieces();
+	out["Board"]["pieces"]["yellowPiecesAv"] = board->getNumOfYellowPieces();
+	out["Board"]["pieces"]["redPiecesAv"] = board->getNumOfRedPieces();
+	out["Board"]["pieces"]["bluePiecesAv"] = board->getNumOfBluePieces();
+	out["Board"]["diseaseEradicated"]["black"] = board->isBlackCured();
+	out["Board"]["diseaseEradicated"]["yellow"] = board->isYellowCured();
+	out["Board"]["diseaseEradicated"]["red"] = board->isRedCured();
+	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
+	out["Board"]["researchStations"] = board->getResearchStations();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");

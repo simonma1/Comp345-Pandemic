@@ -14,26 +14,28 @@
             "redPiecesAv": 22,
             "yellowPiecesAv": 23
         },
-        "researchStations": []
+        "researchStations": [
+            5
+        ]
     },
     "Players": [
-        {
-            "pawn": {
-                "color": "White"
-            },
-            "playercards": [
-                "Peanut"
-            ],
-            "role": "Scientist"
-        },
         {
             "pawn": {
                 "color": "Brown"
             },
             "playercards": [
-                "Bolt"
+                "Peanut"
             ],
             "role": "Researcher"
+        },
+        {
+            "pawn": {
+                "color": "Blue"
+            },
+            "playercards": [
+                "Bolt"
+            ],
+            "role": "Contingency Planner"
         }
     ],
     "location": [

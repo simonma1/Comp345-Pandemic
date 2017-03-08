@@ -87,7 +87,7 @@ int main()
 	}
 	
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
-	loader->save(saveFileName, *board);
+	loader->save(saveFileName, board);
 	loader->save(saveFileName, players);
 
 	//Deletes the pointer used
