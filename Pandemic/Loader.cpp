@@ -146,7 +146,7 @@ void Loader::load(vector<Player*> & players)
 
 }
 
-void Loader::gameSetup(Map* initMap) {
+vector<Pawn> Loader::gameSetup(Map* initMap) {
 	map<int, Location> cityMap;
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
 	for (int i = 0; i < j["location"].size(); i++) {
@@ -167,4 +167,17 @@ void Loader::gameSetup(Map* initMap) {
 	}
 
 	initMap->setMapLocation(cityMap);
+
+	vector<Pawn> listOfRoles;
+	for (int k = 0; k < j["GameSetup"]["roles"].size(); k++) {
+
+		Pawn p{
+			j["GameSetup"]["roles"][k]["color"],
+			j["GameSetup"]["roles"][k]["role"]
+		};
+
+		listOfRoles.push_back(p);
+	}
+
+	return listOfRoles;
 }

@@ -1,6 +1,6 @@
 {
   "GameSetup": {
-    "rolesAvailable": [
+    "roles": [
       {
         "color": "Blue",
         "role": "Contingency Planner"

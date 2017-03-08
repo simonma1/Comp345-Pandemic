@@ -142,9 +142,11 @@ void Board::boardSetup()
 	Loader loadCommon = Loader(setupFileName);
 	Map* map = new Map();
 
-	loadCommon.gameSetup(map);
+	this->listOfRoles = loadCommon.gameSetup(map);
 	*boardMap = *map;
 	map = NULL;
+
+	cout << listOfRoles[1].getName();
 }
 
 Board::Board(const Board& board) {
