@@ -6,6 +6,10 @@ Map::Map()
 {
 }
 
+Map::Map(const Map& map) {
+	cities = map.cities;
+}
+
 void Map::setMapLocation(map<int, Location> map)
 {
 	cities = map;

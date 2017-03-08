@@ -2,6 +2,7 @@
 #include "Location.h"
 #include "Cards.h"
 #include "Pawn.h"
+#include "ReferenceCard.h"
 
 using namespace std;
 #pragma once
@@ -16,12 +17,11 @@ class Player
 */
 private:
 	Role* role; //Role will later be define as a class
-	ReferenceCard *referenceCard; // THIS POINTER IS NOT EVER DELETED!!!!! Need to address this issue.
+	ReferenceCard *referenceCard; 
 	vector<PlayerCard*> playerCards;
 	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
-	Player generatePlayer();//Used to handle the logic of player creation
 	Role* getRole() { return role; };
 	Location movePawn();
 	~Player();
@@ -30,10 +30,11 @@ public:
 	vector<PlayerCard*> getPlayerCards();
 	Pawn* getPlayerPawn();
 	void setPlayerCards(vector<PlayerCard*> playerCards);
-	//void setReferenceCard(ReferenceCard*);
+	void setReferenceCard(ReferenceCard*);
 	void setRole(Role*);
 	string toString();
-	Pawn setPawn(string);
+	void setPawn(Pawn* p) { playerPawn = p; };
+	void lookAtReferenceCard();
 
 };
 

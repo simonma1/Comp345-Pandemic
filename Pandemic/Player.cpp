@@ -6,26 +6,16 @@ Location Player::movePawn()
 	return playerPawn->getCurrentLocation();//Returns the current location for now
 }
 
-Pawn Player::setPawn(string color)
-{
-	this->playerPawn = new Pawn(color);
-	return *playerPawn;
-}
-
-//void Player::setReferenceCard(ReferenceCard * ref)
-//{
-//	this->referenceCard = ref;
-//}
 
 //Constructor for the player. 
 Player::Player(Role* role, Pawn* playerPawn) {
 	this->role = role;
 	this->playerPawn = playerPawn;
-	//this->referenceCard = referenceCard;
+	this->referenceCard = new ReferenceCard;
 }
 
 Player::Player() {
-
+	this->referenceCard = new ReferenceCard;
 }
 
 Player::~Player() {
@@ -33,6 +23,8 @@ Player::~Player() {
 	playerPawn = NULL;
 	delete role;
 	role = NULL;
+	delete referenceCard;
+	referenceCard = NULL;
 	for (auto card : this->getPlayerCards()) {
 		delete card;
 	}
@@ -45,6 +37,11 @@ vector<PlayerCard*> Player::getPlayerCards() {
 
 void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
 	this->playerCards = playerCards;
+}
+
+void Player::setReferenceCard(ReferenceCard * ref)
+{
+	this->referenceCard = ref;
 }
 
 void Player::setRole(Role* role)
@@ -61,4 +58,9 @@ string Player::toString(){
 
 Pawn* Player::getPlayerPawn() {
 	return playerPawn;
+}
+
+//The player can call this method at any time to display the content of the reference card
+void Player::lookAtReferenceCard() {
+	referenceCard -> displayPossibleActions();
 }

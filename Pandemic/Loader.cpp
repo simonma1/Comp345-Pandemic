@@ -19,45 +19,35 @@ Loader::Loader(string filename) {
 	}
 }
 
-//Will return the a map containing all initialized locations to be saved in the Map class
-std::map<int, Location> Loader::loadMap() {
-	map<int, Location> cityMap;
-	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
-	for (int i = 0; i < j["location"].size(); i++) {
-		//Loops through all cities in the JSON and puts them in a list that will be given to the map
-		int cityId = j["location"][i]["id"].get<int>();
-		Location l{//Calls the constructor of Location object, thus order is important to be the same
-			cityId,
-			j["location"][i]["city"].get<std::string>(),
-			j["location"][i]["area"].get<std::string>(),
-			j["location"][i]["adjacent"].get<std::vector<int>>(),
-			j["location"][i]["yellow"].get<int>(),
-			j["location"][i]["blue"].get<int>(),
-			j["location"][i]["black"].get<int>(),
-			j["location"][i]["red"].get<int>()
-		};
-
-		cityMap[cityId] = l;
-	}
-	return cityMap;
-}
 
 //Given the filename, will save the state of the board to a json file of that name
 //The order will not be as the original file since it is stored alphabetically in the json
-void Loader::save(string filename, map<int, Location> cities) {
+void Loader::save(string filename, Board* board) {
+
+	map<int, Location> cities = board->getMap()->getMapLocation();
+
 	for (int i = 1; i < (cities.size() + 1); i++) {
 	
 		//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
-		out["location"][i-1]["area"] = cities.at(i).getArea();
-		out["location"][i-1]["city"] = cities.at(i).getCity();
 		out["location"][i-1]["id"] = cities.at(i).getId();
 		out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
 		out["location"][i - 1]["blue"] = cities.at(i).getBlue();
 		out["location"][i - 1]["black"] = cities.at(i).getBlack();
 		out["location"][i - 1]["red"] = cities.at(i).getRed();
-		out["location"][i - 1]["adjacent"] = cities.at(i).getConnections();
 	
 	}
+
+	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
+	out["Board"]["infectionLevel"] = board->getInfectionRateMarker();
+	out["Board"]["pieces"]["blackPiecesAv"] = board->getNumOfBlackPieces();
+	out["Board"]["pieces"]["yellowPiecesAv"] = board->getNumOfYellowPieces();
+	out["Board"]["pieces"]["redPiecesAv"] = board->getNumOfRedPieces();
+	out["Board"]["pieces"]["bluePiecesAv"] = board->getNumOfBluePieces();
+	out["Board"]["diseaseEradicated"]["black"] = board->isBlackCured();
+	out["Board"]["diseaseEradicated"]["yellow"] = board->isYellowCured();
+	out["Board"]["diseaseEradicated"]["red"] = board->isRedCured();
+	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
+	out["Board"]["researchStations"] = board->getResearchStations();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
@@ -81,7 +71,7 @@ vector<Player *> Loader::loadPlayers() {
 		vector<PlayerCard *> pcards;
 
 		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
-			PlayerCard *pc = new PlayerCard(cardName);
+			PlayerCard *pc = new CityCard(cardName);
 			pcards.push_back(pc);
 		}
 
@@ -130,4 +120,65 @@ void Loader::save(string filename, vector<Player *> players) {
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
 	o << std::setw(4) << this->out << std::endl;
+}
+
+void Loader::load(vector<Player*> & players)
+{
+	players = loadPlayers();
+
+}
+
+//Loads the board data that is related to a game
+void Loader::loadBoardInfo(Board * board)
+{
+	board->setOutbreakMarker(j["Board"]["outbreakLevel"].get<int>());
+	board->setInfectionMarker(j["Board"]["infectionLevel"].get<int>());
+
+	board->setNumOfBlackPieces(j["Board"]["pieces"]["blackPiecesAv"].get<int>());
+	board->setNumOfYellowPieces(j["Board"]["pieces"]["yellowPiecesAv"].get<int>());
+	board->setNumOfRedPieces(j["Board"]["pieces"]["redPiecesAv"].get<int>());
+	board->setNumOfBluePieces(j["Board"]["pieces"]["bluePiecesAv"].get<int>());
+
+	board->setBlackCureFound(j["Board"]["diseaseEradicated"]["black"].get<bool>());
+	board->setYellowCureFound(j["Board"]["diseaseEradicated"]["yellow"].get<bool>());
+	board->setRedCureFound(j["Board"]["diseaseEradicated"]["red"].get<bool>());
+	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
+
+	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
+}
+
+vector<Pawn> Loader::gameSetup(Map* initMap) {
+	map<int, Location> cityMap;
+	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
+	for (int i = 0; i < j["location"].size(); i++) {
+		//Loops through all cities in the JSON and puts them in a list that will be given to the map
+		int cityId = j["location"][i]["id"].get<int>();
+		Location l{//Calls the constructor of Location object, thus order is important to be the same
+			cityId,
+			j["location"][i]["city"].get<std::string>(),
+			j["location"][i]["area"].get<std::string>(),
+			j["location"][i]["adjacent"].get<std::vector<int>>(),
+			j["location"][i]["yellow"].get<int>(),
+			j["location"][i]["blue"].get<int>(),
+			j["location"][i]["black"].get<int>(),
+			j["location"][i]["red"].get<int>()
+		};
+
+		cityMap[cityId] = l;
+	}
+
+	initMap->setMapLocation(cityMap);
+
+	vector<Pawn> listOfRoles;
+	for (int k = 0; k < j["GameSetup"]["roles"].size(); k++) {
+
+		Pawn p{
+			j["GameSetup"]["roles"][k]["color"],
+			j["GameSetup"]["roles"][k]["role"]
+		};
+
+		listOfRoles.push_back(p);
+	}
+
+	return listOfRoles;
 }

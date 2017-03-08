@@ -1,33 +1,40 @@
 #include <string>
+#include <vector>
+#include <iostream>
+using namespace std;
 #pragma once
 
-class ReferenceCard
-{
-private:
-	std::string name;
+class PlayerCard {
+
+protected:
+	int id;
+	string cardName;
 
 public:
-	std::string getName(){ return name; };
-	ReferenceCard(std::string);
+	virtual void cardEffect() = 0;
+	string getCardName() { return cardName; };
+
 };
 
-class PlayerCard
-{
-private:
-	std::string cardName;
 
+
+class CityCard: public PlayerCard
+{
 public:
-	std::string getCardName();
-	PlayerCard(std::string cardName);
+	CityCard();
+	CityCard(string);
+	void cardEffect();
+
 
 };
 
 class Role
 {
 private:
-	std::string name;
+	string name;
 
 public:
-	std::string getName() { return name; };
-	Role(std::string name);
+	string getName() { return name; };
+	Role(string name);
+	Role();
 };
