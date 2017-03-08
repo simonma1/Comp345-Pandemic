@@ -16,15 +16,15 @@ Location::Location()
 }
 
 //Creates a Location object. This constructor is linked with the json serialization, so any changes here should be reflected in the Loader class
-Location::Location(int id, string city, string area, vector<int> connections, int yellow, int blue, int black, int red)
+Location::Location(int id, string city, string area, vector<int> connections)
 {
 	this -> id = id;
 	this -> city = city;
 	this -> area = area;
 	this->connections = connections;
-	this->numOfYellow = yellow;
-	this->numOfBlue = blue;
-	this->numOfBlack = black;
-	this->numOfRed = red;
+	this->numOfYellow = 0;
+	this->numOfBlue = 0;
+	this->numOfBlack = 0;
+	this->numOfRed = 0;
 
 }

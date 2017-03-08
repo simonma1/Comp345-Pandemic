@@ -27,14 +27,37 @@ void Loader::save(string filename, Board* board) {
 	map<int, Location> cities = board->getMap()->getMapLocation();
 
 	for (int i = 1; i < (cities.size() + 1); i++) {
-	
-		//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
-		out["location"][i-1]["id"] = cities.at(i).getId();
-		out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
-		out["location"][i - 1]["blue"] = cities.at(i).getBlue();
-		out["location"][i - 1]["black"] = cities.at(i).getBlack();
-		out["location"][i - 1]["red"] = cities.at(i).getRed();
-	
+
+		bool hasInfection = false;
+
+		if (cities.at(i).getYellow() !=0) {
+			out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
+			hasInfection = true;
+		}
+
+		if (cities.at(i).getBlack() != 0) {
+			out["location"][i - 1]["black"] = cities.at(i).getBlack();
+			hasInfection = true;
+		}
+
+		if (cities.at(i).getBlack() != 0) {
+			out["location"][i - 1]["red"] = cities.at(i).getRed();
+			hasInfection = true;
+
+		}
+
+		if (cities.at(i).getRed() != 0) {
+			out["location"][i - 1]["blue"] = cities.at(i).getBlue();
+			hasInfection = true;
+		}
+
+		if (hasInfection) {
+			//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
+			out["location"][i - 1]["id"] = cities.at(i).getId();
+		} else {
+			vector<int> empty;
+			out["location"] = empty;
+		}
 	}
 
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
@@ -158,10 +181,6 @@ vector<Pawn> Loader::gameSetup(Map* initMap) {
 			j["location"][i]["city"].get<std::string>(),
 			j["location"][i]["area"].get<std::string>(),
 			j["location"][i]["adjacent"].get<std::vector<int>>(),
-			j["location"][i]["yellow"].get<int>(),
-			j["location"][i]["blue"].get<int>(),
-			j["location"][i]["black"].get<int>(),
-			j["location"][i]["red"].get<int>()
 		};
 
 		cityMap[cityId] = l;
