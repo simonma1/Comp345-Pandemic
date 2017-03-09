@@ -13,6 +13,10 @@ public:
 	map<int, Location> getMapLocation() { return cities; };
 	void printConnections();
 	string toString();
+	void setLocationNumOfBlack(int id, int numInfection);
+	void setLocationNumOfYellow(int id, int numInfection);
+	void setLocationNumOfRed(int id, int numInfection);
+	void setLocationNumOfBlue(int id, int numInfection);
 
 private:
 	map<int,Location> cities;//An int id will serve as the key to every location in the map

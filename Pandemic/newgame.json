@@ -44,6 +44,16 @@
       "red": false,
       "blue": false
     },
-    "researchStations": [5]
-  }
+    "researchStations": [ 5 ]
+  },
+  "location": [
+    {
+      "id": 1,
+      "yellow": 1
+    },
+    {
+      "id": 10,
+      "red": 1
+    }
+  ]
 }

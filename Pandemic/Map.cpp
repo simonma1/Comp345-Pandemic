@@ -27,6 +27,21 @@ void Map::printConnections()
 	}
 }
 
+void Map::setLocationNumOfBlack(int id, int numInfection){
+	cities.at(id).setBlack(numInfection);
+}
+
+void Map::setLocationNumOfYellow(int id, int numInfection) {
+	cities.at(id).setYellow(numInfection);
+}
+
+void Map::setLocationNumOfRed(int id, int numInfection) {
+	cities.at(id).setRed(numInfection);
+}
+
+void Map::setLocationNumOfBlue(int id, int numInfection) {
+	cities.at(id).setBlue(numInfection);
+}
 
 string Map::toString() {
 

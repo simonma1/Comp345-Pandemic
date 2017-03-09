@@ -35,7 +35,7 @@ int main()
 	vector<Player *> players;
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
-		loader = new Loader("map.json");//map.json is the default file name
+		loader = new Loader("newgame.json");//map.json is the default file name
 
 		loader->loadBoardInfo(board);
 

@@ -38,5 +38,14 @@
             "role": "Researcher"
         }
     ],
-    "location": []
+    "location": [
+        {
+            "id": 1,
+            "yellow": 1
+        },
+        {
+            "id": 10,
+            "red": 1
+        }
+    ]
 }

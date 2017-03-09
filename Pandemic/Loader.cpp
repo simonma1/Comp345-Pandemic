@@ -24,40 +24,47 @@ Loader::Loader(string filename) {
 //The order will not be as the original file since it is stored alphabetically in the json
 void Loader::save(string filename, Board* board) {
 
-	map<int, Location> cities = board->getMap()->getMapLocation();
+	Map* cityList = board->getMap();
+	map<int, Location> cities = cityList->getMapLocation();
+	int outIndex = 0;//Keeps track of the size of all cities that have infections
 
+	//Saves the infection for the cities, only if that number is bigger than 0
 	for (int i = 1; i < (cities.size() + 1); i++) {
 
-		bool hasInfection = false;
+		int yellow = cities.at(i).getYellow();
+		int black = cities.at(i).getBlack();
+		int red = cities.at(i).getRed();
+		int blue = cities.at(i).getBlue();
 
-		if (cities.at(i).getYellow() !=0) {
-			out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
-			hasInfection = true;
-		}
-
-		if (cities.at(i).getBlack() != 0) {
-			out["location"][i - 1]["black"] = cities.at(i).getBlack();
-			hasInfection = true;
-		}
-
-		if (cities.at(i).getBlack() != 0) {
-			out["location"][i - 1]["red"] = cities.at(i).getRed();
-			hasInfection = true;
-
-		}
-
-		if (cities.at(i).getRed() != 0) {
-			out["location"][i - 1]["blue"] = cities.at(i).getBlue();
-			hasInfection = true;
-		}
-
-		if (hasInfection) {
+		//Checks to see if the current city as an infection of note, that is not 0
+		if (yellow != 0 || black != 0 || red != 0 || blue != 0) {
 			//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
-			out["location"][i - 1]["id"] = cities.at(i).getId();
-		} else {
-			vector<int> empty;
-			out["location"] = empty;
-		}
+			out["location"][outIndex]["id"] = cities.at(i).getId();
+
+			//Only prints the infection number for that infection's color
+			if (yellow != 0) {
+				out["location"][outIndex]["yellow"] = yellow;
+			}
+
+			if (black != 0) {
+				out["location"][outIndex]["black"] = black;
+			}
+
+			if (red != 0) {
+				out["location"][outIndex]["red"] = red;
+			}
+
+			if (blue != 0) {
+				out["location"][outIndex]["blue"] = blue;
+			}
+			outIndex++; // incremented only if a city has an infection
+		} 
+	}
+
+	//Prints out an empty array if there is no infection to prevent parsing problems when loading
+	if (outIndex == 0) {
+		vector<int> empty;
+		out["location"] = empty;
 	}
 
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
@@ -168,6 +175,27 @@ void Loader::loadBoardInfo(Board * board)
 	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
 
 	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
+
+	Map* map = board->getMap();
+	for (int idx = 0; idx < j["location"].size(); idx++) {
+
+		int locationId = j["location"][idx]["id"];
+		if (!(j["location"][idx]["black"].is_null())) {
+			map->setLocationNumOfBlack(locationId, j["location"][idx]["black"].get<int>());
+		}
+
+		if (!(j["location"][idx]["yellow"].is_null())) {
+			map->setLocationNumOfYellow(locationId, j["location"][idx]["yellow"].get<int>());
+		}
+
+		if (!(j["location"][idx]["red"].is_null())) {
+			map->setLocationNumOfRed(locationId, j["location"][idx]["red"].get<int>());
+		}
+
+		if (!(j["location"][idx]["blue"].is_null())) {
+			map->setLocationNumOfBlue(locationId, j["location"][idx]["blue"].get<int>());
+		}
+	}
 }
 
 vector<Pawn> Loader::gameSetup(Map* initMap) {
