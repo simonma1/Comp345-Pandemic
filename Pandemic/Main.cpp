@@ -100,28 +100,8 @@ int main()
 	loader->save(saveFileName, players);
 
 	// Begin actions test
-	cout << "====================================" << endl;
-	cout << "Actions section" << endl;
-	cout << "====================================" << endl;
-
-	vector<Action *> actions;
-	actions.push_back(new BuildRSAction());
-	actions.push_back(new ShuttleFlightAction());
-	actions.push_back(new TreatAction());
-	actions.push_back(new CharterFlightAction());
-	actions.push_back(new DirectFlightAction());
-	actions.push_back(new DiscoverCureAction());
-	actions.push_back(new RoleAction());
-	//actions.push_back(new ShareAction());
-	actions.push_back(new DriveAction());
-
-	for (auto &action : actions) {
-		action->act(players[0]);
-	}
-
-	for (auto &action : actions) {
-		delete action;
-	}// End actions test
+	//vector<Action*> actions = board->getPlayerAvailableActions(players[0]);
+	// End actions test
 		 
 	//Deletes the pointer used
 	delete loader;

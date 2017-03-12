@@ -277,6 +277,6 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 	currentLocation = NULL;
 
-	return vector<Action*>();
+	return availableActions;
 }
 ;
