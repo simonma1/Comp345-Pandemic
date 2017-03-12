@@ -239,6 +239,10 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for drive action
+	for (auto connection : player->getPlayerPawn()->getCurrentLocation()->getConnections()) {
+		availableActions.push_back(new DriveAction(connection));
+	}
+
 	// check for role action
 	// check for share action
 	// check for shuttleflight action

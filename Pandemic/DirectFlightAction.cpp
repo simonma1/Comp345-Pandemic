@@ -2,8 +2,8 @@
 
 DirectFlightAction::DirectFlightAction() {}
 
-DirectFlightAction::DirectFlightAction(int destination) {
-	this->destination = destination;
+DirectFlightAction::DirectFlightAction(int destinationId) {
+	this->destinationId = destinationId;
 }
 
 void DirectFlightAction::act(Player *player) {
