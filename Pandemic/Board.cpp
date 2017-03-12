@@ -244,7 +244,11 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for role action
+	//TODO
+
 	// check for share action
+
+
 	// check for shuttleflight action
 	// check for treat action
 
