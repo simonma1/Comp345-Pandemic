@@ -75,6 +75,12 @@
     <ClCompile Include="ShareAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShareGiveAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShareTakeAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -159,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShareGiveAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShareTakeAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

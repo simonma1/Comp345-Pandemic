@@ -128,6 +128,8 @@
     <ClCompile Include="ReferenceCard.cpp" />
     <ClCompile Include="RoleAction.cpp" />
     <ClCompile Include="ShareAction.cpp" />
+    <ClCompile Include="ShareGiveAction.cpp" />
+    <ClCompile Include="ShareTakeAction.cpp" />
     <ClCompile Include="ShuttleFlightAction.cpp" />
     <ClCompile Include="TreatAction.cpp" />
   </ItemGroup>
@@ -158,6 +160,7 @@
     <ClInclude Include="RoleAction.h" />
     <ClInclude Include="ShareAction.h" />
     <ClInclude Include="ShareGiveAction.h" />
+    <ClInclude Include="ShareTakeAction.h" />
     <ClInclude Include="ShuttleFlightAction.h" />
     <ClInclude Include="TreatAction.h" />
   </ItemGroup>
