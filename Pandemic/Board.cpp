@@ -265,7 +265,17 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for treat action
+	Location* currentLocation = player->getPlayerPawn()->getCurrentLocation();
+	if (currentLocation->getBlue() > 0)
+		availableActions.push_back(new TreatAction(BLUE));
+	if (currentLocation->getBlack() > 0)
+		availableActions.push_back(new TreatAction(BLACK));
+	if (currentLocation->getRed() > 0)
+		availableActions.push_back(new TreatAction(RED));
+	if (currentLocation->getYellow() > 0)
+		availableActions.push_back(new TreatAction(YELLOW));
 
+	currentLocation = NULL;
 
 	return vector<Action*>();
 }

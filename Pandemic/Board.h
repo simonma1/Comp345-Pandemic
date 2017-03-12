@@ -12,6 +12,10 @@
 #include "ShareTakeAction.h"
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
+#define BLUE "Blue"
+#define BLACK "Black"
+#define RED "Red"
+#define YELLOW "Yellow"
 #pragma once
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
