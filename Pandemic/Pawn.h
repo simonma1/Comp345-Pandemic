@@ -5,7 +5,7 @@
 class Pawn {
 
 public:
-	Location getCurrentLocation();
+	Location* getCurrentLocation() { return currentLocation; };
 	string getColor() { return pawnColor; };
 	string getRole() { return role; };
 	Pawn(string, string);
@@ -15,7 +15,7 @@ public:
 private:
 	string pawnColor;
 	string role;
-	Location currentLocation;
+	Location* currentLocation;
 
 
 };

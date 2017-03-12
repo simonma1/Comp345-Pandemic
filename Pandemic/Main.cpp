@@ -44,7 +44,7 @@ int main()
 	vector<Player *> players;
 	//Depending on the input will either load an existing game or start a new one
 	if (startOrLoad == 1) {//Starts a new game
-		loader = new Loader("newgame.json");//map.json is the default file name
+		loader = new Loader("newgame.json");//newgame.json is the default file name
 
 		loader->loadBoardInfo(board);
 
@@ -52,8 +52,8 @@ int main()
 		Role* role = new Role("Scientist");
 		Role* role2 = new Role("Medic");
 
-		PlayerCard* card1 = new CityCard("Peanut");
-		PlayerCard* card2 = new CityCard("Bolt");
+		PlayerCard* card1 = new CityCard(1);
+		PlayerCard* card2 = new CityCard(2);
 
 		vector<PlayerCard* > cards1;
 		cards1.push_back(card1);

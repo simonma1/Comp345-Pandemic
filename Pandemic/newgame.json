@@ -2,13 +2,9 @@
   "Players": [
     {
       "role": "Scientist",
-      "playercards": [
-        "card1",
-        "card2",
-        "card3",
-        "card4",
-        "card5"
-      ],
+      "playercards": {
+        "citycards": [ 6, 7, 8, 9, 10 ]
+      },
       "pawn": {
         "color": "Orange",
         "location": 5
@@ -16,13 +12,9 @@
     },
     {
       "role": "Dispatcher",
-      "playercards": [
-        "card1",
-        "card2",
-        "card3",
-        "card4",
-        "card5"
-      ],
+      "playercards": {
+        "citycards": [ 1, 2, 3, 4, 5 ]
+      },
       "pawn": {
         "color": "Blue",
         "location": 5

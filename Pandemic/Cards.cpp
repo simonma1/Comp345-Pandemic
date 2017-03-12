@@ -6,8 +6,8 @@ Role::Role(std::string name) {
 	this->name = name;
 }
 
-CityCard::CityCard(string cardName) {
-	this->cardName = cardName;
+CityCard::CityCard(int id) {
+	this->id = id;
 }
 
 void CityCard::cardEffect() {

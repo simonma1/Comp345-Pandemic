@@ -182,4 +182,69 @@ string Board::printResearchStationsLocation() {
 
 	value += "\n";
 	return value;
-};
+}
+vector<Action*> Board::getPlayerAvailableActions(Player *player) {
+	vector<Action*> availableActions;
+	
+	if (player->getPlayerCards().size() > 0) {
+		for (auto &card : player->getPlayerCards()) {
+			// check for build RS action and charterflight action
+			if (player->getPlayerPawn()->getCurrentLocation()->getCity() == card->getCardName()) {
+				availableActions.push_back(new BuildRSAction());
+				availableActions.push_back(new CharterFlightAction());
+			}
+			// check for directflight action
+			else
+				availableActions.push_back(new DirectFlightAction(card->getId()));
+		}
+	}
+	
+	// check for discover cure action
+	for (int i = 0; i < researchStations.size(); i++) {
+		if (player->getPlayerPawn()->getCurrentLocation()->getId() == researchStations[i]) { // is the player on a research station
+			int blueAreaCardCounter = 0; // keep track of number of player's blue cards
+			int blackAreaCardCounter = 0; // keep track of number of player's black cards
+			int redAreaCardCounter = 0; // keep track of number of player's red cards
+			int yellowAreaCardCounter = 0; // keep track of number of player's yellow cards
+
+			string blueArea = "Blue";
+			string blackArea = "Black";
+			string redArea = "Red";
+			string yellowArea = "Yellow";
+
+
+			if (player->getPlayerCards().size() > 0) { // does the player have any cards
+				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
+					string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
+
+					// count the number of each area card
+					if (cardArea  == blueArea) blueAreaCardCounter++;
+					else if (cardArea == blackArea) blackAreaCardCounter++;
+					else if (cardArea == redArea) redAreaCardCounter++;
+					else if (cardArea == yellowArea) yellowAreaCardCounter++;
+
+				}
+			}
+			
+			// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
+			if (blueAreaCardCounter >= 5)
+				availableActions.push_back(new DiscoverCureAction(blueArea));
+			if (blackAreaCardCounter >= 5)
+				availableActions.push_back(new DiscoverCureAction(blackArea));
+			if (redAreaCardCounter >= 5)
+				availableActions.push_back(new DiscoverCureAction(redArea));
+			if (yellowAreaCardCounter >= 5)
+				availableActions.push_back(new DiscoverCureAction(yellowArea));
+		}
+	}
+
+	// check for drive action
+	// check for role action
+	// check for share action
+	// check for shuttleflight action
+	// check for treat action
+
+
+	return vector<Action*>();
+}
+;

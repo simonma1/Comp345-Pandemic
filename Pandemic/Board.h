@@ -1,5 +1,15 @@
 #include "Player.h"
 #include "Map.h"
+#include "Action.h"
+#include "BuildRSAction.h"
+#include "CharterFlightAction.h"
+#include "DirectFlightAction.h"
+#include "DiscoverCureAction.h"
+#include "DriveAction.h"
+#include "RoleAction.h"
+#include "ShareAction.h"
+#include "ShuttleFlightAction.h"
+#include "TreatAction.h"
 #pragma once
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
@@ -22,6 +32,9 @@ public:
 	vector<int> getResearchStations() { return researchStations; };
 	void setResearchStations(vector<int> researchStations) { this->researchStations = researchStations; };
 	string printResearchStationsLocation();
+	vector<Action *> getPlayerAvailableActions(Player *);
+	void requestAction();
+
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
@@ -56,6 +69,6 @@ private:
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
 	void boardSetup();
 	vector<Pawn> listOfRoles;
-	vector<int> researchStations;
+	vector<int> researchStations; // vector of location ids
 
 };

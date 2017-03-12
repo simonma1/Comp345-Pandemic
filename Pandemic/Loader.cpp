@@ -96,12 +96,13 @@ vector<Player *> Loader::loadPlayers() {
 	for (auto &player : players) {
 
 		Role *r = new Role (j["Players"][i]["role"].get<string>());
-
-		vector<string> playerCardNames = j["Players"][i]["playercards"].get<vector<string>>();
+		
+		//TODO: add event cards.
+		vector<int> playerCardCityIds = j["Players"][i]["playercards"]["citycards"].get<vector<int>>(); 
 		vector<PlayerCard *> pcards;
 
-		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
-			PlayerCard *pc = new CityCard(cardName);
+		for (auto &id : playerCardCityIds) { // for each playerCardName, create a new player card and store it in a vector. 
+			PlayerCard *pc = new CityCard(id);
 			pcards.push_back(pc);
 		}
 
@@ -134,10 +135,10 @@ void Loader::save(string filename, vector<Player *> players) {
 		// Save player's role
 		out["Players"][i]["role"] = players[i]->getRole()->getName();
 
-
+		//TODO: add event cards.
 		// Save player's cards 
 		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
-			out["Players"][i]["playercards"][j] = players[i]->getPlayerCards()[j]->getCardName();
+			out["Players"][i]["playercards"]["citycards"][j] = players[i]->getPlayerCards()[j]->getId();
 		}
 
 

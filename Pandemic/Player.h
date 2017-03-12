@@ -23,7 +23,7 @@ private:
 
 public:
 	Role* getRole() { return role; };
-	Location movePawn();
+	Location* movePawn();
 	~Player();
 	Player(Role* role, Pawn* playerPawn);
 	Player();

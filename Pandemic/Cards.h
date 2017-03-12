@@ -13,7 +13,7 @@ protected:
 public:
 	virtual void cardEffect() = 0;
 	string getCardName() { return cardName; };
-
+	int getId() { return id; }
 };
 
 
@@ -22,7 +22,7 @@ class CityCard: public PlayerCard
 {
 public:
 	CityCard();
-	CityCard(string);
+	CityCard(int);
 	void cardEffect();
 
 
