@@ -112,7 +112,7 @@ int main()
 	actions.push_back(new DirectFlightAction());
 	actions.push_back(new DiscoverCureAction());
 	actions.push_back(new RoleAction());
-	actions.push_back(new ShareAction());
+	//actions.push_back(new ShareAction());
 	actions.push_back(new DriveAction());
 
 	for (auto &action : actions) {
