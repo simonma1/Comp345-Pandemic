@@ -1,8 +1,8 @@
+#pragma once
 #include "Location.h"
 #include <vector>
 #include <iostream>
 using namespace std;
-#pragma once
 
 class Map {
 

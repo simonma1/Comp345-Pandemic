@@ -21,14 +21,14 @@
     "Players": [
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Blue"
             },
             "playercards": {
                 "citycards": [
                     1
                 ]
             },
-            "role": "Researcher"
+            "role": "Contingency Planner"
         },
         {
             "pawn": {

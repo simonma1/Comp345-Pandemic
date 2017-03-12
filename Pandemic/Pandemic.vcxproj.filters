@@ -81,6 +81,9 @@
     <ClCompile Include="ShareTakeAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CardManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -168,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShareTakeAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

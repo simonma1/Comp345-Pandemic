@@ -9,7 +9,7 @@ Board::Board()
 {
 	outbreakMarker = 0;
 	boardMap = new Map;
-
+	CardManager cardManager;
 	boardSetup();
 }
 
@@ -170,6 +170,8 @@ Board::Board(const Board& board) {
 
 	this->boardMap = new Map;
 	*boardMap = *board.boardMap;
+
+	this->cardManager = board.cardManager;
 }
 
 string Board::printResearchStationsLocation() {

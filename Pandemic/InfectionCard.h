@@ -1,5 +1,5 @@
-#include "Location.h"
 #pragma once
+#include "Location.h"
 
 class InfectionCard {
 

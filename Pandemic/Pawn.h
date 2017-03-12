@@ -1,6 +1,6 @@
+#pragma once
 #include "Location.h"
 #include <ctime>
-#pragma once
 
 class Pawn {
 

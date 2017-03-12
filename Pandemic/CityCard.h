@@ -1,7 +1,8 @@
+#pragma once
 #include <string>
 #include <vector>
 using namespace std;
-#pragma once
+
 
 //Each player will be handed out 3 random city cards at the start of the game. It should be noted that while there is more information on this card
 //, the implementation of this class is left to the individual handling DISTINCT PART 3). The following is a vector of strings that correspond to the cities referred to by the city cards of the game.

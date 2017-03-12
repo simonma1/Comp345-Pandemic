@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include "Location.h"
 #include "Cards.h"
@@ -5,8 +6,6 @@
 #include "ReferenceCard.h"
 
 using namespace std;
-#pragma once
-
 
 class Player 
 {

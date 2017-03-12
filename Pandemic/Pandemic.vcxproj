@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BuildRSAction.cpp" />
+    <ClCompile Include="CardManager.cpp" />
     <ClCompile Include="CharterFlightAction.cpp" />
     <ClCompile Include="CityCard.cpp" />
     <ClCompile Include="DirectFlightAction.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="BuildRSAction.h" />
+    <ClInclude Include="CardManager.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CharterFlightAction.h" />

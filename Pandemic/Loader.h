@@ -1,11 +1,11 @@
+#pragma once
+#include "Board.h"
 #include "Location.h"
 #include "Player.h"
 #include "json.hpp"
-#include "Board.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;
-#pragma once
 
 class Loader {
 private:

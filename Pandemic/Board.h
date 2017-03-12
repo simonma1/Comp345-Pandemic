@@ -1,3 +1,4 @@
+#pragma once
 #include "Player.h"
 #include "Map.h"
 #include "Action.h"
@@ -12,11 +13,12 @@
 #include "ShareTakeAction.h"
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
+#include "CardManager.h"
+
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
 #define YELLOW "Yellow"
-#pragma once
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
@@ -76,5 +78,6 @@ private:
 	void boardSetup();
 	vector<Pawn> listOfRoles;
 	vector<int> researchStations; // vector of location ids
+	CardManager cardManager;
 
 };
