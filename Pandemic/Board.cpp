@@ -235,6 +235,12 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				availableActions.push_back(new DiscoverCureAction(redArea));
 			if (yellowAreaCardCounter >= 5)
 				availableActions.push_back(new DiscoverCureAction(yellowArea));
+
+
+			// check for shuttleflight action
+			for (int j = 0; j < researchStations.size(); j++) { // add every other research station player can move to.
+				availableActions.push_back(new ShuttleFlightAction(researchStations[j]));
+			}
 		}
 	}
 
@@ -258,7 +264,6 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		}
 	}
 
-	// check for shuttleflight action
 	// check for treat action
 
 
