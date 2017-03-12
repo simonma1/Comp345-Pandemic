@@ -158,6 +158,9 @@
     <ClInclude Include="ShuttleFlightAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShareGiveAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pandemic.rc">

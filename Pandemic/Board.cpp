@@ -247,7 +247,16 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	//TODO
 
 	// check for share action
-
+	for (auto &otherPlayer : players) {
+		if (otherPlayer != player) {
+			if (otherPlayer->getPlayerPawn()->getCurrentLocation()->getId() == player->getPlayerPawn()->getCurrentLocation()->getId()) {
+				if (otherPlayer->getPlayerCards().size() > 0) // if other player has cards, player can take from him
+					availableActions.push_back(new ShareTakeAction(otherPlayer));
+				if (player->getPlayerCards().size() > 0) // if player has cards, he can give to other player
+					availableActions.push_back(new ShareGiveAction(otherPlayer));
+			}
+		}
+	}
 
 	// check for shuttleflight action
 	// check for treat action

@@ -157,6 +157,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="RoleAction.h" />
     <ClInclude Include="ShareAction.h" />
+    <ClInclude Include="ShareGiveAction.h" />
     <ClInclude Include="ShuttleFlightAction.h" />
     <ClInclude Include="TreatAction.h" />
   </ItemGroup>

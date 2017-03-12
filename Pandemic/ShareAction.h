@@ -3,5 +3,12 @@
 
 class ShareAction : public OtherAction {
 public:
-	void act(Player*);
+	virtual void act(Player*) = 0;
+	ShareAction();
+	ShareAction(Player*);
+	~ShareAction();
+	Player* getPlayerYouCanShareWith() { return playerYouCanShareWith; };
+
+private:
+	Player *playerYouCanShareWith;
 };

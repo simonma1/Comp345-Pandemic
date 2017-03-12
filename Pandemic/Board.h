@@ -8,6 +8,8 @@
 #include "DriveAction.h"
 #include "RoleAction.h"
 #include "ShareAction.h"
+#include "ShareGiveAction.h"
+#include "ShareTakeAction.h"
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
 #pragma once
