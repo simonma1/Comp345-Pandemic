@@ -111,7 +111,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BuildRSAction.cpp" />
+    <ClCompile Include="CharterFlightAction.cpp" />
     <ClCompile Include="CityCard.cpp" />
+    <ClCompile Include="DirectFlightAction.cpp" />
+    <ClCompile Include="DiscoverCureAction.cpp" />
+    <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="InfectionCard.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Location.cpp" />
@@ -121,13 +126,27 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Cards.cpp" />
     <ClCompile Include="ReferenceCard.cpp" />
+    <ClCompile Include="RoleAction.cpp" />
+    <ClCompile Include="ShareAction.cpp" />
+    <ClCompile Include="ShuttleFlightAction.cpp" />
+    <ClCompile Include="TreatAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="BuildRSAction.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="CharterFlightAction.h" />
     <ClInclude Include="CityCard.h" />
+    <ClInclude Include="DirectFlightAction.h" />
+    <ClInclude Include="DiscoverCureAction.h" />
+    <ClInclude Include="DriveAction.h" />
     <ClInclude Include="GeneralCards.h" />
     <ClInclude Include="InfectionCard.h" />
+    <ClInclude Include="MovementAction.h" />
+    <ClInclude Include="MovementCardAction.h" />
+    <ClInclude Include="MovementNoCardAction.h" />
+    <ClInclude Include="OtherAction.h" />
     <ClInclude Include="ReferenceCard.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Loader.h" />
@@ -136,6 +155,10 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RoleAction.h" />
+    <ClInclude Include="ShareAction.h" />
+    <ClInclude Include="ShuttleFlightAction.h" />
+    <ClInclude Include="TreatAction.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pandemic.rc" />

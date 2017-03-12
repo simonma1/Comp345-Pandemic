@@ -5,6 +5,15 @@
 #include "Loader.h"
 #include "Cards.h"
 #include "ReferenceCard.h"
+#include "BuildRSAction.h"
+#include "CharterFlightAction.h"
+#include "DirectFlightAction.h"
+#include "DiscoverCureAction.h"
+#include "DriveAction.h"
+#include "RoleAction.h"
+#include "ShareAction.h"
+#include "ShuttleFlightAction.h"
+#include "TreatAction.h"
 #include <vector>
 using namespace std;
 
@@ -90,6 +99,30 @@ int main()
 	loader->save(saveFileName, board);
 	loader->save(saveFileName, players);
 
+	// Begin actions test
+	cout << "====================================" << endl;
+	cout << "Actions section" << endl;
+	cout << "====================================" << endl;
+
+	vector<Action *> actions;
+	actions.push_back(new BuildRSAction());
+	actions.push_back(new ShuttleFlightAction());
+	actions.push_back(new TreatAction());
+	actions.push_back(new CharterFlightAction());
+	actions.push_back(new DirectFlightAction());
+	actions.push_back(new DiscoverCureAction());
+	actions.push_back(new RoleAction());
+	actions.push_back(new ShareAction());
+	actions.push_back(new DriveAction());
+
+	for (auto &action : actions) {
+		action->act(players[0]);
+	}
+
+	for (auto &action : actions) {
+		delete action;
+	}// End actions test
+		 
 	//Deletes the pointer used
 	delete loader;
 	delete board;
