@@ -14,11 +14,13 @@
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
 #include "CardManager.h"
-
+#include "Loader.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
 #define YELLOW "Yellow"
+
+
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action

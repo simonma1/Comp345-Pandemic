@@ -21,25 +21,25 @@
     "Players": [
         {
             "pawn": {
-                "color": "Blue"
+                "color": "Red"
             },
             "playercards": {
                 "citycards": [
                     1
                 ]
             },
-            "role": "Contingency Planner"
+            "role": "Operations Expert"
         },
         {
             "pawn": {
-                "color": "Orange"
+                "color": "Brown"
             },
             "playercards": {
                 "citycards": [
                     2
                 ]
             },
-            "role": "Medic"
+            "role": "Researcher"
         }
     ],
     "location": [

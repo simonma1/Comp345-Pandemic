@@ -7,6 +7,8 @@
 using namespace std;
 using json = nlohmann::json;
 
+class Board;
+
 class Loader {
 private:
 	json j;
