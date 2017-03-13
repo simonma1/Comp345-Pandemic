@@ -116,9 +116,6 @@
     <ClInclude Include="CityCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneralCards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ReferenceCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -174,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CardManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCards.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

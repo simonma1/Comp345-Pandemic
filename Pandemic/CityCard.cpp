@@ -4,7 +4,10 @@ CityCard::CityCard()
 {
 }
 
-string CityCard::getCityCardLocation()
-{
-	return string();
+CityCard::CityCard(int id) {
+	this->id = id;
+}
+
+void CityCard::cardEffect() {
+
 }

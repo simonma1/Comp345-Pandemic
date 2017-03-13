@@ -145,12 +145,12 @@
     <ClInclude Include="DirectFlightAction.h" />
     <ClInclude Include="DiscoverCureAction.h" />
     <ClInclude Include="DriveAction.h" />
-    <ClInclude Include="GeneralCards.h" />
     <ClInclude Include="InfectionCard.h" />
     <ClInclude Include="MovementAction.h" />
     <ClInclude Include="MovementCardAction.h" />
     <ClInclude Include="MovementNoCardAction.h" />
     <ClInclude Include="OtherAction.h" />
+    <ClInclude Include="PlayerCards.h" />
     <ClInclude Include="ReferenceCard.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Loader.h" />

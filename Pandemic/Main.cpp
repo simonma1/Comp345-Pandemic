@@ -4,6 +4,8 @@
 #include "Location.h"
 #include "Loader.h"
 #include "Cards.h"
+#include "PlayerCards.h"
+#include "CityCard.h"
 #include "ReferenceCard.h"
 #include "BuildRSAction.h"
 #include "CharterFlightAction.h"
@@ -47,10 +49,6 @@ int main()
 		loader = new Loader("newgame.json");//newgame.json is the default file name
 
 		loader->loadBoardInfo(board);
-
-		//Creates some value to be passed to the player object. This is for demo purpose
-		Role* role = new Role("Scientist");
-		Role* role2 = new Role("Medic");
 
 		PlayerCard* card1 = new CityCard(1);
 		PlayerCard* card2 = new CityCard(2);

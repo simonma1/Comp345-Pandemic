@@ -2,6 +2,8 @@
 #include <vector>
 #include "Location.h"
 #include "Cards.h"
+#include "PlayerCards.h"
+#include "CityCard.h"
 #include "Pawn.h"
 #include "ReferenceCard.h"
 
