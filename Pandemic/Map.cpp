@@ -90,3 +90,7 @@ string Map::toString() {
 	return result;
 }
 
+Location Map::getLocationAtId(int id) {
+	return cities.at(id);
+}
+

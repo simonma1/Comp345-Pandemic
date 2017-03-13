@@ -20,8 +20,6 @@
 #define RED "Red"
 #define YELLOW "Yellow"
 
-
-
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
 */
@@ -44,6 +42,7 @@ public:
 	string printResearchStationsLocation();
 	vector<Action *> getPlayerAvailableActions(Player *);
 	void requestAction();
+	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
 
 
 	int getOutBreakMarker() { return outbreakMarker; };
@@ -80,6 +79,6 @@ private:
 	void boardSetup();
 	vector<Pawn> listOfRoles;
 	vector<int> researchStations; // vector of location ids
-	CardManager cardManager;
+	CardManager* cardManager;
 
 };

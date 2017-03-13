@@ -4,8 +4,12 @@
 class InfectionCard {
 
 private:
-	int id;
+	Location city;
 
 public:
+	InfectionCard();
+	InfectionCard(Location);
+	~InfectionCard();
 	void infect(Location*);
+	string printInfectionCard();
 };

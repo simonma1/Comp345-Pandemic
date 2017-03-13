@@ -7,7 +7,7 @@
 using namespace std;
 using json = nlohmann::json;
 
-class Board;
+class Board;// Forward declaration for the loader who has a board object 
 
 class Loader {
 private:

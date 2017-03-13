@@ -17,6 +17,7 @@ public:
 	void setLocationNumOfYellow(int id, int numInfection);
 	void setLocationNumOfRed(int id, int numInfection);
 	void setLocationNumOfBlue(int id, int numInfection);
+	Location getLocationAtId(int id);
 
 private:
 	map<int,Location> cities;//An int id will serve as the key to every location in the map

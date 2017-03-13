@@ -8,7 +8,6 @@ Board::Board()
 {
 	outbreakMarker = 0;
 	boardMap = new Map;
-	CardManager cardManager;
 	boardSetup();
 }
 
@@ -40,6 +39,7 @@ Board::~Board()
 	if (boardMap != NULL) {
 		delete boardMap;
 	}
+	delete cardManager;
 }
 
 void Board::addPlayer(Player * p)

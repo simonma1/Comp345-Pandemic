@@ -197,6 +197,25 @@ void Loader::loadBoardInfo(Board * board)
 			map->setLocationNumOfBlue(locationId, j["location"][idx]["blue"].get<int>());
 		}
 	}
+
+	//Loads the card Manager
+	vector<int> infectionCardIds = j["infection"]["deck"].get<vector<int>>();
+	vector<int> infectionCardDiscardIds = j["infection"]["discard"].get<vector<int>>();
+
+	vector<InfectionCard*> infectionCards;
+	vector<InfectionCard*> infectionDicardCards;
+
+	for (int i = 0; i < infectionCardIds.size(); i++) {
+		Location city = map->getLocationAtId(infectionCardIds[i]);
+		InfectionCard* infectionCard = new InfectionCard(city);
+		infectionCards.push_back(infectionCard);
+	}
+
+	CardManager* cardManager = new CardManager(infectionCards);
+
+	board->setCardManager(cardManager);
+
+	map = NULL;
 }
 
 vector<Pawn> Loader::gameSetup(Map* initMap) {

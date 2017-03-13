@@ -21,25 +21,25 @@
     "Players": [
         {
             "pawn": {
-                "color": "Red"
+                "color": "Green"
             },
             "playercards": {
                 "citycards": [
                     1
                 ]
             },
-            "role": "Operations Expert"
+            "role": "Quarantine Specialist"
         },
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Red"
             },
             "playercards": {
                 "citycards": [
                     2
                 ]
             },
-            "role": "Researcher"
+            "role": "Operations Expert"
         }
     ],
     "location": [

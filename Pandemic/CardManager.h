@@ -9,7 +9,11 @@ private:
 
 public:
 	CardManager();
-	void setInfectionCardDeck(InfectionCard* infectionDeck);
+	CardManager(vector<InfectionCard*> infectionDeck);
+	~CardManager();
+	void setInfectionCardDeck(vector<InfectionCard*> infectionDeck) { this->infectionCardDeck = infectionDeck; };
+	void setInfectionCardDiscard(vector<InfectionCard*> infectionDeck) { this->infectionDiscard = infectionDeck; };
+
 
 
 };
