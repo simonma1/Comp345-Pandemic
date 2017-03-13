@@ -3,5 +3,6 @@
 
 class RoleAction : public Action {
 public:
-	void act(Player *);
+	virtual void act(Player *) = 0;
+	virtual string toString() = 0;
 };

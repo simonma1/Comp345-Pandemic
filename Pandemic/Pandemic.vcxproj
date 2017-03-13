@@ -128,7 +128,6 @@
     <ClCompile Include="Cards.cpp" />
     <ClCompile Include="ReferenceCard.cpp" />
     <ClCompile Include="RoleAction.cpp" />
-    <ClCompile Include="ShareAction.cpp" />
     <ClCompile Include="ShareGiveAction.cpp" />
     <ClCompile Include="ShareTakeAction.cpp" />
     <ClCompile Include="ShuttleFlightAction.cpp" />

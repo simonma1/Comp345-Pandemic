@@ -72,9 +72,6 @@
     <ClCompile Include="RoleAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShareAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShareGiveAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -4,9 +4,7 @@
 class ShareAction : public OtherAction {
 public:
 	virtual void act(Player*) = 0;
-	ShareAction();
-	ShareAction(Player*);
-	~ShareAction();
+	virtual string toString() = 0;
 	Player* getPlayerYouCanShareWith() { return playerYouCanShareWith; };
 
 private:
