@@ -12,4 +12,5 @@ public:
 	~InfectionCard();
 	void infect(Location*);
 	string printInfectionCard();
+	int getLocationId();
 };

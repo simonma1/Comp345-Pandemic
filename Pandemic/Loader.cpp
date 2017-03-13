@@ -67,6 +67,7 @@ void Loader::save(string filename, Board* board) {
 		out["location"] = empty;
 	}
 
+	//Saves the board data
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
 	out["Board"]["infectionLevel"] = board->getInfectionRateMarker();
 	out["Board"]["pieces"]["blackPiecesAv"] = board->getNumOfBlackPieces();
@@ -78,6 +79,12 @@ void Loader::save(string filename, Board* board) {
 	out["Board"]["diseaseEradicated"]["red"] = board->isRedCured();
 	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
 	out["Board"]["researchStations"] = board->getResearchStations();
+
+	CardManager* cardManager = board->getCardManager();
+
+	//Save the Infection Cards
+	out["infection"]["deck"] = cardManager->getInfectionCardDeckId();
+	out["infection"]["discard"] = cardManager->getInfectionCardDiscardId();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");

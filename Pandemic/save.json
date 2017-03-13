@@ -21,27 +21,34 @@
     "Players": [
         {
             "pawn": {
-                "color": "Green"
+                "color": "Orange"
             },
             "playercards": {
                 "citycards": [
                     1
                 ]
             },
-            "role": "Quarantine Specialist"
+            "role": "Medic"
         },
         {
             "pawn": {
-                "color": "Red"
+                "color": "Blue"
             },
             "playercards": {
                 "citycards": [
                     2
                 ]
             },
-            "role": "Operations Expert"
+            "role": "Contingency Planner"
         }
     ],
+    "infection": {
+        "deck": [
+            14,
+            39
+        ],
+        "discard": []
+    },
     "location": [
         {
             "id": 1,

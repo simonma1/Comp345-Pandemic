@@ -19,6 +19,10 @@ string InfectionCard::printInfectionCard() {
 	
 }
 
+int InfectionCard::getLocationId() {
+	return city.getId();
+}
+
 InfectionCard::~InfectionCard() {
 
 }

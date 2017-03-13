@@ -13,7 +13,10 @@ public:
 	~CardManager();
 	void setInfectionCardDeck(vector<InfectionCard*> infectionDeck) { this->infectionCardDeck = infectionDeck; };
 	void setInfectionCardDiscard(vector<InfectionCard*> infectionDeck) { this->infectionDiscard = infectionDeck; };
-
+	vector<InfectionCard*> getInfectionCardDeck() { return infectionCardDeck; };
+	vector<InfectionCard*> getInfectionCardDiscard() { return infectionDiscard; };
+	vector<int> getInfectionCardDeckId();
+	vector<int> getInfectionCardDiscardId();
 
 
 };

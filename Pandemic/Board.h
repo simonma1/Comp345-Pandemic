@@ -43,6 +43,7 @@ public:
 	vector<Action *> getPlayerAvailableActions(Player *);
 	void requestAction();
 	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
+	CardManager* getCardManager() { return this->cardManager; };
 
 
 	int getOutBreakMarker() { return outbreakMarker; };
