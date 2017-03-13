@@ -95,6 +95,8 @@ int main()
 		cout << endl;
 	}
 	
+	board->drawInfectionCard();
+
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, board);
 	loader->save(saveFileName, players);

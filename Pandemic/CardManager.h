@@ -1,5 +1,7 @@
 #pragma once
 #include "InfectionCard.h"
+#include <iostream>
+#include <time.h>
 
 /*
 The card manager class will handle the logic of drawing cards and will contain all
@@ -23,6 +25,11 @@ public:
 	vector<InfectionCard*> getInfectionCardDiscard() { return infectionDiscard; };
 	vector<int> getInfectionCardDeckId();
 	vector<int> getInfectionCardDiscardId();
+
+	//CardManager actions
+	InfectionCard* drawInfectionCard();
+	void moveInfectionCardToDiscard(InfectionCard*, int);
+	int drawShuffledCard();
 	string toString();
 
 

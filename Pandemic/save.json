@@ -53,10 +53,10 @@
     "cards": {
         "infection": {
             "deck": [
-                14,
                 39
             ],
             "discard": [
+                14,
                 3
             ]
         }

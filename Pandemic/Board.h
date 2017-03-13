@@ -44,6 +44,7 @@ public:
 	void requestAction();
 	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
 	CardManager* getCardManager() { return this->cardManager; };
+	InfectionCard* drawInfectionCard();
 
 
 	int getOutBreakMarker() { return outbreakMarker; };

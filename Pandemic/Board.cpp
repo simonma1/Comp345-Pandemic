@@ -156,6 +156,11 @@ void Board::boardSetup()
 
 }
 
+InfectionCard * Board::drawInfectionCard()
+{
+	return cardManager->drawInfectionCard();
+}
+
 Board::Board(const Board& board) {
 
 	this->outbreakMarker = board.outbreakMarker;
@@ -188,6 +193,7 @@ string Board::printResearchStationsLocation() {
 	value += "\n";
 	return value;
 }
+
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	vector<Action*> availableActions;
 	
@@ -283,5 +289,4 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	currentLocation = NULL;
 
 	return availableActions;
-}
-;
+};

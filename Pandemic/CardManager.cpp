@@ -1,5 +1,5 @@
 #include "CardManager.h"
-#include <iostream>
+
 
 CardManager::CardManager() {
 
@@ -37,6 +37,34 @@ CardManager::~CardManager() {
 		delete *it;
 	}
 	infectionCardDeck.clear();
+}
+
+//Returns the next infection card and moves it from the deck to the discard pile
+InfectionCard * CardManager::drawInfectionCard()
+{
+	if (infectionCardDeck.size() != 0) {
+		cout << "Drawing Infection Card";
+		int nextCard = drawShuffledCard();
+		InfectionCard* card = infectionCardDeck[nextCard];
+		moveInfectionCardToDiscard(card, nextCard);
+		return card;
+	}
+	return nullptr;
+}
+
+//Moves the card between the 2 decks
+void CardManager::moveInfectionCardToDiscard(InfectionCard* infection, int cardId)
+{
+	infectionCardDeck.erase(infectionCardDeck.begin() + cardId);
+	infectionDiscard.insert(infectionDiscard.begin(), infection);
+}
+
+//Generates the id of the next card to draw
+int CardManager::drawShuffledCard()
+{
+	srand(time(NULL));//Allows for the randomness
+	int randomNum = rand() % infectionCardDeck.size();//Normalizes the value by the amount of pawns available
+	return randomNum;
 }
 
 string CardManager::toString() {
