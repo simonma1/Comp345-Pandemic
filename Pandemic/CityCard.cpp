@@ -8,6 +8,6 @@ CityCard::CityCard(int id) {
 	this->id = id;
 }
 
-void CityCard::cardEffect() {
+void CityCard::cardAction() {
 
 }

@@ -11,7 +11,7 @@ protected:
 	string cardName;
 
 public:
-	virtual void cardEffect() = 0;
+	virtual void cardAction() = 0;
 	string getCardName() { return cardName; };
 	int getId() { return id; }
 };

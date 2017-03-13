@@ -1,5 +1,6 @@
 #pragma once
 #include "InfectionCard.h"
+#include "PlayerCards.h"
 #include <iostream>
 #include <time.h>
 
@@ -12,6 +13,9 @@ class CardManager {
 private:
 	vector<InfectionCard*> infectionCardDeck;//The list of infection cards on the board that the player can draw from
 	vector<InfectionCard*> infectionDiscard;//The discarded list of infection cards on the board
+	
+	vector<PlayerCard*> playerCardDeck;//Deck of player cards on the board that the player can draw from
+	vector<PlayerCard*> playerCardDiscard;//Cards discarded by the players
 
 public:
 	CardManager();
@@ -25,6 +29,12 @@ public:
 	vector<InfectionCard*> getInfectionCardDiscard() { return infectionDiscard; };
 	vector<int> getInfectionCardDeckId();
 	vector<int> getInfectionCardDiscardId();
+
+	//PlayerCards decks
+	void setPlayerCardDeck(vector<PlayerCard*> playerCardDeck) { this->playerCardDeck = playerCardDeck; };
+	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
+	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
+	vector<PlayerCard*> getPlayerCardDiscard() { return playerCardDiscard; };
 
 	//CardManager actions
 	InfectionCard* drawInfectionCard();

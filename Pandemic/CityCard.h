@@ -10,7 +10,7 @@ class CityCard : public PlayerCard
 public:
 	CityCard();
 	CityCard(int);
-	void cardEffect();
+	void cardAction();
 
 
 };
