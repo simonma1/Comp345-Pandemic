@@ -48,8 +48,15 @@
       "red": 1
     }
   ],
-  "infection": {
-    "deck": [14,39],
-    "discard": [3]
-  }
+  "cards": {
+        "infection": {
+          "deck": [
+            14,
+            39
+          ],
+            "discard": [
+                3
+            ]
+        }
+    }
 }

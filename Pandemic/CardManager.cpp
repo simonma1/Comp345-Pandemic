@@ -5,10 +5,12 @@ CardManager::CardManager() {
 
 }
 
-CardManager::CardManager(vector<InfectionCard*> infectionDeck) {
+CardManager::CardManager(vector<InfectionCard*> infectionDeck, vector<InfectionCard*> infectionDiscardDeck) {
 	this->infectionCardDeck = infectionDeck;
+	this->infectionDiscard = infectionDiscardDeck;
 }
 
+//Returns the id associated with every card in the infection deck
 vector<int> CardManager::getInfectionCardDeckId() {
 	vector<int> ids;
 
@@ -19,6 +21,7 @@ vector<int> CardManager::getInfectionCardDeckId() {
 	return ids;
 }
 
+//Returns the id associated with every card in the discard infection deck
 vector<int> CardManager::getInfectionCardDiscardId() {
 	vector<int> ids;
 

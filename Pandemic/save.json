@@ -21,33 +21,37 @@
     "Players": [
         {
             "pawn": {
-                "color": "Orange"
+                "color": "Blue"
             },
             "playercards": {
                 "citycards": [
                     1
                 ]
             },
-            "role": "Medic"
+            "role": "Contingency Planner"
         },
         {
             "pawn": {
-                "color": "Blue"
+                "color": "Pink"
             },
             "playercards": {
                 "citycards": [
                     2
                 ]
             },
-            "role": "Contingency Planner"
+            "role": "Dispatcher"
         }
     ],
-    "infection": {
-        "deck": [
-            14,
-            39
-        ],
-        "discard": []
+    "cards": {
+        "infection": {
+            "deck": [
+                14,
+                39
+            ],
+            "discard": [
+                3
+            ]
+        }
     },
     "location": [
         {

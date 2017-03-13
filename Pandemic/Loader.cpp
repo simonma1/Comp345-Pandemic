@@ -83,8 +83,8 @@ void Loader::save(string filename, Board* board) {
 	CardManager* cardManager = board->getCardManager();
 
 	//Save the Infection Cards
-	out["infection"]["deck"] = cardManager->getInfectionCardDeckId();
-	out["infection"]["discard"] = cardManager->getInfectionCardDiscardId();
+	out["cards"]["infection"]["deck"] = cardManager->getInfectionCardDeckId();
+	out["cards"]["infection"]["discard"] = cardManager->getInfectionCardDiscardId();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
@@ -169,6 +169,7 @@ void Loader::load(vector<Player*> & players)
 //Loads the board data that is related to a game
 void Loader::loadBoardInfo(Board * board)
 {
+	//Loads the miscellaneous data of the board
 	board->setOutbreakMarker(j["Board"]["outbreakLevel"].get<int>());
 	board->setInfectionMarker(j["Board"]["infectionLevel"].get<int>());
 
@@ -184,6 +185,7 @@ void Loader::loadBoardInfo(Board * board)
 
 	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
 
+	//Loads the infection level for every cities
 	Map* map = board->getMap();
 	for (int idx = 0; idx < j["location"].size(); idx++) {
 
@@ -206,23 +208,33 @@ void Loader::loadBoardInfo(Board * board)
 	}
 
 	//Loads the card Manager
-	vector<int> infectionCardIds = j["infection"]["deck"].get<vector<int>>();
-	vector<int> infectionCardDiscardIds = j["infection"]["discard"].get<vector<int>>();
 
-	vector<InfectionCard*> infectionCards;
-	vector<InfectionCard*> infectionDicardCards;
+	//The infection cards will be stored according to the id of the location that they correspond to
+	vector<int> infectionCardIds = j["cards"]["infection"]["deck"].get<vector<int>>();
+	vector<int> infectionCardDiscardIds = j["cards"]["infection"]["discard"].get<vector<int>>();
 
-	for (int i = 0; i < infectionCardIds.size(); i++) {
-		Location city = map->getLocationAtId(infectionCardIds[i]);
-		InfectionCard* infectionCard = new InfectionCard(city);
-		infectionCards.push_back(infectionCard);
+	vector<InfectionCard*> infectionCards;//Will contain the infection deck
+	vector<InfectionCard*> infectionDiscardCards;//Will contain the discarded infection cards
+
+	//Loads the infection deck
+	for (int i = 0; i < infectionCardIds.size(); i++) {//Loops through the deck card in the json 
+		Location city = map->getLocationAtId(infectionCardIds[i]);//Gets the location corresponding to the id
+		InfectionCard* infectionCard = new InfectionCard(city);//Creates the infection card using the location object
+		infectionCards.push_back(infectionCard);//Adds all the location to the list that will be returned to the card manager
 	}
 
-	CardManager* cardManager = new CardManager(infectionCards);
+	//Loads the discard deck
+	for (int i = 0; i < infectionCardDiscardIds.size(); i++) {
+		Location city = map->getLocationAtId(infectionCardDiscardIds[i]);
+		InfectionCard* infectionCard = new InfectionCard(city);
+		infectionDiscardCards.push_back(infectionCard);
+	}
 
+	//Creates and sets the board's card Manager with the card being instantiated according to the JSON
+	CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
 	board->setCardManager(cardManager);
 
-	map = NULL;
+	map = NULL;//deletes the dangling map pointer
 }
 
 vector<Pawn> Loader::gameSetup(Map* initMap) {
