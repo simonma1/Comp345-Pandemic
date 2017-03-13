@@ -17,4 +17,5 @@ public:
 	void infect(Location*);
 	string printInfectionCard();
 	int getLocationId();
+	string getCityName();
 };

@@ -38,3 +38,18 @@ CardManager::~CardManager() {
 	}
 	infectionCardDeck.clear();
 }
+
+string CardManager::toString() {
+	string value = "";
+
+	value += "The discarded cards are: \n";
+
+	for (int i = 0; i < infectionDiscard.size(); i++) {
+	
+		value += to_string(infectionDiscard[i]->getLocationId()) + ". " 
+			+ infectionDiscard[i]->getCityName() + "\n" ;
+	
+	}
+
+	return value;
+}

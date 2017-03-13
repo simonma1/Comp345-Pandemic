@@ -23,6 +23,10 @@ int InfectionCard::getLocationId() {
 	return city.getId();
 }
 
+string InfectionCard::getCityName() {
+	return city.getCity();
+}
+
 InfectionCard::~InfectionCard() {
 
 }

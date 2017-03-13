@@ -21,22 +21,30 @@
     "Players": [
         {
             "pawn": {
+                "color": "Orange"
+            },
+            "playercards": {
+                "citycards": [
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ]
+            },
+            "role": "Scientist"
+        },
+        {
+            "pawn": {
                 "color": "Blue"
             },
             "playercards": {
                 "citycards": [
-                    1
-                ]
-            },
-            "role": "Contingency Planner"
-        },
-        {
-            "pawn": {
-                "color": "Pink"
-            },
-            "playercards": {
-                "citycards": [
-                    2
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
                 ]
             },
             "role": "Dispatcher"

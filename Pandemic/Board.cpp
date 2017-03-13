@@ -123,9 +123,13 @@ string Board::toString()
 	}
 	value += "\n";
 
+	value +=  cardManager->toString();
+
 	value += line;
 
 	value += printResearchStationsLocation();
+
+	value += "\n";
 
 	return value;
 }

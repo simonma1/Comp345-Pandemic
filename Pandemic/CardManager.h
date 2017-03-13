@@ -23,6 +23,7 @@ public:
 	vector<InfectionCard*> getInfectionCardDiscard() { return infectionDiscard; };
 	vector<int> getInfectionCardDeckId();
 	vector<int> getInfectionCardDiscardId();
+	string toString();
 
 
 };

@@ -12,7 +12,7 @@ Loader::Loader(string filename) {
 	}
 	catch (const std::invalid_argument& ia) {
 		//Catches exception where the file entered does not exist and starts a new game
-		ifstream i("map.json");
+		ifstream i("newgame.json");
 		i >> this->j;
 		std::cerr << "Invalid argument: " << ia.what() << '\n';
 		cerr << "Starting a New Game";
