@@ -9,3 +9,7 @@ DiscoverCureAction::DiscoverCureAction(){}
 DiscoverCureAction::DiscoverCureAction(string curableArea) {
 	this->curableArea = curableArea;
 }
+
+string DiscoverCureAction::toString() {
+	return "You can discover a Cure";
+}

@@ -7,6 +7,7 @@ public:
 	DirectFlightAction(int);
 	void act(Player *);
 	int getDestination() { return destinationId; };
+	string toString();
 
 private:
 	int destinationId;

@@ -7,6 +7,7 @@ public:
 	DiscoverCureAction();
 	DiscoverCureAction(string);
 	string getCurableArea() { return curableArea; };
+	string toString();
 
 private:
 	string curableArea;

@@ -6,6 +6,7 @@ public:
 	void act(Player *);
 	DriveAction();
 	DriveAction(int);
+	string toString();
 
 private:
 	int destinationId;

@@ -9,3 +9,7 @@ DriveAction::DriveAction(){}
 DriveAction::DriveAction(int destinationId) {
 	this->destinationId = destinationId;
 }
+
+string DriveAction::toString() {
+	return "You can drive";
+}
