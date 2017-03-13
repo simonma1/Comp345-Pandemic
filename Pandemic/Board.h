@@ -19,6 +19,7 @@
 #define BLACK "Black"
 #define RED "Red"
 #define YELLOW "Yellow"
+#define MIN_NUM_CARDS_FOR_CURE 5
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
