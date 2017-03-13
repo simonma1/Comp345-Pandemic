@@ -225,32 +225,35 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 
 			if (player->getPlayerCards().size() > 0) { // does the player have any cards
-				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
-					string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
+				if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
+					for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
+						string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
 
-					// count the number of each area card
-					if (cardArea  == blueArea) blueAreaCardCounter++;
-					else if (cardArea == blackArea) blackAreaCardCounter++;
-					else if (cardArea == redArea) redAreaCardCounter++;
-					else if (cardArea == yellowArea) yellowAreaCardCounter++;
+						// count the number of each area card
+						if (cardArea == blueArea) blueAreaCardCounter++;
+						else if (cardArea == blackArea) blackAreaCardCounter++;
+						else if (cardArea == redArea) redAreaCardCounter++;
+						else if (cardArea == yellowArea) yellowAreaCardCounter++;
 
+					}
+
+					// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
+					if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
+						availableActions.push_back(new DiscoverCureAction(blueArea));
+					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
+						availableActions.push_back(new DiscoverCureAction(blackArea));
+					if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
+						availableActions.push_back(new DiscoverCureAction(redArea));
+					if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
+						availableActions.push_back(new DiscoverCureAction(yellowArea));
 				}
 			}
-			
-			// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
-			if (blueAreaCardCounter >= 5)
-				availableActions.push_back(new DiscoverCureAction(blueArea));
-			if (blackAreaCardCounter >= 5)
-				availableActions.push_back(new DiscoverCureAction(blackArea));
-			if (redAreaCardCounter >= 5)
-				availableActions.push_back(new DiscoverCureAction(redArea));
-			if (yellowAreaCardCounter >= 5)
-				availableActions.push_back(new DiscoverCureAction(yellowArea));
 
 
 			// check for shuttleflight action
 			for (int j = 0; j < researchStations.size(); j++) { // add every other research station player can move to.
-				availableActions.push_back(new ShuttleFlightAction(researchStations[j]));
+				if (i != j) 
+					availableActions.push_back(new ShuttleFlightAction(researchStations[j]));
 			}
 		}
 	}
@@ -261,7 +264,10 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for role action
-	//TODO
+	
+	// if (player->canPerformRoleAction()) {
+	//	   availableActions.push_back(player->getRoleAction());
+	// }
 
 	// check for share action
 	for (auto &otherPlayer : players) {
