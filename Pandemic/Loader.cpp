@@ -80,6 +80,8 @@ void Loader::save(string filename, Board* board) {
 	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
 	out["Board"]["researchStations"] = board->getResearchStations();
 
+	out["Board"]["turn"] = board->getTurn();
+
 	CardManager* cardManager = board->getCardManager();
 
 	//Save the Infection Cards
@@ -178,6 +180,8 @@ void Loader::loadBoardInfo(Board * board)
 	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
 
 	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
+
+	board->setTurn(j["Board"]["turn"].get<int>());
 
 	//Loads the infection level for every cities
 	Map* map = board->getMap();
