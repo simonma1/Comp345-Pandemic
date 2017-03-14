@@ -15,4 +15,5 @@ public:
 	virtual void cardAction() = 0;
 	string getCardName() { return cardName; };
 	int getId() { return cardId; }
+	string getType() { return type; };
 };

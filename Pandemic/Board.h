@@ -46,6 +46,7 @@ public:
 	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
 	CardManager* getCardManager() { return this->cardManager; };
 	InfectionCard* drawInfectionCard();
+	void distributePlayerCards();
 
 
 	int getOutBreakMarker() { return outbreakMarker; };

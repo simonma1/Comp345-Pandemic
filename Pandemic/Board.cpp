@@ -162,6 +162,11 @@ InfectionCard * Board::drawInfectionCard()
 	return cardManager->drawInfectionCard();
 }
 
+void Board::distributePlayerCards()
+{
+	cardManager->distributeCards();
+}
+
 Board::Board(const Board& board) {
 
 	this->outbreakMarker = board.outbreakMarker;

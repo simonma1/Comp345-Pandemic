@@ -73,6 +73,21 @@ int CardManager::drawShuffledCard()
 	return randomNum;
 }
 
+void CardManager::distributeCards()
+{
+	cout << "Removing the Epidemic cards from the deck\n";
+	vector<PlayerCard*> epidemicTempHolder;
+	for (int i = 1; i <= playerCardList.size(); i++) {
+		if (playerCardList.at(i)->getType() != "epidemic") {
+			playerCardDeck.push_back(playerCardList.at(i));
+		} else {
+			epidemicTempHolder.push_back(playerCardList.at(i));
+		}
+	}
+
+	cout << "The epidemic Cards have been removed from the deck. Ready to distribute cards!\n";
+}
+
 string CardManager::toString() {
 	string value = "";
 

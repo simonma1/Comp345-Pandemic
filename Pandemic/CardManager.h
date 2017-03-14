@@ -41,10 +41,14 @@ public:
 	//PlayerCardList
 	void setPlayerCardList(map<int, PlayerCard*> playerCardList) { this->playerCardList = playerCardList; };
 
-	//CardManager actions
+	//Infection Card actions
 	InfectionCard* drawInfectionCard();
 	void moveInfectionCardToDiscard(InfectionCard*, int);
 	int drawShuffledCard();
+
+	//PlayerCard action
+	void distributeCards();
+
 	string toString();
 
 

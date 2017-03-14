@@ -36,6 +36,7 @@ public:
 	string toString();
 	void setPawn(Pawn* p) { playerPawn = p; };
 	void lookAtReferenceCard();
+	void addPlayerCard(PlayerCard* card);
 
 };
 

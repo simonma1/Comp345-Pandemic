@@ -21,15 +21,15 @@
     "Players": [
         {
             "pawn": {
-                "color": "Green"
+                "color": "White"
             },
-            "role": "Quarantine Specialist"
+            "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Green"
             },
-            "role": "Researcher"
+            "role": "Quarantine Specialist"
         }
     ],
     "cards": {

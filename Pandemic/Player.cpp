@@ -25,10 +25,6 @@ Player::~Player() {
 	role = NULL;
 	delete referenceCard;
 	referenceCard = NULL;
-	for (auto card : this->getPlayerCards()) {
-		delete card;
-	}
-	this->getPlayerCards().clear();
 }
 
 vector<PlayerCard*> Player::getPlayerCards() {
@@ -63,4 +59,9 @@ Pawn* Player::getPlayerPawn() {
 //The player can call this method at any time to display the content of the reference card
 void Player::lookAtReferenceCard() {
 	referenceCard -> displayPossibleActions();
+}
+
+void Player::addPlayerCard(PlayerCard * card)
+{
+	playerCards.push_back(card);
 }
