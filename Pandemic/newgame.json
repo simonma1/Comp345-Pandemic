@@ -22,6 +22,7 @@
     }
   ],
   "Board": {
+    "turn": 0,
     "outbreakLevel": 1,
     "infectionLevel": 0,
     "pieces": {

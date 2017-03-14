@@ -21,24 +21,24 @@
     "Players": [
         {
             "pawn": {
-                "color": "White"
+                "color": "Brown"
             },
-            "role": "Scientist"
+            "role": "Researcher"
         },
         {
             "pawn": {
-                "color": "Green"
+                "color": "Orange"
             },
-            "role": "Quarantine Specialist"
+            "role": "Medic"
         }
     ],
     "cards": {
         "infection": {
             "deck": [
-                14
+                39
             ],
             "discard": [
-                39,
+                14,
                 3
             ]
         }

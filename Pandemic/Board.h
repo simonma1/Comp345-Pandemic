@@ -20,6 +20,7 @@
 #define RED "Red"
 #define YELLOW "Yellow"
 #define MIN_NUM_CARDS_FOR_CURE 5
+#define NUM_PLAYERS 2
 
 class CardManager;
 
@@ -49,6 +50,7 @@ public:
 	CardManager* getCardManager() { return this->cardManager; };
 	InfectionCard* drawInfectionCard();
 	void distributePlayerCards();
+	int getTurn() { return turn; };
 
 
 	int getOutBreakMarker() { return outbreakMarker; };
@@ -72,6 +74,8 @@ public:
 	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
 	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
 	void setBlueCureFound(bool isCured) { this->blueCureFound = isCured; };
+	void toggleTurn() { this->turn = (turn + 1) % NUM_PLAYERS; };
+	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
 	
 private: 
@@ -87,4 +91,5 @@ private:
 	vector<Pawn> listOfRoles;
 	vector<int> researchStations; // vector of location ids
 	CardManager* cardManager;
+	int turn;
 };
