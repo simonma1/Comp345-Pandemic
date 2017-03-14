@@ -48,7 +48,7 @@ public:
 	void requestAction();
 	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
 	CardManager* getCardManager() { return this->cardManager; };
-	InfectionCard* drawInfectionCard();
+	Location drawInfectionCard();
 	void distributePlayerCards();
 	int getTurn() { return turn; };
 

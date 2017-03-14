@@ -45,7 +45,7 @@ public:
 	void setPlayerCardList(map<int, PlayerCard*> playerCardList) { this->playerCardList = playerCardList; };
 
 	//Infection Card actions
-	InfectionCard* drawInfectionCard();
+	Location drawInfectionCard();
 	void moveInfectionCardToDiscard(InfectionCard*, int);
 	int drawShuffledCard();
 

@@ -161,9 +161,12 @@ void Board::boardSetup()
 
 }
 
-InfectionCard * Board::drawInfectionCard()
+Location Board::drawInfectionCard()
 {
-	return cardManager->drawInfectionCard();
+	Location locationToInfect = cardManager->drawInfectionCard();
+	boardMap->infectCity(locationToInfect);
+
+	return locationToInfect;
 }
 
 void Board::distributePlayerCards()

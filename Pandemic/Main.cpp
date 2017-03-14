@@ -75,6 +75,7 @@ int main()
 	
 	players[0]->lookAtReferenceCard();
 	
+	board->drawInfectionCard();
 
 	cout << board->toString();
 

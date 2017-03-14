@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <iostream>
 using namespace std;
 
 class Location
@@ -16,6 +17,7 @@ public:
 	string getArea() { return area; };
 	vector<int> getConnections() { return connections; }
 
+	//Setters And Getters
 	void setBlack(int numInfection) { this->numOfBlack = numInfection; };
 	void setYellow(int numInfection) { this->numOfYellow = numInfection; };
 	void setRed(int numInfection) { this->numOfRed = numInfection; };
@@ -24,6 +26,9 @@ public:
 	int getBlack() { return numOfBlack; };
 	int getBlue() { return numOfBlue; };
 	int getRed() { return numOfRed; };
+
+	//Infection Actions
+	void infect(string infectionColor);
 
 private:
 	int id;

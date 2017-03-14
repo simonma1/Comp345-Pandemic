@@ -45,16 +45,18 @@ CardManager::~CardManager() {
 }
 
 //Returns the next infection card and moves it from the deck to the discard pile
-InfectionCard * CardManager::drawInfectionCard()
+Location CardManager::drawInfectionCard()
 {
 	if (infectionCardDeck.size() != 0) {
 		cout << "Drawing Infection Card";
 		int nextCard = drawShuffledCard();
 		InfectionCard* card = infectionCardDeck[nextCard];
 		moveInfectionCardToDiscard(card, nextCard);
-		return card;
+		return card->getLocation();
 	}
-	return nullptr;
+	else {
+		//Will notify observer
+	}
 }
 
 //Moves the card between the 2 decks

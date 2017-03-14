@@ -18,4 +18,5 @@ public:
 	string printInfectionCard();
 	int getLocationId();
 	string getCityName();
+	Location getLocation() { return city; };
 };

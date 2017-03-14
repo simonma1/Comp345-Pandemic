@@ -94,3 +94,11 @@ Location Map::getLocationAtId(int id) {
 	return cities.at(id);
 }
 
+void Map::infectCity(Location loc)
+{
+	int cityId = loc.getId();
+	string virusColor = loc.getArea();
+	Location city = cities.at(cityId);
+	city.infect(virusColor);
+}
+

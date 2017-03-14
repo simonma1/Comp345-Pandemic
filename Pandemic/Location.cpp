@@ -28,3 +28,22 @@ Location::Location(int id, string city, string area, vector<int> connections)
 	this->numOfRed = 0;
 
 }
+
+void Location::infect(string infectionColor)
+{
+	cout << "INFECTING " << city <<endl;
+
+	if (infectionColor == "Black") {
+		cout << "Adding black" << endl;
+		numOfBlack++;
+	} else if (infectionColor == "Yellow") {
+		cout << "Adding yellow" << endl;
+		numOfYellow++;
+	} else if (infectionColor == "Red") {
+		cout << "Adding red" << endl;
+		numOfRed++;
+	} else if (infectionColor == "Blue") {
+		cout << "Adding blue" << endl;
+		numOfBlue++;
+	}
+}
