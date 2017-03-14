@@ -3,6 +3,8 @@
 #include "Location.h"
 #include "Player.h"
 #include "json.hpp"
+#include "EventCard.h"
+#include "EpidemicCard.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;

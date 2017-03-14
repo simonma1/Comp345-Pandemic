@@ -256,11 +256,29 @@ vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
 	//Instantiates the list of Player Cards
 
 	map<int, PlayerCard*> playerCards;
+
+	//Loops through the city cards
 	for (int i = 0; i < j["GameSetup"]["playerCards"]["cityCards"].size(); i++) {
-		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"];
-		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"];
+		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"].get<int>();
+		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"].get<int>();
 		PlayerCard* cityCard = new CityCard(cardId, cityId);
 		playerCards[cardId] = cityCard;
+	}
+
+	//Loops through the event Cards
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["eventCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["eventCards"][i]["cardId"].get<int>();
+		string cardName = j["GameSetup"]["playerCards"]["eventCards"][i]["cardName"].get<string>();
+		PlayerCard* eventCard = new EventCard(cardId, cardName);
+		playerCards[cardId] = eventCard;
+	}
+
+	//Loops through all the epidemic Cards
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["epidemicCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["epidemicCards"][i]["cardId"].get<int>();
+		string description = j["GameSetup"]["playerCards"]["epidemicCards"][i]["description"].get<string>();
+		PlayerCard* epidemicCard = new EpidemicCard(cardId, description);
+		playerCards[cardId] = epidemicCard;
 	}
 
 	cardManager->setPlayerCardList(playerCards);

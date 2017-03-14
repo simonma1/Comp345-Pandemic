@@ -9,6 +9,7 @@ class PlayerCard {
 protected:
 	int cardId;
 	string cardName;
+	string type;
 
 public:
 	virtual void cardAction() = 0;
