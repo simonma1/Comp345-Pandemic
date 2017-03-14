@@ -68,7 +68,7 @@ int main()
 
 		loader = new Loader(filename);
 		loader->loadBoardInfo(board);
-		loader->load(players);
+		loader->load(players, board->getMap()->getMapLocation());
 	}
 
 	//Creates Reference card for the players. To be modified later on
@@ -85,13 +85,19 @@ int main()
 		cout << endl;
 	}
 
+	// Begin actions test
+	vector<Action*> actions = board->getPlayerAvailableActions(players[0]);
+	cout << "Here are your available actions:" << endl;
+	for (int i = 0; i < actions.size(); i++) {
+		cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
+	}
+	// End actions test
+
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, board);
 	loader->save(saveFileName, players);
 
-	// Begin actions test
-	//vector<Action*> actions = board->getPlayerAvailableActions(players[0]);
-	// End actions test
+
 		 
 	//Deletes the pointer used
 	delete loader;

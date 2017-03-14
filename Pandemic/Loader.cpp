@@ -93,7 +93,7 @@ void Loader::save(string filename, Board* board) {
 	o << std::setw(4) << this->out << std::endl;
 }
 
-vector<Player *> Loader::loadPlayers() {
+vector<Player *> Loader::loadPlayers(map<int, Location> map) {
 	Player *player1;
 	Player *player2;
 	vector<Player *> players;
@@ -114,9 +114,9 @@ vector<Player *> Loader::loadPlayers() {
 																  //and dynamically created and allocated
 		
 
-		//int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
+		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
-		//pawn->setPawnLocation(playerLocation);
+		pawn->setLocation(map[playerLocation]);
 
 		Player* p = new Player( // Create the player with the role, and the pawn
 			r,
@@ -147,7 +147,9 @@ void Loader::save(string filename, vector<Player *> players) {
 
 		// Save player's pawn color, and location.
 		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
-		//out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
+		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
+
+		
 	}
 	
 
@@ -156,9 +158,9 @@ void Loader::save(string filename, vector<Player *> players) {
 	o << std::setw(4) << this->out << std::endl;
 }
 
-void Loader::load(vector<Player*> & players)
+void Loader::load(vector<Player*> & players, map<int, Location> map)
 {
-	players = loadPlayers();
+	players = loadPlayers(map);
 
 }
 

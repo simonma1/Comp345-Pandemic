@@ -19,11 +19,11 @@ private:
 
 public:
 	Loader(string filename);
-	vector<Player *> loadPlayers();
+	vector<Player *> loadPlayers(map<int, Location>);
 	Board loadBoard();
 	void save(string filename, Board* board);
 	void save(string filename, vector<Player *> players);
-	void load(vector<Player*> &);
+	void load(vector<Player*> &, map<int, Location>);
 	void loadBoardInfo(Board* board);
 	vector<Pawn> gameSetup(Map* initMap, CardManager* cardManager);
 };

@@ -21,6 +21,7 @@
 #define YELLOW "Yellow"
 #define MIN_NUM_CARDS_FOR_CURE 5
 #define NUM_PLAYERS 2
+#define ATLANTA_ID 5
 
 class CardManager;
 

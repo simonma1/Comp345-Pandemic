@@ -11,5 +11,5 @@ DriveAction::DriveAction(int destinationId) {
 }
 
 string DriveAction::toString() {
-	return "You can drive";
+	return "You can drive to " + to_string(destinationId);
 }
