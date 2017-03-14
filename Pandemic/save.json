@@ -22,31 +22,31 @@
     "Players": [
         {
             "pawn": {
-                "color": "Blue"
+                "color": "Brown"
             },
             "playercards": {
                 "citycards": [
-                    47,
-                    25,
-                    17,
-                    24
+                    50,
+                    34,
+                    20,
+                    8
                 ]
             },
-            "role": "Contingency Planner"
+            "role": "Researcher"
         },
         {
             "pawn": {
-                "color": "White"
+                "color": "Pink"
             },
             "playercards": {
                 "citycards": [
-                    46,
-                    32,
-                    35,
-                    3
+                    51,
+                    41,
+                    33,
+                    28
                 ]
             },
-            "role": "Scientist"
+            "role": "Dispatcher"
         }
     ],
     "cards": {
@@ -73,21 +73,15 @@
                 19,
                 20,
                 21,
-                22,
-                23,
                 24,
-                25,
-                26,
                 27,
                 28,
-                30,
-                31,
+                29,
+                32,
                 33,
                 34,
                 35,
                 36,
-                37,
-                38,
                 39,
                 40,
                 41,
@@ -95,13 +89,19 @@
                 43,
                 44,
                 45,
-                46,
                 47,
                 48
             ],
             "discard": [
-                32,
-                29
+                46,
+                37,
+                30,
+                25,
+                22,
+                23,
+                26,
+                31,
+                38
             ]
         }
     },
@@ -112,6 +112,42 @@
         },
         {
             "id": 10,
+            "red": 1
+        },
+        {
+            "id": 22,
+            "yellow": 1
+        },
+        {
+            "id": 23,
+            "yellow": 1
+        },
+        {
+            "black": 1,
+            "id": 25
+        },
+        {
+            "black": 1,
+            "id": 26
+        },
+        {
+            "black": 1,
+            "id": 30
+        },
+        {
+            "black": 1,
+            "id": 31
+        },
+        {
+            "id": 37,
+            "red": 1
+        },
+        {
+            "id": 38,
+            "red": 1
+        },
+        {
+            "id": 46,
             "red": 1
         }
     ]

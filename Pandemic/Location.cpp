@@ -7,7 +7,7 @@ Cities should contained a name, an area color, an id for the key of the object, 
 
 string Location::toString()
 {
-	string result = city + ": " + to_string(numOfYellow) + " yellows, " + to_string(numOfRed) + " reds, " + to_string(numOfBlue) + " blues, " + to_string(numOfBlue) + " blacks, connected to: ";
+	string result = city + ": " + to_string(numOfYellow) + " yellows, " + to_string(numOfRed) + " reds, " + to_string(numOfBlue) + " blues, " + to_string(numOfBlack) + " blacks, connected to: ";
 	return result ;
 }
 

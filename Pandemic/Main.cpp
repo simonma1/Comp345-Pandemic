@@ -75,7 +75,7 @@ int main()
 	
 	players[0]->lookAtReferenceCard();
 	
-	board->drawInfectionCard();
+	board->startInfection();
 
 	cout << board->toString();
 
@@ -84,8 +84,6 @@ int main()
 		cout << (*players[i]).toString() << endl;
 		cout << endl;
 	}
-	
-	board->drawInfectionCard();
 
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	loader->save(saveFileName, board);

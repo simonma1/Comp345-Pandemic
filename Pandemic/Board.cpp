@@ -207,6 +207,16 @@ string Board::printResearchStationsLocation() {
 	return value;
 }
 
+void Board::startInfection() {
+	
+	for (int i = 0; i < CITIESTOINFECTINBEGINNING; i++) {
+		
+		drawInfectionCard();
+	
+	}
+
+}
+
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	vector<Action*> availableActions;
 	

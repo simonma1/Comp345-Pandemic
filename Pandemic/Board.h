@@ -52,6 +52,7 @@ public:
 	void distributePlayerCards();
 	int getTurn() { return turn; };
 
+	void startInfection();
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
@@ -77,6 +78,8 @@ public:
 	void toggleTurn() { this->turn = (turn + 1) % NUM_PLAYERS; };
 	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
+
+	static const int CITIESTOINFECTINBEGINNING = 9;
 	
 private: 
 	vector<Player*> players;

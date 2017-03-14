@@ -48,7 +48,7 @@ CardManager::~CardManager() {
 Location CardManager::drawInfectionCard()
 {
 	if (infectionCardDeck.size() != 0) {
-		cout << "Drawing Infection Card";
+		cout << "Drawing Infection Card\n";
 		int nextCard = drawShuffledCard();
 		InfectionCard* card = infectionCardDeck[nextCard];
 		moveInfectionCardToDiscard(card, nextCard);
@@ -127,3 +127,4 @@ string CardManager::toString() {
 
 	return value;
 }
+

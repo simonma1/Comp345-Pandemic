@@ -98,7 +98,6 @@ void Map::infectCity(Location loc)
 {
 	int cityId = loc.getId();
 	string virusColor = loc.getArea();
-	Location city = cities.at(cityId);
-	city.infect(virusColor);
+	cities.at(cityId).infect(virusColor);
 }
 
