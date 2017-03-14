@@ -16,20 +16,37 @@
         },
         "researchStations": [
             5
-        ]
+        ],
+        "turn": 0
     },
     "Players": [
         {
             "pawn": {
-                "color": "Brown"
+                "color": "White"
             },
-            "role": "Researcher"
+            "playercards": {
+                "citycards": [
+                    28,
+                    24,
+                    42,
+                    27
+                ]
+            },
+            "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Orange"
+                "color": "Green"
             },
-            "role": "Medic"
+            "playercards": {
+                "citycards": [
+                    37,
+                    16,
+                    23,
+                    6
+                ]
+            },
+            "role": "Quarantine Specialist"
         }
     ],
     "cards": {

@@ -74,6 +74,7 @@ int CardManager::drawShuffledCard()
 
 void CardManager::distributeCards(Board* board)
 {
+	//Removes the epidemic cards from the deck
 	cout << "Removing the Epidemic cards from the deck\n";
 	vector<PlayerCard*> epidemicTempHolder;
 	for (int i = 1; i <= playerCardList.size(); i++) {
@@ -89,6 +90,23 @@ void CardManager::distributeCards(Board* board)
 	
 	cout << "Every Player will be handed out " << numOfCards << " cards\n";
 
+	//For every player, give them the number of player card necessary
+	for (int i = 0; i < board->getNumOfPlayers(); i++) {
+		vector<PlayerCard*> playerHand;
+
+		cout << "GENERATING PLAYER " << to_string(i + 1) << "'S CARDS\n";
+
+		for (int j = 0; j < numOfCards; j++) {
+		
+			srand(time(NULL));//Allows for the randomness
+			int randomNum = rand() % playerCardDeck.size();
+			playerHand.push_back(playerCardDeck.at(randomNum));
+			playerCardDeck.erase(playerCardDeck.begin() + randomNum);
+		}
+		board->getListOfPlayer().at(i)->setPlayerCards(playerHand);//Sets the players hand
+	}
+
+	//Put the epidemic cards back in the deck
 }
 
 string CardManager::toString() {
