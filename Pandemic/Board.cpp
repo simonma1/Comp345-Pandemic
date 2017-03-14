@@ -150,7 +150,8 @@ void Board::boardSetup()
 	Loader loadCommon = Loader(setupFileName);
 	Map* map = new Map();
 
-	this->listOfRoles = loadCommon.gameSetup(map);
+	cardManager = new CardManager;
+	this->listOfRoles = loadCommon.gameSetup(map, cardManager);
 	*boardMap = *map;
 	map = NULL;
 

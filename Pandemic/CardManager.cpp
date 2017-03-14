@@ -37,6 +37,12 @@ CardManager::~CardManager() {
 		delete *it;
 	}
 	infectionCardDeck.clear();
+
+	map<int, PlayerCard*>::iterator it = playerCardList.find(1);
+	if (it != playerCardList.end()) {
+		delete it->second;
+		playerCardList.erase(it);
+	}	
 }
 
 //Returns the next infection card and moves it from the deck to the discard pile
@@ -78,6 +84,8 @@ string CardManager::toString() {
 			+ infectionDiscard[i]->getCityName() + "\n" ;
 	
 	}
+
+	value += "There are " + to_string(playerCardList.size()) + " player cards\n";
 
 	return value;
 }

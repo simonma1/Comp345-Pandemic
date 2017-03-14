@@ -50,22 +50,12 @@ int main()
 
 		loader->loadBoardInfo(board);
 
-		PlayerCard* card1 = new CityCard(1);
-		PlayerCard* card2 = new CityCard(2);
-
-		vector<PlayerCard* > cards1;
-		cards1.push_back(card1);
-
-		vector<PlayerCard* > cards2;
-		cards2.push_back(card2);
 
 		//Creates 2 players
 		board->initializeNewPlayer();
 		board->initializeNewPlayer();
 
 		players = board->getListOfPlayer();
-		players[0]->setPlayerCards(cards1);
-		players[1]->setPlayerCards(cards2);
 
 	}
 	else {

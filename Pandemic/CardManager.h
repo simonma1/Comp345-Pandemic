@@ -17,6 +17,8 @@ private:
 	vector<PlayerCard*> playerCardDeck;//Deck of player cards on the board that the player can draw from
 	vector<PlayerCard*> playerCardDiscard;//Cards discarded by the players
 
+	map<int, PlayerCard*> playerCardList;
+
 public:
 	CardManager();
 	CardManager(vector<InfectionCard*> infectionDeck, vector<InfectionCard*> infectionDiscardDeck);
@@ -35,6 +37,9 @@ public:
 	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
 	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
 	vector<PlayerCard*> getPlayerCardDiscard() { return playerCardDiscard; };
+
+	//PlayerCardList
+	void setPlayerCardList(map<int, PlayerCard*> playerCardList) { this->playerCardList = playerCardList; };
 
 	//CardManager actions
 	InfectionCard* drawInfectionCard();

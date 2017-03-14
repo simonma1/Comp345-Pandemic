@@ -106,12 +106,7 @@ vector<Player *> Loader::loadPlayers() {
 		
 		//TODO: add event cards.
 		vector<int> playerCardCityIds = j["Players"][i]["playercards"]["citycards"].get<vector<int>>(); 
-		vector<PlayerCard *> pcards;
-
-		for (auto &id : playerCardCityIds) { // for each playerCardName, create a new player card and store it in a vector. 
-			PlayerCard *pc = new CityCard(id);
-			pcards.push_back(pc);
-		}
+		
 
 		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 
 																  //and dynamically created and allocated
@@ -127,7 +122,6 @@ vector<Player *> Loader::loadPlayers() {
 		);
 
 		player = p;
-		player->setPlayerCards(pcards);
 
 		i++;
 	}
@@ -230,14 +224,18 @@ void Loader::loadBoardInfo(Board * board)
 		infectionDiscardCards.push_back(infectionCard);
 	}
 
-	//Creates and sets the board's card Manager with the card being instantiated according to the JSON
-	CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
-	board->setCardManager(cardManager);
+	//Sets the board's card Manager with the card being instantiated according to the JSON
+	//CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
+	//board->setCardManager(cardManager);
+	CardManager* cardManager = board->getCardManager();
+	cardManager->setInfectionCardDeck(infectionCards);
+	cardManager->setInfectionCardDiscard(infectionDiscardCards);
 
 	map = NULL;//deletes the dangling map pointer
+	cardManager = NULL;
 }
 
-vector<Pawn> Loader::gameSetup(Map* initMap) {
+vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
 	map<int, Location> cityMap;
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
 	for (int i = 0; i < j["location"].size(); i++) {
@@ -255,6 +253,19 @@ vector<Pawn> Loader::gameSetup(Map* initMap) {
 
 	initMap->setMapLocation(cityMap);
 
+	//Instantiates the list of Player Cards
+
+	map<int, PlayerCard*> playerCards;
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["cityCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"];
+		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"];
+		PlayerCard* cityCard = new CityCard(cardId, cityId);
+		playerCards[cardId] = cityCard;
+	}
+
+	cardManager->setPlayerCardList(playerCards);
+
+	//Instantiates the list of roles that a player can have
 	vector<Pawn> listOfRoles;
 	for (int k = 0; k < j["GameSetup"]["roles"].size(); k++) {
 

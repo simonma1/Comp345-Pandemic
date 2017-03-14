@@ -4,8 +4,9 @@ CityCard::CityCard()
 {
 }
 
-CityCard::CityCard(int id) {
-	this->id = id;
+CityCard::CityCard(int cardId, int cityId) {
+	this->cardId = cardId;
+	this->cityId = cityId;
 }
 
 void CityCard::cardAction() {

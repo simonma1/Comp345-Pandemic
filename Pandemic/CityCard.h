@@ -7,9 +7,12 @@ using namespace std;
 
 class CityCard : public PlayerCard
 {
+private:
+	int cityId;
+
 public:
 	CityCard();
-	CityCard(int);
+	CityCard(int,int);
 	void cardAction();
 
 

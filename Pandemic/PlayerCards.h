@@ -7,11 +7,11 @@ using namespace std;
 class PlayerCard {
 
 protected:
-	int id;
+	int cardId;
 	string cardName;
 
 public:
 	virtual void cardAction() = 0;
 	string getCardName() { return cardName; };
-	int getId() { return id; }
+	int getId() { return cardId; }
 };

@@ -21,23 +21,13 @@
     "Players": [
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Orange"
             },
-            "playercards": {
-                "citycards": [
-                    1
-                ]
-            },
-            "role": "Researcher"
+            "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Pink"
-            },
-            "playercards": {
-                "citycards": [
-                    2
-                ]
+                "color": "Blue"
             },
             "role": "Dispatcher"
         }
@@ -45,10 +35,10 @@
     "cards": {
         "infection": {
             "deck": [
-                14
+                39
             ],
             "discard": [
-                39,
+                14,
                 3
             ]
         }
