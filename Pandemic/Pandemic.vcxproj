@@ -118,6 +118,8 @@
     <ClCompile Include="DirectFlightAction.cpp" />
     <ClCompile Include="DiscoverCureAction.cpp" />
     <ClCompile Include="DriveAction.cpp" />
+    <ClCompile Include="EpidemicCard.cpp" />
+    <ClCompile Include="EventCard.cpp" />
     <ClCompile Include="InfectionCard.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Location.cpp" />
@@ -144,6 +146,8 @@
     <ClInclude Include="DirectFlightAction.h" />
     <ClInclude Include="DiscoverCureAction.h" />
     <ClInclude Include="DriveAction.h" />
+    <ClInclude Include="EpidemicCard.h" />
+    <ClInclude Include="EventCard.h" />
     <ClInclude Include="InfectionCard.h" />
     <ClInclude Include="MovementAction.h" />
     <ClInclude Include="MovementCardAction.h" />
