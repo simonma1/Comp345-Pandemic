@@ -1,9 +1,11 @@
 #pragma once
 #include "InfectionCard.h"
 #include "PlayerCards.h"
+#include "Board.h"
 #include <iostream>
 #include <time.h>
 
+class Board;
 /*
 The card manager class will handle the logic of drawing cards and will contain all
 the cards that will be on the board, that is Infection cards and Player cards. 
@@ -18,6 +20,7 @@ private:
 	vector<PlayerCard*> playerCardDiscard;//Cards discarded by the players
 
 	map<int, PlayerCard*> playerCardList;
+	map<int,int> numOfCardsPerPlayer = { { 2, 4 },{ 3, 3 },{ 4, 2 }};
 
 public:
 	CardManager();
@@ -47,7 +50,7 @@ public:
 	int drawShuffledCard();
 
 	//PlayerCard action
-	void distributeCards();
+	void distributeCards(Board* board);
 
 	string toString();
 

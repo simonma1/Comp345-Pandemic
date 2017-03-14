@@ -21,6 +21,8 @@
 #define YELLOW "Yellow"
 #define MIN_NUM_CARDS_FOR_CURE 5
 
+class CardManager;
+
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
 */
@@ -70,6 +72,7 @@ public:
 	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
 	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
 	void setBlueCureFound(bool isCured) { this->blueCureFound = isCured; };
+	int getNumOfPlayers() { return players.size(); };
 	
 private: 
 	vector<Player*> players;
@@ -84,5 +87,4 @@ private:
 	vector<Pawn> listOfRoles;
 	vector<int> researchStations; // vector of location ids
 	CardManager* cardManager;
-
 };

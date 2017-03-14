@@ -164,7 +164,7 @@ InfectionCard * Board::drawInfectionCard()
 
 void Board::distributePlayerCards()
 {
-	cardManager->distributeCards();
+	cardManager->distributeCards(this);
 }
 
 Board::Board(const Board& board) {

@@ -10,6 +10,7 @@ using namespace std;
 using json = nlohmann::json;
 
 class Board;// Forward declaration for the loader who has a board object 
+class CardManager;
 
 class Loader {
 private:

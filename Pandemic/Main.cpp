@@ -50,10 +50,11 @@ int main()
 
 		loader->loadBoardInfo(board);
 
-		board->distributePlayerCards();
 		//Creates 2 players
 		board->initializeNewPlayer();
 		board->initializeNewPlayer();
+
+		board->distributePlayerCards();
 
 		players = board->getListOfPlayer();
 

@@ -1,6 +1,5 @@
 #include "CardManager.h"
 
-
 CardManager::CardManager() {
 
 }
@@ -73,7 +72,7 @@ int CardManager::drawShuffledCard()
 	return randomNum;
 }
 
-void CardManager::distributeCards()
+void CardManager::distributeCards(Board* board)
 {
 	cout << "Removing the Epidemic cards from the deck\n";
 	vector<PlayerCard*> epidemicTempHolder;
@@ -84,8 +83,12 @@ void CardManager::distributeCards()
 			epidemicTempHolder.push_back(playerCardList.at(i));
 		}
 	}
-
 	cout << "The epidemic Cards have been removed from the deck. Ready to distribute cards!\n";
+
+	int numOfCards = numOfCardsPerPlayer.at(board->getNumOfPlayers());
+	
+	cout << "Every Player will be handed out " << numOfCards << " cards\n";
+
 }
 
 string CardManager::toString() {
