@@ -107,7 +107,7 @@ vector<Player *> Loader::loadPlayers(map<int, Location> map) {
 		Role *r = new Role (j["Players"][i]["role"].get<string>());
 		
 		//TODO: add event cards.
-		vector<int> playerCardCityIds = j["Players"][i]["playercards"]["citycards"].get<vector<int>>(); 
+		//vector<int> playerCardCityIds = j["Players"][i]["playercards"]["citycards"].get<vector<int>>(); 
 		
 
 		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 

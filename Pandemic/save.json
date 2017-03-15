@@ -4,15 +4,15 @@
             "black": false,
             "blue": false,
             "red": false,
-            "yellow": true
+            "yellow": false
         },
-        "infectionLevel": 0,
-        "outbreakLevel": 1,
+        "infectionLevel": 2,
+        "outbreakLevel": 0,
         "pieces": {
             "blackPiecesAv": 24,
-            "bluePiecesAv": 21,
-            "redPiecesAv": 22,
-            "yellowPiecesAv": 23
+            "bluePiecesAv": 24,
+            "redPiecesAv": 24,
+            "yellowPiecesAv": 24
         },
         "researchStations": [
             5
@@ -22,33 +22,33 @@
     "Players": [
         {
             "pawn": {
-                "color": "Red",
+                "color": "White",
                 "location": 5
             },
             "playercards": {
                 "citycards": [
-                    3,
-                    20,
-                    41,
-                    14
+                    37,
+                    31,
+                    45,
+                    23
                 ]
             },
-            "role": "Operations Expert"
+            "role": "Scientist"
         },
         {
             "pawn": {
-                "color": "Orange",
+                "color": "Green",
                 "location": 5
             },
             "playercards": {
                 "citycards": [
-                    46,
-                    30,
-                    21,
-                    17
+                    24,
+                    48,
+                    40,
+                    5
                 ]
             },
-            "role": "Medic"
+            "role": "Quarantine Specialist"
         }
     ],
     "cards": {
@@ -57,99 +57,91 @@
                 1,
                 2,
                 4,
-                5,
-                6,
                 7,
+                8,
                 9,
                 10,
                 11,
                 12,
                 13,
-                14,
-                16,
+                15,
                 17,
+                18,
                 19,
+                20,
                 21,
                 22,
                 23,
+                24,
                 25,
                 26,
+                27,
                 28,
                 29,
                 30,
+                31,
                 32,
                 33,
                 34,
                 35,
-                36,
                 37,
                 38,
                 39,
                 40,
-                41,
                 42,
-                43,
                 44,
                 45,
-                46,
+                47,
                 48
             ],
             "discard": [
                 3,
-                8,
-                24,
-                47,
-                31,
-                20,
-                15,
-                18,
-                27
+                6,
+                41,
+                14,
+                16,
+                46,
+                5,
+                36,
+                43
             ]
         }
     },
     "location": [
-        {
-            "id": 1,
-            "yellow": 1
-        },
         {
             "blue": 1,
             "id": 3
         },
         {
             "blue": 1,
-            "id": 8
+            "id": 5
         },
         {
-            "id": 10,
+            "blue": 1,
+            "id": 6
+        },
+        {
+            "id": 14,
+            "yellow": 1
+        },
+        {
+            "id": 16,
+            "yellow": 1
+        },
+        {
+            "black": 1,
+            "id": 36
+        },
+        {
+            "id": 41,
             "red": 1
         },
         {
-            "id": 15,
-            "yellow": 1
+            "id": 43,
+            "red": 1
         },
         {
-            "id": 18,
-            "yellow": 1
-        },
-        {
-            "id": 20,
-            "yellow": 1
-        },
-        {
-            "id": 24,
-            "yellow": 1
-        },
-        {
-            "black": 1,
-            "id": 27
-        },
-        {
-            "black": 1,
-            "id": 31
-        },
-        {
-            "id": 47,
+            "id": 46,
             "red": 1
         }
     ]

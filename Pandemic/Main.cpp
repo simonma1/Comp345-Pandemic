@@ -58,6 +58,8 @@ int main()
 
 		players = board->getListOfPlayer();
 
+		board->startInfection();
+
 	}
 	else {
 		//Asks the user for the save file name to load
@@ -74,8 +76,6 @@ int main()
 	//Creates Reference card for the players. To be modified later on
 	
 	players[0]->lookAtReferenceCard();
-	
-	board->startInfection();
 
 	cout << board->toString();
 

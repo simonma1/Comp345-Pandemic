@@ -23,31 +23,24 @@
   ],
   "Board": {
     "turn": 0,
-    "outbreakLevel": 1,
-    "infectionLevel": 0,
+    "outbreakLevel": 0,
+    "infectionLevel": 2,
     "pieces": {
       "blackPiecesAv": 24,
-      "yellowPiecesAv": 23,
-      "redPiecesAv": 22,
-      "bluePiecesAv": 21
+      "yellowPiecesAv": 24,
+      "redPiecesAv": 24,
+      "bluePiecesAv": 24
     },
     "diseaseEradicated": {
       "black": false,
-      "yellow": true,
+      "yellow": false,
       "red": false,
       "blue": false
     },
     "researchStations": [ 5 ]
   },
   "location": [
-    {
-      "id": 1,
-      "yellow": 1
-    },
-    {
-      "id": 10,
-      "red": 1
-    }
+   
   ],
   "cards": {
         "infection": {
