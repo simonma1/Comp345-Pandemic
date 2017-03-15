@@ -59,7 +59,12 @@ void Player::setRole(Role* role)
 string Player::toString(){
 	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
 		+ "Role: " + role->getName() + "\n"
-		+ "Location: " + to_string(playerPawn->getCurrentLocation());
+		+ "Location: " + to_string(playerPawn->getCurrentLocation()) + "\n"
+		+ "Player Cards:\n";
+
+	for (int i = 0; i < playerCards.size(); i++) {
+		playerInfo += "\t\t" + playerCards[i]->toString() + "\n";
+	}
 
 	return playerInfo;
 }

@@ -14,3 +14,7 @@ EventCard::EventCard(int cardId, string cardName)
 void EventCard::cardAction()
 {
 }
+
+string EventCard::toString() {
+	return "Event Card: " + cardName;
+}
