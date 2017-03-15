@@ -97,6 +97,7 @@ int main()
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
 
 	while (!board->isGameOver() && keepPlaying == 0) {
+		//Does the 4 actions
 		for (int i = MOVESPERTURN; i > 0; i--){
 			//print state of the board
 			cout << board->toString();
@@ -106,7 +107,8 @@ int main()
 					cout << (*players[i]).toString() << endl;
 						cout << endl;
 				}
-				cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
+			
+			cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
 			// Display available actions
 			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
 			cout << "Here are your available actions:" << endl;
@@ -136,6 +138,12 @@ int main()
 				actions[i] = NULL;
 			}
 		}
+
+		//Draw 2 Player cards
+
+		//Infect Cities
+		board->endOfTurnInfection();
+
 		// change the next player's turn
 		board->toggleTurn();
 

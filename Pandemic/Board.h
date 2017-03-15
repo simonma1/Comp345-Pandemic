@@ -54,6 +54,7 @@ public:
 	int getTurn() { return turn; };
 
 	void startInfection();
+	void endOfTurnInfection();
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
