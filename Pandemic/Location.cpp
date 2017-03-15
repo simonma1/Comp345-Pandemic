@@ -31,22 +31,18 @@ Location::Location(int id, string city, string area, vector<int> connections)
 
 void Location::infect(string infectionColor, DiseaseCubes* diseases)
 {
-	cout << "INFECTING " << city <<endl;
+	cout << "\tINFECTING " << city <<endl;
 
 	if (infectionColor == "Black") {
-		cout << "Adding black" << endl;
 		numOfBlack++;
 		diseases->DecrementNumOfBlackPieces();
 	} else if (infectionColor == "Yellow") {
-		cout << "Adding yellow" << endl;
 		numOfYellow++;
 		diseases->DecrementNumOfYellowPieces();
 	} else if (infectionColor == "Red") {
-		cout << "Adding red" << endl;
 		numOfRed++;
 		diseases->DecrementNumOfRedPieces();
 	} else if (infectionColor == "Blue") {
-		cout << "Adding blue" << endl;
 		numOfBlue++;
 		diseases->DecrementNumOfBluePieces();
 	}

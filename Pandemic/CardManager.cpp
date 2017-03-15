@@ -108,7 +108,11 @@ void CardManager::distributeCards(Board* board)
 		board->getListOfPlayer().at(i)->setPlayerCards(playerHand);//Sets the players hand
 	}
 
-	//Put the epidemic cards back in the deck
+	//Puts the epidemic cards back in the deck
+	cout << "Putting the Epidemic Cards back in the deck" << endl;
+	for (int i = 0; i < epidemicTempHolder.size(); i++) {
+		playerCardDeck.push_back(epidemicTempHolder[i]);
+	}
 }
 
 string CardManager::toString() {
