@@ -5,7 +5,7 @@ void ShareGiveAction::act(Player *player) {
 }
 
 string ShareGiveAction::toString() {
-	return "You can share your knowledge with another player";
+	return "You can share your knowledge with the " + playerYouCanGiveTo->getRole()->getName();
 }
 
 ShareGiveAction::ShareGiveAction(){}

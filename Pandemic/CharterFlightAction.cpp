@@ -5,5 +5,5 @@ void CharterFlightAction::act(Player *player) {
 }
 
 string CharterFlightAction::toString() {
-	return "You can perform a Charter Flight";
+	return "You can perform a Charter Flight to anywhere on the map";
 }

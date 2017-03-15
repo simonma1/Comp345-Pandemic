@@ -128,7 +128,7 @@ string Board::toString()
 
 	value += "\n";
 
-	value += "It is currently player " + to_string(turn + 1) + "\'s turn\n";
+	value += "It is currently the " + players[turn]->getRole()->getName() + "\'s turn\n";
 
 	value += "\n";
 

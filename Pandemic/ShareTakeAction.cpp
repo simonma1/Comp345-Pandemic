@@ -5,7 +5,7 @@ void ShareTakeAction::act(Player *player) {
 }
 
 string ShareTakeAction::toString() {
-	return "You can receive knowledge from another player";
+	return "You can receive knowledge from the " + playerYouCanTakeFrom->getRole()->getName();
 }
 
 ShareTakeAction::ShareTakeAction(){}

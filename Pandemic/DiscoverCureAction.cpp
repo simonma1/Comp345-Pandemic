@@ -11,5 +11,5 @@ DiscoverCureAction::DiscoverCureAction(string curableArea) {
 }
 
 string DiscoverCureAction::toString() {
-	return "You can discover a Cure";
+	return "You can discover a Cure for the " + curableArea + " area";
 }
