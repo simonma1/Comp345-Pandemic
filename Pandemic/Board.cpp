@@ -285,14 +285,14 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 
 				// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
-				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
-					availableActions.push_back(new DiscoverCureAction(blueArea));
-				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
-					availableActions.push_back(new DiscoverCureAction(blackArea));
-				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
-					availableActions.push_back(new DiscoverCureAction(redArea));
-				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE)
-					availableActions.push_back(new DiscoverCureAction(yellowArea));
+				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
+					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound));
+				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
+					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound));
+				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
+					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound));
+				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
+					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound));
 			}
 		}
 	}
