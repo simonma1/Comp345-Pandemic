@@ -37,11 +37,18 @@ void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
 
 void Player::removePlayerCard(int cardId) {
 	int numPlayerCards = playerCards.size();
+	int cardPosition = 0;
+	bool cardFound = false;
+
 	if (numPlayerCards > 0) {
 		for (int i = 0; i < numPlayerCards; i++) {
 			if (playerCards[i]->getId() == cardId) {
-				playerCards.erase(playerCards.begin() + i);
+				cardPosition = i;
+				cardFound = true;
 			}
+		}
+		if (cardFound) {
+			playerCards.erase(playerCards.begin() + cardPosition);
 		}
 	}
 }
@@ -60,11 +67,7 @@ string Player::toString(){
 	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
 		+ "Role: " + role->getName() + "\n"
 		+ "Location: " + to_string(playerPawn->getCurrentLocation()) + "\n"
-		+ "Player Cards:\n";
-
-	for (int i = 0; i < playerCards.size(); i++) {
-		playerInfo += "\t\t" + playerCards[i]->toString() + "\n";
-	}
+		+ "Player Cards:\n" + playerCardsToString();
 
 	return playerInfo;
 }
@@ -81,4 +84,14 @@ void Player::lookAtReferenceCard() {
 void Player::addPlayerCard(PlayerCard * card)
 {
 	playerCards.push_back(card);
+}
+
+string Player::playerCardsToString() {
+	string playerCardsToString = "";
+	
+	for (int i = 0; i < playerCards.size(); i++) {
+		playerCardsToString += "\t\t" + to_string(i + 1) + ".  " + playerCards[i]->toString() + "\n";
+	}
+
+	return playerCardsToString;
 }

@@ -107,7 +107,7 @@ int main()
 				cout << (*players[i]).toString() << endl;
 					cout << endl;
 			}
-			cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
+			cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
 
 
 			 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
