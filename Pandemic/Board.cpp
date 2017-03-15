@@ -20,6 +20,8 @@ Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool 
 	this->yellowCureFound = yellowCure;
 	this->redCureFound = redCure;
 	this->blueCureFound = blueCure;
+	this->gameLost = false;
+	this->gameWon = false;
 	boardMap = new Map;
 }
 
@@ -205,6 +207,15 @@ void Board::startInfection() {
 	
 	}
 
+}
+
+bool Board::isGameLost() {
+	return cardManager->getPlayerCardDeck().size() < 1 || outbreakMarker == 8;
+}
+
+bool Board::isGameWon()
+{
+	return (yellowCureFound && blackCureFound && redCureFound && blueCureFound);
 }
 
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {

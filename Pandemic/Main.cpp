@@ -19,6 +19,8 @@
 #include <vector>
 using namespace std;
 
+void saveGame(Loader*, string, Board*, vector<Player*>);
+
 int main()
 {
 	Loader* loader;
@@ -77,30 +79,45 @@ int main()
 	
 	players[0]->lookAtReferenceCard();
 
-	cout << board->toString();
+	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
 
-	//Prints the players detail
-	for (int i = 0; i < players.size(); i++) {
-		cout << (*players[i]).toString() << endl;
-		cout << endl;
-	}
+	while (!board->isGameOver() && keepPlaying == 0) {
+		//print state of the board
+		cout << board->toString();
 
-	// Begin actions test
-	vector<Action*> actions = board->getPlayerAvailableActions(players[0]);
-	cout << "Here are your available actions:" << endl;
-	for (int i = 0; i < actions.size(); i++) {
-		cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
+		//Prints the players detail
+		for (int i = 0; i < players.size(); i++) {
+			cout << (*players[i]).toString() << endl;
+			cout << endl;
+		}
+
+		// Display available actions
+		vector<Action*> actions = board->getPlayerAvailableActions(players[0]);
+		cout << "Here are your available actions:" << endl;
+		for (int i = 0; i < actions.size(); i++) {
+			cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
+		}
+
+		// change the next player's turn
+		board->toggleTurn();
+		
+
+		cout << "The turn has be switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
+		cin >> keepPlaying;
 	}
-	// End actions test
+	
 
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
-	loader->save(saveFileName, board);
-	loader->save(saveFileName, players);
-
+	saveGame(loader, saveFileName, board, players);
 
 		 
 	//Deletes the pointer used
 	delete loader;
 	delete board;
 	system("Pause");
+}
+
+void saveGame(Loader *loader, string saveFileName, Board *board, vector<Player*> players) {
+	loader->save(saveFileName, board);
+	loader->save(saveFileName, players);
 }

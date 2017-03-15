@@ -61,6 +61,9 @@ public:
 	bool isBlackCured() { return blackCureFound; };
 	bool isRedCured() { return redCureFound; };
 	bool isBlueCured() { return blueCureFound; };
+	bool isGameOver() { return gameLost || gameWon; };
+	bool isGameLost();
+	bool isGameWon();
 
 	void setOutbreakMarker(int outbreak) { outbreakMarker = outbreak; };
 	void setInfectionMarker(int infection) { infectionRateMarker = infection; };
@@ -71,6 +74,8 @@ public:
 	void toggleTurn() { this->turn = (turn + 1) % NUM_PLAYERS; };
 	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
+	void setGameLost() { this->gameLost = true; };
+	void setGameWon() { this->gameWon = true; };
 
 	static const int CITIESTOINFECTINBEGINNING = 9;
 	
@@ -87,4 +92,6 @@ private:
 	vector<int> researchStations; // vector of location ids
 	CardManager* cardManager;
 	int turn;
+	bool gameLost;
+	bool gameWon;
 };
