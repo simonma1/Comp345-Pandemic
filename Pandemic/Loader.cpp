@@ -67,18 +67,21 @@ void Loader::save(string filename, Board* board) {
 		out["location"] = empty;
 	}
 
+	DiseaseCubes* diseases = board->getDiseaseCubes();
+
 	//Saves the board data
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
 	out["Board"]["infectionLevel"] = board->getInfectionRateMarker();
-	out["Board"]["pieces"]["blackPiecesAv"] = board->getNumOfBlackPieces();
-	out["Board"]["pieces"]["yellowPiecesAv"] = board->getNumOfYellowPieces();
-	out["Board"]["pieces"]["redPiecesAv"] = board->getNumOfRedPieces();
-	out["Board"]["pieces"]["bluePiecesAv"] = board->getNumOfBluePieces();
 	out["Board"]["diseaseEradicated"]["black"] = board->isBlackCured();
 	out["Board"]["diseaseEradicated"]["yellow"] = board->isYellowCured();
 	out["Board"]["diseaseEradicated"]["red"] = board->isRedCured();
 	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
 	out["Board"]["researchStations"] = board->getResearchStations();
+
+	out["Board"]["pieces"]["blackPiecesAv"] = diseases->getNumOfBlackPieces();
+	out["Board"]["pieces"]["yellowPiecesAv"] = diseases->getNumOfYellowPieces();
+	out["Board"]["pieces"]["redPiecesAv"] = diseases->getNumOfRedPieces();
+	out["Board"]["pieces"]["bluePiecesAv"] = diseases->getNumOfBluePieces();
 
 	out["Board"]["turn"] = board->getTurn();
 
@@ -171,11 +174,6 @@ void Loader::loadBoardInfo(Board * board)
 	board->setOutbreakMarker(j["Board"]["outbreakLevel"].get<int>());
 	board->setInfectionMarker(j["Board"]["infectionLevel"].get<int>());
 
-	board->setNumOfBlackPieces(j["Board"]["pieces"]["blackPiecesAv"].get<int>());
-	board->setNumOfYellowPieces(j["Board"]["pieces"]["yellowPiecesAv"].get<int>());
-	board->setNumOfRedPieces(j["Board"]["pieces"]["redPiecesAv"].get<int>());
-	board->setNumOfBluePieces(j["Board"]["pieces"]["bluePiecesAv"].get<int>());
-
 	board->setBlackCureFound(j["Board"]["diseaseEradicated"]["black"].get<bool>());
 	board->setYellowCureFound(j["Board"]["diseaseEradicated"]["yellow"].get<bool>());
 	board->setRedCureFound(j["Board"]["diseaseEradicated"]["red"].get<bool>());
@@ -184,6 +182,15 @@ void Loader::loadBoardInfo(Board * board)
 	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
 
 	board->setTurn(j["Board"]["turn"].get<int>());
+
+	DiseaseCubes* diseases = new DiseaseCubes(
+		j["Board"]["pieces"]["blackPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["yellowPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["redPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["bluePiecesAv"].get<int>()
+	);
+
+	board->setDiseaseCubes(diseases);
 
 	//Loads the infection level for every cities
 	Map* map = board->getMap();

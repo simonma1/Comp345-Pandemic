@@ -87,6 +87,9 @@
     <ClCompile Include="EpidemicCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DiseaseCubes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EpidemicCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiseaseCubes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

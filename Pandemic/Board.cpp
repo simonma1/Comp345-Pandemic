@@ -11,16 +11,10 @@ Board::Board()
 	boardSetup();
 }
 
-Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int redPieces, 
-	int bluePieces, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
+Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
 	
 	this->outbreakMarker = outbreak;
 	this->infectionRateMarker = infection;
-
-	this->numOfBlackPieces = blackPieces;
-	this->numOfYellowPieces = yellowPieces;
-	this->numOfRedPieces = redPieces;
-	this->numOfBluePieces = bluePieces;
 
 	this->blackCureFound = blackCure;
 	this->yellowCureFound = yellowCure;
@@ -39,6 +33,7 @@ Board::~Board()
 	if (boardMap != NULL) {
 		delete boardMap;
 	}
+	delete diseaseCubes;
 	delete cardManager;
 }
 
@@ -84,10 +79,7 @@ string Board::toString()
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
 	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
-	value += "\tThere is " + to_string(numOfBlackPieces) + " black pieces still available\n";
-	value += "\tThere is " + to_string(numOfYellowPieces) + " yellow pieces still available\n";
-	value += "\tThere is " + to_string(numOfRedPieces) + " red pieces still available\n";
-	value += "\tThere is " + to_string(numOfBluePieces) + " blue pieces still available\n\n";
+	
 
 	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
 		value += "\tAll diseases have been cured!!!\n";
@@ -124,6 +116,8 @@ string Board::toString()
 		}
 	}
 	value += "\n";
+
+	value += diseaseCubes->toString();
 
 	value +=  cardManager->toString();
 
@@ -181,11 +175,6 @@ Board::Board(const Board& board) {
 	this->outbreakMarker = board.outbreakMarker;
 	this->infectionRateMarker = board.infectionRateMarker;
 
-	this->numOfBlackPieces = board.numOfBlackPieces;
-	this->numOfYellowPieces = board.numOfYellowPieces;
-	this->numOfRedPieces = board.numOfRedPieces;
-	this->numOfBluePieces = board.numOfBluePieces;
-
 	this->blackCureFound = board.blackCureFound;
 	this->yellowCureFound = board.yellowCureFound;
 	this->redCureFound = board.redCureFound;
@@ -193,6 +182,9 @@ Board::Board(const Board& board) {
 
 	this->boardMap = new Map;
 	*boardMap = *board.boardMap;
+
+	this->diseaseCubes = new DiseaseCubes;
+	*diseaseCubes = *board.diseaseCubes;
 
 	this->cardManager = board.cardManager;
 }

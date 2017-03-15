@@ -15,6 +15,7 @@
 #include "TreatAction.h"
 #include "CardManager.h"
 #include "Loader.h"
+#include "DiseaseCubes.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
@@ -33,7 +34,7 @@ class Board
 
 public:
 	Board();
-	Board(int, int, int, int, int ,int, bool, bool, bool, bool);
+	Board(int,int, bool, bool, bool, bool);
 	~Board();
 	void addPlayer(Player* p);
 	void setMap(Map*);
@@ -57,10 +58,6 @@ public:
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
-	int getNumOfBlackPieces() { return numOfBlackPieces; };
-	int getNumOfBluePieces() { return numOfBluePieces; };
-	int getNumOfRedPieces() { return numOfRedPieces; };
-	int getNumOfYellowPieces() { return numOfYellowPieces; };
 	bool isYellowCured() { return yellowCureFound; };
 	bool isBlackCured() { return blackCureFound; };
 	bool isRedCured() { return redCureFound; };
@@ -68,10 +65,6 @@ public:
 
 	void setOutbreakMarker(int outbreak) { outbreakMarker = outbreak; };
 	void setInfectionMarker(int infection) { infectionRateMarker = infection; };
-	void setNumOfBlackPieces(int numOfPieces) { this->numOfBlackPieces = numOfPieces; };
-	void setNumOfYellowPieces(int numOfPieces) { this->numOfYellowPieces = numOfPieces; };
-	void setNumOfRedPieces(int numOfPieces) { this->numOfRedPieces = numOfPieces; };
-	void setNumOfBluePieces(int numOfPieces) { this->numOfBluePieces = numOfPieces; };
 	void setBlackCureFound(bool isCured) { this->blackCureFound = isCured; };
 	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
 	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
@@ -79,6 +72,9 @@ public:
 	void toggleTurn() { this->turn = (turn + 1) % NUM_PLAYERS; };
 	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
+
+	void setDiseaseCubes(DiseaseCubes* cubes) { this->diseaseCubes = cubes; };
+	DiseaseCubes* getDiseaseCubes() { return diseaseCubes; };
 
 	static const int CITIESTOINFECTINBEGINNING = 9;
 	
@@ -89,11 +85,11 @@ private:
 	int infectionRateMarker;
 	int outbreakMarker;
 	vector<int> InfectionDeck;
-	int numOfBlackPieces, numOfYellowPieces, numOfBluePieces, numOfRedPieces;
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
 	void boardSetup();
 	vector<Pawn> listOfRoles;
 	vector<int> researchStations; // vector of location ids
 	CardManager* cardManager;
 	int turn;
+	DiseaseCubes* diseaseCubes;
 };

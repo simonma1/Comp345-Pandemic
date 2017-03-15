@@ -117,6 +117,7 @@
     <ClCompile Include="CityCard.cpp" />
     <ClCompile Include="DirectFlightAction.cpp" />
     <ClCompile Include="DiscoverCureAction.cpp" />
+    <ClCompile Include="DiseaseCubes.cpp" />
     <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="EpidemicCard.cpp" />
     <ClCompile Include="EventCard.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="CityCard.h" />
     <ClInclude Include="DirectFlightAction.h" />
     <ClInclude Include="DiscoverCureAction.h" />
+    <ClInclude Include="DiseaseCubes.h" />
     <ClInclude Include="DriveAction.h" />
     <ClInclude Include="EpidemicCard.h" />
     <ClInclude Include="EventCard.h" />
