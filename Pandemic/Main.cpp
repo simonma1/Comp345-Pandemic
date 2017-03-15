@@ -72,7 +72,9 @@ int main()
 
 		loader = new Loader(filename);
 		loader->loadBoardInfo(board);
-		loader->load(players, board->getMap()->getMapLocation());
+		loader->load(players);
+		for (int i = 0; i < players.size(); i++)
+			board->addPlayer(players[i]);
 	}
 
 	//Creates Reference card for the players. To be modified later on

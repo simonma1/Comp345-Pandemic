@@ -1,7 +1,7 @@
 #include "Player.h"
 
 //The player will move the Pawn 
-Location Player::movePawn()
+int Player::movePawn()
 {
 	return playerPawn->getCurrentLocation();//Returns the current location for now
 }
@@ -47,7 +47,8 @@ void Player::setRole(Role* role)
 
 string Player::toString(){
 	string playerInfo = "Here is the info of the player:\n" "Pawn:"+ playerPawn->getColor() + "\n" 
-		+ "Role: " + role->getName();
+		+ "Role: " + role->getName() + "\n"
+		+ "Location: " + to_string(playerPawn->getCurrentLocation());
 
 	return playerInfo;
 }

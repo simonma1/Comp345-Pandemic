@@ -61,8 +61,7 @@ void Board::initializeNewPlayer()
 	Role* role = new Role(listOfRoles[randNum].getRole());
 	Pawn* pawn = new Pawn;
 	*pawn = listOfRoles[randNum];
-	pawn->setLocation(getMap()->getMapLocation().at(ATLANTA_ID));
-	Location l = pawn->getCurrentLocation();
+	pawn->setLocation(ATLANTA_ID);
 	player->setPawn(pawn);//Sets the pawn with the color for the player
 	player->setRole(role);
 	addPlayer(player);//adds the player to the list of player
@@ -224,7 +223,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	if (player->getPlayerCards().size() > 0) {
 		for (auto &card : player->getPlayerCards()) {
 			// check for build RS action and charterflight action
-			if (player->getPlayerPawn()->getCurrentLocation().getCity() == card->getCardName()) {
+			// player->getPlayerPawn()->getCurrentLocation().getCity() == card->getCardName()
+			if (boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation()).getCity() == card->getCardName()) {
 				availableActions.push_back(new BuildRSAction());
 				availableActions.push_back(new CharterFlightAction());
 			}
@@ -236,7 +236,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	
 	// check for discover cure action
 	for (int i = 0; i < researchStations.size(); i++) {
-		if (player->getPlayerPawn()->getCurrentLocation().getId() == researchStations[i]) { // is the player on a research station
+		if (player->getPlayerPawn()->getCurrentLocation() == researchStations[i]) { // is the player on a research station
 			int blueAreaCardCounter = 0; // keep track of number of player's blue cards
 			int blackAreaCardCounter = 0; // keep track of number of player's black cards
 			int redAreaCardCounter = 0; // keep track of number of player's red cards
@@ -283,7 +283,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for drive action
-	for (auto connection : player->getPlayerPawn()->getCurrentLocation().getConnections()) {
+	for (auto connection : boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation()).getConnections()) {
 		availableActions.push_back(new DriveAction(connection));
 	}
 
@@ -296,7 +296,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	// check for share action
 	for (auto &otherPlayer : players) {
 		if (otherPlayer != player) {
-			if (otherPlayer->getPlayerPawn()->getCurrentLocation().getId() == player->getPlayerPawn()->getCurrentLocation().getId()) {
+			if (otherPlayer->getPlayerPawn()->getCurrentLocation() == player->getPlayerPawn()->getCurrentLocation()) {
 				if (otherPlayer->getPlayerCards().size() > 0) // if other player has cards, player can take from him
 					availableActions.push_back(new ShareTakeAction(otherPlayer));
 				if (player->getPlayerCards().size() > 0) // if player has cards, he can give to other player
@@ -306,7 +306,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	}
 
 	// check for treat action
-	Location currentLocation = player->getPlayerPawn()->getCurrentLocation();
+	Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
 	if (currentLocation.getBlue() > 0)
 		availableActions.push_back(new TreatAction(BLUE));
 	if (currentLocation.getBlack() > 0)

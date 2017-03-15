@@ -5,18 +5,18 @@
 class Pawn {
 
 public:
-	Location getCurrentLocation() { return location; };
+	int getCurrentLocation() { return location; };
 	string getColor() { return pawnColor; };
 	string getRole() { return role; };
 	Pawn(string, string);
 	Pawn(string);
 	Pawn();
-	void setLocation(Location location) { this->location = location; };
+	void setLocation(int location) { this->location = location; };
 
 private:
 	string pawnColor;
 	string role;
-	Location location;
+	int location;
 
 
 };

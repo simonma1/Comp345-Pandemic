@@ -96,7 +96,7 @@ void Loader::save(string filename, Board* board) {
 	o << std::setw(4) << this->out << std::endl;
 }
 
-vector<Player *> Loader::loadPlayers(map<int, Location> map) {
+vector<Player *> Loader::loadPlayers() {
 	Player *player1;
 	Player *player2;
 	vector<Player *> players;
@@ -119,7 +119,7 @@ vector<Player *> Loader::loadPlayers(map<int, Location> map) {
 
 		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
-		pawn->setLocation(map[playerLocation]);
+		pawn->setLocation(playerLocation);
 
 		Player* p = new Player( // Create the player with the role, and the pawn
 			r,
@@ -150,7 +150,7 @@ void Loader::save(string filename, vector<Player *> players) {
 
 		// Save player's pawn color, and location.
 		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
-		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
+		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation();
 
 		
 	}
@@ -161,9 +161,9 @@ void Loader::save(string filename, vector<Player *> players) {
 	o << std::setw(4) << this->out << std::endl;
 }
 
-void Loader::load(vector<Player*> & players, map<int, Location> map)
+void Loader::load(vector<Player*> & players)
 {
-	players = loadPlayers(map);
+	players = loadPlayers();
 
 }
 
