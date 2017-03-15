@@ -9,10 +9,10 @@
         "infectionLevel": 2,
         "outbreakLevel": 0,
         "pieces": {
-            "blackPiecesAv": 24,
-            "bluePiecesAv": 24,
-            "redPiecesAv": 24,
-            "yellowPiecesAv": 24
+            "blackPiecesAv": 23,
+            "bluePiecesAv": 21,
+            "redPiecesAv": 22,
+            "yellowPiecesAv": 21
         },
         "researchStations": [
             5
@@ -22,110 +22,110 @@
     "Players": [
         {
             "pawn": {
-                "color": "Brown",
+                "color": "Green",
                 "location": 5
             },
-            "role": "Researcher"
+            "role": "Quarantine Specialist"
         },
         {
             "pawn": {
-                "color": "Orange",
+                "color": "Red",
                 "location": 5
             },
-            "role": "Medic"
+            "role": "Operations Expert"
         }
     ],
     "cards": {
         "infection": {
             "deck": [
+                1,
                 2,
                 3,
                 4,
                 5,
-                6,
-                8,
+                7,
                 9,
                 10,
-                12,
+                11,
                 13,
                 14,
                 15,
                 16,
                 17,
                 18,
-                19,
                 21,
                 22,
-                24,
+                23,
                 25,
                 26,
+                27,
+                28,
                 29,
                 30,
                 31,
                 32,
-                33,
                 34,
+                35,
                 36,
                 37,
-                38,
+                39,
                 40,
                 41,
                 42,
                 43,
                 44,
-                45,
                 46,
                 47,
                 48
             ],
             "discard": [
-                23,
+                19,
+                8,
                 20,
-                39,
-                28,
-                35,
-                11,
-                1,
-                7,
-                27
+                6,
+                12,
+                38,
+                33,
+                45,
+                24
             ]
         }
     },
     "location": [
         {
             "blue": 1,
-            "id": 1
+            "id": 6
         },
         {
             "blue": 1,
-            "id": 7
+            "id": 8
         },
         {
             "blue": 1,
-            "id": 11
+            "id": 12
+        },
+        {
+            "id": 19,
+            "yellow": 1
         },
         {
             "id": 20,
             "yellow": 1
         },
         {
-            "id": 23,
+            "id": 24,
             "yellow": 1
         },
         {
             "black": 1,
-            "id": 27
+            "id": 33
         },
         {
-            "black": 1,
-            "id": 28
+            "id": 38,
+            "red": 1
         },
         {
-            "black": 1,
-            "id": 35
-        },
-        {
-            "id": 39,
+            "id": 45,
             "red": 1
         }
     ]

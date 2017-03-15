@@ -1,4 +1,5 @@
 #pragma once
+#include "DiseaseCubes.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -28,7 +29,7 @@ public:
 	int getRed() { return numOfRed; };
 
 	//Infection Actions
-	void infect(string infectionColor);
+	void infect(string infectionColor, DiseaseCubes* diseases);
 
 private:
 	int id;
