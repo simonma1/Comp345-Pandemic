@@ -144,7 +144,12 @@ void Loader::save(string filename, vector<Player *> players) {
 		//TODO: add event cards.
 		// Save player's cards 
 		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
-			out["Players"][i]["playercards"]["citycards"][j] = players[i]->getPlayerCards()[j]->getId();
+			string playerCardType = players[i]->getPlayerCards()[j]->getType();
+			if (playerCardType == "city") {
+				out["Players"][i]["playercards"]["cityCards"][j] = players[i]->getPlayerCards()[j]->getId();
+			} else if(playerCardType == "event"){
+				out["Players"][i]["playercards"]["eventCards"][j] = players[i]->getPlayerCards()[j]->getId();
+			}
 		}
 
 

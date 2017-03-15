@@ -82,6 +82,7 @@ void CardManager::distributeCards(Board* board)
 	for (int i = 1; i <= playerCardList.size(); i++) {
 		if (playerCardList.at(i)->getType() != "epidemic") {
 			playerCardDeck.push_back(playerCardList.at(i));
+			cout << playerCardList.at(i)->getType();
 		} else {
 			epidemicTempHolder.push_back(playerCardList.at(i));
 		}
@@ -113,6 +114,16 @@ void CardManager::distributeCards(Board* board)
 	for (int i = 0; i < epidemicTempHolder.size(); i++) {
 		playerCardDeck.push_back(epidemicTempHolder[i]);
 	}
+}
+
+PlayerCard* CardManager::drawPlayerCard() {
+
+	cout << "Drawing a Player Card " << endl;
+	srand(time(NULL));//Allows for the randomness
+	int randomNum = rand() % playerCardDeck.size();
+	PlayerCard* card = playerCardDeck[randomNum];
+	playerCardDeck.erase(playerCardDeck.begin() + randomNum);
+	return card;
 }
 
 string CardManager::toString() {

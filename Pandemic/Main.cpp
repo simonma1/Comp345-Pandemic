@@ -143,6 +143,7 @@ int main()
 		}
 
 		//Draw 2 Player cards
+		board->drawPlayerCards();
 
 		//Infect Cities
 		board->endOfTurnInfection();

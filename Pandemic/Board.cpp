@@ -157,6 +157,12 @@ void Board::boardSetup()
 
 }
 
+void Board::drawPlayerCards() {
+	for (int i = 0; i < 2; i++) {
+		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
+	}
+}
+
 Location Board::drawInfectionCard()
 {
 	Location locationToInfect = cardManager->drawInfectionCard();

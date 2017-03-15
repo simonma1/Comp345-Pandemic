@@ -51,6 +51,7 @@ public:
 
 	//PlayerCard action
 	void distributeCards(Board* board);
+	PlayerCard* drawPlayerCard();
 
 	string toString();
 
