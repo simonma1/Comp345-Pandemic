@@ -23,6 +23,7 @@ void saveGame(Loader*, string, Board*, vector<Player*>);
 
 int main()
 {
+	static const int MOVESPERTURN = 4;
 	Loader* loader;
 	Board* board = new Board;
 	int startOrLoad=0;
@@ -96,48 +97,49 @@ int main()
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
 
 	while (!board->isGameOver() && keepPlaying == 0) {
-		//print state of the board
-		cout << board->toString();
+		for (int i = MOVESPERTURN; i > 0; i--){
+			//print state of the board
+			cout << board->toString();
 
-		//Prints the players detail
-		for (int i = 0; i < players.size(); i++) {
-			cout << (*players[i]).toString() << endl;
-			cout << endl;
-		}
+				//Prints the players detail
+				for (int i = 0; i < players.size(); i++) {
+					cout << (*players[i]).toString() << endl;
+						cout << endl;
+				}
+				cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
+			// Display available actions
+			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
+			cout << "Here are your available actions:" << endl;
+			for (int i = 0; i < actions.size(); i++) {
+				cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
+			}
 
-		// Display available actions
-		vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
-		cout << "Here are your available actions:" << endl;
-		for (int i = 0; i < actions.size(); i++) {
-			cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
-		}
-		
-		if (actions.size() > 1) {
-			int actionChosen = 0;
-			do {
-				cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
-				cin >> actionChosen;
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			} while (actionChosen < 1 || actionChosen > actions.size());
+			if (actions.size() > 1) {
+				int actionChosen = 0;
+				do {
+					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+					cin >> actionChosen;
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				} while (actionChosen < 1 || actionChosen > actions.size());
 
-			cout << "Selected action " + to_string(actionChosen) << endl;
-			actions[actionChosen - 1]->act(players[board->getTurn()]);
+				cout << "Selected action " + to_string(actionChosen) << endl;
+				actions[actionChosen - 1]->act(players[board->getTurn()]);
+			}
+			else {
+				cout << "I'm sorry, you currently do not have any actions available";
+			}
+
+
+			// Delete the created actions
+			for (int i = 0; i < actions.size(); i++) {
+				delete actions[i];
+				actions[i] = NULL;
+			}
 		}
-		else {
-			cout << "I'm sorry, you currently do not have any actions available";
-		}
-		
-		
 		// change the next player's turn
 		board->toggleTurn();
-		
-		// Delete the created actions
-		for (int i = 0; i < actions.size(); i++) {
-			delete actions[i];
-			actions[i] = NULL;
-		}
 
-		cout << "The turn has be switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
+		cout << "The turn has been switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
 		cin >> keepPlaying;
 	}
 	
