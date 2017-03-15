@@ -101,13 +101,17 @@ int main()
 			//print state of the board
 			cout << board->toString();
 
-				//Prints the players detail
-				for (int i = 0; i < players.size(); i++) {
-					cout << (*players[i]).toString() << endl;
-						cout << endl;
-				}
-				cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
+			//Prints the players detail
+			for (int i = 0; i < players.size(); i++) {
+				cout << (*players[i]).toString() << endl;
+					cout << endl;
+			}
+			cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
 			// Display available actions
+
+			 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
+
+
 			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
 			cout << "Here are your available actions:" << endl;
 			for (int i = 0; i < actions.size(); i++) {
