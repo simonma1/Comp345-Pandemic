@@ -40,7 +40,7 @@ int main()
 
 	//Will keep asking the user until a valid response has been given
 	while ((startOrLoad != 1) && (startOrLoad != 2)) {
-		std::cout << "You entered an invalid value. Please Try Again." << endl;
+		cout << "You entered an invalid value. Please Try Again." << endl;
 		cin >> startOrLoad;
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -52,10 +52,22 @@ int main()
 
 		loader->loadBoardInfo(board);
 
-		//Creates 2 players
-		board->initializeNewPlayer();
-		board->initializeNewPlayer();
+		//Asks the user for the number of player and instantiate them
+		int numOfPlayers;
+		cout << "How many players will there be?" << endl;
+		cin >> numOfPlayers;
+		while ((numOfPlayers < 1) || (numOfPlayers > 4)) {
+			cout << "You entered an invalid value. Please Try Again." << endl;
+			cin >> startOrLoad;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
 
+		//Creates the desired number of players. Works only for 2 players for now
+		for (int i = 0; i < numOfPlayers; i++) {
+			board->initializeNewPlayer();
+		}
+	
 		board->distributePlayerCards();
 
 		players = board->getListOfPlayer();
