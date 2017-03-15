@@ -24,13 +24,14 @@ private:
 
 public:
 	Role* getRole() { return role; };
-	int movePawn();
+	void movePawn(int);
 	~Player();
 	Player(Role* role, Pawn* playerPawn);
 	Player();
 	vector<PlayerCard*> getPlayerCards();
 	Pawn* getPlayerPawn();
 	void setPlayerCards(vector<PlayerCard*> playerCards);
+	void removePlayerCard(int);
 	void setReferenceCard(ReferenceCard*);
 	void setRole(Role*);
 	string toString();

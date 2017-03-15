@@ -1,7 +1,8 @@
 #include "DriveAction.h"
 
 void DriveAction::act(Player *player) {
-	cout << player->getRole()->getName() << " Is driving" << endl;
+	cout << player->getRole()->getName() << " Is driving to " + to_string(destinationId) << endl;
+	player->movePawn(destinationId);
 }
 
 DriveAction::DriveAction(){}

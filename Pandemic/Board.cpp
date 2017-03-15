@@ -248,7 +248,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			// check for build RS action and charterflight action
 			if (player->getPlayerPawn()->getCurrentLocation() == card->getId()) {
 				if (!onARsearchStation) // can't build a research station if there already is one
-					availableActions.push_back(new BuildRSAction());
+					availableActions.push_back(new BuildRSAction(&researchStations));
 				availableActions.push_back(new CharterFlightAction());
 			}
 			// check for directflight action

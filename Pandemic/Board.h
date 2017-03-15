@@ -20,7 +20,6 @@
 #define RED "Red"
 #define YELLOW "Yellow"
 #define MIN_NUM_CARDS_FOR_CURE 5
-#define NUM_PLAYERS 2
 #define ATLANTA_ID 5
 
 class CardManager;
@@ -72,7 +71,7 @@ public:
 	void setYellowCureFound(bool isCured) { this->yellowCureFound = isCured; };
 	void setRedCureFound(bool isCured) { this->redCureFound = isCured; };
 	void setBlueCureFound(bool isCured) { this->blueCureFound = isCured; };
-	void toggleTurn() { this->turn = (turn + 1) % NUM_PLAYERS; };
+	void toggleTurn() { this->turn = (turn + 1) % (players.size()); };
 	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
 	void setGameLost() { this->gameLost = true; };

@@ -1,9 +1,9 @@
 #include "Player.h"
 
 //The player will move the Pawn 
-int Player::movePawn()
+void Player::movePawn(int destinationId)
 {
-	return playerPawn->getCurrentLocation();//Returns the current location for now
+	playerPawn->setLocation(destinationId);//Returns the current location for now
 }
 
 
@@ -33,6 +33,17 @@ vector<PlayerCard*> Player::getPlayerCards() {
 
 void Player::setPlayerCards(vector<PlayerCard*> playerCards) {
 	this->playerCards = playerCards;
+}
+
+void Player::removePlayerCard(int cardId) {
+	int numPlayerCards = playerCards.size();
+	if (numPlayerCards > 0) {
+		for (int i = 0; i < numPlayerCards; i++) {
+			if (playerCards[i]->getId() == cardId) {
+				playerCards.erase(playerCards.begin() + i);
+			}
+		}
+	}
 }
 
 void Player::setReferenceCard(ReferenceCard * ref)
