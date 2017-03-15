@@ -8,6 +8,12 @@ Map::Map()
 
 Map::Map(const Map& map) {
 	cities = map.cities;
+	this->diseaseCubes = new DiseaseCubes;
+	*diseaseCubes = *map.diseaseCubes;
+}
+
+Map::~Map() {
+	delete diseaseCubes;
 }
 
 void Map::setMapLocation(map<int, Location> map)

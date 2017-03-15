@@ -67,7 +67,7 @@ void Loader::save(string filename, Board* board) {
 		out["location"] = empty;
 	}
 
-	DiseaseCubes* diseases = board->getDiseaseCubes();
+	DiseaseCubes* diseases = board->getMap()->getDiseaseCubes();
 
 	//Saves the board data
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
@@ -190,7 +190,7 @@ void Loader::loadBoardInfo(Board * board)
 		j["Board"]["pieces"]["bluePiecesAv"].get<int>()
 	);
 
-	board->setDiseaseCubes(diseases);
+	board->getMap()->setDiseaseCubes(diseases);
 
 	//Loads the infection level for every cities
 	Map* map = board->getMap();

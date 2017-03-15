@@ -22,103 +22,87 @@
     "Players": [
         {
             "pawn": {
-                "color": "Pink",
+                "color": "Brown",
                 "location": 5
             },
-            "playercards": {
-                "citycards": [
-                    21,
-                    8,
-                    50,
-                    40
-                ]
-            },
-            "role": "Dispatcher"
+            "role": "Researcher"
         },
         {
             "pawn": {
-                "color": "Red",
+                "color": "Orange",
                 "location": 5
             },
-            "playercards": {
-                "citycards": [
-                    32,
-                    26,
-                    22,
-                    19
-                ]
-            },
-            "role": "Operations Expert"
+            "role": "Medic"
         }
     ],
     "cards": {
         "infection": {
             "deck": [
-                1,
                 2,
                 3,
                 4,
                 5,
                 6,
-                7,
+                8,
                 9,
                 10,
-                11,
                 12,
                 13,
                 14,
                 15,
                 16,
                 17,
+                18,
+                19,
                 21,
                 22,
+                24,
                 25,
                 26,
-                27,
-                28,
+                29,
                 30,
                 31,
                 32,
                 33,
                 34,
-                35,
+                36,
                 37,
                 38,
-                39,
                 40,
                 41,
                 42,
                 43,
                 44,
+                45,
                 46,
                 47,
                 48
             ],
             "discard": [
-                8,
-                45,
-                36,
-                29,
                 23,
-                19,
-                18,
                 20,
-                24
+                39,
+                28,
+                35,
+                11,
+                1,
+                7,
+                27
             ]
         }
     },
     "location": [
         {
             "blue": 1,
-            "id": 8
+            "id": 1
         },
         {
-            "id": 18,
-            "yellow": 1
+            "blue": 1,
+            "id": 7
         },
         {
-            "id": 19,
-            "yellow": 1
+            "blue": 1,
+            "id": 11
         },
         {
             "id": 20,
@@ -129,19 +113,19 @@
             "yellow": 1
         },
         {
-            "id": 24,
-            "yellow": 1
+            "black": 1,
+            "id": 27
         },
         {
             "black": 1,
-            "id": 29
+            "id": 28
         },
         {
             "black": 1,
-            "id": 36
+            "id": 35
         },
         {
-            "id": 45,
+            "id": 39,
             "red": 1
         }
     ]

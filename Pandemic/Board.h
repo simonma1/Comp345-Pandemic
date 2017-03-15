@@ -15,7 +15,6 @@
 #include "TreatAction.h"
 #include "CardManager.h"
 #include "Loader.h"
-#include "DiseaseCubes.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
@@ -73,9 +72,6 @@ public:
 	void setTurn(int turn) { this->turn = turn; };
 	int getNumOfPlayers() { return players.size(); };
 
-	void setDiseaseCubes(DiseaseCubes* cubes) { this->diseaseCubes = cubes; };
-	DiseaseCubes* getDiseaseCubes() { return diseaseCubes; };
-
 	static const int CITIESTOINFECTINBEGINNING = 9;
 	
 private: 
@@ -91,5 +87,4 @@ private:
 	vector<int> researchStations; // vector of location ids
 	CardManager* cardManager;
 	int turn;
-	DiseaseCubes* diseaseCubes;
 };

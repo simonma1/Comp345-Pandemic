@@ -33,7 +33,6 @@ Board::~Board()
 	if (boardMap != NULL) {
 		delete boardMap;
 	}
-	delete diseaseCubes;
 	delete cardManager;
 }
 
@@ -117,7 +116,7 @@ string Board::toString()
 	}
 	value += "\n";
 
-	value += diseaseCubes->toString();
+	value += boardMap->getDiseaseCubes()->toString();
 
 	value +=  cardManager->toString();
 
@@ -182,9 +181,6 @@ Board::Board(const Board& board) {
 
 	this->boardMap = new Map;
 	*boardMap = *board.boardMap;
-
-	this->diseaseCubes = new DiseaseCubes;
-	*diseaseCubes = *board.diseaseCubes;
 
 	this->cardManager = board.cardManager;
 }
