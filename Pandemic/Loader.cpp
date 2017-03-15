@@ -97,12 +97,12 @@ void Loader::save(string filename, Board* board) {
 }
 
 vector<Player *> Loader::loadPlayers() {
-	Player *player1;
-	Player *player2;
-	vector<Player *> players;
 
-	players.push_back(player1);
-	players.push_back(player2);
+	vector<Player *> players;	
+	for (int i = 0; i < j["Players"].size(); i++) {
+		Player* player = new Player;
+		players.push_back(player);
+	}
 
 	int i = 0;
 	for (auto &player : players) {
