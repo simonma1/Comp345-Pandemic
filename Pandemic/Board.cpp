@@ -165,6 +165,14 @@ Location Board::drawInfectionCard()
 	return locationToInfect;
 }
 
+void Board::endOfTurnInfection() {
+	cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
+
+	for (int i = 0; i < infectionRateMarker; i++) {
+		drawInfectionCard();
+	}
+}
+
 void Board::distributePlayerCards()
 {
 	cardManager->distributeCards(this);
