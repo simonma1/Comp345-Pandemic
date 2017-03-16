@@ -90,6 +90,27 @@
     <ClCompile Include="DiseaseCubes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DispatcherAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MedicAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QuarantineSpecialistAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResearcherAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScientistAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContingencyPlannerAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OperationsExpertAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -189,6 +210,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiseaseCubes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DispatcherAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MedicAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuarantineSpecialistAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResearcherAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScientistAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContingencyPlannerAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperationsExpertAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

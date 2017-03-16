@@ -257,6 +257,37 @@ bool Board::isGameWon()
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	vector<Action*> availableActions;
 	
+	//Checks if player can perform a specific role action
+	bool canPerformRoleAction = false;
+	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
+		availableActions.push_back(new ScientistAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Medic") == 0) ) {
+		availableActions.push_back(new MedicAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Researcher") == 0) ) {
+		availableActions.push_back(new ResearcherAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
+		availableActions.push_back(new QuarantineSpecialistAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Dispatcher") == 0) ) {
+		availableActions.push_back(new DispatcherAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Contingency Planner") == 0) ) {
+		availableActions.push_back(new ContingencyPlannerAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
+		availableActions.push_back(new OperationsExpertAction());
+		canPerformRoleAction = true;
+	}
+
 	// Check if player is on research station
 	bool onARsearchStation = false;
 	for (int i = 0; i < researchStations.size(); i++) {
@@ -264,6 +295,9 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			onARsearchStation = true;
 		}
 	}
+
+	
+
 	// check for shuttleflight action
 	if (onARsearchStation) {
 		for (int i = 0; i < researchStations.size(); i++) { // add every other research station player can move to.
