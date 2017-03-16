@@ -161,6 +161,22 @@ void Board::drawPlayerCards() {
 	for (int i = 0; i < 2; i++) {
 		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
 	}
+
+	int numOfCards = players[turn]->getPlayerCards().size();
+
+	if(numOfCards > MAXNUMBEROFPLAYERCARDS) {
+		cout << "You must discard a card " << endl;
+
+		for (int i = 0; i < numOfCards; i++) {
+			cout << players[turn]->getPlayerCards().at(i)->getId() << ". ";
+			cout << players[turn]->getPlayerCards().at(i)->getType()<<endl;
+		}
+
+		cout << "Which card do you want to discard: " << endl;
+		int cardToDiscardId;
+		cin >> cardToDiscardId;
+		players[turn]->removePlayerCard(cardToDiscardId);
+	}
 }
 
 void Board::setPlayerCardsFromLoad() {

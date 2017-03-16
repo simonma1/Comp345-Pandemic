@@ -80,6 +80,7 @@ public:
 	void setGameWon() { this->gameWon = true; };
 
 	static const int CITIESTOINFECTINBEGINNING = 9;
+	static const int MAXNUMBEROFPLAYERCARDS = 6;
 	
 private: 
 	vector<Player*> players;

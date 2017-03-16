@@ -48,7 +48,10 @@ void Player::removePlayerCard(int cardId) {
 			}
 		}
 		if (cardFound) {
+			cout << "Discarding selected Player Card" << endl;
 			playerCards.erase(playerCards.begin() + cardPosition);
+			
+			//Need to add the card to the card manager's discard pile
 		}
 	}
 }
