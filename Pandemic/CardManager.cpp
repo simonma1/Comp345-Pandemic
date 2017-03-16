@@ -66,6 +66,21 @@ void CardManager::moveInfectionCardToDiscard(InfectionCard* infection, int cardI
 	infectionDiscard.insert(infectionDiscard.begin(), infection);
 }
 
+void CardManager::moveCardToDeck() {
+	for (int i = 0; i < playerCardList.size(); i++) {
+		playerCardDeck.push_back(playerCardList[i]);
+	}
+	
+}
+
+void CardManager::setPlayerCardsFromLoad(Player* player) {
+	vector<int> cardIds = player->getPlayerCardId();
+	for (int i = 0; i < cardIds.size(); i++) {
+		player->addPlayerCard(playerCardList.at(cardIds[i]));
+		playerCardList.erase(cardIds[i]);
+	}
+}
+
 //Generates the id of the next card to draw
 int CardManager::drawShuffledCard()
 {

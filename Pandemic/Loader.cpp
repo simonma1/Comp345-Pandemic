@@ -108,15 +108,9 @@ vector<Player *> Loader::loadPlayers() {
 	for (auto &player : players) {
 
 		Role *r = new Role (j["Players"][i]["role"].get<string>());
-		
-		//TODO: add event cards.
-		//vector<int> playerCardCityIds = j["Players"][i]["playercards"]["citycards"].get<vector<int>>(); 
-		
-
 		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 
 																  //and dynamically created and allocated
 		
-
 		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
 		pawn->setLocation(playerLocation);
@@ -125,6 +119,8 @@ vector<Player *> Loader::loadPlayers() {
 			r,
 			pawn
 		);
+
+		p->setPlayerCardId(j["Players"][i]["playercards"]["citycards"].get<vector<int>>());
 
 		player = p;
 
@@ -144,15 +140,9 @@ void Loader::save(string filename, vector<Player *> players) {
 		//TODO: add event cards.
 		// Save player's cards 
 		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
-			string playerCardType = players[i]->getPlayerCards()[j]->getType();
-			if (playerCardType == "city") {
-				out["Players"][i]["playercards"]["cityCards"][j] = players[i]->getPlayerCards()[j]->getId();
-			} else if(playerCardType == "event"){
-				out["Players"][i]["playercards"]["eventCards"][j] = players[i]->getPlayerCards()[j]->getId();
-			}
+			out["Players"][i]["playercards"]["citycards"][j] = players[i]->getPlayerCards()[j]->getId();
 		}
-
-
+		
 		// Save player's pawn color, and location.
 		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
 		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation();

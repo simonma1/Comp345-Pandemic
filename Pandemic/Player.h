@@ -20,6 +20,7 @@ private:
 	Role* role; //Role will later be define as a class
 	ReferenceCard *referenceCard; 
 	vector<PlayerCard*> playerCards;
+	vector<int> playerCardId;
 	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
 
 public:
@@ -37,6 +38,8 @@ public:
 	void setPawn(Pawn* p) { playerPawn = p; };
 	void lookAtReferenceCard();
 	void addPlayerCard(PlayerCard* card);
+	void setPlayerCardId(vector<int> cardId) { this->playerCardId = cardId; };
+	vector<int> getPlayerCardId() { return playerCardId; }
 
 };
 

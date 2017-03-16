@@ -56,6 +56,7 @@ public:
 	void startInfection();
 	void endOfTurnInfection();
 	void drawPlayerCards();
+	void setPlayerCardsFromLoad();
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };

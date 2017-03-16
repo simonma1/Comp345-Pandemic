@@ -88,6 +88,8 @@ int main()
 		loader->load(players);
 		for (int i = 0; i < players.size(); i++)
 			board->addPlayer(players[i]);
+
+		board->setPlayerCardsFromLoad();
 	}
 
 	//Creates Reference card for the players. To be modified later on
