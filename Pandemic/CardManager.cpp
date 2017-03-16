@@ -66,6 +66,21 @@ void CardManager::moveInfectionCardToDiscard(InfectionCard* infection, int cardI
 	infectionDiscard.insert(infectionDiscard.begin(), infection);
 }
 
+void CardManager::moveCardToDeck() {
+	for (int i = 0; i < playerCardList.size(); i++) {
+		playerCardDeck.push_back(playerCardList[i]);
+	}
+	
+}
+
+void CardManager::setPlayerCardsFromLoad(Player* player) {
+	vector<int> cardIds = player->getPlayerCardId();
+	for (int i = 0; i < cardIds.size(); i++) {
+		player->addPlayerCard(playerCardList.at(cardIds[i]));
+		playerCardList.erase(cardIds[i]);
+	}
+}
+
 //Generates the id of the next card to draw
 int CardManager::drawShuffledCard()
 {
@@ -82,6 +97,7 @@ void CardManager::distributeCards(Board* board)
 	for (int i = 1; i <= playerCardList.size(); i++) {
 		if (playerCardList.at(i)->getType() != "epidemic") {
 			playerCardDeck.push_back(playerCardList.at(i));
+			cout << playerCardList.at(i)->getType();
 		} else {
 			epidemicTempHolder.push_back(playerCardList.at(i));
 		}
@@ -113,6 +129,16 @@ void CardManager::distributeCards(Board* board)
 	for (int i = 0; i < epidemicTempHolder.size(); i++) {
 		playerCardDeck.push_back(epidemicTempHolder[i]);
 	}
+}
+
+PlayerCard* CardManager::drawPlayerCard() {
+
+	cout << "Drawing a Player Card " << endl;
+	srand(time(NULL));//Allows for the randomness
+	int randomNum = rand() % playerCardDeck.size();
+	PlayerCard* card = playerCardDeck[randomNum];
+	playerCardDeck.erase(playerCardDeck.begin() + randomNum);
+	return card;
 }
 
 string CardManager::toString() {

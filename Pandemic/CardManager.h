@@ -48,9 +48,12 @@ public:
 	Location drawInfectionCard();
 	void moveInfectionCardToDiscard(InfectionCard*, int);
 	int drawShuffledCard();
+	void moveCardToDeck();
 
 	//PlayerCard action
 	void distributeCards(Board* board);
+	PlayerCard* drawPlayerCard();
+	void setPlayerCardsFromLoad(Player* player);
 
 	string toString();
 

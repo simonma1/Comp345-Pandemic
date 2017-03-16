@@ -3,7 +3,7 @@
     {
       "role": "Scientist",
       "playercards": {
-        "citycards": [ 6, 7, 8, 9, 10 ]
+ 
       },
       "pawn": {
         "color": "Orange",
@@ -13,7 +13,7 @@
     {
       "role": "Dispatcher",
       "playercards": {
-        "citycards": [ 1, 2, 3, 4, 5 ]
+   
       },
       "pawn": {
         "color": "Blue",

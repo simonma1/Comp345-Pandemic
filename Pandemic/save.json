@@ -10,146 +10,158 @@
         "outbreakLevel": 0,
         "pieces": {
             "blackPiecesAv": 22,
-            "bluePiecesAv": 22,
-            "redPiecesAv": 19,
-            "yellowPiecesAv": 22
+            "bluePiecesAv": 20,
+            "redPiecesAv": 20,
+            "yellowPiecesAv": 21
         },
         "researchStations": [
-            5
+            5,
+            35
         ],
-        "turn": 1
+        "turn": 0
     },
     "Players": [
         {
             "pawn": {
-                "color": "Pink",
-                "location": 48
+                "color": "Blue",
+                "location": 35
             },
             "playercards": {
                 "citycards": [
-                    44,
-                    26,
-                    9
+                    13,
+                    7,
+                    19,
+                    30,
+                    24
                 ]
             },
-            "role": "Dispatcher"
+            "role": "Contingency Planner"
         },
         {
             "pawn": {
-                "color": "Blue",
+                "color": "Pink",
                 "location": 5
             },
             "playercards": {
                 "citycards": [
-                    48,
-                    34,
-                    22,
-                    13,
-                    10
+                    47,
+                    41,
+                    2,
+                    38,
+                    11,
+                    56
                 ]
             },
-            "role": "Contingency Planner"
+            "role": "Dispatcher"
         }
     ],
     "cards": {
         "infection": {
             "deck": [
-                1,
-                2,
                 3,
+                4,
                 5,
                 6,
                 7,
                 8,
-                9,
                 10,
                 12,
                 13,
                 14,
                 15,
                 16,
-                18,
+                17,
                 19,
-                21,
-                22,
+                20,
                 23,
                 24,
                 25,
                 26,
                 27,
                 28,
+                29,
                 30,
                 32,
                 33,
-                34,
                 35,
                 36,
-                37,
-                38,
                 39,
-                40,
+                41,
+                42,
+                43,
                 44,
-                45,
+                46,
+                47,
                 48
             ],
             "discard": [
-                29,
-                17,
-                46,
-                42,
-                41,
-                43,
-                47,
-                4,
                 11,
-                20,
-                31
+                22,
+                38,
+                31,
+                45,
+                9,
+                1,
+                21,
+                18,
+                40,
+                34,
+                2,
+                37
             ]
         }
     },
     "location": [
         {
             "blue": 1,
-            "id": 4
+            "id": 1
+        },
+        {
+            "blue": 1,
+            "id": 2
+        },
+        {
+            "blue": 1,
+            "id": 9
         },
         {
             "blue": 1,
             "id": 11
         },
         {
-            "id": 17,
+            "id": 18,
             "yellow": 1
         },
         {
-            "id": 20,
+            "id": 21,
             "yellow": 1
         },
         {
-            "black": 1,
-            "id": 29
+            "id": 22,
+            "yellow": 1
         },
         {
             "black": 1,
             "id": 31
         },
         {
-            "id": 41,
+            "black": 1,
+            "id": 34
+        },
+        {
+            "id": 37,
             "red": 1
         },
         {
-            "id": 42,
+            "id": 38,
             "red": 1
         },
         {
-            "id": 43,
+            "id": 40,
             "red": 1
         },
         {
-            "id": 46,
-            "red": 1
-        },
-        {
-            "id": 47,
+            "id": 45,
             "red": 1
         }
     ]
