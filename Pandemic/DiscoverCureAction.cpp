@@ -1,15 +1,17 @@
 #include "DiscoverCureAction.h"
 
 void DiscoverCureAction::act(Player *player) {
-	cout << player->getRole()->getName() << " Is discovering a cure" << endl;
+	cout << player->getRole()->getName() << " Is discovering a cure to the " + curableArea + " disease" << endl;
+	*isAreaCured = true;
 }
 
 DiscoverCureAction::DiscoverCureAction(){}
 
-DiscoverCureAction::DiscoverCureAction(string curableArea) {
+DiscoverCureAction::DiscoverCureAction(string curableArea, bool *isAreaCured) {
 	this->curableArea = curableArea;
+	this->isAreaCured = isAreaCured;
 }
 
 string DiscoverCureAction::toString() {
-	return "You can discover a Cure for the " + curableArea + " area";
+	return "You can discover a Cure for the " + curableArea + " disease";
 }

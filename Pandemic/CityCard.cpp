@@ -13,3 +13,7 @@ CityCard::CityCard(int cardId, int cityId) {
 void CityCard::cardAction() {
 
 }
+
+string CityCard::toString() {
+	return "City Card: " + to_string(cityId);
+}

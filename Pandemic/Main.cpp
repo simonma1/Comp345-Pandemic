@@ -109,10 +109,18 @@ int main()
 				cout << (*players[i]).toString() << endl;
 					cout << endl;
 			}
-			cout << "YOU HAVE " << i << "ACTIONS LEFT"<<endl;
+			cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
 
 
 			 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
+
+			 
+			//Used to test the build research station action and discover cure.
+			/*for (int i = 15; i < 20; i++) {
+				players[0]->addPlayerCard(new CityCard(i, i));
+			}*/
+
+			
 
 			 // Display available actions
 			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
@@ -140,7 +148,7 @@ int main()
 			// Delete the created actions
 			for (int i = 0; i < actions.size(); i++) {
 				delete actions[i];
-				actions[i] = NULL;
+				actions.erase(actions.begin() + i);
 			}
 		}
 

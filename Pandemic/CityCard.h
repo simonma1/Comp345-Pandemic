@@ -14,6 +14,7 @@ public:
 	CityCard();
 	CityCard(int,int);
 	void cardAction();
+	string toString();
 
 
 };

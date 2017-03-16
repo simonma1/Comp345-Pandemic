@@ -8,5 +8,5 @@ public:
 	EventCard();
 	EventCard(int, string);
 	void cardAction();
-
+	string toString();
 };

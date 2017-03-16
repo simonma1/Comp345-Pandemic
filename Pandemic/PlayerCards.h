@@ -16,4 +16,5 @@ public:
 	string getCardName() { return cardName; };
 	int getId() { return cardId; }
 	string getType() { return type; };
+	virtual string toString() = 0;
 };

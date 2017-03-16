@@ -14,3 +14,7 @@ EpidemicCard::EpidemicCard(int cardId, string cardName)
 void EpidemicCard::cardAction()
 {
 }
+
+string EpidemicCard::toString() {
+	return "Epidemic Card: " + cardName;
+}
