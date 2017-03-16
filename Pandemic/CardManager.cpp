@@ -20,6 +20,26 @@ vector<int> CardManager::getInfectionCardDeckId() {
 	return ids;
 }
 
+vector<int> CardManager::getPlayerCardDeckId() {
+	vector<int> ids;
+
+	for (int i = 0; i < playerCardDeck.size(); i++) {
+		ids.push_back(playerCardDeck[i]->getId());
+	}
+
+	return ids;
+}
+
+vector<int> CardManager::getPlayerCardDiscardId() {
+	vector<int> ids;
+
+	for (int i = 0; i < playerCardDiscard.size(); i++) {
+		ids.push_back(playerCardDiscard[i]->getId());
+	}
+
+	return ids;
+}
+
 //Returns the id associated with every card in the discard infection deck
 vector<int> CardManager::getInfectionCardDiscardId() {
 	vector<int> ids;

@@ -89,7 +89,11 @@ void Loader::save(string filename, Board* board) {
 
 	//Save the Infection Cards
 	out["cards"]["infection"]["deck"] = cardManager->getInfectionCardDeckId();
-	out["cards"]["infection"]["discard"] = cardManager->getInfectionCardDiscardId();
+	out["cards"]["infection"]["discard"] = cardManager->getInfectionCardDiscardId();\
+	
+	//Saves the Board's Player Cards
+	out["cards"]["player"]["deck"] = cardManager->getPlayerCardDeckId();
+	out["cards"]["player"]["discard"] = cardManager->getPlayerCardDiscardId();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");

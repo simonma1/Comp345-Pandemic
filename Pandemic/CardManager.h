@@ -40,6 +40,8 @@ public:
 	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
 	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
 	vector<PlayerCard*> getPlayerCardDiscard() { return playerCardDiscard; };
+	vector<int> getPlayerCardDeckId();
+	vector<int> getPlayerCardDiscardId();
 
 	//PlayerCardList
 	void setPlayerCardList(map<int, PlayerCard*> playerCardList) { this->playerCardList = playerCardList; };

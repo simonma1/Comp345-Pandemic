@@ -9,33 +9,33 @@
         "infectionLevel": 2,
         "outbreakLevel": 0,
         "pieces": {
-            "blackPiecesAv": 22,
-            "bluePiecesAv": 20,
-            "redPiecesAv": 20,
-            "yellowPiecesAv": 21
+            "blackPiecesAv": 19,
+            "bluePiecesAv": 21,
+            "redPiecesAv": 23,
+            "yellowPiecesAv": 22
         },
         "researchStations": [
             5,
-            35
+            15
         ],
-        "turn": 0
+        "turn": 1
     },
     "Players": [
         {
             "pawn": {
-                "color": "Blue",
-                "location": 35
+                "color": "Brown",
+                "location": 15
             },
             "playercards": {
                 "citycards": [
-                    13,
-                    7,
-                    19,
-                    30,
-                    24
+                    43,
+                    39,
+                    6,
+                    60,
+                    56
                 ]
             },
-            "role": "Contingency Planner"
+            "role": "Researcher"
         },
         {
             "pawn": {
@@ -44,12 +44,10 @@
             },
             "playercards": {
                 "citycards": [
-                    47,
-                    41,
-                    2,
-                    38,
-                    11,
-                    56
+                    51,
+                    16,
+                    8,
+                    30
                 ]
             },
             "role": "Dispatcher"
@@ -58,21 +56,78 @@
     "cards": {
         "infection": {
             "deck": [
+                1,
+                2,
                 3,
                 4,
                 5,
-                6,
-                7,
                 8,
+                9,
                 10,
                 12,
                 13,
-                14,
                 15,
                 16,
                 17,
+                18,
                 19,
                 20,
+                21,
+                23,
+                24,
+                25,
+                26,
+                31,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47
+            ],
+            "discard": [
+                30,
+                48,
+                6,
+                22,
+                32,
+                27,
+                11,
+                29,
+                28,
+                7,
+                14
+            ]
+        },
+        "player": {
+            "deck": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                7,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
                 23,
                 24,
                 25,
@@ -80,60 +135,50 @@
                 27,
                 28,
                 29,
-                30,
+                31,
                 32,
                 33,
+                34,
                 35,
                 36,
-                39,
+                37,
+                38,
+                40,
                 41,
                 42,
-                43,
                 44,
+                45,
                 46,
                 47,
-                48
+                48,
+                49,
+                50,
+                52,
+                53,
+                54,
+                55,
+                57,
+                58,
+                59
             ],
-            "discard": [
-                11,
-                22,
-                38,
-                31,
-                45,
-                9,
-                1,
-                21,
-                18,
-                40,
-                34,
-                2,
-                37
-            ]
+            "discard": []
         }
     },
     "location": [
         {
             "blue": 1,
-            "id": 1
+            "id": 6
         },
         {
             "blue": 1,
-            "id": 2
-        },
-        {
-            "blue": 1,
-            "id": 9
+            "id": 7
         },
         {
             "blue": 1,
             "id": 11
         },
         {
-            "id": 18,
-            "yellow": 1
-        },
-        {
-            "id": 21,
+            "id": 14,
             "yellow": 1
         },
         {
@@ -142,26 +187,26 @@
         },
         {
             "black": 1,
-            "id": 31
+            "id": 27
         },
         {
             "black": 1,
-            "id": 34
+            "id": 28
         },
         {
-            "id": 37,
-            "red": 1
+            "black": 1,
+            "id": 29
         },
         {
-            "id": 38,
-            "red": 1
+            "black": 1,
+            "id": 30
         },
         {
-            "id": 40,
-            "red": 1
+            "black": 1,
+            "id": 32
         },
         {
-            "id": 45,
+            "id": 48,
             "red": 1
         }
     ]
