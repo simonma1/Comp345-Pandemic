@@ -11,13 +11,3 @@ void DispatcherAction::act(Player *player) {
 string DispatcherAction::toString() {
 	return "Dispatcher: Move another player's pawn as if it were yours and, as an action, move any pawn to a city with another pawn(must get permission before moving another player's pawn)";
 }
-
-/*
-bool Dispatcher::canPerformRoleAction(Player *player) {
-	if (player->getRole()->getName == "Dispatcher") {
-		return true;
-	}
-	else
-		return false;
-}
-*/

@@ -6,5 +6,4 @@ public:
 	OperationsExpertAction() {};
 	void act(Player *);
 	string toString();
-	//bool canPerformRoleAction(Player *);
 };

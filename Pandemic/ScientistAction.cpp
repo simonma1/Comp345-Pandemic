@@ -15,13 +15,3 @@ void ScientistAction::act(Player *player) {
 string ScientistAction::toString() {
 	return "Scientist: You need only 4 cards of the same color to do the Discover a Cure action";
 }
-
-/*
-bool Scientist::canPerformRoleAction(Player *player) {
-	if (player->getRole()->getName == "Scientist") {
-		return true;
-	}
-	else
-		return false;
-}
-*/

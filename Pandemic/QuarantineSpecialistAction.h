@@ -6,5 +6,4 @@ public:
 	QuarantineSpecialistAction() {};
 	void act(Player *);
 	string toString();
-	//bool canPerformRoleAction(Player *);
 };

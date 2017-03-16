@@ -6,5 +6,4 @@ public:
 	ResearcherAction() {};
 	void act(Player *);
 	string toString();
-	//bool canPerformRoleAction(Player *);
 };

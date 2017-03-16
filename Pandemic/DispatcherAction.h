@@ -6,5 +6,4 @@ public:
 	DispatcherAction() {};
 	void act(Player *);
 	string toString();
-	//bool canPerformRoleAction(Player *);
 };
