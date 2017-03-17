@@ -1,5 +1,4 @@
 #include "Board.h"
-#include "Loader.h"
 
 /*
 The board class will act as an intermediary between location and player
@@ -9,25 +8,20 @@ Board::Board()
 {
 	outbreakMarker = 0;
 	boardMap = new Map;
-
 	boardSetup();
 }
 
-Board::Board(int outbreak, int infection, int blackPieces, int yellowPieces,int redPieces, 
-	int bluePieces, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
+Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
 	
 	this->outbreakMarker = outbreak;
 	this->infectionRateMarker = infection;
-
-	this->numOfBlackPieces = blackPieces;
-	this->numOfYellowPieces = yellowPieces;
-	this->numOfRedPieces = redPieces;
-	this->numOfBluePieces = bluePieces;
 
 	this->blackCureFound = blackCure;
 	this->yellowCureFound = yellowCure;
 	this->redCureFound = redCure;
 	this->blueCureFound = blueCure;
+	this->gameLost = false;
+	this->gameWon = false;
 	boardMap = new Map;
 }
 
@@ -41,6 +35,7 @@ Board::~Board()
 	if (boardMap != NULL) {
 		delete boardMap;
 	}
+	delete cardManager;
 }
 
 void Board::addPlayer(Player * p)
@@ -66,6 +61,7 @@ void Board::initializeNewPlayer()
 	Role* role = new Role(listOfRoles[randNum].getRole());
 	Pawn* pawn = new Pawn;
 	*pawn = listOfRoles[randNum];
+	pawn->setLocation(ATLANTA_ID);
 	player->setPawn(pawn);//Sets the pawn with the color for the player
 	player->setRole(role);
 	addPlayer(player);//adds the player to the list of player
@@ -83,10 +79,7 @@ string Board::toString()
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
 	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
-	value += "\tThere is " + to_string(numOfBlackPieces) + " black pieces still available\n";
-	value += "\tThere is " + to_string(numOfYellowPieces) + " yellow pieces still available\n";
-	value += "\tThere is " + to_string(numOfRedPieces) + " red pieces still available\n";
-	value += "\tThere is " + to_string(numOfBluePieces) + " blue pieces still available\n\n";
+	
 
 	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
 		value += "\tAll diseases have been cured!!!\n";
@@ -124,9 +117,19 @@ string Board::toString()
 	}
 	value += "\n";
 
+	value += boardMap->getDiseaseCubes()->toString();
+
+	value +=  cardManager->toString();
+
 	value += line;
 
 	value += printResearchStationsLocation();
+
+	value += "\n";
+
+	value += "It is currently the " + players[turn]->getRole()->getName() + "\'s turn\n";
+
+	value += "\n";
 
 	return value;
 }
@@ -147,21 +150,67 @@ void Board::boardSetup()
 	Loader loadCommon = Loader(setupFileName);
 	Map* map = new Map();
 
-	this->listOfRoles = loadCommon.gameSetup(map);
+	cardManager = new CardManager;
+	this->listOfRoles = loadCommon.gameSetup(map, cardManager);
 	*boardMap = *map;
 	map = NULL;
 
+}
+
+void Board::drawPlayerCards() {
+	for (int i = 0; i < 2; i++) {
+		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
+	}
+
+	int numOfCards = players[turn]->getPlayerCards().size();
+
+	if(numOfCards > MAXNUMBEROFPLAYERCARDS) {
+		cout << "You must discard a card " << endl;
+
+		for (int i = 0; i < numOfCards; i++) {
+			cout << players[turn]->getPlayerCards().at(i)->getId() << ". ";
+			cout << players[turn]->getPlayerCards().at(i)->getType()<<endl;
+		}
+
+		cout << "Which card do you want to discard: " << endl;
+		int cardToDiscardId;
+		cin >> cardToDiscardId;
+		players[turn]->removePlayerCard(cardToDiscardId);
+	}
+}
+
+void Board::setPlayerCardsFromLoad() {
+	for (auto &player : players) {
+		cardManager->setPlayerCardsFromLoad(player);
+	}
+	cardManager->moveCardToDeck();
+}
+
+Location Board::drawInfectionCard()
+{
+	Location locationToInfect = cardManager->drawInfectionCard();
+	boardMap->infectCity(locationToInfect);
+
+	return locationToInfect;
+}
+
+void Board::endOfTurnInfection() {
+	cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
+
+	for (int i = 0; i < infectionRateMarker; i++) {
+		drawInfectionCard();
+	}
+}
+
+void Board::distributePlayerCards()
+{
+	cardManager->distributeCards(this);
 }
 
 Board::Board(const Board& board) {
 
 	this->outbreakMarker = board.outbreakMarker;
 	this->infectionRateMarker = board.infectionRateMarker;
-
-	this->numOfBlackPieces = board.numOfBlackPieces;
-	this->numOfYellowPieces = board.numOfYellowPieces;
-	this->numOfRedPieces = board.numOfRedPieces;
-	this->numOfBluePieces = board.numOfBluePieces;
 
 	this->blackCureFound = board.blackCureFound;
 	this->yellowCureFound = board.yellowCureFound;
@@ -170,6 +219,8 @@ Board::Board(const Board& board) {
 
 	this->boardMap = new Map;
 	*boardMap = *board.boardMap;
+
+	this->cardManager = board.cardManager;
 }
 
 string Board::printResearchStationsLocation() {
@@ -182,4 +233,169 @@ string Board::printResearchStationsLocation() {
 
 	value += "\n";
 	return value;
+}
+
+void Board::startInfection() {
+	
+	for (int i = 0; i < CITIESTOINFECTINBEGINNING; i++) {
+		
+		drawInfectionCard();
+	
+	}
+
+}
+
+bool Board::isGameLost() {
+	return cardManager->getPlayerCardDeck().size() < 1 || outbreakMarker == 8;
+}
+
+bool Board::isGameWon()
+{
+	return (yellowCureFound && blackCureFound && redCureFound && blueCureFound);
+}
+
+vector<Action*> Board::getPlayerAvailableActions(Player *player) {
+	vector<Action*> availableActions;
+	
+	//Checks if player can perform a specific role action
+	bool canPerformRoleAction = false;
+	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
+		availableActions.push_back(new ScientistAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Medic") == 0) ) {
+		availableActions.push_back(new MedicAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Researcher") == 0) ) {
+		availableActions.push_back(new ResearcherAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
+		availableActions.push_back(new QuarantineSpecialistAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Dispatcher") == 0) ) {
+		availableActions.push_back(new DispatcherAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Contingency Planner") == 0) ) {
+		availableActions.push_back(new ContingencyPlannerAction());
+		canPerformRoleAction = true;
+	}
+	if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
+		availableActions.push_back(new OperationsExpertAction());
+		canPerformRoleAction = true;
+	}
+
+	// Check if player is on research station
+	bool onARsearchStation = false;
+	for (int i = 0; i < researchStations.size(); i++) {
+		if (player->getPlayerPawn()->getCurrentLocation() == researchStations[i]) { // is the player on a research station
+			onARsearchStation = true;
+		}
+	}
+
+	
+
+	// check for shuttleflight action
+	if (onARsearchStation) {
+		for (int i = 0; i < researchStations.size(); i++) { // add every other research station player can move to.
+			if (player->getPlayerPawn()->getCurrentLocation() != researchStations[i])
+				availableActions.push_back(new ShuttleFlightAction(researchStations[i]));
+		}
+	}
+
+	if (player->getPlayerCards().size() > 0) {
+		for (auto &card : player->getPlayerCards()) {
+			// check for build RS action and charterflight action
+			if (card->getId() < MAX_ID_FOR_CITY_CARD) {
+				if (player->getPlayerPawn()->getCurrentLocation() == card->getId()) {
+					if (!onARsearchStation) // can't build a research station if there already is one
+						availableActions.push_back(new BuildRSAction(&researchStations));
+					availableActions.push_back(new CharterFlightAction());
+				}
+				// check for directflight action
+				else
+					availableActions.push_back(new DirectFlightAction(card->getId(), cardManager->getPlayerCardDiscard()));
+			}
+		}
+	}
+	
+	// check for discover cure action
+	if (onARsearchStation) { // is the player on a research station
+		int blueAreaCardCounter = 0; // keep track of number of player's blue cards
+		int blackAreaCardCounter = 0; // keep track of number of player's black cards
+		int redAreaCardCounter = 0; // keep track of number of player's red cards
+		int yellowAreaCardCounter = 0; // keep track of number of player's yellow cards
+
+		string blueArea = "Blue";
+		string blackArea = "Black";
+		string redArea = "Red";
+		string yellowArea = "Yellow";
+
+
+		if (player->getPlayerCards().size() > 0) { // does the player have any cards
+			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
+				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
+					if (card->getId() <= 48 && card->getId() > 0) {
+						string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
+
+						// count the number of each area card
+						if (cardArea == blueArea) blueAreaCardCounter++;
+						else if (cardArea == blackArea) blackAreaCardCounter++;
+						else if (cardArea == redArea) redAreaCardCounter++;
+						else if (cardArea == yellowArea) yellowAreaCardCounter++;
+					}
+				}
+
+				// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
+				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
+					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
+					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
+					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
+					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+			}
+		}
+	}
+	
+
+	// check for drive action
+	for (auto connection : boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation()).getConnections()) {
+		availableActions.push_back(new DriveAction(connection));
+	}
+
+	// check for role action
+	
+	// if (player->canPerformRoleAction()) {
+	//	   availableActions.push_back(player->getRoleAction());
+	// }
+
+	// check for share action
+	for (auto &otherPlayer : players) {
+		if (otherPlayer != player) {
+			if (otherPlayer->getPlayerPawn()->getCurrentLocation() == player->getPlayerPawn()->getCurrentLocation()) {
+				if (otherPlayer->getPlayerCards().size() > 0) // if other player has cards, player can take from him
+					availableActions.push_back(new ShareTakeAction(otherPlayer));
+				if (player->getPlayerCards().size() > 0) // if player has cards, he can give to other player
+					availableActions.push_back(new ShareGiveAction(otherPlayer));
+			}
+		}
+	}
+
+	// check for treat action
+	Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+	if (currentLocation.getBlue() > 0)
+		availableActions.push_back(new TreatAction(BLUE));
+	if (currentLocation.getBlack() > 0)
+		availableActions.push_back(new TreatAction(BLACK));
+	if (currentLocation.getRed() > 0)
+		availableActions.push_back(new TreatAction(RED));
+	if (currentLocation.getYellow() > 0)
+		availableActions.push_back(new TreatAction(YELLOW));
+
+	return availableActions;
 };

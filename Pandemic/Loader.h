@@ -1,11 +1,16 @@
+#pragma once
+#include "Board.h"
 #include "Location.h"
 #include "Player.h"
 #include "json.hpp"
-#include "Board.h"
+#include "EventCard.h"
+#include "EpidemicCard.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;
-#pragma once
+
+class Board;// Forward declaration for the loader who has a board object 
+class CardManager;
 
 class Loader {
 private:
@@ -20,5 +25,5 @@ public:
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
 	void loadBoardInfo(Board* board);
-	vector<Pawn> gameSetup(Map* initMap);
+	vector<Pawn> gameSetup(Map* initMap, CardManager* cardManager);
 };

@@ -4,7 +4,16 @@ CityCard::CityCard()
 {
 }
 
-string CityCard::getCityCardLocation()
-{
-	return string();
+CityCard::CityCard(int cardId, int cityId) {
+	this->cardId = cardId;
+	this->cityId = cityId;
+	this->type = "city";
+}
+
+void CityCard::cardAction() {
+
+}
+
+string CityCard::toString() {
+	return "City Card: " + to_string(cityId);
 }

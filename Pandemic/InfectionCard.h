@@ -1,11 +1,22 @@
-#include "Location.h"
 #pragma once
+#include "Location.h"
 
+/*
+Infection cards are the cards drawn every turn to infect cities, they contain a
+location which will be infected when drawn.
+*/
 class InfectionCard {
 
 private:
-	int id;
+	Location city;
 
 public:
+	InfectionCard();
+	InfectionCard(Location);
+	~InfectionCard();
 	void infect(Location*);
+	string printInfectionCard();
+	int getLocationId();
+	string getCityName();
+	Location getLocation() { return city; };
 };

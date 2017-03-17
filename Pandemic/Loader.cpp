@@ -12,7 +12,7 @@ Loader::Loader(string filename) {
 	}
 	catch (const std::invalid_argument& ia) {
 		//Catches exception where the file entered does not exist and starts a new game
-		ifstream i("map.json");
+		ifstream i("newgame.json");
 		i >> this->j;
 		std::cerr << "Invalid argument: " << ia.what() << '\n';
 		cerr << "Starting a New Game";
@@ -24,30 +24,76 @@ Loader::Loader(string filename) {
 //The order will not be as the original file since it is stored alphabetically in the json
 void Loader::save(string filename, Board* board) {
 
-	map<int, Location> cities = board->getMap()->getMapLocation();
+	Map* cityList = board->getMap();
+	map<int, Location> cities = cityList->getMapLocation();
+	int outIndex = 0;//Keeps track of the size of all cities that have infections
 
+	//Saves the infection for the cities, only if that number is bigger than 0
 	for (int i = 1; i < (cities.size() + 1); i++) {
-	
-		//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
-		out["location"][i-1]["id"] = cities.at(i).getId();
-		out["location"][i - 1]["yellow"] = cities.at(i).getYellow();
-		out["location"][i - 1]["blue"] = cities.at(i).getBlue();
-		out["location"][i - 1]["black"] = cities.at(i).getBlack();
-		out["location"][i - 1]["red"] = cities.at(i).getRed();
-	
+
+		int yellow = cities.at(i).getYellow();
+		int black = cities.at(i).getBlack();
+		int red = cities.at(i).getRed();
+		int blue = cities.at(i).getBlue();
+
+		//Checks to see if the current city as an infection of note, that is not 0
+		if (yellow != 0 || black != 0 || red != 0 || blue != 0) {
+			//i-1 because the keys in the map start at 1, but in an array, indexing starts at 0
+			out["location"][outIndex]["id"] = cities.at(i).getId();
+
+			//Only prints the infection number for that infection's color
+			if (yellow != 0) {
+				out["location"][outIndex]["yellow"] = yellow;
+			}
+
+			if (black != 0) {
+				out["location"][outIndex]["black"] = black;
+			}
+
+			if (red != 0) {
+				out["location"][outIndex]["red"] = red;
+			}
+
+			if (blue != 0) {
+				out["location"][outIndex]["blue"] = blue;
+			}
+			outIndex++; // incremented only if a city has an infection
+		} 
 	}
 
+	//Prints out an empty array if there is no infection to prevent parsing problems when loading
+	if (outIndex == 0) {
+		vector<int> empty;
+		out["location"] = empty;
+	}
+
+	DiseaseCubes* diseases = board->getMap()->getDiseaseCubes();
+
+	//Saves the board data
 	out["Board"]["outbreakLevel"] = board->getOutBreakMarker();
 	out["Board"]["infectionLevel"] = board->getInfectionRateMarker();
-	out["Board"]["pieces"]["blackPiecesAv"] = board->getNumOfBlackPieces();
-	out["Board"]["pieces"]["yellowPiecesAv"] = board->getNumOfYellowPieces();
-	out["Board"]["pieces"]["redPiecesAv"] = board->getNumOfRedPieces();
-	out["Board"]["pieces"]["bluePiecesAv"] = board->getNumOfBluePieces();
 	out["Board"]["diseaseEradicated"]["black"] = board->isBlackCured();
 	out["Board"]["diseaseEradicated"]["yellow"] = board->isYellowCured();
 	out["Board"]["diseaseEradicated"]["red"] = board->isRedCured();
 	out["Board"]["diseaseEradicated"]["blue"] = board->isBlueCured();
 	out["Board"]["researchStations"] = board->getResearchStations();
+
+	out["Board"]["pieces"]["blackPiecesAv"] = diseases->getNumOfBlackPieces();
+	out["Board"]["pieces"]["yellowPiecesAv"] = diseases->getNumOfYellowPieces();
+	out["Board"]["pieces"]["redPiecesAv"] = diseases->getNumOfRedPieces();
+	out["Board"]["pieces"]["bluePiecesAv"] = diseases->getNumOfBluePieces();
+
+	out["Board"]["turn"] = board->getTurn();
+
+	CardManager* cardManager = board->getCardManager();
+
+	//Save the Infection Cards
+	out["cards"]["infection"]["deck"] = cardManager->getInfectionCardDeckId();
+	out["cards"]["infection"]["discard"] = cardManager->getInfectionCardDiscardId();\
+	
+	//Saves the Board's Player Cards
+	out["cards"]["player"]["deck"] = cardManager->getPlayerCardDeckId();
+	out["cards"]["player"]["discard"] = cardManager->getPlayerCardDiscardId();
 
 	//Saves the game information to a new or existing file of the specified name
 	std::ofstream o(filename + ".json");
@@ -55,41 +101,32 @@ void Loader::save(string filename, Board* board) {
 }
 
 vector<Player *> Loader::loadPlayers() {
-	Player *player1;
-	Player *player2;
-	vector<Player *> players;
 
-	players.push_back(player1);
-	players.push_back(player2);
+	vector<Player *> players;	
+	for (int i = 0; i < j["Players"].size(); i++) {
+		Player* player = new Player;
+		players.push_back(player);
+	}
 
 	int i = 0;
 	for (auto &player : players) {
 
 		Role *r = new Role (j["Players"][i]["role"].get<string>());
-
-		vector<string> playerCardNames = j["Players"][i]["playercards"].get<vector<string>>();
-		vector<PlayerCard *> pcards;
-
-		for (auto &cardName : playerCardNames) { // for each playerCardName, create a new player card and store it in a vector. 
-			PlayerCard *pc = new CityCard(cardName);
-			pcards.push_back(pc);
-		}
-
 		Pawn *pawn = new Pawn(j["Players"][i]["pawn"]["color"].get<string>()); // The color int is read from the json (since enum stored as int) 
 																  //and dynamically created and allocated
 		
+		int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
 
-		//int playerLocation = j["Players"][i]["pawn"]["location"].get<int>();
-
-		//pawn->setPawnLocation(playerLocation);
+		pawn->setLocation(playerLocation);
 
 		Player* p = new Player( // Create the player with the role, and the pawn
 			r,
 			pawn
 		);
 
+		p->setPlayerCardId(j["Players"][i]["playercards"]["citycards"].get<vector<int>>());
+
 		player = p;
-		player->setPlayerCards(pcards);
 
 		i++;
 	}
@@ -104,16 +141,17 @@ void Loader::save(string filename, vector<Player *> players) {
 		// Save player's role
 		out["Players"][i]["role"] = players[i]->getRole()->getName();
 
-
+		//TODO: add event cards.
 		// Save player's cards 
 		for (int j = 0; j < players[i]->getPlayerCards().size(); j++) {
-			out["Players"][i]["playercards"][j] = players[i]->getPlayerCards()[j]->getCardName();
+			out["Players"][i]["playercards"]["citycards"][j] = players[i]->getPlayerCards()[j]->getId();
 		}
-
-
+		
 		// Save player's pawn color, and location.
 		out["Players"][i]["pawn"]["color"] = players[i]->getPlayerPawn()->getColor();
-		//out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation().getId();
+		out["Players"][i]["pawn"]["location"] = players[i]->getPlayerPawn()->getCurrentLocation();
+
+		
 	}
 	
 
@@ -131,13 +169,9 @@ void Loader::load(vector<Player*> & players)
 //Loads the board data that is related to a game
 void Loader::loadBoardInfo(Board * board)
 {
+	//Loads the miscellaneous data of the board
 	board->setOutbreakMarker(j["Board"]["outbreakLevel"].get<int>());
 	board->setInfectionMarker(j["Board"]["infectionLevel"].get<int>());
-
-	board->setNumOfBlackPieces(j["Board"]["pieces"]["blackPiecesAv"].get<int>());
-	board->setNumOfYellowPieces(j["Board"]["pieces"]["yellowPiecesAv"].get<int>());
-	board->setNumOfRedPieces(j["Board"]["pieces"]["redPiecesAv"].get<int>());
-	board->setNumOfBluePieces(j["Board"]["pieces"]["bluePiecesAv"].get<int>());
 
 	board->setBlackCureFound(j["Board"]["diseaseEradicated"]["black"].get<bool>());
 	board->setYellowCureFound(j["Board"]["diseaseEradicated"]["yellow"].get<bool>());
@@ -145,9 +179,75 @@ void Loader::loadBoardInfo(Board * board)
 	board->setBlueCureFound(j["Board"]["diseaseEradicated"]["blue"].get<bool>());
 
 	board->setResearchStations(j["Board"]["researchStations"].get<std::vector<int>>());
+
+	board->setTurn(j["Board"]["turn"].get<int>());
+
+	DiseaseCubes* diseases = new DiseaseCubes(
+		j["Board"]["pieces"]["blackPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["yellowPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["redPiecesAv"].get<int>(),
+		j["Board"]["pieces"]["bluePiecesAv"].get<int>()
+	);
+
+	board->getMap()->setDiseaseCubes(diseases);
+
+	//Loads the infection level for every cities
+	Map* map = board->getMap();
+	for (int idx = 0; idx < j["location"].size(); idx++) {
+
+		int locationId = j["location"][idx]["id"];
+		if (!(j["location"][idx]["black"].is_null())) {
+			map->setLocationNumOfBlack(locationId, j["location"][idx]["black"].get<int>());
+		}
+
+		if (!(j["location"][idx]["yellow"].is_null())) {
+			map->setLocationNumOfYellow(locationId, j["location"][idx]["yellow"].get<int>());
+		}
+
+		if (!(j["location"][idx]["red"].is_null())) {
+			map->setLocationNumOfRed(locationId, j["location"][idx]["red"].get<int>());
+		}
+
+		if (!(j["location"][idx]["blue"].is_null())) {
+			map->setLocationNumOfBlue(locationId, j["location"][idx]["blue"].get<int>());
+		}
+	}
+
+	//Loads the card Manager
+
+	//The infection cards will be stored according to the id of the location that they correspond to
+	vector<int> infectionCardIds = j["cards"]["infection"]["deck"].get<vector<int>>();
+	vector<int> infectionCardDiscardIds = j["cards"]["infection"]["discard"].get<vector<int>>();
+
+	vector<InfectionCard*> infectionCards;//Will contain the infection deck
+	vector<InfectionCard*> infectionDiscardCards;//Will contain the discarded infection cards
+
+	//Loads the infection deck
+	for (int i = 0; i < infectionCardIds.size(); i++) {//Loops through the deck card in the json 
+		Location city = map->getLocationAtId(infectionCardIds[i]);//Gets the location corresponding to the id
+		InfectionCard* infectionCard = new InfectionCard(city);//Creates the infection card using the location object
+		infectionCards.push_back(infectionCard);//Adds all the location to the list that will be returned to the card manager
+	}
+
+	//Loads the discard deck
+	for (int i = 0; i < infectionCardDiscardIds.size(); i++) {
+		Location city = map->getLocationAtId(infectionCardDiscardIds[i]);
+		InfectionCard* infectionCard = new InfectionCard(city);
+		infectionDiscardCards.push_back(infectionCard);
+	}
+
+	//Sets the board's card Manager with the card being instantiated according to the JSON
+	//CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
+	//board->setCardManager(cardManager);
+	CardManager* cardManager = board->getCardManager();
+	cardManager->setInfectionCardDeck(infectionCards);
+	cardManager->setInfectionCardDiscard(infectionDiscardCards);
+
+	map = NULL;//deletes the dangling map pointer
+	cardManager = NULL;
 }
 
-vector<Pawn> Loader::gameSetup(Map* initMap) {
+vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
 	map<int, Location> cityMap;
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
 	for (int i = 0; i < j["location"].size(); i++) {
@@ -158,10 +258,6 @@ vector<Pawn> Loader::gameSetup(Map* initMap) {
 			j["location"][i]["city"].get<std::string>(),
 			j["location"][i]["area"].get<std::string>(),
 			j["location"][i]["adjacent"].get<std::vector<int>>(),
-			j["location"][i]["yellow"].get<int>(),
-			j["location"][i]["blue"].get<int>(),
-			j["location"][i]["black"].get<int>(),
-			j["location"][i]["red"].get<int>()
 		};
 
 		cityMap[cityId] = l;
@@ -169,6 +265,37 @@ vector<Pawn> Loader::gameSetup(Map* initMap) {
 
 	initMap->setMapLocation(cityMap);
 
+	//Instantiates the list of Player Cards
+
+	map<int, PlayerCard*> playerCards;
+
+	//Loops through the city cards
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["cityCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"].get<int>();
+		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"].get<int>();
+		PlayerCard* cityCard = new CityCard(cardId, cityId);
+		playerCards[cardId] = cityCard;
+	}
+
+	//Loops through the event Cards
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["eventCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["eventCards"][i]["cardId"].get<int>();
+		string cardName = j["GameSetup"]["playerCards"]["eventCards"][i]["cardName"].get<string>();
+		PlayerCard* eventCard = new EventCard(cardId, cardName);
+		playerCards[cardId] = eventCard;
+	}
+
+	//Loops through all the epidemic Cards
+	for (int i = 0; i < j["GameSetup"]["playerCards"]["epidemicCards"].size(); i++) {
+		int cardId = j["GameSetup"]["playerCards"]["epidemicCards"][i]["cardId"].get<int>();
+		string description = j["GameSetup"]["playerCards"]["epidemicCards"][i]["description"].get<string>();
+		PlayerCard* epidemicCard = new EpidemicCard(cardId, description);
+		playerCards[cardId] = epidemicCard;
+	}
+
+	cardManager->setPlayerCardList(playerCards);
+
+	//Instantiates the list of roles that a player can have
 	vector<Pawn> listOfRoles;
 	for (int k = 0; k < j["GameSetup"]["roles"].size(); k++) {
 

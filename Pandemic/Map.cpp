@@ -8,6 +8,12 @@ Map::Map()
 
 Map::Map(const Map& map) {
 	cities = map.cities;
+	this->diseaseCubes = new DiseaseCubes;
+	*diseaseCubes = *map.diseaseCubes;
+}
+
+Map::~Map() {
+	delete diseaseCubes;
 }
 
 void Map::setMapLocation(map<int, Location> map)
@@ -27,6 +33,21 @@ void Map::printConnections()
 	}
 }
 
+void Map::setLocationNumOfBlack(int id, int numInfection){
+	cities.at(id).setBlack(numInfection);
+}
+
+void Map::setLocationNumOfYellow(int id, int numInfection) {
+	cities.at(id).setYellow(numInfection);
+}
+
+void Map::setLocationNumOfRed(int id, int numInfection) {
+	cities.at(id).setRed(numInfection);
+}
+
+void Map::setLocationNumOfBlue(int id, int numInfection) {
+	cities.at(id).setBlue(numInfection);
+}
 
 string Map::toString() {
 
@@ -73,5 +94,16 @@ string Map::toString() {
 		result += "\n";
 	}
 	return result;
+}
+
+Location Map::getLocationAtId(int id) {
+	return cities.at(id);
+}
+
+void Map::infectCity(Location loc)
+{
+	int cityId = loc.getId();
+	string virusColor = loc.getArea();
+	cities.at(cityId).infect(virusColor, diseaseCubes);
 }
 

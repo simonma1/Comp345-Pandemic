@@ -29,7 +29,260 @@
         "color": "Red",
         "role": "Operations Expert"
       }
-    ]
+    ],
+    "playerCards": {
+      "cityCards": [
+        {
+          "cityId": 1,
+          "cardId": 1
+        },
+        {
+          "cityId": 2,
+          "cardId": 2
+        },
+        {
+          "cityId": 3,
+          "cardId": 3
+        },
+        {
+          "cityId": 4,
+          "cardId": 4
+        },
+        {
+          "cityId": 5,
+          "cardId": 5
+        },
+        {
+          "cityId": 6,
+          "cardId": 6
+        },
+        {
+          "cityId": 7,
+          "cardId": 7
+        },
+        {
+          "cityId": 8,
+          "cardId": 8
+        },
+        {
+          "cityId": 9,
+          "cardId": 9
+        },
+        {
+          "cityId": 10,
+          "cardId": 10
+        },
+        {
+          "cityId": 11,
+          "cardId": 11
+        },
+        {
+          "cityId": 12,
+          "cardId": 12
+        },
+        {
+          "cityId": 13,
+          "cardId": 13
+        },
+        {
+          "cityId": 14,
+          "cardId": 14
+        },
+        {
+          "cityId": 15,
+          "cardId": 15
+        },
+        {
+          "cityId": 16,
+          "cardId": 16
+        },
+        {
+          "cityId": 17,
+          "cardId": 17
+        },
+        {
+          "cityId": 18,
+          "cardId": 18
+        },
+        {
+          "cityId": 19,
+          "cardId": 19
+        },
+        {
+          "cityId": 20,
+          "cardId": 20
+        },
+        {
+          "cityId": 21,
+          "cardId": 21
+        },
+        {
+          "cityId": 22,
+          "cardId": 22
+        },
+        {
+          "cityId": 23,
+          "cardId": 23
+        },
+        {
+          "cityId": 24,
+          "cardId": 24
+        },
+        {
+          "cityId": 25,
+          "cardId": 25
+        },
+        {
+          "cityId": 26,
+          "cardId": 26
+        },
+        {
+          "cityId": 27,
+          "cardId": 27
+        },
+        {
+          "cityId": 28,
+          "cardId": 28
+        },
+        {
+          "cityId": 29,
+          "cardId": 29
+        },
+        {
+          "cityId": 30,
+          "cardId": 30
+        },
+        {
+          "cityId": 31,
+          "cardId": 31
+        },
+        {
+          "cityId": 32,
+          "cardId": 32
+        },
+        {
+          "cityId": 33,
+          "cardId": 33
+        },
+        {
+          "cityId": 34,
+          "cardId": 34
+        },
+        {
+          "cityId": 35,
+          "cardId": 35
+        },
+        {
+          "cityId": 36,
+          "cardId": 36
+        },
+        {
+          "cityId": 37,
+          "cardId": 37
+        },
+        {
+          "cityId": 38,
+          "cardId": 38
+        },
+        {
+          "cityId": 39,
+          "cardId": 39
+        },
+        {
+          "cityId": 40,
+          "cardId": 40
+        },
+        {
+          "cityId": 41,
+          "cardId": 41
+        },
+        {
+          "cityId": 42,
+          "cardId": 42
+        },
+        {
+          "cityId": 43,
+          "cardId": 43
+        },
+        {
+          "cityId": 44,
+          "cardId": 44
+        },
+        {
+          "cityId": 45,
+          "cardId": 45
+        },
+        {
+          "cityId": 46,
+          "cardId": 46
+        },
+        {
+          "cityId": 47,
+          "cardId": 47
+        },
+        {
+          "cityId": 48,
+          "cardId": 48
+        }
+      ],
+      "eventCards": [
+        {
+          "cardId": 49,
+          "cardName": "Airlift",
+          "eventId": 1
+        },
+        {
+          "cardId": 50,
+          "cardName": "Dump Body",
+          "eventId": 2
+        },
+        {
+          "cardId": 51,
+          "cardName": "Dump Body",
+          "eventId": 3
+        },
+        {
+          "cardId": 52,
+          "cardName": "Dump Body",
+          "eventId": 4
+        },
+        {
+          "cardId": 53,
+          "cardName": "Dump Body",
+          "eventId": 5
+        }
+      ],
+      "epidemicCards": [
+        {
+          "cardId": 54,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 55,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 56,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 57,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 58,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 59,
+          "description": "Epidemic Time"
+        },
+        {
+          "cardId": 60,
+          "description": "Epidemic Time"
+        }
+      ]
+    }
   },
   "location": [
     {

@@ -4,376 +4,219 @@
             "black": false,
             "blue": false,
             "red": false,
-            "yellow": true
+            "yellow": false
         },
-        "infectionLevel": 0,
-        "outbreakLevel": 1,
+        "infectionLevel": 2,
+        "outbreakLevel": 0,
         "pieces": {
-            "blackPiecesAv": 24,
-            "bluePiecesAv": 21,
-            "redPiecesAv": 22,
-            "yellowPiecesAv": 23
+            "blackPiecesAv": 18,
+            "bluePiecesAv": 23,
+            "redPiecesAv": 20,
+            "yellowPiecesAv": 22
         },
         "researchStations": [
             5
-        ]
+        ],
+        "turn": 0
     },
     "Players": [
         {
             "pawn": {
-                "color": "Brown"
+                "color": "Orange",
+                "location": 8
             },
-            "playercards": [
-                "Peanut"
-            ],
-            "role": "Researcher"
+            "playercards": {
+                "citycards": [
+                    52,
+                    50,
+                    38
+                ]
+            },
+            "role": "Medic"
         },
         {
             "pawn": {
-                "color": "Blue"
+                "color": "Pink",
+                "location": 21
             },
-            "playercards": [
-                "Bolt"
-            ],
-            "role": "Contingency Planner"
+            "playercards": {
+                "citycards": [
+                    33,
+                    28,
+                    46,
+                    34,
+                    22,
+                    1
+                ]
+            },
+            "role": "Dispatcher"
         }
     ],
+    "cards": {
+        "infection": {
+            "deck": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                19,
+                20,
+                21,
+                23,
+                24,
+                25,
+                27,
+                29,
+                30,
+                34,
+                36,
+                37,
+                38,
+                39,
+                40,
+                43,
+                45,
+                46,
+                47
+            ],
+            "discard": [
+                33,
+                1,
+                22,
+                35,
+                28,
+                18,
+                41,
+                48,
+                32,
+                44,
+                31,
+                42,
+                26
+            ]
+        },
+        "player": {
+            "deck": [
+                2,
+                3,
+                4,
+                5,
+                7,
+                8,
+                9,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                23,
+                24,
+                25,
+                26,
+                27,
+                29,
+                30,
+                31,
+                32,
+                35,
+                36,
+                37,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                47,
+                48,
+                49,
+                51,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60
+            ],
+            "discard": [
+                6,
+                39,
+                10
+            ]
+        }
+    },
     "location": [
         {
-            "black": 0,
-            "blue": 0,
-            "id": 1,
-            "red": 0,
-            "yellow": 0
+            "blue": 1,
+            "id": 1
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 2,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 3,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 4,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 5,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 6,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 7,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 8,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 9,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 10,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 11,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 12,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 13,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 14,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 15,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 16,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 17,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
             "id": 18,
-            "red": 0,
-            "yellow": 0
+            "yellow": 1
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 19,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 20,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 21,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
             "id": 22,
-            "red": 0,
-            "yellow": 0
+            "yellow": 1
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 23,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 26
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 24,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 28
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 25,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 31
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 26,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 32
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 27,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 33
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 28,
-            "red": 0,
-            "yellow": 0
+            "black": 1,
+            "id": 35
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 29,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 30,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 31,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 32,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 33,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 34,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 35,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 36,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 37,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 38,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 39,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 40,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
             "id": 41,
-            "red": 0,
-            "yellow": 0
+            "red": 1
         },
         {
-            "black": 0,
-            "blue": 0,
             "id": 42,
-            "red": 0,
-            "yellow": 0
+            "red": 1
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 43,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
             "id": 44,
-            "red": 0,
-            "yellow": 0
+            "red": 1
         },
         {
-            "black": 0,
-            "blue": 0,
-            "id": 45,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 46,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
-            "id": 47,
-            "red": 0,
-            "yellow": 0
-        },
-        {
-            "black": 0,
-            "blue": 0,
             "id": 48,
-            "red": 0,
-            "yellow": 0
+            "red": 1
         }
     ]
 }

@@ -1,21 +1,22 @@
+#pragma once
 #include "Location.h"
 #include <ctime>
-#pragma once
 
 class Pawn {
 
 public:
-	Location getCurrentLocation();
+	int getCurrentLocation() { return location; };
 	string getColor() { return pawnColor; };
 	string getRole() { return role; };
 	Pawn(string, string);
 	Pawn(string);
 	Pawn();
+	void setLocation(int location) { this->location = location; };
 
 private:
 	string pawnColor;
 	string role;
-	Location currentLocation;
+	int location;
 
 
 };
