@@ -116,10 +116,11 @@ int main()
 
 			 
 			//Used to test the build research station action and discover cure.
-			/*for (int i = 15; i < 20; i++) {
-				players[0]->addPlayerCard(new CityCard(i, i));
+			/*if (i == MOVESPERTURN) {
+				for (int i = 15; i < 20; i++) {
+					players[0]->addPlayerCard(new CityCard(i, i));
+				}
 			}*/
-
 			
 
 			 // Display available actions
