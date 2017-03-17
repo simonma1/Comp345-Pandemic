@@ -317,7 +317,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 				// check for directflight action
 				else
-					availableActions.push_back(new DirectFlightAction(card->getId(), (cardManager->getPlayerCardDiscard())));
+					availableActions.push_back(new DirectFlightAction(card->getId(), cardManager->getPlayerCardDiscard()));
 			}
 		}
 	}
@@ -351,13 +351,13 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 				// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
 				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
-					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound));
+					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
 				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
-					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound));
+					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
 				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
-					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound));
+					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
 				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
-					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound));
+					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
 			}
 		}
 	}
