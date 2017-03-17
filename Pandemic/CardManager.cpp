@@ -164,14 +164,27 @@ PlayerCard* CardManager::drawPlayerCard() {
 string CardManager::toString() {
 	string value = "";
 
-	value += "The discarded cards are: \n";
+	value += "The discarded infection cards are: \n";
 
 	for (int i = 0; i < infectionDiscard.size(); i++) {
 	
 		value += to_string(infectionDiscard[i]->getLocationId()) + ". " 
 			+ infectionDiscard[i]->getCityName() + "\n" ;
-	
 	}
+	
+	value += "\n";
+
+	if (playerCardDiscard.size() > 0) {
+		value += "The discarded city and event cards are: \n";
+		for (int i = 0; i < playerCardDiscard.size(); i++) {
+			value += playerCardDiscard[i]->toString() + "\n";
+		}
+	}
+	else {
+		value += "There are no discarded player cards\n";
+	}
+	
+	value += "\n";
 
 	value += "There are " + to_string(playerCardList.size()) + " player cards\n";
 

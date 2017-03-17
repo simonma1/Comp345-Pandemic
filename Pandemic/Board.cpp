@@ -309,14 +309,16 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	if (player->getPlayerCards().size() > 0) {
 		for (auto &card : player->getPlayerCards()) {
 			// check for build RS action and charterflight action
-			if (player->getPlayerPawn()->getCurrentLocation() == card->getId()) {
-				if (!onARsearchStation) // can't build a research station if there already is one
-					availableActions.push_back(new BuildRSAction(&researchStations));
-				availableActions.push_back(new CharterFlightAction());
+			if (card->getId() < MAX_ID_FOR_CITY_CARD) {
+				if (player->getPlayerPawn()->getCurrentLocation() == card->getId()) {
+					if (!onARsearchStation) // can't build a research station if there already is one
+						availableActions.push_back(new BuildRSAction(&researchStations));
+					availableActions.push_back(new CharterFlightAction());
+				}
+				// check for directflight action
+				else
+					availableActions.push_back(new DirectFlightAction(card->getId(), (cardManager->getPlayerCardDiscard())));
 			}
-			// check for directflight action
-			else
-				availableActions.push_back(new DirectFlightAction(card->getId()));
 		}
 	}
 	

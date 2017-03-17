@@ -28,6 +28,7 @@
 #define YELLOW "Yellow"
 #define MIN_NUM_CARDS_FOR_CURE 5
 #define ATLANTA_ID 5
+#define MAX_ID_FOR_CITY_CARD 49
 
 class CardManager;
 

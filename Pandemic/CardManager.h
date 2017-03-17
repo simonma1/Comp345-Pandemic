@@ -39,7 +39,7 @@ public:
 	void setPlayerCardDeck(vector<PlayerCard*> playerCardDeck) { this->playerCardDeck = playerCardDeck; };
 	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
 	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
-	vector<PlayerCard*> getPlayerCardDiscard() { return playerCardDiscard; };
+	vector<PlayerCard*>* getPlayerCardDiscard() { return &playerCardDiscard; };
 	vector<int> getPlayerCardDeckId();
 	vector<int> getPlayerCardDiscardId();
 
