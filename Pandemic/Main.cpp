@@ -125,7 +125,6 @@ int main()
 			// Test for Sharing Knowledge
 			/*if (i == MOVESPERTURN) {
 				players[0]->addPlayerCard(new CityCard(5, 5));
-				players[1]->addPlayerCard(new CityCard(5, 5));
 			}*/
 
 			 // Display available actions

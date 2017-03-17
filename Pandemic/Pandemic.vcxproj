@@ -164,6 +164,8 @@
     <ClInclude Include="MovementAction.h" />
     <ClInclude Include="MovementCardAction.h" />
     <ClInclude Include="MovementNoCardAction.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="OperationsExpertAction.h" />
     <ClInclude Include="OtherAction.h" />
     <ClInclude Include="PlayerCards.h" />
