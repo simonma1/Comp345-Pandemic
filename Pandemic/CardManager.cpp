@@ -117,7 +117,6 @@ void CardManager::distributeCards(Board* board)
 	for (int i = 1; i <= playerCardList.size(); i++) {
 		if (playerCardList.at(i)->getType() != "epidemic") {
 			playerCardDeck.push_back(playerCardList.at(i));
-			cout << playerCardList.at(i)->getType();
 		} else {
 			epidemicTempHolder.push_back(playerCardList.at(i));
 		}
