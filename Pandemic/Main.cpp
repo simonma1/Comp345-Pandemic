@@ -57,9 +57,9 @@ int main()
 		int numOfPlayers;
 		cout << "How many players will there be?" << endl;
 		cin >> numOfPlayers;
-		while ((numOfPlayers < 1) || (numOfPlayers > 4)) {
+		while ((numOfPlayers < 2) || (numOfPlayers > 4)) {
 			cout << "You entered an invalid value. Please Try Again." << endl;
-			cin >> startOrLoad;
+			cin >> numOfPlayers;
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
