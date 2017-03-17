@@ -76,8 +76,8 @@ Location CardManager::drawInfectionCard()
 		cout << "Drawing Infection Card\n";
 		int nextCard = drawShuffledCard();
 		InfectionCard* card = infectionCardDeck[nextCard];
-		moveInfectionCardToDiscard(card, nextCard);
 		notifyObservers();
+		moveInfectionCardToDiscard(card, nextCard);
 		return card->getLocation();
 	}
 	else {
