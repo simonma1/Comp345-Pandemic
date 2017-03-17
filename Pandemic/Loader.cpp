@@ -137,7 +137,7 @@ vector<Player *> Loader::loadPlayers() {
 
 //Save the state of the players in the json.
 void Loader::save(string filename, vector<Player *> players) {
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < players.size(); i++) {
 		// Save player's role
 		out["Players"][i]["role"] = players[i]->getRole()->getName();
 
