@@ -388,14 +388,16 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 	// check for treat action
 	Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+	int currentLocationId = currentLocation.getId();
+
 	if (currentLocation.getBlue() > 0)
-		availableActions.push_back(new TreatAction(BLUE));
+		availableActions.push_back(new TreatAction(BLUE, boardMap, currentLocationId));
 	if (currentLocation.getBlack() > 0)
-		availableActions.push_back(new TreatAction(BLACK));
+		availableActions.push_back(new TreatAction(BLACK, boardMap, currentLocationId));
 	if (currentLocation.getRed() > 0)
-		availableActions.push_back(new TreatAction(RED));
+		availableActions.push_back(new TreatAction(RED, boardMap, currentLocationId));
 	if (currentLocation.getYellow() > 0)
-		availableActions.push_back(new TreatAction(YELLOW));
+		availableActions.push_back(new TreatAction(YELLOW, boardMap, currentLocationId));
 
 	return availableActions;
 };
