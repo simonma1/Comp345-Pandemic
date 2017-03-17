@@ -119,6 +119,8 @@
     <ClCompile Include="DirectFlightAction.cpp" />
     <ClCompile Include="DiscoverCureAction.cpp" />
     <ClCompile Include="DiseaseCubes.cpp" />
+    <ClCompile Include="DiseaseObservable.cpp" />
+    <ClCompile Include="DiseaseObserver.cpp" />
     <ClCompile Include="DispatcherAction.cpp" />
     <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="EpidemicCard.cpp" />
@@ -129,6 +131,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MedicAction.cpp" />
+    <ClCompile Include="ResearchStationObservable.cpp" />
+    <ClCompile Include="ResearchStationObserver.cpp" />
     <ClCompile Include="OperationsExpertAction.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -155,6 +159,8 @@
     <ClInclude Include="DirectFlightAction.h" />
     <ClInclude Include="DiscoverCureAction.h" />
     <ClInclude Include="DiseaseCubes.h" />
+    <ClInclude Include="DiseaseObservable.h" />
+    <ClInclude Include="DiseaseObserver.h" />
     <ClInclude Include="DispatcherAction.h" />
     <ClInclude Include="DriveAction.h" />
     <ClInclude Include="EpidemicCard.h" />
@@ -178,6 +184,8 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResearcherAction.h" />
+    <ClInclude Include="ResearchStationObservable.h" />
+    <ClInclude Include="ResearchStationObserver.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RoleAction.h" />
     <ClInclude Include="ScientistAction.h" />

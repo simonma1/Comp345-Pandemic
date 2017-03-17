@@ -6,9 +6,6 @@ using namespace std;
 
 class Observable {
 public:
-	void addObserver(Observer*);
-	void notifyObservers();
-
-private:
-	vector<Observer*> observers;
+	virtual void addObserver(Observer *) = 0;
+	virtual void notifyObservers() = 0;
 };

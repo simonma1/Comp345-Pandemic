@@ -22,6 +22,8 @@
 #include "ContingencyPlannerAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
+#include "DiseaseObservable.h"
+#include "ResearchStationObservable.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
