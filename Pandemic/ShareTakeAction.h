@@ -6,9 +6,10 @@ public:
 	void act(Player*);
 	string toString();
 	ShareTakeAction();
-	ShareTakeAction(Player*);
+	ShareTakeAction(Player*, int);
 	~ShareTakeAction();
 
 private:
 	Player *playerYouCanTakeFrom;
+	int cardPosition;
 };
