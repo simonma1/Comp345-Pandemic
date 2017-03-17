@@ -4,11 +4,13 @@
 
 using namespace std;
 
+class Observer;
+
 class Observable {
 public:
 	void addObserver(Observer*);
 	void notifyObservers();
 
-private:
+protected:
 	vector<Observer*> observers;
 };
