@@ -1,11 +1,13 @@
 #pragma once
 #include "Location.h"
 #include "DiseaseCubes.h"
+#include "Observable.h"
 #include <vector>
 #include <iostream>
+
 using namespace std;
 
-class Map {
+class Map : public Observable{
 
 public:
 	Map();

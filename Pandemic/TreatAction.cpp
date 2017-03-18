@@ -6,7 +6,7 @@ void TreatAction::act(Player *player) {
 }
 
 string TreatAction::toString() {
-	return "You can treat a disease";
+	return "You can treat the " + targetColor + " disease";
 }
 
 TreatAction::TreatAction(){}

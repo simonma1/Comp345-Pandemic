@@ -128,7 +128,9 @@
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapObserverViewer.cpp" />
     <ClCompile Include="MedicAction.cpp" />
+    <ClCompile Include="Observable.cpp" />
     <ClCompile Include="OperationsExpertAction.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -160,6 +162,7 @@
     <ClInclude Include="EpidemicCard.h" />
     <ClInclude Include="EventCard.h" />
     <ClInclude Include="InfectionCard.h" />
+    <ClInclude Include="MapObserverViewer.h" />
     <ClInclude Include="MedicAction.h" />
     <ClInclude Include="MovementAction.h" />
     <ClInclude Include="MovementCardAction.h" />

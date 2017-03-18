@@ -17,6 +17,7 @@
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
 #include <vector>
+#include "MapObserverViewer.h"
 using namespace std;
 
 void saveGame(Loader*, string, Board*, vector<Player*>);
@@ -91,10 +92,13 @@ int main()
 
 		board->setPlayerCardsFromLoad();
 	}
+	board->getMap()->addObserver(new MapObserverViewer);
 
 	//Creates Reference card for the players. To be modified later on
 	
 	players[0]->lookAtReferenceCard();
+
+	cout << board->toString();
 
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
 
@@ -102,7 +106,7 @@ int main()
 		//Does the 4 actions
 		for (int i = MOVESPERTURN; i > 0; i--){
 			//print state of the board
-			cout << board->toString();
+			//cout << board->toString();
 
 			//Prints the players detail
 			for (int i = 0; i < players.size(); i++) {
