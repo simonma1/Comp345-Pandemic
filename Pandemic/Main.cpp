@@ -102,78 +102,90 @@ int main()
 
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
 
-	while (!board->isGameOver() && keepPlaying == 0) {
-		//Does the 4 actions
-		for (int i = MOVESPERTURN; i > 0; i--){
-			//print state of the board
-			//cout << board->toString();
+	cout << "=================================================================" << endl;
+	cout << "WILL NOW INFECT THE CURRENT CITY, AND MAP WILL BE PRINTED" << endl;
+	board->getMap()->infectCity(board->getMap()->getLocationAtId(5));
+	cout << "=================================================================" << endl;
 
-			//Prints the players detail
-			for (int i = 0; i < players.size(); i++) {
-				cout << (*players[i]).toString() << endl;
-					cout << endl;
-			}
-			cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
+	system("PAUSE");
 
+	cout << "=================================================================" << endl;
+	cout << "WILL NOW TREAT THE CURRENT CITY, AND MAP WILL BE PRINTED" << endl;
+	board->getMap()->treat(board->getMap()->getLocationAtId(5));
+	cout << "=================================================================" << endl;
 
-			 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
+	//while (!board->isGameOver() && keepPlaying == 0) {
+	//	//Does the 4 actions
+	//	for (int i = MOVESPERTURN; i > 0; i--){
+	//		//print state of the board
+	//		//cout << board->toString();
 
-			 
-			//Used to test the build research station action and discover cure.
-			/*if (i == MOVESPERTURN) {
-				for (int i = 15; i < 20; i++) {
-					players[0]->addPlayerCard(new CityCard(i, i));
-				}
-			}*/
-
-			// Test for Sharing Knowledge
-			/*if (i == MOVESPERTURN) {
-				players[0]->addPlayerCard(new CityCard(5, 5));
-			}*/
-
-			 // Display available actions
-			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
-			cout << "Here are your available actions:" << endl;
-			for (int i = 0; i < actions.size(); i++) {
-				cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
-			}
-
-			if (actions.size() > 1) {
-				int actionChosen = 0;
-				do {
-					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
-					cin >> actionChosen;
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				} while (actionChosen < 1 || actionChosen > actions.size());
-
-				cout << "Selected action " + to_string(actionChosen) << endl;
-				actions[actionChosen - 1]->act(players[board->getTurn()]);
-			}
-			else {
-				cout << "I'm sorry, you currently do not have any actions available";
-			}
+	//		//Prints the players detail
+	//		for (int i = 0; i < players.size(); i++) {
+	//			cout << (*players[i]).toString() << endl;
+	//				cout << endl;
+	//		}
+	//		cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
 
 
-			// Delete the created actions
-			for (int i = 0; i < actions.size(); i++) {
-				delete actions[i];
-				actions.erase(actions.begin() + i);
-			}
-		}
+	//		 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
 
-		//Draw 2 Player cards
-		board->drawPlayerCards();
+	//		 
+	//		//Used to test the build research station action and discover cure.
+	//		/*if (i == MOVESPERTURN) {
+	//			for (int i = 15; i < 20; i++) {
+	//				players[0]->addPlayerCard(new CityCard(i, i));
+	//			}
+	//		}*/
 
-		//Infect Cities
-		board->endOfTurnInfection();
+	//		// Test for Sharing Knowledge
+	//		/*if (i == MOVESPERTURN) {
+	//			players[0]->addPlayerCard(new CityCard(5, 5));
+	//		}*/
 
-		// change the next player's turn
-		board->toggleTurn();
+	//		 // Display available actions
+	//		vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);
+	//		cout << "Here are your available actions:" << endl;
+	//		for (int i = 0; i < actions.size(); i++) {
+	//			cout << to_string(i + 1) + ". " + actions[i]->toString() << endl;
+	//		}
 
-		cout << "The turn has been switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
-		cin >> keepPlaying;
-	}
-	
+	//		if (actions.size() > 1) {
+	//			int actionChosen = 0;
+	//			do {
+	//				cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+	//				cin >> actionChosen;
+	//				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//			} while (actionChosen < 1 || actionChosen > actions.size());
+
+	//			cout << "Selected action " + to_string(actionChosen) << endl;
+	//			actions[actionChosen - 1]->act(players[board->getTurn()]);
+	//		}
+	//		else {
+	//			cout << "I'm sorry, you currently do not have any actions available";
+	//		}
+
+
+	//		// Delete the created actions
+	//		for (int i = 0; i < actions.size(); i++) {
+	//			delete actions[i];
+	//			actions.erase(actions.begin() + i);
+	//		}
+	//	}
+
+	//	//Draw 2 Player cards
+	//	board->drawPlayerCards();
+
+	//	//Infect Cities
+	//	board->endOfTurnInfection();
+
+	//	// change the next player's turn
+	//	board->toggleTurn();
+
+	//	cout << "The turn has been switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
+	//	cin >> keepPlaying;
+	//}
+	//
 
 	string saveFileName = "save";//save the game state in a file called save.json (for now)
 	saveGame(loader, saveFileName, board, players);

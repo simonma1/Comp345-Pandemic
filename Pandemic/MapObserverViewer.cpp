@@ -1,5 +1,5 @@
 #include "MapObserverViewer.h"
-#include <stdio.h>
+#include <iostream>
 
 void MapObserverViewer::update(Observable * o) {
 	cout << "=============================" << endl;
