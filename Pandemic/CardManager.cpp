@@ -1,13 +1,13 @@
 #include "CardManager.h"
 
 CardManager::CardManager() {
-	addObserver(new InfectionLogObserver);
+	addObserver(new InfectionLogObserver);//Adds a new observer when creating the cardManager
 }
 
 CardManager::CardManager(vector<InfectionCard*> infectionDeck, vector<InfectionCard*> infectionDiscardDeck) {
 	this->infectionCardDeck = infectionDeck;
 	this->infectionDiscard = infectionDiscardDeck;
-	addObserver(new InfectionLogObserver);
+	addObserver(new InfectionLogObserver);//Adds a new observer when creating the cardManager
 }
 
 //Returns the id associated with every card in the infection deck
@@ -77,7 +77,7 @@ Location CardManager::drawInfectionCard()
 		int nextCard = drawShuffledCard();
 		InfectionCard* card = infectionCardDeck[nextCard];
 		moveInfectionCardToDiscard(card, nextCard);
-		notifyObservers();
+		notifyObservers();//Notifies the observers
 		return card->getLocation();
 	}
 	else {
