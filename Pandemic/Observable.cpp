@@ -1,6 +1,6 @@
 #include "Observable.h"
 
-void Observable::addObserver(Observer * observer)
+void Observable::addObserver(Observer *observer)
 {
 	observers.push_back(observer);
 }

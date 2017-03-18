@@ -1,7 +1,7 @@
 #include "DiseaseCubes.h"
 
 DiseaseCubes::DiseaseCubes() {
-
+	addObserver(new DiseaseObserver);
 }
 
 DiseaseCubes::DiseaseCubes(int black, int yellow, int red, int blue) {
@@ -9,6 +9,7 @@ DiseaseCubes::DiseaseCubes(int black, int yellow, int red, int blue) {
 	this->numOfYellowPieces = yellow;
 	this->numOfRedPieces = red;
 	this->numOfBluePieces = blue;
+	addObserver(new DiseaseObserver);
 }
 
 string DiseaseCubes::toString() {

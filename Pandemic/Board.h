@@ -35,7 +35,7 @@ class CardManager;
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
 */
-class Board 
+class Board : public Observable
 {
 
 public:

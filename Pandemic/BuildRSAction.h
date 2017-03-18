@@ -1,7 +1,10 @@
 #pragma once
 #include "OtherAction.h"
+#include "Observable.h"
+#include "ResearchStationObserver.h"
+#include <iostream>
 
-class BuildRSAction : public OtherAction {
+class BuildRSAction : public OtherAction, public Observable {
 public:
 	BuildRSAction();
 	BuildRSAction(vector<int>*);
@@ -10,7 +13,7 @@ public:
 	void act(Player *);
 	string toString();
 
-private:
+protected:
 	vector<int>* boardResearchStations;
 
 };

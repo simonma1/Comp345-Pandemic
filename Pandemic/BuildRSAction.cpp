@@ -2,10 +2,13 @@
 
 using namespace std;
 
-BuildRSAction::BuildRSAction(){}
+BuildRSAction::BuildRSAction(){
+	addObserver(new ResearchStationObserver);
+}
 
 BuildRSAction::BuildRSAction(vector<int>* boardResearchStations) {
 	this->boardResearchStations = boardResearchStations;
+	addObserver(new ResearchStationObserver);
 }
 
 BuildRSAction::~BuildRSAction() {
@@ -16,6 +19,7 @@ void BuildRSAction::act(Player *player) {
 	cout << player->getRole()->getName() << " Building a Research Station" << endl;
 	boardResearchStations->push_back(player->getPlayerPawn()->getCurrentLocation());
 	player->removePlayerCard(player->getPlayerPawn()->getCurrentLocation());
+	notifyObservers();
 }
 
 string BuildRSAction::toString() {

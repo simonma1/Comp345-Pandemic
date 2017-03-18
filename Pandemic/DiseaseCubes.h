@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
+#include "DiseaseObserver.h"
+#include "Observable.h"
+
 using namespace std;
 
-class DiseaseCubes {
+class DiseaseCubes:public Observable {
 
 private:
 	int numOfBlackPieces, numOfYellowPieces, numOfBluePieces, numOfRedPieces;
@@ -17,19 +20,19 @@ public:
 	int getNumOfRedPieces() { return numOfRedPieces; };
 	int getNumOfYellowPieces() { return numOfYellowPieces; };
 
-	void setNumOfBlackPieces(int numOfPieces) { this->numOfBlackPieces = numOfPieces; };
-	void setNumOfYellowPieces(int numOfPieces) { this->numOfYellowPieces = numOfPieces; };
-	void setNumOfRedPieces(int numOfPieces) { this->numOfRedPieces = numOfPieces; };
-	void setNumOfBluePieces(int numOfPieces) { this->numOfBluePieces = numOfPieces; };
+	void setNumOfBlackPieces(int numOfPieces) { this->numOfBlackPieces = numOfPieces; notifyObservers(); };
+	void setNumOfYellowPieces(int numOfPieces) { this->numOfYellowPieces = numOfPieces;notifyObservers(); };
+	void setNumOfRedPieces(int numOfPieces) { this->numOfRedPieces = numOfPieces; notifyObservers(); };
+	void setNumOfBluePieces(int numOfPieces) { this->numOfBluePieces = numOfPieces; notifyObservers();};
 
-	void DecrementNumOfBlackPieces() { numOfBlackPieces--; };
-	void DecrementNumOfYellowPieces() { numOfYellowPieces--; };
-	void DecrementNumOfRedPieces() { numOfRedPieces--; };
-	void DecrementNumOfBluePieces() { numOfBluePieces--; };
+	void DecrementNumOfBlackPieces() { numOfBlackPieces--; notifyObservers();};
+	void DecrementNumOfYellowPieces() { numOfYellowPieces--; notifyObservers();};
+	void DecrementNumOfRedPieces() { numOfRedPieces--; notifyObservers();};
+	void DecrementNumOfBluePieces() { numOfBluePieces--; notifyObservers();};
 
-	void IncrementNumOfBluePieces() { numOfBluePieces++; };
-	void IncrementNumOfYellowPieces() { numOfBluePieces++; };
-	void IncrementNumOfBlackPieces() { numOfBluePieces++; };
-	void IncrementNumOfRedPieces() { numOfBluePieces++; };
+	void IncrementNumOfBluePieces() { numOfBluePieces++; notifyObservers();};
+	void IncrementNumOfYellowPieces() { numOfBluePieces++; notifyObservers();};
+	void IncrementNumOfBlackPieces() { numOfBluePieces++; notifyObservers();};
+	void IncrementNumOfRedPieces() { numOfBluePieces++; notifyObservers();};
 
 };
