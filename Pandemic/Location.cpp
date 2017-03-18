@@ -69,8 +69,7 @@ void Location::treatRed() {
 
 void Location::infect(string infectionColor, DiseaseCubes* diseases)
 {
-	cout << "\tINFECTING " << city <<endl;
-
+	
 	if (infectionColor == "Black") {
 		numOfBlack++;
 		diseases->DecrementNumOfBlackPieces();

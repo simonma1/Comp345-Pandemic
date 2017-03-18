@@ -2,6 +2,8 @@
 #include "InfectionCard.h"
 #include "PlayerCards.h"
 #include "Board.h"
+#include "Observable.h"
+#include "InfectionLogObserver.h"
 #include <iostream>
 #include <time.h>
 
@@ -9,8 +11,9 @@ class Board;
 /*
 The card manager class will handle the logic of drawing cards and will contain all
 the cards that will be on the board, that is Infection cards and Player cards. 
+This class will be implemented as an observable class for the infection Cards, it could easily be done for the Player Cards too 
 */
-class CardManager {
+class CardManager : public Observable {
 
 private:
 	vector<InfectionCard*> infectionCardDeck;//The list of infection cards on the board that the player can draw from
