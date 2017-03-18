@@ -1,6 +1,8 @@
 #include "InfectionLogObserver.h"
 
 void InfectionLogObserver::update(Observable* observable) {
+
+	cout << "-------------------------------------------------------------------------------" "\n" << endl;
 	cout << "In Infection Log: \n ";
 
 	vector<InfectionCard*> infectionDeck = (static_cast<CardManager*>(observable)->getInfectionCardDeck());
@@ -14,9 +16,13 @@ void InfectionLogObserver::update(Observable* observable) {
 	vector<InfectionCard*> infectionDiscard = (static_cast<CardManager*>(observable)->getInfectionCardDiscard());
 	cout << "There are now " << infectionDiscard.size() << " discarded cards" << endl;
 
-	cout << "Here is the list discarded cards:\n";
+	cout << "Here is the list of discarded cards:\n";
 	for (int i = 0; i < infectionDiscard.size(); i++) {
 		cout << "\t" << infectionDiscard[i]->getLocationId() << ". " << infectionDiscard[i]->getCityName() << endl;
 	}
+
+	cout << "The last discarded infection card was: \n";
+	cout << infectionDiscard.front()->getLocationId() << ". " << infectionDiscard.front()->getCityName()<<endl;
+	cout << "-------------------------------------------------------------------------------" "\n" << endl;
 }
 
