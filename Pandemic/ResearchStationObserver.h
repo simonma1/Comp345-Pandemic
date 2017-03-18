@@ -1,9 +1,9 @@
-#include "Observer.h"
 #pragma once
-
-using namespace std;
+#include "Observer.h"
 
 class ResearchStationObserver : public Observer {
-public: 
-	void update(Observable *);
+
+public:
+	virtual void update(Observable*);
+
 };

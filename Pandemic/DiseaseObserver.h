@@ -2,6 +2,8 @@
 #include "Observer.h"
 
 class DiseaseObserver : public Observer {
+
 public:
-	void update(Observable *);
+	virtual void update(Observable*);
+
 };
