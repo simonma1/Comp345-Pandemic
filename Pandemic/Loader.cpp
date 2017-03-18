@@ -236,10 +236,13 @@ void Loader::loadBoardInfo(Board * board)
 		infectionDiscardCards.push_back(infectionCard);
 	}
 
+	vector<int> discardedIds = j["cards"]["player"]["discard"].get<vector<int>>();
+
 	//Sets the board's card Manager with the card being instantiated according to the JSON
 	//CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
 	//board->setCardManager(cardManager);
 	CardManager* cardManager = board->getCardManager();
+	cardManager->setIdsOfPlayerCardToDiscard(discardedIds);
 	cardManager->setInfectionCardDeck(infectionCards);
 	cardManager->setInfectionCardDiscard(infectionDiscardCards);
 

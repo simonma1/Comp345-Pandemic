@@ -107,6 +107,14 @@ void CardManager::setPlayerCardsFromLoad(Player* player) {
 	}
 }
 
+void CardManager::setDiscardedPlayerCardsFromLoad() {
+	for (int i = 0; i < IdsOfPlayerCardToDiscard.size(); i++) {
+		int id = IdsOfPlayerCardToDiscard[i];
+		playerCardDiscard.push_back(playerCardList.at(id));
+		playerCardList.erase(id);
+	}
+}
+
 //Generates the id of the next card to draw
 int CardManager::drawShuffledCard()
 {
