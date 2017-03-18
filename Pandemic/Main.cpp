@@ -121,7 +121,11 @@ int main()
 					players[0]->addPlayerCard(new CityCard(i, i));
 				}
 			}*/
-			
+
+			// Test for Sharing Knowledge
+			/*if (i == MOVESPERTURN) {
+				players[0]->addPlayerCard(new CityCard(5, 5));
+			}*/
 
 			 // Display available actions
 			vector<Action*> actions = board->getPlayerAvailableActions(players[board->getTurn()]);

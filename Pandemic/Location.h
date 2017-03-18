@@ -31,6 +31,9 @@ public:
 	//Infection Actions
 	void infect(string infectionColor, DiseaseCubes* diseases);
 
+	//Treating Actions
+	void treatDisease(string, DiseaseCubes* diseases);
+
 private:
 	int id;
 	string city;
@@ -40,6 +43,11 @@ private:
 	int numOfBlack;
 	int numOfRed;
 	int numOfBlue;
+
+	void treatBlue();
+	void treatBlack();
+	void treatYellow();
+	void treatRed();
 };
 
 

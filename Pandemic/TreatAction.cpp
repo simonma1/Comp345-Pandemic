@@ -2,6 +2,7 @@
 
 void TreatAction::act(Player *player) {
 	cout << player->getRole()->getName() << " Is treating a disease" << endl;
+	boardMap->treat(boardMap->getLocationAtId(location));
 }
 
 string TreatAction::toString() {
@@ -10,6 +11,8 @@ string TreatAction::toString() {
 
 TreatAction::TreatAction(){}
 
-TreatAction::TreatAction(string targetColor) {
+TreatAction::TreatAction(string targetColor, Map* boardMap, int location) {
 	this->targetColor = targetColor;
+	this->boardMap = boardMap;
+	this->location = location;
 }

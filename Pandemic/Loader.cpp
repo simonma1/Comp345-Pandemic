@@ -137,7 +137,7 @@ vector<Player *> Loader::loadPlayers() {
 
 //Save the state of the players in the json.
 void Loader::save(string filename, vector<Player *> players) {
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < players.size(); i++) {
 		// Save player's role
 		out["Players"][i]["role"] = players[i]->getRole()->getName();
 
@@ -236,10 +236,13 @@ void Loader::loadBoardInfo(Board * board)
 		infectionDiscardCards.push_back(infectionCard);
 	}
 
+	vector<int> discardedIds = j["cards"]["player"]["discard"].get<vector<int>>();
+
 	//Sets the board's card Manager with the card being instantiated according to the JSON
 	//CardManager* cardManager = new CardManager(infectionCards, infectionDiscardCards);
 	//board->setCardManager(cardManager);
 	CardManager* cardManager = board->getCardManager();
+	cardManager->setIdsOfPlayerCardToDiscard(discardedIds);
 	cardManager->setInfectionCardDeck(infectionCards);
 	cardManager->setInfectionCardDiscard(infectionDiscardCards);
 

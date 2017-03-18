@@ -183,6 +183,7 @@ void Board::setPlayerCardsFromLoad() {
 	for (auto &player : players) {
 		cardManager->setPlayerCardsFromLoad(player);
 	}
+	cardManager->setDiscardedPlayerCardsFromLoad();
 	cardManager->moveCardToDeck();
 }
 
@@ -378,24 +379,31 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	for (auto &otherPlayer : players) {
 		if (otherPlayer != player) {
 			if (otherPlayer->getPlayerPawn()->getCurrentLocation() == player->getPlayerPawn()->getCurrentLocation()) {
-				if (otherPlayer->getPlayerCards().size() > 0) // if other player has cards, player can take from him
-					availableActions.push_back(new ShareTakeAction(otherPlayer));
-				if (player->getPlayerCards().size() > 0) // if player has cards, he can give to other player
-					availableActions.push_back(new ShareGiveAction(otherPlayer));
+				for (int i = 0; i < otherPlayer->getPlayerCards().size(); i++) { // if other player has cards, player can take from him
+					if (otherPlayer->getPlayerCards()[i]->getId() == otherPlayer->getPlayerPawn()->getCurrentLocation())
+						availableActions.push_back(new ShareTakeAction(otherPlayer, i));
+				}
+					
+				for (int i = 0; i < player->getPlayerCards().size(); i++) { // if player has cards, player can take from him
+					if (player->getPlayerCards()[i]->getId() == player->getPlayerPawn()->getCurrentLocation())
+						availableActions.push_back(new ShareGiveAction(otherPlayer, i));
+				}
 			}
 		}
 	}
 
 	// check for treat action
 	Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+	int currentLocationId = currentLocation.getId();
+
 	if (currentLocation.getBlue() > 0)
-		availableActions.push_back(new TreatAction(BLUE));
+		availableActions.push_back(new TreatAction(BLUE, boardMap, currentLocationId));
 	if (currentLocation.getBlack() > 0)
-		availableActions.push_back(new TreatAction(BLACK));
+		availableActions.push_back(new TreatAction(BLACK, boardMap, currentLocationId));
 	if (currentLocation.getRed() > 0)
-		availableActions.push_back(new TreatAction(RED));
+		availableActions.push_back(new TreatAction(RED, boardMap, currentLocationId));
 	if (currentLocation.getYellow() > 0)
-		availableActions.push_back(new TreatAction(YELLOW));
+		availableActions.push_back(new TreatAction(YELLOW, boardMap, currentLocationId));
 
 	return availableActions;
 };

@@ -107,3 +107,9 @@ void Map::infectCity(Location loc)
 	cities.at(cityId).infect(virusColor, diseaseCubes);
 }
 
+void Map::treat(Location loc) {
+	int cityId = loc.getId();
+	string virusColor = loc.getArea();
+	cities.at(cityId).treatDisease(virusColor, diseaseCubes);
+}
+

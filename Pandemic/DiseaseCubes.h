@@ -22,8 +22,14 @@ public:
 	void setNumOfRedPieces(int numOfPieces) { this->numOfRedPieces = numOfPieces; };
 	void setNumOfBluePieces(int numOfPieces) { this->numOfBluePieces = numOfPieces; };
 
-	void DecrementNumOfBlackPieces() { numOfBlackPieces--; }
+	void DecrementNumOfBlackPieces() { numOfBlackPieces--; };
 	void DecrementNumOfYellowPieces() { numOfYellowPieces--; };
 	void DecrementNumOfRedPieces() { numOfRedPieces--; };
 	void DecrementNumOfBluePieces() { numOfBluePieces--; };
+
+	void IncrementNumOfBluePieces() { numOfBluePieces++; };
+	void IncrementNumOfYellowPieces() { numOfBluePieces++; };
+	void IncrementNumOfBlackPieces() { numOfBluePieces++; };
+	void IncrementNumOfRedPieces() { numOfBluePieces++; };
+
 };

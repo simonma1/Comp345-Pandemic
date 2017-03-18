@@ -23,6 +23,9 @@ public:
 	//Infection Action
 	void infectCity(Location loc);
 
+	//Treating Action
+	void treat(Location);
+
 	//Setters
 	void setMapLocation(map<int, Location>);
 	void setLocationNumOfBlack(int id, int numInfection);
