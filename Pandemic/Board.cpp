@@ -183,6 +183,7 @@ void Board::setPlayerCardsFromLoad() {
 	for (auto &player : players) {
 		cardManager->setPlayerCardsFromLoad(player);
 	}
+	cardManager->setDiscardedPlayerCardsFromLoad();
 	cardManager->moveCardToDeck();
 }
 

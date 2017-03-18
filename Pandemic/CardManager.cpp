@@ -92,18 +92,29 @@ void CardManager::moveInfectionCardToDiscard(InfectionCard* infection, int cardI
 	infectionDiscard.insert(infectionDiscard.begin(), infection);
 }
 
+//Moves the card from the default list of player card to the play deck 
 void CardManager::moveCardToDeck() {
-	for (int i = 0; i < playerCardList.size(); i++) {
-		playerCardDeck.push_back(playerCardList[i]);
+	for (auto& iter : playerCardList){//iterates through the map's object so only those remaining are accessed
+		playerCardDeck.push_back(iter.second);//Pushes the player card in the deck
 	}
-	
+		
 }
 
 void CardManager::setPlayerCardsFromLoad(Player* player) {
 	vector<int> cardIds = player->getPlayerCardId();
 	for (int i = 0; i < cardIds.size(); i++) {
+		playerCardList.at(cardIds[i])->getId();
 		player->addPlayerCard(playerCardList.at(cardIds[i]));
 		playerCardList.erase(cardIds[i]);
+	}
+}
+
+void CardManager::setDiscardedPlayerCardsFromLoad() {
+	for (int i = 0; i < IdsOfPlayerCardToDiscard.size(); i++) {
+		int id = IdsOfPlayerCardToDiscard[i];
+		cout << playerCardList.at(id)->getId();
+		playerCardDiscard.push_back(playerCardList.at(id));
+		playerCardList.erase(id);
 	}
 }
 

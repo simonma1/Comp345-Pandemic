@@ -21,6 +21,7 @@ private:
 	
 	vector<PlayerCard*> playerCardDeck;//Deck of player cards on the board that the player can draw from
 	vector<PlayerCard*> playerCardDiscard;//Cards discarded by the players
+	vector<int> IdsOfPlayerCardToDiscard;
 
 	map<int, PlayerCard*> playerCardList;
 	map<int,int> numOfCardsPerPlayer = { { 2, 4 },{ 3, 3 },{ 4, 2 }};
@@ -45,6 +46,10 @@ public:
 	vector<PlayerCard*>* getPlayerCardDiscard() { return &playerCardDiscard; };
 	vector<int> getPlayerCardDeckId();
 	vector<int> getPlayerCardDiscardId();
+	void setIdsOfPlayerCardToDiscard(vector<int> IdsOfPlayerCardToDiscard) {
+		this->IdsOfPlayerCardToDiscard = IdsOfPlayerCardToDiscard;
+	};
+	void setDiscardedPlayerCardsFromLoad();
 
 	//PlayerCardList
 	void setPlayerCardList(map<int, PlayerCard*> playerCardList) { this->playerCardList = playerCardList; };
