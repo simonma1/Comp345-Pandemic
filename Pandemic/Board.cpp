@@ -28,7 +28,7 @@ Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool 
 //Destructor for the Board object. Will delete every player from the vector of player pointer
 Board::~Board()
 {
-	for (int i = 0; i < players.size(); i++)
+	for (int i = 0; i < players.size(); i++) 
 	{
 		delete players[i];
 	}
@@ -284,10 +284,12 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ContingencyPlannerAction());
 		canPerformRoleAction = true;
 	}
-	if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
-		availableActions.push_back(new OperationsExpertAction());
-		canPerformRoleAction = true;
-	}
+
+	//TAKING CARE OF THIS ROLE 
+	//if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
+		//availableActions.push_back(new OperationsExpertBuildAction());
+		//canPerformRoleAction = true;
+	//}
 
 	// Check if player is on research station
 	bool onARsearchStation = false;
@@ -295,9 +297,20 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		if (player->getPlayerPawn()->getCurrentLocation() == researchStations[i]) { // is the player on a research station
 			onARsearchStation = true;
 		}
+		//If the player is on a city that has no research station and that player is an operations expert, 
+		//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
+		else if (player->getRole()->getName().compare("Operations Expert") == 0) {
+			canPerformRoleAction = true;
+			availableActions.push_back(new OperationsExpertBuildAction(&researchStations));
+		}
 	}
 
-	
+	/*check if the player is an operations expert and if so, he allowed to use a direct flight action to ANY city
+	if (player->getRole()->getName().compare("Operations Expert") == 0) {
+		canPerformRoleAction = true;
+		availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard()));
+	}
+	*/
 
 	// check for shuttleflight action
 	if (onARsearchStation) {
@@ -335,7 +348,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		string redArea = "Red";
 		string yellowArea = "Yellow";
 
-
+		
 		if (player->getPlayerCards().size() > 0) { // does the player have any cards
 			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
 				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
@@ -369,11 +382,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new DriveAction(connection));
 	}
 
-	// check for role action
 	
-	// if (player->canPerformRoleAction()) {
-	//	   availableActions.push_back(player->getRoleAction());
-	// }
 
 	// check for share action
 	for (auto &otherPlayer : players) {
