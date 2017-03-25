@@ -305,13 +305,21 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		}
 	}
 
-	/*check if the player is an operations expert and if so, he allowed to use a direct flight action to ANY city
-	if (player->getRole()->getName().compare("Operations Expert") == 0) {
-		canPerformRoleAction = true;
-		availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard()));
+	//check if the player is an operations expert and if so, he allowed to use a direct flight action to ANY city from a city with a research station (discarding one of his own player cards)
+	//or a player card in the the player card deck. N.B: other players' city cards of the city that an operations expert wants to move to will not be discarded 
+	if (player->getRole()->getName().compare("Operations Expert") == 0 && canPerformRoleAction == false && onARsearchStation == true) {
+		//randomly generate an id for the card that a player would want to move to 
+		srand(time(NULL));
+		int randomNum = rand() % cardManager->getPlayerCardDeck().size();
+		for (auto &card : cardManager->getPlayerCardDeck()) {
+			if (card->getId() == randomNum) {
+				canPerformRoleAction = true;
+				availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), &cardManager->getPlayerCardDeck()));
+			}
+		}
+		canPerformRoleAction = false; //This allows a player do this again on his/her next turn 
 	}
-	*/
-
+	
 	// check for shuttleflight action
 	if (onARsearchStation) {
 		for (int i = 0; i < researchStations.size(); i++) { // add every other research station player can move to.
