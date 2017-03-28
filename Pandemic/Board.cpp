@@ -272,17 +272,35 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ResearcherAction());
 		canPerformRoleAction = true;
 	}
+
+	//TAKING CARE OF THIS ROLE
+	Location currentLocation2 = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+	int currentLocationId2 = currentLocation2.getId();
 	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
-		availableActions.push_back(new QuarantineSpecialistAction());
+		if (currentLocation2.getBlue() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(BLUE, boardMap, currentLocationId2));
+		else if (currentLocation2.getBlack() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(BLACK, boardMap, currentLocationId2));
+		else if (currentLocation2.getRed() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(RED, boardMap, currentLocationId2));
+		else if (currentLocation2.getYellow() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(YELLOW, boardMap, currentLocationId2));
 		canPerformRoleAction = true;
 	}
+
+
 	if ((player->getRole()->getName().compare("Dispatcher") == 0) ) {
 		availableActions.push_back(new DispatcherAction());
 		canPerformRoleAction = true;
 	}
-	if ((player->getRole()->getName().compare("Contingency Planner") == 0) ) {
-		availableActions.push_back(new ContingencyPlannerAction());
+
+	//TAKING CARE OF THIS ROLE (WILL NEED TO MODIFY THIS ONCE EVENT CARDS ARE FULLY IMPLEMENTED TO DEAL WITH DELETING (FOR THIS ROLE)
+	//AND DISCARDING OF THE EVENT CARD AS WELL AS POSSIBLE ACTIONS FOR EACH EVENT CARD
+	bool eventAlreadyOnRole = false;
+	if ( (player->getRole()->getName().compare("Contingency Planner") == 0) && eventAlreadyOnRole == false ) {
+		availableActions.push_back(new ContingencyPlannerAction(cardManager->getPlayerCardDiscard()));
 		canPerformRoleAction = true;
+		eventAlreadyOnRole = true;
 	}
 
 	//TAKING CARE OF THIS ROLE 
@@ -317,7 +335,6 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), &cardManager->getPlayerCardDeck()));
 			}
 		}
-		canPerformRoleAction = false; //This allows a player do this again on his/her next turn 
 	}
 	
 	// check for shuttleflight action

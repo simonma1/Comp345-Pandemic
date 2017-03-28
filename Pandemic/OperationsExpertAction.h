@@ -3,7 +3,6 @@
 
 class OperationsExpertAction : public RoleAction {
 public:
-	OperationsExpertAction() {};
-	void act(Player *);
-	string toString();
+	virtual void act(Player *) = 0;
+	virtual string toString() = 0;
 };
