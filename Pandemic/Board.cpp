@@ -148,13 +148,8 @@ void Board::boardSetup()
 {
 	string setupFileName = "setup.json";	
 	Loader loadCommon = Loader(setupFileName);
-	Map* map = new Map();
 
-	cardManager = new CardManager;
-	this->listOfRoles = loadCommon.gameSetup(map, cardManager);
-	*boardMap = *map;
-	map = NULL;
-
+    loadCommon.gameSetup(this);
 }
 
 void Board::drawPlayerCards() {
@@ -243,6 +238,14 @@ void Board::startInfection() {
 		drawInfectionCard();
 	
 	}
+
+}
+
+int Board::getCurrentInfectionRate() {
+	return infectionRates[infectionRateMarker];
+}
+
+void Board::incrementInfectionRate() {
 
 }
 

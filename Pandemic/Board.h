@@ -59,6 +59,7 @@ public:
 	Location drawInfectionCard();
 	void distributePlayerCards();
 	int getTurn() { return turn; };
+	void setListOfRoles(vector<Pawn> roles) { listOfRoles = roles; };
 
 	void startInfection();
 	void endOfTurnInfection();
@@ -87,6 +88,12 @@ public:
 	void setGameLost() { this->gameLost = true; };
 	void setGameWon() { this->gameWon = true; };
 
+	//Related to the infection rate
+	int getCurrentInfectionRate();
+	void incrementInfectionRate();
+	void setInfectionRateMarker(int infectionRate) { this->infectionRateMarker = infectionRate; };
+	void setInfectionRates(vector<int> rates) { infectionRates = rates; };
+
 	static const int CITIESTOINFECTINBEGINNING = 9;
 	static const int MAXNUMBEROFPLAYERCARDS = 6;
 	
@@ -94,7 +101,6 @@ private:
 	vector<Player*> players;
 	Map* boardMap;
 	int getRandomNumber();
-	int infectionRateMarker;
 	int outbreakMarker;
 	vector<int> InfectionDeck;
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
@@ -105,4 +111,6 @@ private:
 	int turn;
 	bool gameLost;
 	bool gameWon;
+	vector<int> infectionRates;
+	int infectionRateMarker;//the index of the infection rate in the vector, not the actual value
 };

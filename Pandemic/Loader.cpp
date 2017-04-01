@@ -250,8 +250,11 @@ void Loader::loadBoardInfo(Board * board)
 	cardManager = NULL;
 }
 
-vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
+void Loader::gameSetup(Board* board) {
 	map<int, Location> cityMap;
+	Map* initialMap = new Map;
+	CardManager* cardManager = new CardManager;
+
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
 	for (int i = 0; i < j["location"].size(); i++) {
 		//Loops through all cities in the JSON and puts them in a list that will be given to the map
@@ -266,7 +269,7 @@ vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
 		cityMap[cityId] = l;
 	}
 
-	initMap->setMapLocation(cityMap);
+	initialMap->setMapLocation(cityMap);
 
 	//Instantiates the list of Player Cards
 
@@ -310,5 +313,7 @@ vector<Pawn> Loader::gameSetup(Map* initMap, CardManager* cardManager) {
 		listOfRoles.push_back(p);
 	}
 
-	return listOfRoles;
+	board->setMap(initialMap);
+	board->setCardManager(cardManager);
+	board->setListOfRoles(listOfRoles);
 }
