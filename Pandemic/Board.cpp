@@ -78,7 +78,7 @@ string Board::toString()
 
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
-	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
+	value += "\tThe Infection Level is at: " + to_string(getCurrentInfectionRate()) + "\n\n";
 	
 
 	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
@@ -190,10 +190,12 @@ Location Board::drawInfectionCard()
 	return locationToInfect;
 }
 
+//At the end of every turn, the number of infection cards drawn will be equal to the infection level
 void Board::endOfTurnInfection() {
-	cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
+	int infectionLevel = getCurrentInfectionRate();
+	cout << "\nThe Infection Level is at: " << infectionLevel << ". Therefore " << infectionLevel << " Infection Cards will be drawn\n" << endl;
 
-	for (int i = 0; i < infectionRateMarker; i++) {
+	for (int i = 0; i < infectionLevel; i++) {
 		drawInfectionCard();
 	}
 }
@@ -241,12 +243,19 @@ void Board::startInfection() {
 
 }
 
+//Returns the infection level which is the value at the index of the infection rate vector
 int Board::getCurrentInfectionRate() {
 	return infectionRates[infectionRateMarker];
 }
 
+//When there is an epidemic, increments the infection rate, unless the limit has been reached
 void Board::incrementInfectionRate() {
-
+	if (infectionRateMarker >= infectionRates.size()) {
+		cout << "THE GAME IS LOST. THE INFECTION RATE HAS REACHED ITS END"<<endl;
+	}
+	else {
+		infectionRateMarker++;
+	}
 }
 
 bool Board::isGameLost() {

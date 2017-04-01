@@ -255,15 +255,17 @@ void Loader::gameSetup(Board* board) {
 	Map* initialMap = new Map;
 	CardManager* cardManager = new CardManager;
 
+	board->setInfectionRates(j["GameSetup"]["infectionRates"].get<vector<int>>());
+
 	//j[location] is the array with all the different cities. Thus each object can be accessed like a regular array
 	for (int i = 0; i < j["location"].size(); i++) {
 		//Loops through all cities in the JSON and puts them in a list that will be given to the map
 		int cityId = j["location"][i]["id"].get<int>();
 		Location l{//Calls the constructor of Location object, thus order is important to be the same
 			cityId,
-			j["location"][i]["city"].get<std::string>(),
-			j["location"][i]["area"].get<std::string>(),
-			j["location"][i]["adjacent"].get<std::vector<int>>(),
+			j["location"][i]["city"].get<string>(),
+			j["location"][i]["area"].get<string>(),
+			j["location"][i]["adjacent"].get<vector<int>>(),
 		};
 
 		cityMap[cityId] = l;
