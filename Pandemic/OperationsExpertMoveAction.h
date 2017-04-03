@@ -4,7 +4,7 @@
 class OperationsExpertMoveAction : public OperationsExpertAction {
 public:
 	OperationsExpertMoveAction() {};
-	OperationsExpertMoveAction(int, vector<PlayerCard*>*, vector<PlayerCard*>*);
+	OperationsExpertMoveAction(int, vector<PlayerCard*>*, vector<PlayerCard*>);
 	void act(Player *);
 	string toString();
 	int getDestination() { return destinationId; };
@@ -12,5 +12,5 @@ public:
 private:
 	int destinationId;
 	vector<PlayerCard*>* playerCardDiscard;
-	vector<PlayerCard*>* playerCardDeck;
+	vector<PlayerCard*> playerCardDeck;
 };

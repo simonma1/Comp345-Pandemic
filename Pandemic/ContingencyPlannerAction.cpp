@@ -9,10 +9,9 @@ ContingencyPlannerAction::ContingencyPlannerAction(vector<PlayerCard*>*) {
 }
 
 void ContingencyPlannerAction::act(Player *player) {
-	//traverse the discard deck and look for an event card that will handed to a contingency planner
+	//traverse the discard deck and look for an event card that will be handed to a contingency planner
 	if (playerCardDiscard != NULL) {
 		for (int i = 0; i < playerCardDiscard->size(); i++) {
-			if (playerCardDiscard->size() == 0) break;
 			if (playerCardDiscard->at(i)->getType() == "event") {
 				player->addPlayerCard(playerCardDiscard->at(i));
 				break;

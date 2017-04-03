@@ -260,6 +260,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	
 	//Checks if player can perform a specific role action
 	bool canPerformRoleAction = false;
+
 	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
 		availableActions.push_back(new ScientistAction());
 		canPerformRoleAction = true;
@@ -272,6 +273,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ResearcherAction());
 		canPerformRoleAction = true;
 	}
+
 
 	//TAKING CARE OF THIS ROLE
 	Location currentLocation2 = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
@@ -303,36 +305,30 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		eventAlreadyOnRole = true;
 	}
 
-	//TAKING CARE OF THIS ROLE 
-	//if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
-		//availableActions.push_back(new OperationsExpertBuildAction());
-		//canPerformRoleAction = true;
-	//}
-
-	// Check if player is on research station
 	bool onARsearchStation = false;
 	for (int i = 0; i < researchStations.size(); i++) {
 		if (player->getPlayerPawn()->getCurrentLocation() == researchStations[i]) { // is the player on a research station
 			onARsearchStation = true;
 		}
-		//If the player is on a city that has no research station and that player is an operations expert, 
-		//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
-		else if (player->getRole()->getName().compare("Operations Expert") == 0) {
-			canPerformRoleAction = true;
-			availableActions.push_back(new OperationsExpertBuildAction(&researchStations));
-		}
 	}
 
-	//check if the player is an operations expert and if so, he allowed to use a direct flight action to ANY city from a city with a research station (discarding one of his own player cards)
-	//or a player card in the the player card deck. N.B: other players' city cards of the city that an operations expert wants to move to will not be discarded 
-	if (player->getRole()->getName().compare("Operations Expert") == 0 && canPerformRoleAction == false && onARsearchStation == true) {
-		//randomly generate an id for the card that a player would want to move to 
-		srand(time(NULL));
-		int randomNum = rand() % cardManager->getPlayerCardDeck().size();
-		for (auto &card : cardManager->getPlayerCardDeck()) {
-			if (card->getId() == randomNum) {
-				canPerformRoleAction = true;
-				availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), &cardManager->getPlayerCardDeck()));
+	//If the player is on a city that has no research station and that player is an operations expert, 
+	//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
+	if (player->getRole()->getName().compare("Operations Expert") == 0) {
+		canPerformRoleAction = true;
+		if (!onARsearchStation) {
+			availableActions.push_back(new OperationsExpertBuildAction(&researchStations));
+			//to prevent a player from moving again in the same turn (this will be inconsistent as turn is not being controlled from the board)
+			canPerformRoleAction = false;
+		}
+		// Check if player can perform a move action
+		else if (onARsearchStation && canPerformRoleAction) {
+			//randomly generate an id for the card that a player would want to move to 
+			srand(time(NULL));
+			int randomNum = rand() % cardManager->getPlayerCardDeck().size();
+			for (auto &card : cardManager->getPlayerCardDeck()) {
+				if (card->getId() == randomNum) 
+					availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), cardManager->getPlayerCardDeck()));
 			}
 		}
 	}

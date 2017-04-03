@@ -120,6 +120,24 @@
     <ClCompile Include="OperationsExpertBuildAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ResilientPopulationEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GovernmentGrantEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AirliftEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ForecastEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OneQuietNightEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -255,6 +273,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OperationsExpertMoveAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResilientPopulationEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GovernmentGrantEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ForecastEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AirliftEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OneQuietNightEventAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

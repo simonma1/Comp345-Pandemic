@@ -4,7 +4,7 @@
 
 using namespace std;
 
-OperationsExpertMoveAction::OperationsExpertMoveAction(int destinationId, vector<PlayerCard*>* playerCardDiscard, vector<PlayerCard*>* playerCardDeck) {
+OperationsExpertMoveAction::OperationsExpertMoveAction(int destinationId, vector<PlayerCard*>* playerCardDiscard, vector<PlayerCard*> playerCardDeck) {
 	this->destinationId = destinationId;
 	this->playerCardDiscard = playerCardDiscard;
 	this->playerCardDeck = playerCardDeck;
@@ -14,24 +14,32 @@ void OperationsExpertMoveAction::act(Player *player) {
 	cout << player->getRole()->getName() << " Is on a direct flight to " + to_string(destinationId) << endl;
 	player->getPlayerPawn()->setLocation(destinationId);
 
-	int cardPosition = 0; // to find the card being discarded in order to perform the direct flight action
+	int cardPosition = 0; // to find the card being discarded in order to perform the action
+	bool cardFound = false;
 
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
 		if (player->getPlayerCards()[i]->getId() == destinationId) {
 			cardPosition = i;
 			playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);
+			player->removePlayerCard(destinationId);
+			cardFound = true;
+			break;
 		}
 	}
 
+	cout << "Checking why this line is not being reached" << endl;
 	//if player does not have the city card for the city that he/she wants to move to, check the player card deck
-	for (int i = 0; i < playerCardDeck->size(); i++) { // traverse the player card deck looking for the city that an operations expert wants to move to 
-		if (playerCardDeck->at(i)->getId() == destinationId) {
-			cardPosition = i;
-			playerCardDiscard->push_back(playerCardDeck->at(cardPosition));
+	if (cardFound == false) {
+		for (int i = 0; i < playerCardDeck.size(); i++) { // traverse the player card deck looking for the city that an operations expert wants to move to 
+			if (playerCardDeck.at(i)->getId() == destinationId) {
+				cardPosition = i;
+				cout << "Discarding player card from deck" << endl;
+				playerCardDiscard->push_back(playerCardDeck.at(cardPosition));
+				playerCardDeck.erase(playerCardDeck.begin() + cardPosition);
+				break;
+			}
 		}
 	}
-
-	player->removePlayerCard(destinationId);
 }
 
 string OperationsExpertMoveAction::toString() {
