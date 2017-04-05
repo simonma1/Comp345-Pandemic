@@ -26,14 +26,11 @@ void OperationsExpertMoveAction::act(Player *player) {
 			break;
 		}
 	}
-
-	cout << "Checking why this line is not being reached" << endl;
 	//if player does not have the city card for the city that he/she wants to move to, check the player card deck
 	if (cardFound == false) {
 		for (int i = 0; i < playerCardDeck.size(); i++) { // traverse the player card deck looking for the city that an operations expert wants to move to 
 			if (playerCardDeck.at(i)->getId() == destinationId) {
 				cardPosition = i;
-				cout << "Discarding player card from deck" << endl;
 				playerCardDiscard->push_back(playerCardDeck.at(cardPosition));
 				playerCardDeck.erase(playerCardDeck.begin() + cardPosition);
 				break;

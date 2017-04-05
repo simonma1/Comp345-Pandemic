@@ -23,6 +23,11 @@
 #include "ContingencyPlannerAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
+#include "ResilientPopulationEventAction.h"
+#include "GovernmentGrantEventAction.h"
+#include "AirliftEventAction.h"
+#include "ForecastEventAction.h"
+#include "OneQuietNightEventAction.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
@@ -106,4 +111,5 @@ private:
 	int turn;
 	bool gameLost;
 	bool gameWon;
+	bool hasOneQuietNightEventCard = false;
 };

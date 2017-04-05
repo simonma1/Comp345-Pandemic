@@ -3,21 +3,26 @@
 ResilientPopulationEventAction::ResilientPopulationEventAction() {
 }
 
-ResilientPopulationEventAction::ResilientPopulationEventAction(vector<InfectionCard*>* infectionCardDiscard) {
+ResilientPopulationEventAction::ResilientPopulationEventAction(vector<InfectionCard*> infectionCardDiscard, vector<PlayerCard*>* playerCardDiscard) {
 	this->infectionCardDiscard = infectionCardDiscard;
+	this->playerCardDiscard = playerCardDiscard;
 }
 
-void ResilientPopulationEventAction::act(Player *) {
-	//For now, just remove a ramdom infection card in the infection card discard pile from the game (will add possibly a check for the action happening between infect and intensify of an epidemic later
-	srand(time(0));
-	int randomInfectionCard;
-	if (infectionCardDiscard != NULL) {
-		for (int i = 1; i <= infectionCardDiscard->size(); i++) {
-			randomInfectionCard = rand() % infectionCardDiscard->size() + 1;
-			infectionCardDiscard->erase(infectionCardDiscard->begin() + randomInfectionCard);
-			break; 
+void ResilientPopulationEventAction::act(Player * player) {
+	//For now, just remove a ramdom infection card in the infection card discard pile from the game (will possibly add a check for the action happening between infect and intensify of an epidemic later
+	srand(time(NULL));
+	int randomInfectionCard = rand() % infectionCardDiscard.size() + 1;
+	cout << "Removing infection card from discard pile (will still be displayed for record but no longer in pile): " << infectionCardDiscard.at(randomInfectionCard)->getCityName() << endl;
+	infectionCardDiscard.erase(infectionCardDiscard.begin() + randomInfectionCard);
+
+	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
+		if (player->getPlayerCards()[i]->getCardName() == "Resilient Population") {
+			cardPosition = i;
+			break;
 		}
 	}
+	playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);
+	player->removePlayerCard(player->getPlayerCards()[cardPosition]->getId());
 }
 
 string ResilientPopulationEventAction::toString() {
