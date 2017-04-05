@@ -286,11 +286,14 @@ void Loader::gameSetup(Board* board) {
 		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"].get<int>();
 		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"].get<int>();
 
-		//CardBuilder* builder = new CityCardBuilder(cardId,cityId);
-		//cardDirector.setBuilder(builder);
-		PlayerCard* cityCard = new CityCard(cardId, cityId);
+		CardBuilder* builder = new CityCardBuilder();
+		builder->setCardId(cardId);
+		dynamic_cast<CityCardBuilder*>(builder)->setCityId(cityId);
+		cardDirector.setBuilder(builder);
+		cardDirector.constructCard();
+		PlayerCard* cityCard = cardDirector.getPlayerCard();
 		playerCards[cardId] = cityCard;
-		//delete builder;
+		delete builder;
 	}
 
 	//Loops through the event Cards

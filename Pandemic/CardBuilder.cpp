@@ -3,15 +3,13 @@
 #include "EpidemicCard.h"
 #include "EventCard.h"
 
-CityCardBuilder::CityCardBuilder(int cardId, int cityId)
+CityCardBuilder::CityCardBuilder()
 {
-	buildId(cardId);
-	buildCityId(cityId);
 }
 
-void CityCardBuilder::buildId(int id)
+void CityCardBuilder::buildId()
 {
-	card->setCardId(id);
+	card->setCardId(this->cardId);
 }
 
 
@@ -20,12 +18,13 @@ void CityCardBuilder::buildType()
 	card->setType("city");
 }
 
-void CityCardBuilder::buildCityId(int id)
+void CityCardBuilder::buildCityId()
 { 
-	dynamic_cast<CityCard*>(card)->setCityId(id);
+	dynamic_cast<CityCard*>(card)->setCityId(this->cityId);
 }
 
 void CityCardBuilder::createNewCard()
 {
 	this->card = new CityCard;
+	buildCityId();
 }
