@@ -15,6 +15,7 @@ public:
 	CityCard(int,int);
 	void cardAction();
 	string toString();
+	void setCityId(int id) { this->cityId = id; };
 
 
 };
