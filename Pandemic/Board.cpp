@@ -314,10 +314,12 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ContingencyPlannerAction(cardManager->getPlayerCardDiscard()));
 		canPerformRoleAction = true;
 		eventAlreadyOnRole = true;
-		/*
-		//Last card will be an event card if this action is executed
-		if (player->getPlayerCards().size() > 0) {
-			player->getPlayerCards().erase((player->getPlayerCards().end()));
+		/*/Last card will be an event card if this action is executed
+		for (int i = 0; i < player->getPlayerCards().size(); i++) {
+			if (player->getPlayerCards()[i]->getType() == "event" && i == (player->getPlayerCards().size() - 1)) {
+				player->getPlayerCards().erase(player->getPlayerCards().begin() + i);
+				break;
+			}
 		}
 		*/
 	}
@@ -345,8 +347,10 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			srand(time(NULL));
 			int randomNum = rand() % cardManager->getPlayerCardDeck().size();
 			for (auto &card : cardManager->getPlayerCardDeck()) {
-				if (card->getId() == randomNum) 
+				if (card->getId() == randomNum) {
 					availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), cardManager->getPlayerCardDeck()));
+					break;
+				}
 			}
 		}
 	}

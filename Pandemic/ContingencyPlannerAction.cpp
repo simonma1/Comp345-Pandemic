@@ -4,7 +4,7 @@
 
 using namespace std;
 
-ContingencyPlannerAction::ContingencyPlannerAction(vector<PlayerCard*>*) {
+ContingencyPlannerAction::ContingencyPlannerAction(vector<PlayerCard*>* playerCardDiscard) {
 	this->playerCardDiscard = playerCardDiscard;
 }
 
@@ -17,9 +17,11 @@ void ContingencyPlannerAction::act(Player *player) {
 				break;
 			}
 		}
+		//If here, there are no event cards in the player discard pile
+		cout << "There are no event cards in the player discard pile." << endl;
 	}
 }
 
 string ContingencyPlannerAction::toString() {
-	return "Continency Planner: Take an event card from anywhere in the player discard pile. Only 1 event card can be added onto this role at a time and removed from game once used";
+	return "Continency Planner: Take an event card from anywhere in the player discard pile. Note that the act of checking the player discard pile will count against your action total even if there are no event cards in the discard pile. Only 1 event card can be added onto this role at a time and removed from game once used";
 }
