@@ -5,6 +5,8 @@
 #include "json.hpp"
 #include "EventCard.h"
 #include "EpidemicCard.h"
+#include "CardDirector.h"
+#include "CardBuilder.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;

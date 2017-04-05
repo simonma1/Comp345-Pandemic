@@ -19,7 +19,7 @@ class CityCardBuilder : public CardBuilder{
 public:
 	CityCardBuilder(int,int);
 	virtual void buildId(int id);
-	virtual void buildType(string name);
+	virtual void buildType();
 	void buildCityId(int id);
 	virtual void createNewCard();
 };

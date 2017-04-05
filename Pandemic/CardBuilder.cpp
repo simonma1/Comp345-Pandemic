@@ -15,7 +15,7 @@ void CityCardBuilder::buildId(int id)
 }
 
 
-void CityCardBuilder::buildType(string name)
+void CityCardBuilder::buildType()
 {
 	card->setType("city");
 }

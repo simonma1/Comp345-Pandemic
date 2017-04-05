@@ -277,12 +277,20 @@ void Loader::gameSetup(Board* board) {
 
 	map<int, PlayerCard*> playerCards;
 
+
+	//Creates a card director for creation of cards following the builder pattern
+	CardDirector cardDirector;
+
 	//Loops through the city cards
 	for (int i = 0; i < j["GameSetup"]["playerCards"]["cityCards"].size(); i++) {
 		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"].get<int>();
 		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"].get<int>();
+
+		//CardBuilder* builder = new CityCardBuilder(cardId,cityId);
+		//cardDirector.setBuilder(builder);
 		PlayerCard* cityCard = new CityCard(cardId, cityId);
 		playerCards[cardId] = cityCard;
+		//delete builder;
 	}
 
 	//Loops through the event Cards
