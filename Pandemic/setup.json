@@ -1,5 +1,6 @@
 {
   "GameSetup": {
+    "infectionRates": [2, 2, 2, 3, 3, 4, 4],
     "roles": [
       {
         "color": "Blue",

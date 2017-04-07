@@ -24,7 +24,7 @@
   "Board": {
     "turn": 0,
     "outbreakLevel": 0,
-    "infectionLevel": 2,
+    "infectionLevel": 0,
     "pieces": {
       "blackPiecesAv": 24,
       "yellowPiecesAv": 24,

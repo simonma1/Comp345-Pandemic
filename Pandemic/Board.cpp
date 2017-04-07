@@ -78,7 +78,7 @@ string Board::toString()
 
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
-	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
+	value += "\tThe Infection Level is at: " + to_string(getCurrentInfectionRate()) + "\n\n";
 	
 
 	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
@@ -148,13 +148,8 @@ void Board::boardSetup()
 {
 	string setupFileName = "setup.json";	
 	Loader loadCommon = Loader(setupFileName);
-	Map* map = new Map();
 
-	cardManager = new CardManager;
-	this->listOfRoles = loadCommon.gameSetup(map, cardManager);
-	*boardMap = *map;
-	map = NULL;
-
+    loadCommon.gameSetup(this);
 }
 
 void Board::drawPlayerCards() {
@@ -195,24 +190,22 @@ Location Board::drawInfectionCard()
 	return locationToInfect;
 }
 
+//At the end of every turn, the number of infection cards drawn will be equal to the infection level
 void Board::endOfTurnInfection() {
-	/*
-	//A player who has the event card one quiet night will automatically not start an infection (which is always desirable in this game) after his current turn
-	//Still to implement (consider using getAvailableActions method)
-	for (int i = 0; i < getPlayerAvailableActions(players.at(getTurn())).size(); i++) {
-		if (getPlayerAvailableActions(players.at(getTurn())).at(i)->toString() == "Skip the next Infect Cities step (Do not flip over any Infection Cards)") {
-			hasOneQuietNightEventCard = true;
-			break;
-		}
-	}
-	*/
-	//Otherwise, proceed as normal
-	if (hasOneQuietNightEventCard == false) {
+	/* This was before simon improved the code 
+  if (hasOneQuietNightEventCard == false) {
 		cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
 		for (int i = 0; i < infectionRateMarker; i++) {
 			drawInfectionCard();
 		}
-	}
+  */
+  int infectionLevel = getCurrentInfectionRate();
+  if (hasOneQuietNightEventCard == false) {
+	  cout << "\nThe Infection Level is at: " << infectionLevel << ". Therefore " << infectionLevel << " Infection Cards will be drawn\n" << endl;
+	  for (int i = 0; i < infectionLevel; i++) {
+	  	drawInfectionCard();
+	  }
+  }
 	hasOneQuietNightEventCard = false;
 }
 
@@ -257,6 +250,21 @@ void Board::startInfection() {
 	
 	}
 
+}
+
+//Returns the infection level which is the value at the index of the infection rate vector
+int Board::getCurrentInfectionRate() {
+	return infectionRates[infectionRateMarker];
+}
+
+//When there is an epidemic, increments the infection rate, unless the limit has been reached
+void Board::incrementInfectionRate() {
+	if (infectionRateMarker >= infectionRates.size()) {
+		cout << "THE GAME IS LOST. THE INFECTION RATE HAS REACHED ITS END"<<endl;
+	}
+	else {
+		infectionRateMarker++;
+	}
 }
 
 bool Board::isGameLost() {
