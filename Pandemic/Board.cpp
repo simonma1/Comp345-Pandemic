@@ -307,21 +307,22 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		canPerformRoleAction = true;
 	}
 
-	//Contingency Planner Role Check (WILL NEED TO MODIFY THIS ONCE EVENT CARDS ARE FULLY IMPLEMENTED TO DEAL WITH DELETING (FOR THIS ROLE)
-	//AND DISCARDING OF THE EVENT CARD AS WELL AS POSSIBLE ACTIONS FOR EACH EVENT CARD
+	//Contingency Planner Role Check 
 	bool eventAlreadyOnRole = false;
 	if ( (player->getRole()->getName().compare("Contingency Planner") == 0) && eventAlreadyOnRole == false ) {
 		availableActions.push_back(new ContingencyPlannerAction(cardManager->getPlayerCardDiscard()));
 		canPerformRoleAction = true;
 		eventAlreadyOnRole = true;
-		/*/Last card will be an event card if this action is executed
-		for (int i = 0; i < player->getPlayerCards().size(); i++) {
-			if (player->getPlayerCards()[i]->getType() == "event" && i == (player->getPlayerCards().size() - 1)) {
-				player->getPlayerCards().erase(player->getPlayerCards().begin() + i);
-				break;
+		//Last card in the discard once used will be an event card if this action is executed and should thus be deleted
+		//The card will be shown as being discarded twice but the second output indicates its being erased from the game
+		
+		if (getCardManager()->getPlayerCardDiscard() != NULL && getCardManager()->getPlayerCardDiscard()->size() > 0) {
+			if (getCardManager()->getPlayerCardDiscard()->at(getCardManager()->getPlayerCardDiscard()->size() - 1)->getType() == "event") {
+				cout << "The event card that was just picked up by way of the contingency planner action is to be deleted upon a second discarding." << endl;
+				getCardManager()->getPlayerCardDiscard()->erase(getCardManager()->getPlayerCardDiscard()->begin() + getCardManager()->getPlayerCardDiscard()->size() - 1);
 			}
 		}
-		*/
+		
 	}
 
 	bool onARsearchStation = false;

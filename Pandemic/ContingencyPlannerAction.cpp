@@ -14,6 +14,7 @@ void ContingencyPlannerAction::act(Player *player) {
 		for (int i = 0; i < playerCardDiscard->size(); i++) {
 			if (playerCardDiscard->at(i)->getType() == "event") {
 				player->addPlayerCard(playerCardDiscard->at(i));
+				playerCardDiscard->erase(playerCardDiscard->begin() + i);
 				break;
 			}
 		}
