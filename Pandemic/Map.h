@@ -1,6 +1,7 @@
 #pragma once
 #include "Location.h"
 #include "DiseaseCubes.h"
+#include "Observable.h"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -21,7 +22,7 @@ public:
 	DiseaseCubes* getDiseaseCubes() { return diseaseCubes; };
 
 	//Infection Action
-	void infectCity(Location loc);
+	void infectCity(Location loc, string virusColor);
 
 	//Treating Action
 	void treat(Location);

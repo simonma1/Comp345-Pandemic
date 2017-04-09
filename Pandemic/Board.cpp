@@ -152,6 +152,30 @@ void Board::boardSetup()
     loadCommon.gameSetup(this);
 }
 
+bool Board::wasVisited(Location loc, vector<Location> visited) {
+	bool wasVisited = false;
+	for (int i = 0; i < visited.size(); i++) {
+		if (loc.getId() == visited[i].getId())
+			return true;
+	}
+
+	return wasVisited;
+}
+
+bool Board::hasOutbreak(Location loc, string virusColor) {
+	bool hasOutbreak = false;
+	if (virusColor == BLUE && loc.getBlue() == 3)
+		hasOutbreak = true;
+	else if (virusColor == BLACK && loc.getBlack() == 3)
+		hasOutbreak = true;
+	else if (virusColor == YELLOW && loc.getYellow() == 3)
+		hasOutbreak = true;
+	else if (virusColor == RED && loc.getRed() == 3)
+		hasOutbreak = true;
+
+	return hasOutbreak;
+}
+
 void Board::drawPlayerCards() {
 	for (int i = 0; i < 2; i++) {
 		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
@@ -182,10 +206,50 @@ void Board::setPlayerCardsFromLoad() {
 	cardManager->moveCardToDeck();
 }
 
+void Board::outbreak(Location loc, string virusColor) {
+	cout << "=============================================================================================================" << endl;
+	cout << "                                        STARTING AN OUTBREAK!!!" << endl;
+	cout << "=============================================================================================================" << endl;
+
+	queue<Location> outbreakQueue; // keeps track of the number of outbreaks remaining to handle
+	stack<Location> infectionStack; // keeps track of the cities that have to be infected for a particular outbreak (not counting the chained ones)
+	vector<Location> visited; // keeps track of the visited outbreak locations.
+
+	outbreakQueue.push(loc); // first push the current location to the outbreak queue
+	while (!outbreakQueue.empty()) { // while there are outbreaks remaining to be handled
+		outbreakMarker++;
+		visited.push_back(outbreakQueue.front()); // this outbreak location has been visited
+		for (int neighbour : outbreakQueue.front().getConnections()) { // for every neighbour
+			Location neighbourLocation = boardMap->getLocationAtId(neighbour); // get the neighbour as a location.
+			if (!wasVisited(neighbourLocation, visited)) { // if the neighbour has already been visited
+				if (hasOutbreak(neighbourLocation, virusColor)) // if the neighbour is in an outbreak situation
+					outbreakQueue.push(neighbourLocation); // then push to outbreak queue as an outbreak that needs handling.
+				else
+					infectionStack.push(neighbourLocation); // otherwise push it to the infection stack.
+			}
+		}
+		while (!infectionStack.empty()) { // infect all the cities in the infection stack.
+			infectCity(infectionStack.top(), virusColor);
+			infectionStack.pop();
+		}
+		outbreakQueue.pop(); // this outbreak is now handled. back to the top to check the rest (if more exist).
+	}
+	// End of outbreak handling
+	cout << "Outbreak complete!" << endl;
+}
+
+void Board::infectCity(Location loc, string virusColor) {
+	// first if the city is in an outbreak scenario, perform an outbreak, otherwise, just infect it.
+	if (hasOutbreak(loc, virusColor))
+		outbreak(loc, virusColor);
+	else 
+		boardMap->infectCity(loc, virusColor);
+}
+
 Location Board::drawInfectionCard()
 {
 	Location locationToInfect = cardManager->drawInfectionCard();
-	boardMap->infectCity(locationToInfect);
+	infectCity(locationToInfect, locationToInfect.getArea());
 
 	return locationToInfect;
 }
