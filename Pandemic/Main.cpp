@@ -144,6 +144,8 @@ int main()
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
 				actions[actionChosen - 1]->act(players[board->getTurn()]);
+				//To ensure an operations expert cannot move more than per turn
+				//OperationsExpertMoveAction::setActionCalled(false);
 			}
 			else {
 				cout << "I'm sorry, you currently do not have any actions available";

@@ -192,13 +192,6 @@ Location Board::drawInfectionCard()
 
 //At the end of every turn, the number of infection cards drawn will be equal to the infection level
 void Board::endOfTurnInfection() {
-	/* This was before simon improved the code 
-  if (hasOneQuietNightEventCard == false) {
-		cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
-		for (int i = 0; i < infectionRateMarker; i++) {
-			drawInfectionCard();
-		}
-  */
   int infectionLevel = getCurrentInfectionRate();
   if (hasOneQuietNightEventCard == false) {
 	  cout << "\nThe Infection Level is at: " << infectionLevel << ". Therefore " << infectionLevel << " Infection Cards will be drawn\n" << endl;
@@ -397,7 +390,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				srand(time(NULL));
 				randomCity = rand() % boardMap->getMapLocation().size() + 1;	
 				//Ask player if he wants to move his own pawn or another's (this will be prompted before the player can do any of this his actions to inquire about how the event card will be used)
-				cout << "Since you have the event card Airlift, would you like to use it to move your own pawn? (Y for your own/N for another pawn/Any other input will not let use the card on this turn)" << endl;
+				cout << "Since you have the event card Airlift, would you like to use it to move your own pawn (Y for your own/N for another pawn)? Bear in mind that any other input will not let use the card on this turn." << endl;
 				cin >> ownPawnOrOther;
 				if (ownPawnOrOther == "Y" || ownPawnOrOther == "y") {
 					availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
@@ -410,7 +403,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 						if (otherPlayer != player) {
 							//The idea here is that you get permission to move another player's pawn and if you get a yes, then you can move the pawn on this turn or a future turn
 							//the same applies to your own pawn
-							cout << "Can I move your pawn?" << endl;
+							cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
 							cin >> permissionFromOther;
 							if (permissionFromOther == "Y" || permissionFromOther == "y") {
 								availableActions.push_back(new AirliftEventAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), cardManager->getPlayerCardDiscard()));
@@ -418,7 +411,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 								break;
 							}
 							else if (permissionFromOther == "N" || permissionFromOther == "n") {
-								cout << "Cannot move pawn as do not have permission from owner of pawn." << endl;
+								cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
 							}
 						}
 					}
@@ -433,7 +426,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			}
 			//Forecast Event Card Action Check
 			else if (player->getPlayerCards()[i]->getCardName() == "Forecast" && canPerformEventAction) {
-				availableActions.push_back(new ForecastEventAction(cardManager->getInfectionCardDiscard(), cardManager->getPlayerCardDiscard()));
+				availableActions.push_back(new ForecastEventAction(cardManager->getInfectionCardDeck(), cardManager->getPlayerCardDiscard()));
 				canPerformEventAction = false;
 				break;
 			}
