@@ -25,7 +25,7 @@ public:
 	void infectCity(Location loc, string virusColor);
 
 	//Treating Action
-	void treat(Location);
+	void treat(Location, string);
 
 	//Setters
 	void setMapLocation(map<int, Location>);
