@@ -115,7 +115,9 @@
     <ClCompile Include="CardManager.cpp" />
     <ClCompile Include="CharterFlightAction.cpp" />
     <ClCompile Include="CityCard.cpp" />
+    <ClCompile Include="ConcreteDecoratorPercentageCities.cpp" />
     <ClCompile Include="ContingencyPlannerAction.cpp" />
+    <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="DirectFlightAction.cpp" />
     <ClCompile Include="DiscoverCureAction.cpp" />
     <ClCompile Include="DiseaseCubes.cpp" />
@@ -123,6 +125,7 @@
     <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="EpidemicCard.cpp" />
     <ClCompile Include="EventCard.cpp" />
+    <ClCompile Include="GameStatsObserver.cpp" />
     <ClCompile Include="InfectionCard.cpp" />
     <ClCompile Include="InfectionLogObserver.cpp" />
     <ClCompile Include="Loader.cpp" />
@@ -153,7 +156,9 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="CharterFlightAction.h" />
     <ClInclude Include="CityCard.h" />
+    <ClInclude Include="ConcreteDecoratorPercentageCities.h" />
     <ClInclude Include="ContingencyPlannerAction.h" />
+    <ClInclude Include="Decorator.h" />
     <ClInclude Include="DirectFlightAction.h" />
     <ClInclude Include="DiscoverCureAction.h" />
     <ClInclude Include="DiseaseCubes.h" />
@@ -161,6 +166,7 @@
     <ClInclude Include="DriveAction.h" />
     <ClInclude Include="EpidemicCard.h" />
     <ClInclude Include="EventCard.h" />
+    <ClInclude Include="GameStatsObserver.h" />
     <ClInclude Include="InfectionCard.h" />
     <ClInclude Include="InfectionLogObserver.h" />
     <ClInclude Include="MedicAction.h" />

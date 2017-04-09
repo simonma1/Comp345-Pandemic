@@ -111,7 +111,6 @@ int main()
 			}
 			cout << "YOU HAVE " << i << " ACTIONS LEFT"<<endl;
 
-
 			 //players[0]->addPlayerCard(new CityCard(5, 5)); // Used to test the charter flight action
 
 			 
@@ -165,7 +164,6 @@ int main()
 
 		// change the next player's turn
 		board->toggleTurn();
-
 		cout << "The turn has been switched. Would you like to keep playing?\nEnter 0 to keep playing or 1 to stop playing" << endl;
 		cin >> keepPlaying;
 	}

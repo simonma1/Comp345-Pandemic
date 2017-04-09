@@ -9,6 +9,8 @@ Board::Board()
 	outbreakMarker = 0;
 	boardMap = new Map;
 	boardSetup();
+	//addObserver(new GameStatsObserver); 
+	addObserver(new ConcreteDecoratorPercentageCities(new GameStatsObserver)); //Testing of decorator 
 }
 
 Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {
@@ -23,6 +25,9 @@ Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool 
 	this->gameLost = false;
 	this->gameWon = false;
 	boardMap = new Map;
+
+	//addObserver(new GameStatsObserver); 
+	addObserver(new ConcreteDecoratorPercentageCities(new GameStatsObserver)); //Testing of decorator
 }
 
 //Destructor for the Board object. Will delete every player from the vector of player pointer
@@ -36,6 +41,10 @@ Board::~Board()
 		delete boardMap;
 	}
 	delete cardManager;
+
+	for (auto& observer : observers) {
+		delete observer;
+	}
 }
 
 void Board::addPlayer(Player * p)
@@ -66,6 +75,7 @@ void Board::initializeNewPlayer()
 	player->setRole(role);
 	addPlayer(player);//adds the player to the list of player
 	listOfRoles.erase(listOfRoles.begin() + randNum);//Removes the color from the list
+	notifyObservers();
 }
 
 string Board::toString()
@@ -155,6 +165,7 @@ void Board::boardSetup()
 void Board::drawPlayerCards() {
 	for (int i = 0; i < 2; i++) {
 		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
+		notifyObservers();
 	}
 
 	int numOfCards = players[turn]->getPlayerCards().size();
@@ -186,6 +197,7 @@ Location Board::drawInfectionCard()
 {
 	Location locationToInfect = cardManager->drawInfectionCard();
 	boardMap->infectCity(locationToInfect);
+	notifyObservers();
 
 	return locationToInfect;
 }
@@ -198,6 +210,8 @@ void Board::endOfTurnInfection() {
 	for (int i = 0; i < infectionLevel; i++) {
 		drawInfectionCard();
 	}
+
+
 }
 
 void Board::distributePlayerCards()

@@ -22,6 +22,7 @@
 #include "ContingencyPlannerAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
+#include "ConcreteDecoratorPercentageCities.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
@@ -35,7 +36,7 @@ class CardManager;
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
 */
-class Board 
+class Board : public Observable
 {
 
 public:
