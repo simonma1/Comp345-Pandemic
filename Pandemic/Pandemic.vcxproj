@@ -116,6 +116,7 @@
     <ClCompile Include="CharterFlightAction.cpp" />
     <ClCompile Include="CityCard.cpp" />
     <ClCompile Include="ConcreteDecoratorPercentageCities.cpp" />
+    <ClCompile Include="ConcreteDecoratorResourcesPercentage.cpp" />
     <ClCompile Include="ContingencyPlannerAction.cpp" />
     <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="DirectFlightAction.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="CharterFlightAction.h" />
     <ClInclude Include="CityCard.h" />
     <ClInclude Include="ConcreteDecoratorPercentageCities.h" />
+    <ClInclude Include="ConcreteDecoratorResourcesPercentage.h" />
     <ClInclude Include="ContingencyPlannerAction.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="DirectFlightAction.h" />

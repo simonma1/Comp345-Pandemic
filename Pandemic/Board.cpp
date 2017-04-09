@@ -7,10 +7,10 @@ The board class will act as an intermediary between location and player
 Board::Board()
 {
 	outbreakMarker = 0;
-	boardMap = new Map;
+	boardMap = new Map; 
 	boardSetup();
 	//addObserver(new GameStatsObserver); 
-	addObserver(new ConcreteDecoratorPercentageCities(new GameStatsObserver)); //Testing of decorator 
+	addObserver(new ConcreteDecoratorResourcesPercentage(new ConcreteDecoratorPercentageCities(new GameStatsObserver))); //Testing of decorator 
 }
 
 Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool redCure, bool blueCure) {

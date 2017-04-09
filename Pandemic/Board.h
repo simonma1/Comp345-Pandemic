@@ -23,6 +23,7 @@
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
 #include "ConcreteDecoratorPercentageCities.h"
+#include "ConcreteDecoratorResourcesPercentage.h"
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
