@@ -100,16 +100,14 @@ Location Map::getLocationAtId(int id) {
 	return cities.at(id);
 }
 
-void Map::infectCity(Location loc)
+void Map::infectCity(Location loc, string virusColor)
 {
 	int cityId = loc.getId();
-	string virusColor = loc.getArea();
 	cities.at(cityId).infect(virusColor, diseaseCubes);
 }
 
-void Map::treat(Location loc) {
+void Map::treat(Location loc, string virusColor) {
 	int cityId = loc.getId();
-	string virusColor = loc.getArea();
 	cities.at(cityId).treatDisease(virusColor, diseaseCubes);
 }
 

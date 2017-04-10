@@ -4,13 +4,14 @@
 
 using namespace std;
 
-OperationsExpertMoveAction::OperationsExpertMoveAction(int destinationId, vector<PlayerCard*>* playerCardDiscard, vector<PlayerCard*> playerCardDeck) {
+OperationsExpertMoveAction::OperationsExpertMoveAction(int destinationId, vector<PlayerCard*>* playerCardDiscard, vector<PlayerCard*>* playerCardDeck) {
 	this->destinationId = destinationId;
 	this->playerCardDiscard = playerCardDiscard;
 	this->playerCardDeck = playerCardDeck;
 }
 
 void OperationsExpertMoveAction::act(Player *player) {
+	//setActionCalled(true);
 	cout << player->getRole()->getName() << " Is on a direct flight to " + to_string(destinationId) << endl;
 	player->getPlayerPawn()->setLocation(destinationId);
 
@@ -28,11 +29,11 @@ void OperationsExpertMoveAction::act(Player *player) {
 	}
 	//if player does not have the city card for the city that he/she wants to move to, check the player card deck
 	if (cardFound == false) {
-		for (int i = 0; i < playerCardDeck.size(); i++) { // traverse the player card deck looking for the city that an operations expert wants to move to 
-			if (playerCardDeck.at(i)->getId() == destinationId) {
+		for (int i = 0; i < playerCardDeck->size(); i++) { // traverse the player card deck looking for the city that an operations expert wants to move to 
+			if (playerCardDeck->at(i)->getId() == destinationId) {
 				cardPosition = i;
-				playerCardDiscard->push_back(playerCardDeck.at(cardPosition));
-				playerCardDeck.erase(playerCardDeck.begin() + cardPosition);
+				playerCardDiscard->push_back(playerCardDeck->at(cardPosition));
+				playerCardDeck->erase(playerCardDeck->begin() + cardPosition);
 				break;
 			}
 		}

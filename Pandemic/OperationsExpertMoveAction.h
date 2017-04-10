@@ -2,21 +2,22 @@
 #include "OperationsExpertAction.h"
 
 class OperationsExpertMoveAction : public OperationsExpertAction {
+
 public:
 	OperationsExpertMoveAction() {};
-	OperationsExpertMoveAction(int, vector<PlayerCard*>*, vector<PlayerCard*>);
+	OperationsExpertMoveAction(int, vector<PlayerCard*>*, vector<PlayerCard*>*);
 	void act(Player *);
 	string toString();
 	int getDestination() { return destinationId; };
 	/*
-	static void setActionCalled(const bool isCalled) {
+	static void setActionCalled(bool isCalled) {
 		actionCalled = isCalled;
-	};
+	}
 	*/
 
 private:
+	//static bool actionCalled;
 	int destinationId;
 	vector<PlayerCard*>* playerCardDiscard;
-	vector<PlayerCard*> playerCardDeck;
-	//static const bool actionCalled = false;
+	vector<PlayerCard*>* playerCardDeck;
 };

@@ -45,7 +45,8 @@ public:
 	//PlayerCards decks
 	void setPlayerCardDeck(vector<PlayerCard*> playerCardDeck) { this->playerCardDeck = playerCardDeck; };
 	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
-	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
+	//Had to make it a pointer as with playerCardDiscard for the OperationMoveExpert to work properly
+	vector<PlayerCard*>* getPlayerCardDeck() { return &playerCardDeck; };
 	vector<PlayerCard*>* getPlayerCardDiscard() { return &playerCardDiscard; };
 	vector<int> getPlayerCardDeckId();
 	vector<int> getPlayerCardDiscardId();

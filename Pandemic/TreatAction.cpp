@@ -1,12 +1,12 @@
 #include "TreatAction.h"
 
 void TreatAction::act(Player *player) {
-	cout << player->getRole()->getName() << " Is treating a disease" << endl;
-	boardMap->treat(boardMap->getLocationAtId(location));
+	cout << player->getRole()->getName() << " Is treating the " + targetColor + " disease\n" << endl;
+	boardMap->treat(boardMap->getLocationAtId(location), targetColor);
 }
 
 string TreatAction::toString() {
-	return "You can treat a disease";
+	return "You can treat the " + targetColor + " disease";
 }
 
 TreatAction::TreatAction(){}

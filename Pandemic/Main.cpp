@@ -16,7 +16,9 @@
 #include "ShareAction.h"
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
+#include "OperationsExpertMoveAction.h"
 #include <vector>
+
 using namespace std;
 
 void saveGame(Loader*, string, Board*, vector<Player*>);
@@ -143,14 +145,13 @@ int main()
 				} while (actionChosen < 1 || actionChosen > actions.size());
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
-				actions[actionChosen - 1]->act(players[board->getTurn()]);
 				//To ensure an operations expert cannot move more than per turn
 				//OperationsExpertMoveAction::setActionCalled(false);
+				actions[actionChosen - 1]->act(players[board->getTurn()]);
 			}
 			else {
 				cout << "I'm sorry, you currently do not have any actions available";
 			}
-
 
 			// Delete the created actions
 			for (int i = 0; i < actions.size(); i++) {
