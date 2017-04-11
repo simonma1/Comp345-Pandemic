@@ -9,10 +9,11 @@ OneQuietNightEventAction::OneQuietNightEventAction(vector<PlayerCard*>* playerCa
 
 void OneQuietNightEventAction::act(Player * player) {
 	//The idea is to use the board, check if a player has this event card, and skip the startInfection() that will happen once a player has finished his/her turn
+	bool cardFound = false;
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
-		if (player->getPlayerCards()[i]->getCardName() == "One Quiet Night") {
+		if (player->getPlayerCards()[i]->getCardName() == "One Quiet Night" && cardFound == false) {
 			cardPosition = i;
-			break;
+			cardFound = true;
 		}
 	}
 	playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);

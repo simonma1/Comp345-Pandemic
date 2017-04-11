@@ -14,5 +14,5 @@ void OperationsExpertBuildAction::act(Player *player) {
 }
 
 string OperationsExpertBuildAction::toString() {
-	return "Operations Expert: As an action, build a research station in the city you are in (no City card needed and without discarding it).";
+	return "Operations Expert: Build a research station in the city you are in.";
 }

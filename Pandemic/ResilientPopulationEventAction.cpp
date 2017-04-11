@@ -11,6 +11,8 @@ ResilientPopulationEventAction::ResilientPopulationEventAction(vector<InfectionC
 void ResilientPopulationEventAction::act(Player * player) {
 	//For now, just remove a ramdom infection card in the infection card discard pile from the game (will possibly add a check for the action happening between infect and intensify of an epidemic later
 	int choiceInfectionCard;
+	bool cardFound = false;
+
 	for (int i = 0; i < infectionCardDiscard->size(); i++)
 		cout << infectionCardDiscard->at(i)->getCityName() + "\n" << endl;
 
@@ -29,9 +31,9 @@ void ResilientPopulationEventAction::act(Player * player) {
 			cout << infectionCardDiscard->at(i)->getCityName() + "\n" << endl;
 
 		for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
-			if (player->getPlayerCards()[i]->getCardName() == "Resilient Population") {
+			if (player->getPlayerCards()[i]->getCardName() == "Resilient Population" && cardFound == false) {
 				cardPosition = i;
-				break;
+				cardFound = true;
 			}
 		}
 		playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);

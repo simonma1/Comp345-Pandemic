@@ -14,10 +14,11 @@ void AirliftEventAction::act(Player * player) {
 	cout << player->getRole()->getName() << " Is, due to an airlift event action, being moved to " + to_string(destinationId) << endl;
 	player->getPlayerPawn()->setLocation(destinationId);
 
+	bool cardFound = false;
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
-		if (player->getPlayerCards()[i]->getCardName() == "Airlift") {
+		if (player->getPlayerCards()[i]->getCardName() == "Airlift" && cardFound == false) {
 			cardPosition = i;
-			break;
+			cardFound = true;
 		}
 	}
 	playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);

@@ -25,10 +25,11 @@ void ForecastEventAction::act(Player * player) {
 			cout << infectionCardDeck->at(i)->getCityName() + "\n" << endl;
 	}
 
+	bool cardFound = false; 
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
-		if (player->getPlayerCards()[i]->getCardName() == "Forecast") {
+		if (player->getPlayerCards()[i]->getCardName() == "Forecast" && cardFound ==false) {
 			cardPosition = i;
-			break;
+			cardFound = true;
 		}
 	}
 	playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);

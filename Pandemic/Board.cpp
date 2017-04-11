@@ -402,6 +402,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		}
 	}
 
+	bool actionTaken = false; //this is to avoid using break in the following role and event actions
+
 	//Operations Expert Role Actions check
 	//If the player is on a city that has no research station and that player is an operations expert, 
 	//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
@@ -416,9 +418,9 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			srand(time(NULL));
 			int randomNum = rand() % cardManager->getPlayerCardDeck()->size();
 			for (auto &card : *cardManager->getPlayerCardDeck()) {
-				if (card->getId() == randomNum) {
+				if (card->getId() == randomNum && actionTaken == false) {
 					availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), cardManager->getPlayerCardDeck()));
-					break;
+					actionTaken = true;
 				}
 			}
 		}
@@ -433,21 +435,21 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		if (player->getPlayerCards()[i]->getType() == "event") {
 			//Resilient Population Event Card Action Check
 			canPerformEventAction = true;
-			if (player->getPlayerCards()[i]->getCardName() == "Resilient Population" && canPerformEventAction) {
+			if (player->getPlayerCards()[i]->getCardName() == "Resilient Population" && canPerformEventAction && actionTaken == false) {
 				availableActions.push_back(new ResilientPopulationEventAction(cardManager->getInfectionCardDiscard(), cardManager->getPlayerCardDiscard()));
 				canPerformEventAction = false;
-				break;
+				actionTaken = true;
 			}
 			//Government Grant Event Card Action Check
 			else if (player->getPlayerCards()[i]->getCardName() == "Government Grant" && canPerformEventAction) {
 				for (int i = 0; i < researchStations.size(); i++) {
 					srand(time(NULL));
 					randomCity = rand() % boardMap->getMapLocation().size() + 1;
-					if (boardMap->getLocationAtId(randomCity).getId() != researchStations[i]) {
+					if (boardMap->getLocationAtId(randomCity).getId() != researchStations[i] && actionTaken == false) {
 						cout << player->getRole()->getName() << " Building a Research Station at" << boardMap->getLocationAtId(randomCity).getCity() << endl;
 						availableActions.push_back(new GovernmentGrantEventAction(&researchStations, cardManager->getPlayerCardDiscard(), randomCity));
 						canPerformEventAction = false;
-						break;
+						actionTaken = true;
 					}
 				}
 			}
@@ -459,10 +461,10 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				//Ask player if he wants to move his own pawn or another's (this will be prompted before the player can do any of this his actions to inquire about how the event card will be used)
 				cout << "Since you have the event card Airlift, would you like to use it to move your own pawn (Y for your own/N for another pawn)? Bear in mind that any other input will not let use the card on this turn." << endl;
 				cin >> ownPawnOrOther;
-				if (ownPawnOrOther == "Y" || ownPawnOrOther == "y") {
+				if ((ownPawnOrOther == "Y" || ownPawnOrOther == "y") && actionTaken == false) {
 					availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
 					canPerformEventAction = false;
-					break;
+					actionTaken = true;
 				}
 				else if (ownPawnOrOther == "N" || ownPawnOrOther == "n") {
 					//The first player who inputs Y will have their pawn moved.
@@ -472,10 +474,10 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 							//the same applies to your own pawn
 							cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
 							cin >> permissionFromOther;
-							if (permissionFromOther == "Y" || permissionFromOther == "y") {
+							if ((permissionFromOther == "Y" || permissionFromOther == "y")  && actionTaken == false) {
 								availableActions.push_back(new AirliftEventAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), cardManager->getPlayerCardDiscard()));
 								canPerformEventAction = false;
-								break;
+								actionTaken = true;
 							}
 							else if (permissionFromOther == "N" || permissionFromOther == "n") {
 								cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
@@ -483,26 +485,26 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 						}
 					}
 					//If you get here, no other player gave their permission and you can only move your own pawn
-					if (permissionFromOther == "N" || permissionFromOther == "n") {
+					if (permissionFromOther == "N" || permissionFromOther == "n" && actionTaken == false) {
 						cout << "You will only be allowed to move your own pawn when you want." << endl;
 						availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
 						canPerformEventAction = false;
-						break;
+						actionTaken = true;
 					}
 				}
 			}
 			//Forecast Event Card Action Check
-			else if (player->getPlayerCards()[i]->getCardName() == "Forecast" && canPerformEventAction) {
+			else if (player->getPlayerCards()[i]->getCardName() == "Forecast" && canPerformEventAction && actionTaken == false) {
 				availableActions.push_back(new ForecastEventAction(cardManager->getInfectionCardDeck(), cardManager->getPlayerCardDiscard()));
 				canPerformEventAction = false;
-				break;
+				actionTaken = true;
 			}
 			//One Quiet Night Event Card Action Check
-			else if (player->getPlayerCards()[i]->getCardName() == "One Quiet Night" && canPerformEventAction) {
+			else if (player->getPlayerCards()[i]->getCardName() == "One Quiet Night" && canPerformEventAction && actionTaken == false) {
 				availableActions.push_back(new OneQuietNightEventAction(cardManager->getPlayerCardDiscard()));
 				hasOneQuietNightEventCard = true;
 				canPerformEventAction = false;
-				break;
+				actionTaken = true;
 			}
 		}
 	}

@@ -15,10 +15,11 @@ void GovernmentGrantEventAction::act(Player *player) {
 	//to make sure there isnt a research station already built there).	
 	boardResearchStations->push_back(randomCityId);
 
+	bool cardFound = false;
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
-		if (player->getPlayerCards()[i]->getCardName() == "Government Grant") {
+		if (player->getPlayerCards()[i]->getCardName() == "Government Grant" && cardFound == false) {
 			cardPosition = i;
-			break;
+			cardFound = true;
 		}
 	}
 	playerCardDiscard->push_back(player->getPlayerCards()[cardPosition]);
