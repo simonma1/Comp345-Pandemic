@@ -405,15 +405,13 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	//Operations Expert Role Actions check
 	//If the player is on a city that has no research station and that player is an operations expert, 
 	//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
-	if (player->getRole()->getName().compare("Operations Expert") == 0) {
+	if (player->getRole()->getName() == ("Operations Expert")) {
 		canPerformRoleAction = true;
 		if (!onARsearchStation) {
 			availableActions.push_back(new OperationsExpertBuildAction(&researchStations));
-			//to prevent a player from moving again in the same turn (this will be inconsistent as turn is not being controlled from the board)
-			canPerformRoleAction = false;
 		}
 		// Check if player can perform a move action
-		else if (onARsearchStation && canPerformRoleAction) {
+		else if (onARsearchStation && OperationsExpertMoveAction::getActionCalled() == false) {
 			//randomly generate an id for the card that a player would want to move to 
 			srand(time(NULL));
 			int randomNum = rand() % cardManager->getPlayerCardDeck()->size();

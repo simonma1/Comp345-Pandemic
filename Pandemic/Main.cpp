@@ -23,6 +23,9 @@ using namespace std;
 
 void saveGame(Loader*, string, Board*, vector<Player*>);
 
+//Initializing static variable for operations move expert (done here to avoid undefined external errors)
+bool OperationsExpertMoveAction::actionCalled = false;
+
 int main()
 {
 	static const int MOVESPERTURN = 4;
@@ -145,8 +148,6 @@ int main()
 				} while (actionChosen < 1 || actionChosen > actions.size());
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
-				//To ensure an operations expert cannot move more than per turn
-				//OperationsExpertMoveAction::setActionCalled(false);
 				actions[actionChosen - 1]->act(players[board->getTurn()]);
 			}
 			else {
@@ -165,6 +166,9 @@ int main()
 
 		//Infect Cities
 		board->endOfTurnInfection();
+
+		//Resetting flag an operations expert move action
+		OperationsExpertMoveAction::setActionCalled(false);
 
 		// change the next player's turn
 		board->toggleTurn();

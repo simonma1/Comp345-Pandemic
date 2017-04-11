@@ -9,14 +9,18 @@ public:
 	void act(Player *);
 	string toString();
 	int getDestination() { return destinationId; };
-	/*
+
 	static void setActionCalled(bool isCalled) {
 		actionCalled = isCalled;
 	}
-	*/
+
+	static bool getActionCalled() {
+		return actionCalled;
+	}
+	
 
 private:
-	//static bool actionCalled;
+	static bool actionCalled;
 	int destinationId;
 	vector<PlayerCard*>* playerCardDiscard;
 	vector<PlayerCard*>* playerCardDeck;
