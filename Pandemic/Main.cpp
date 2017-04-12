@@ -143,8 +143,15 @@ int main()
 				int actionChosen = 0;
 				do {
 					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+					//Added this to intercept a user entering a string input by accident
+					while (std::cin.fail()) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
+						//cin >> actionChosen;
+					}
 					cin >> actionChosen;
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				} while (actionChosen < 1 || actionChosen > actions.size());
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
