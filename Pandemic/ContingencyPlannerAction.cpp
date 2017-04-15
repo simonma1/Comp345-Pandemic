@@ -4,10 +4,26 @@
 
 using namespace std;
 
+ContingencyPlannerAction::ContingencyPlannerAction(vector<PlayerCard*>* playerCardDiscard) {
+	this->playerCardDiscard = playerCardDiscard;
+}
+
 void ContingencyPlannerAction::act(Player *player) {
-	cout << player->getRole()->getName() << "Select a discarded Event card and remove from the game" << endl;
+	//traverse the discard deck and look for an event card that will be handed to a contingency planner
+	bool cardFound = false;
+	if (playerCardDiscard != NULL) {
+		for (int i = 0; i < playerCardDiscard->size(); i++) {
+			if (playerCardDiscard->at(i)->getType() == "event" && cardFound == false) {
+				player->addPlayerCard(playerCardDiscard->at(i));
+				playerCardDiscard->erase(playerCardDiscard->begin() + i);
+				cardFound = true;
+			}
+		}
+		//If here, there are no event cards in the player discard pile
+		cout << "There are no event cards in the player discard pile." << endl;
+	}
 }
 
 string ContingencyPlannerAction::toString() {
-	return "Dispatcher: As an action, take any discarded Event card and store it on this card and to remove a played stored Event card from the game(Limit: 1 event card on this card at a time, which is not part of your hand.";
+	return "As a Contingency Planner, take an event card from anywhere in the player discard pile.";
 }

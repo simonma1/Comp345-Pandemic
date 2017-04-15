@@ -108,15 +108,34 @@
     <ClCompile Include="ContingencyPlannerAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OperationsExpertAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Observable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InfectionLogObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OperationsExpertMoveAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OperationsExpertBuildAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResilientPopulationEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GovernmentGrantEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AirliftEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ForecastEventAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OneQuietNightEventAction.cpp">
     <ClCompile Include="CardBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -254,6 +273,28 @@
     <ClInclude Include="InfectionLogObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OperationsExpertBuildAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperationsExpertMoveAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResilientPopulationEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GovernmentGrantEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ForecastEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AirliftEventAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OneQuietNightEventAction.h">
     <ClInclude Include="CardBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -18,10 +18,16 @@
 #include "ScientistAction.h"
 #include "DispatcherAction.h"
 #include "ResearcherAction.h"
-#include "OperationsExpertAction.h"
+#include "OperationsExpertBuildAction.h"
+#include "OperationsExpertMoveAction.h"
 #include "ContingencyPlannerAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
+#include "ResilientPopulationEventAction.h"
+#include "GovernmentGrantEventAction.h"
+#include "AirliftEventAction.h"
+#include "ForecastEventAction.h"
+#include "OneQuietNightEventAction.h"
 #include <stack>
 #include <queue>
 #define BLUE "Blue"
@@ -116,6 +122,8 @@ private:
 	int turn;
 	bool gameLost;
 	bool gameWon;
+	bool hasOneQuietNightEventCard = false; //for the one quiet night event card
+	bool isAQuarantineSpecialist = false; //for the case where a player is a quarantine specialist
 	vector<int> infectionRates;
 	int infectionRateMarker;//the index of the infection rate in the vector, not the actual value
 	bool wasVisited(Location, vector<Location>);

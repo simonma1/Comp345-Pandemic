@@ -34,15 +34,19 @@ public:
 	//Infection Decks
 	void setInfectionCardDeck(vector<InfectionCard*> infectionDeck) { this->infectionCardDeck = infectionDeck; };
 	void setInfectionCardDiscard(vector<InfectionCard*> infectionDeck) { this->infectionDiscard = infectionDeck; };
-	vector<InfectionCard*> getInfectionCardDeck() { return infectionCardDeck; };
-	vector<InfectionCard*> getInfectionCardDiscard() { return infectionDiscard; };
+	//Had to make it as a pointer for the ForecastEvent action to do what it is supposed to 
+	vector<InfectionCard*>* getInfectionCardDeck() { return &infectionCardDeck; };
+	//Had to make it a pointer as with playerCardDiscard for the ResilientPopulationEvent action to actually do what it is supposed to do
+	//Adjusted the infectionLogObserver to reflect that this change
+	vector<InfectionCard*>* getInfectionCardDiscard() { return &infectionDiscard; };
 	vector<int> getInfectionCardDeckId();
 	vector<int> getInfectionCardDiscardId();
 
 	//PlayerCards decks
 	void setPlayerCardDeck(vector<PlayerCard*> playerCardDeck) { this->playerCardDeck = playerCardDeck; };
 	void setPlayerCardDiscard(vector<PlayerCard*> playerCardDeck) { this->playerCardDiscard = playerCardDeck; };
-	vector<PlayerCard*> getPlayerCardDeck() { return playerCardDeck; };
+	//Had to make it a pointer as with playerCardDiscard for the OperationMoveExpert to work properly
+	vector<PlayerCard*>* getPlayerCardDeck() { return &playerCardDeck; };
 	vector<PlayerCard*>* getPlayerCardDiscard() { return &playerCardDiscard; };
 	vector<int> getPlayerCardDeckId();
 	vector<int> getPlayerCardDiscardId();

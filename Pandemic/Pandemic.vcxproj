@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AirliftEventAction.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BuildRSAction.cpp" />
     <ClCompile Include="CardBuilder.cpp" />
@@ -124,7 +125,10 @@
     <ClCompile Include="DispatcherAction.cpp" />
     <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="EpidemicCard.cpp" />
+    <ClCompile Include="EventAction.cpp" />
     <ClCompile Include="EventCard.cpp" />
+    <ClCompile Include="ForecastEventAction.cpp" />
+    <ClCompile Include="GovernmentGrantEventAction.cpp" />
     <ClCompile Include="InfectionCard.cpp" />
     <ClCompile Include="InfectionLogObserver.cpp" />
     <ClCompile Include="Loader.cpp" />
@@ -133,13 +137,16 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MedicAction.cpp" />
     <ClCompile Include="Observable.cpp" />
-    <ClCompile Include="OperationsExpertAction.cpp" />
+    <ClCompile Include="OneQuietNightEventAction.cpp" />
+    <ClCompile Include="OperationsExpertBuildAction.cpp" />
+    <ClCompile Include="OperationsExpertMoveAction.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Cards.cpp" />
     <ClCompile Include="QuarantineSpecialistAction.cpp" />
     <ClCompile Include="ReferenceCard.cpp" />
     <ClCompile Include="ResearcherAction.cpp" />
+    <ClCompile Include="ResilientPopulationEventAction.cpp" />
     <ClCompile Include="RoleAction.cpp" />
     <ClCompile Include="ScientistAction.cpp" />
     <ClCompile Include="ShareGiveAction.cpp" />
@@ -149,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="AirliftEventAction.h" />
     <ClInclude Include="BuildRSAction.h" />
     <ClInclude Include="CardBuilder.h" />
     <ClInclude Include="CardDirector.h" />
@@ -164,7 +172,10 @@
     <ClInclude Include="DispatcherAction.h" />
     <ClInclude Include="DriveAction.h" />
     <ClInclude Include="EpidemicCard.h" />
+    <ClInclude Include="EventAction.h" />
     <ClInclude Include="EventCard.h" />
+    <ClInclude Include="ForecastEventAction.h" />
+    <ClInclude Include="GovernmentGrantEventAction.h" />
     <ClInclude Include="InfectionCard.h" />
     <ClInclude Include="InfectionLogObserver.h" />
     <ClInclude Include="MedicAction.h" />
@@ -173,7 +184,10 @@
     <ClInclude Include="MovementNoCardAction.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="OneQuietNightEventAction.h" />
     <ClInclude Include="OperationsExpertAction.h" />
+    <ClInclude Include="OperationsExpertBuildAction.h" />
+    <ClInclude Include="OperationsExpertMoveAction.h" />
     <ClInclude Include="OtherAction.h" />
     <ClInclude Include="PlayerCards.h" />
     <ClInclude Include="QuarantineSpecialistAction.h" />
@@ -185,6 +199,7 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResearcherAction.h" />
+    <ClInclude Include="ResilientPopulationEventAction.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RoleAction.h" />
     <ClInclude Include="ScientistAction.h" />

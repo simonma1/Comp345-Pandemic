@@ -58,6 +58,12 @@ CardManager::~CardManager() {
 	}
 	infectionCardDeck.clear();
 
+	for (auto it = infectionDiscard.begin(); it != infectionDiscard.end(); ++it) {
+		delete *it;
+	}
+	infectionDiscard.clear();
+
+	
 	map<int, PlayerCard*>::iterator it = playerCardList.find(1);
 	if (it != playerCardList.end()) {
 		delete it->second;
