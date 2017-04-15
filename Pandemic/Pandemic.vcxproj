@@ -113,6 +113,8 @@
     <ClCompile Include="AirliftEventAction.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BuildRSAction.cpp" />
+    <ClCompile Include="CardBuilder.cpp" />
+    <ClCompile Include="CardDirector.cpp" />
     <ClCompile Include="CardManager.cpp" />
     <ClCompile Include="CharterFlightAction.cpp" />
     <ClCompile Include="CityCard.cpp" />
@@ -156,6 +158,8 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="AirliftEventAction.h" />
     <ClInclude Include="BuildRSAction.h" />
+    <ClInclude Include="CardBuilder.h" />
+    <ClInclude Include="CardDirector.h" />
     <ClInclude Include="CardManager.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Board.h" />

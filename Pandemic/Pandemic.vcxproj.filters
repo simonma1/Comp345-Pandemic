@@ -136,6 +136,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OneQuietNightEventAction.cpp">
+    <ClCompile Include="CardBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CardDirector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -291,6 +295,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OneQuietNightEventAction.h">
+    <ClInclude Include="CardBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardDirector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
