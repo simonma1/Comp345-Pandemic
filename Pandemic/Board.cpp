@@ -258,22 +258,22 @@ bool Board::isGameWon()
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	vector<Action*> availableActions;
 
-	if ((player->getRole()->getName().compare("Medic") == 0) ) {
+	if (player->getRole()->getName() == "Medic") {
 		availableActions.push_back(new MedicAction());
 	}
-	if ((player->getRole()->getName().compare("Researcher") == 0) ) {
+	if (player->getRole()->getName() == "Researcher") {
 		availableActions.push_back(new ResearcherAction());
 	}
-	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
+	if (player->getRole()->getName() == "Quarantine Specialist") {
 		availableActions.push_back(new QuarantineSpecialistAction());
 	}
-	if ((player->getRole()->getName().compare("Dispatcher") == 0) ) {
+	if (player->getRole()->getName() == "Dispatcher") {
 		availableActions.push_back(new DispatcherAction());
 	}
-	if ((player->getRole()->getName().compare("Contingency Planner") == 0) ) {
+	if (player->getRole()->getName() == "Contingency Planner") {
 		availableActions.push_back(new ContingencyPlannerAction());
 	}
-	if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
+	if (player->getRole()->getName() == "Operations Expert") {
 		availableActions.push_back(new OperationsExpertAction());
 	}
 
@@ -338,7 +338,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 						else if (cardArea == yellowArea) yellowAreaCardCounter++;
 					}
 				}
-				if ((player->getRole()->getName().compare("Scientist") == 0)) {
+				if (player->getRole()->getName() == "Scientist") {
 					if(blueAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
 						availableActions.push_back(new ScientistAction());
 					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
