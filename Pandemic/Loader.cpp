@@ -277,27 +277,56 @@ void Loader::gameSetup(Board* board) {
 
 	map<int, PlayerCard*> playerCards;
 
+
+	//Creates a card director for creation of cards following the builder pattern
+	CardDirector cardDirector;
+
 	//Loops through the city cards
 	for (int i = 0; i < j["GameSetup"]["playerCards"]["cityCards"].size(); i++) {
 		int cardId = j["GameSetup"]["playerCards"]["cityCards"][i]["cardId"].get<int>();
 		int cityId = j["GameSetup"]["playerCards"]["cityCards"][i]["cityId"].get<int>();
-		PlayerCard* cityCard = new CityCard(cardId, cityId);
+
+		//The card Builder is used to create all the player cards
+		CardBuilder* builder = new CityCardBuilder();
+		builder->setCardId(cardId);//sets the id of the card in the builder since the card has not yet been created
+		dynamic_cast<CityCardBuilder*>(builder)->setCityId(cityId);//sets the city id which is only for the city cards
+		cardDirector.setBuilder(builder);//sets the created builder in the director
+		cardDirector.constructCard();//the director will call the builder to construct the player card
+		PlayerCard* cityCard = cardDirector.getPlayerCard();//The player card created will be returned
 		playerCards[cardId] = cityCard;
+		delete builder;
 	}
 
 	//Loops through the event Cards
 	for (int i = 0; i < j["GameSetup"]["playerCards"]["eventCards"].size(); i++) {
 		int cardId = j["GameSetup"]["playerCards"]["eventCards"][i]["cardId"].get<int>();
 		string cardName = j["GameSetup"]["playerCards"]["eventCards"][i]["cardName"].get<string>();
-		PlayerCard* eventCard = new EventCard(cardId, cardName);
+
+		//The card Builder is used to create all the player cards
+		CardBuilder* builder = new EventCardBuilder();
+		builder->setCardId(cardId);//sets the id of the card in the builder since the card has not yet been created
+		dynamic_cast<EventCardBuilder*>(builder)->setCardName(cardName);
+		cardDirector.setBuilder(builder);//sets the created builder in the director
+		cardDirector.constructCard();//the director will call the builder to construct the player card
+		PlayerCard* eventCard = cardDirector.getPlayerCard();//The player card created will be returned
+
 		playerCards[cardId] = eventCard;
+		delete builder;
 	}
 
 	//Loops through all the epidemic Cards
 	for (int i = 0; i < j["GameSetup"]["playerCards"]["epidemicCards"].size(); i++) {
 		int cardId = j["GameSetup"]["playerCards"]["epidemicCards"][i]["cardId"].get<int>();
 		string description = j["GameSetup"]["playerCards"]["epidemicCards"][i]["description"].get<string>();
-		PlayerCard* epidemicCard = new EpidemicCard(cardId, description);
+
+		//The card Builder is used to create all the player cards
+		CardBuilder* builder = new EpidemicCardBuilder();
+		builder->setCardId(cardId);//sets the id of the card in the builder since the card has not yet been created
+		dynamic_cast<EpidemicCardBuilder*>(builder)->setCardName(description);
+		cardDirector.setBuilder(builder);//sets the created builder in the director
+		cardDirector.constructCard();//the director will call the builder to construct the player card
+		PlayerCard* epidemicCard = cardDirector.getPlayerCard();//The player card created will be returned
+
 		playerCards[cardId] = epidemicCard;
 	}
 

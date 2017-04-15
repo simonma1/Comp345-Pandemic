@@ -17,4 +17,8 @@ public:
 	int getId() { return cardId; }
 	string getType() { return type; };
 	virtual string toString() = 0;
+
+	void setCardId(int id) { this->cardId = id; };
+	void setCardName(string name) { this->cardName = name; };
+	void setType(string type) { this->type = type; };
 };
