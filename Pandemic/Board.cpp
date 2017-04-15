@@ -258,22 +258,22 @@ bool Board::isGameWon()
 vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	vector<Action*> availableActions;
 
-	if (player->getRole()->getName() == "Medic") {
+	if (player->getRole()->getName() == "Medic")) {
 		availableActions.push_back(new MedicAction());
 	}
-	if (player->getRole()->getName() == "Researcher") {
+	if (player->getRole()->getName() == "Researcher")) {
 		availableActions.push_back(new ResearcherAction());
 	}
-	if (player->getRole()->getName() == "Quarantine Specialist") {
+	if (player->getRole()->getName() == "Quarantine Specialist")) {
 		availableActions.push_back(new QuarantineSpecialistAction());
 	}
-	if (player->getRole()->getName() == "Dispatcher") {
+	if (player->getRole()->getName() == "Dispatcher")) {
 		availableActions.push_back(new DispatcherAction());
 	}
-	if (player->getRole()->getName() == "Contingency Planner") {
+	if (player->getRole()->getName() == "Contingency Planner")) {
 		availableActions.push_back(new ContingencyPlannerAction());
 	}
-	if (player->getRole()->getName() == "Operations Expert") {
+	if (player->getRole()->getName() == "Operations Expert")) {
 		availableActions.push_back(new OperationsExpertAction());
 	}
 
