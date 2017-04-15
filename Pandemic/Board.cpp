@@ -28,7 +28,7 @@ Board::Board(int outbreak, int infection, bool blackCure, bool yellowCure, bool 
 //Destructor for the Board object. Will delete every player from the vector of player pointer
 Board::~Board()
 {
-	for (int i = 0; i < players.size(); i++)
+	for (int i = 0; i < players.size(); i++) 
 	{
 		delete players[i];
 	}
@@ -78,7 +78,7 @@ string Board::toString()
 
 	value += "Board Info:\n";
 	value += "\tThe Oubreak Level is at: " + to_string(outbreakMarker) + "\n\n";
-	value += "\tThe Infection Level is at: " + to_string(infectionRateMarker) + "\n\n";
+	value += "\tThe Infection Level is at: " + to_string(getCurrentInfectionRate()) + "\n\n";
 	
 
 	if (blackCureFound && blueCureFound && redCureFound && yellowCureFound) {
@@ -148,13 +148,32 @@ void Board::boardSetup()
 {
 	string setupFileName = "setup.json";	
 	Loader loadCommon = Loader(setupFileName);
-	Map* map = new Map();
 
-	cardManager = new CardManager;
-	this->listOfRoles = loadCommon.gameSetup(map, cardManager);
-	*boardMap = *map;
-	map = NULL;
+    loadCommon.gameSetup(this);
+}
 
+bool Board::wasVisited(Location loc, vector<Location> visited) {
+	bool wasVisited = false;
+	for (int i = 0; i < visited.size(); i++) {
+		if (loc.getId() == visited[i].getId())
+			return true;
+	}
+
+	return wasVisited;
+}
+
+bool Board::hasOutbreak(Location loc, string virusColor) {
+	bool hasOutbreak = false;
+	if (virusColor == BLUE && loc.getBlue() == 3)
+		hasOutbreak = true;
+	else if (virusColor == BLACK && loc.getBlack() == 3)
+		hasOutbreak = true;
+	else if (virusColor == YELLOW && loc.getYellow() == 3)
+		hasOutbreak = true;
+	else if (virusColor == RED && loc.getRed() == 3)
+		hasOutbreak = true;
+
+	return hasOutbreak;
 }
 
 void Board::drawPlayerCards() {
@@ -187,20 +206,68 @@ void Board::setPlayerCardsFromLoad() {
 	cardManager->moveCardToDeck();
 }
 
+void Board::outbreak(Location loc, string virusColor) {
+	if (isAQuarantineSpecialist == false) {
+		cout << "=============================================================================================================" << endl;
+		cout << "                                        STARTING AN OUTBREAK!!!" << endl;
+		cout << "=============================================================================================================" << endl;
+
+		queue<Location> outbreakQueue; // keeps track of the number of outbreaks remaining to handle
+		stack<Location> infectionStack; // keeps track of the cities that have to be infected for a particular outbreak (not counting the chained ones)
+		vector<Location> visited; // keeps track of the visited outbreak locations.
+
+		outbreakQueue.push(loc); // first push the current location to the outbreak queue
+		while (!outbreakQueue.empty()) { // while there are outbreaks remaining to be handled
+			outbreakMarker++;
+			visited.push_back(outbreakQueue.front()); // this outbreak location has been visited
+			for (int neighbour : outbreakQueue.front().getConnections()) { // for every neighbour
+				Location neighbourLocation = boardMap->getLocationAtId(neighbour); // get the neighbour as a location.
+				if (!wasVisited(neighbourLocation, visited)) { // if the neighbour has already been visited
+					if (hasOutbreak(neighbourLocation, virusColor)) // if the neighbour is in an outbreak situation
+						outbreakQueue.push(neighbourLocation); // then push to outbreak queue as an outbreak that needs handling.
+					else
+						infectionStack.push(neighbourLocation); // otherwise push it to the infection stack.
+				}
+			}
+			while (!infectionStack.empty()) { // infect all the cities in the infection stack.
+				infectCity(infectionStack.top(), virusColor);
+				infectionStack.pop();
+			}
+			outbreakQueue.pop(); // this outbreak is now handled. back to the top to check the rest (if more exist).
+		}
+		// End of outbreak handling
+		cout << "Outbreak complete!" << endl;
+	}
+	isAQuarantineSpecialist = false;
+}
+
+void Board::infectCity(Location loc, string virusColor) {
+	// first if the city is in an outbreak scenario, perform an outbreak, otherwise, just infect it.
+	if (hasOutbreak(loc, virusColor))
+		outbreak(loc, virusColor);
+	else 
+		boardMap->infectCity(loc, virusColor);
+}
+
 Location Board::drawInfectionCard()
 {
 	Location locationToInfect = cardManager->drawInfectionCard();
-	boardMap->infectCity(locationToInfect);
+		
+	infectCity(locationToInfect, locationToInfect.getArea());
 
 	return locationToInfect;
 }
 
+//At the end of every turn, the number of infection cards drawn will be equal to the infection level
 void Board::endOfTurnInfection() {
-	cout << "\nThe Infection Level is at: " << infectionRateMarker << ". Therefore " << infectionRateMarker << " Infection Cards will be drawn\n" << endl;
-
-	for (int i = 0; i < infectionRateMarker; i++) {
-		drawInfectionCard();
-	}
+  int infectionLevel = getCurrentInfectionRate();
+  if (hasOneQuietNightEventCard == false) {
+	  cout << "\nThe Infection Level is at: " << infectionLevel << ". Therefore " << infectionLevel << " Infection Cards will be drawn\n" << endl;
+	  for (int i = 0; i < infectionLevel; i++) {
+	  	drawInfectionCard();
+	  }
+  }
+hasOneQuietNightEventCard = false;
 }
 
 void Board::distributePlayerCards()
@@ -239,15 +306,30 @@ string Board::printResearchStationsLocation() {
 void Board::startInfection() {
 	
 	for (int i = 0; i < CITIESTOINFECTINBEGINNING; i++) {
-		
-		drawInfectionCard();
+	
+			drawInfectionCard();
 	
 	}
 
 }
 
+//Returns the infection level which is the value at the index of the infection rate vector
+int Board::getCurrentInfectionRate() {
+	return infectionRates[infectionRateMarker];
+}
+
+//When there is an epidemic, increments the infection rate, unless the limit has been reached
+void Board::incrementInfectionRate() {
+	if (infectionRateMarker >= infectionRates.size()) {
+		cout << "THE GAME IS LOST. THE INFECTION RATE HAS REACHED ITS END"<<endl;
+	}
+	else {
+		infectionRateMarker++;
+	}
+}
+
 bool Board::isGameLost() {
-	return cardManager->getPlayerCardDeck().size() < 1 || outbreakMarker == 8;
+	return cardManager->getPlayerCardDeck()->size() < 1 || outbreakMarker == 8;
 }
 
 bool Board::isGameWon()
@@ -260,6 +342,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	
 	//Checks if player can perform a specific role action
 	bool canPerformRoleAction = false;
+
 	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
 		availableActions.push_back(new ScientistAction());
 		canPerformRoleAction = true;
@@ -272,24 +355,46 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ResearcherAction());
 		canPerformRoleAction = true;
 	}
-	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
-		availableActions.push_back(new QuarantineSpecialistAction());
-		canPerformRoleAction = true;
-	}
-	if ((player->getRole()->getName().compare("Dispatcher") == 0) ) {
+
+	if ((player->getRole()->getName().compare("Dispatcher") == 0)) {
 		availableActions.push_back(new DispatcherAction());
 		canPerformRoleAction = true;
 	}
-	if ((player->getRole()->getName().compare("Contingency Planner") == 0) ) {
-		availableActions.push_back(new ContingencyPlannerAction());
-		canPerformRoleAction = true;
-	}
-	if ((player->getRole()->getName().compare("Operations Expert") == 0) ) {
-		availableActions.push_back(new OperationsExpertAction());
+
+	//Quarantine Specialist Role Check (simulation)
+	Location currentLocation2 = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+	int currentLocationId2 = currentLocation2.getId();
+	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
+		isAQuarantineSpecialist = true;
+		if (currentLocation2.getBlue() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(BLUE, boardMap, currentLocationId2));
+		else if (currentLocation2.getBlack() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(BLACK, boardMap, currentLocationId2));
+		else if (currentLocation2.getRed() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(RED, boardMap, currentLocationId2));
+		else if (currentLocation2.getYellow() > 0)
+			availableActions.push_back(new QuarantineSpecialistAction(YELLOW, boardMap, currentLocationId2));
 		canPerformRoleAction = true;
 	}
 
-	// Check if player is on research station
+	//Contingency Planner Role Check 
+	bool eventAlreadyOnRole = false;
+	if ( (player->getRole()->getName().compare("Contingency Planner") == 0) && eventAlreadyOnRole == false ) {
+		availableActions.push_back(new ContingencyPlannerAction(cardManager->getPlayerCardDiscard()));
+		canPerformRoleAction = true;
+		eventAlreadyOnRole = true;
+		//Last card in the discard once used will be an event card if this action is executed and should thus be deleted
+		//The card will be shown as being discarded twice but the second output indicates its being erased from the game
+		
+		if (getCardManager()->getPlayerCardDiscard() != NULL && getCardManager()->getPlayerCardDiscard()->size() > 0) {
+			if (getCardManager()->getPlayerCardDiscard()->at(getCardManager()->getPlayerCardDiscard()->size() - 1)->getType() == "event") {
+				cout << "The event card that was just picked up by way of the contingency planner action is to be deleted upon a second discarding." << endl;
+				getCardManager()->getPlayerCardDiscard()->erase(getCardManager()->getPlayerCardDiscard()->begin() + getCardManager()->getPlayerCardDiscard()->size() - 1);
+			}
+		}
+		
+	}
+
 	bool onARsearchStation = false;
 	for (int i = 0; i < researchStations.size(); i++) {
 		if (player->getPlayerPawn()->getCurrentLocation() == researchStations[i]) { // is the player on a research station
@@ -297,7 +402,112 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		}
 	}
 
+	bool actionTaken = false; //this is to avoid using break in the following role and event actions
+
+	//Operations Expert Role Actions check
+	//If the player is on a city that has no research station and that player is an operations expert, 
+	//the OperationsExpertBuildAction (the first of two actions that an operations expert can do) is added to available actions
+	if (player->getRole()->getName() == ("Operations Expert")) {
+		canPerformRoleAction = true;
+		if (!onARsearchStation) {
+			availableActions.push_back(new OperationsExpertBuildAction(&researchStations));
+		}
+		// Check if player can perform a move action
+		else if (onARsearchStation && OperationsExpertMoveAction::getActionCalled() == false) {
+			//randomly generate an id for the card that a player would want to move to 
+			srand(time(NULL));
+			int randomNum = rand() % cardManager->getPlayerCardDeck()->size();
+			for (auto &card : *cardManager->getPlayerCardDeck()) {
+				if (card->getId() == randomNum && actionTaken == false) {
+					availableActions.push_back(new OperationsExpertMoveAction(card->getId(), cardManager->getPlayerCardDiscard(), cardManager->getPlayerCardDeck()));
+					actionTaken = true;
+				}
+			}
+		}
+	}
 	
+	//Event Card Actions Check
+	bool canPerformEventAction = false;
+	int randomCity;
+	string ownPawnOrOther, permissionFromOther;
+	for (int i = 0; i < player->getPlayerCards().size(); i++) {
+		//N.B. A player should not typically have more than one event card but in the case where he does, he will not be allowed to perform more than one event card action per turn
+		if (player->getPlayerCards()[i]->getType() == "event") {
+			//Resilient Population Event Card Action Check
+			canPerformEventAction = true;
+			if (player->getPlayerCards()[i]->getCardName() == "Resilient Population" && canPerformEventAction && actionTaken == false) {
+				availableActions.push_back(new ResilientPopulationEventAction(cardManager->getInfectionCardDiscard(), cardManager->getPlayerCardDiscard()));
+				canPerformEventAction = false;
+				actionTaken = true;
+			}
+			//Government Grant Event Card Action Check
+			else if (player->getPlayerCards()[i]->getCardName() == "Government Grant" && canPerformEventAction) {
+				for (int i = 0; i < researchStations.size(); i++) {
+					srand(time(NULL));
+					randomCity = rand() % boardMap->getMapLocation().size() + 1;
+					if (boardMap->getLocationAtId(randomCity).getId() != researchStations[i] && actionTaken == false) {
+						cout << player->getRole()->getName() << " Building a Research Station at" << boardMap->getLocationAtId(randomCity).getCity() << endl;
+						availableActions.push_back(new GovernmentGrantEventAction(&researchStations, cardManager->getPlayerCardDiscard(), randomCity));
+						canPerformEventAction = false;
+						actionTaken = true;
+					}
+				}
+			}
+			//Airlift Event Card Action Check
+			else if (player->getPlayerCards()[i]->getCardName() == "Airlift" && canPerformEventAction) {
+				//Get a random location for a pawn to be moved to
+				srand(time(NULL));
+				randomCity = rand() % boardMap->getMapLocation().size() + 1;	
+				//Ask player if he wants to move his own pawn or another's (this will be prompted before the player can do any of this his actions to inquire about how the event card will be used)
+				cout << "Since you have the event card Airlift, would you like to use it to move your own pawn (Y for your own/N for another pawn)? Bear in mind that any other input will not let use the card on this turn." << endl;
+				cin >> ownPawnOrOther;
+				if ((ownPawnOrOther == "Y" || ownPawnOrOther == "y") && actionTaken == false) {
+					availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
+					canPerformEventAction = false;
+					actionTaken = true;
+				}
+				else if (ownPawnOrOther == "N" || ownPawnOrOther == "n") {
+					//The first player who inputs Y will have their pawn moved.
+					for (auto &otherPlayer : players) {
+						if (otherPlayer != player) {
+							//The idea here is that you get permission to move another player's pawn and if you get a yes, then you can move the pawn on this turn or a future turn
+							//the same applies to your own pawn
+							cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
+							cin >> permissionFromOther;
+							if ((permissionFromOther == "Y" || permissionFromOther == "y")  && actionTaken == false) {
+								availableActions.push_back(new AirliftEventAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), cardManager->getPlayerCardDiscard()));
+								canPerformEventAction = false;
+								actionTaken = true;
+							}
+							else if (permissionFromOther == "N" || permissionFromOther == "n") {
+								cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
+							}
+						}
+					}
+					//If you get here, no other player gave their permission and you can only move your own pawn
+					if (permissionFromOther == "N" || permissionFromOther == "n" && actionTaken == false) {
+						cout << "You will only be allowed to move your own pawn when you want." << endl;
+						availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
+						canPerformEventAction = false;
+						actionTaken = true;
+					}
+				}
+			}
+			//Forecast Event Card Action Check
+			else if (player->getPlayerCards()[i]->getCardName() == "Forecast" && canPerformEventAction && actionTaken == false) {
+				availableActions.push_back(new ForecastEventAction(cardManager->getInfectionCardDeck(), cardManager->getPlayerCardDiscard()));
+				canPerformEventAction = false;
+				actionTaken = true;
+			}
+			//One Quiet Night Event Card Action Check
+			else if (player->getPlayerCards()[i]->getCardName() == "One Quiet Night" && canPerformEventAction && actionTaken == false) {
+				availableActions.push_back(new OneQuietNightEventAction(cardManager->getPlayerCardDiscard()));
+				hasOneQuietNightEventCard = true;
+				canPerformEventAction = false;
+				actionTaken = true;
+			}
+		}
+	}
 
 	// check for shuttleflight action
 	if (onARsearchStation) {
@@ -335,7 +545,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		string redArea = "Red";
 		string yellowArea = "Yellow";
 
-
+		
 		if (player->getPlayerCards().size() > 0) { // does the player have any cards
 			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
 				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
@@ -369,11 +579,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new DriveAction(connection));
 	}
 
-	// check for role action
 	
-	// if (player->canPerformRoleAction()) {
-	//	   availableActions.push_back(player->getRoleAction());
-	// }
 
 	// check for share action
 	for (auto &otherPlayer : players) {

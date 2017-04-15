@@ -18,10 +18,18 @@
 #include "ScientistAction.h"
 #include "DispatcherAction.h"
 #include "ResearcherAction.h"
-#include "OperationsExpertAction.h"
+#include "OperationsExpertBuildAction.h"
+#include "OperationsExpertMoveAction.h"
 #include "ContingencyPlannerAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
+#include "ResilientPopulationEventAction.h"
+#include "GovernmentGrantEventAction.h"
+#include "AirliftEventAction.h"
+#include "ForecastEventAction.h"
+#include "OneQuietNightEventAction.h"
+#include <stack>
+#include <queue>
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
@@ -30,12 +38,14 @@
 #define ATLANTA_ID 5
 #define MAX_ID_FOR_CITY_CARD 49
 
+using namespace std;
+
 class CardManager;
 
 /*The board will contain the list of player and allow them to interact with the locations and card,
 as well as execute action
 */
-class Board 
+class Board
 {
 
 public:
@@ -53,17 +63,19 @@ public:
 	void setResearchStations(vector<int> researchStations) { this->researchStations = researchStations; };
 	string printResearchStationsLocation();
 	vector<Action *> getPlayerAvailableActions(Player *);
-	void requestAction();
 	void setCardManager(CardManager* cardManager) { this->cardManager = cardManager; };
 	CardManager* getCardManager() { return this->cardManager; };
 	Location drawInfectionCard();
 	void distributePlayerCards();
 	int getTurn() { return turn; };
+	void setListOfRoles(vector<Pawn> roles) { listOfRoles = roles; };
 
 	void startInfection();
 	void endOfTurnInfection();
 	void drawPlayerCards();
 	void setPlayerCardsFromLoad();
+	void outbreak(Location, string);
+	void infectCity(Location, string);
 
 	int getOutBreakMarker() { return outbreakMarker; };
 	int getInfectionRateMarker() { return infectionRateMarker; };
@@ -87,6 +99,12 @@ public:
 	void setGameLost() { this->gameLost = true; };
 	void setGameWon() { this->gameWon = true; };
 
+	//Related to the infection rate
+	int getCurrentInfectionRate();
+	void incrementInfectionRate();
+	void setInfectionRateMarker(int infectionRate) { this->infectionRateMarker = infectionRate; };
+	void setInfectionRates(vector<int> rates) { infectionRates = rates; };
+
 	static const int CITIESTOINFECTINBEGINNING = 9;
 	static const int MAXNUMBEROFPLAYERCARDS = 6;
 	
@@ -94,7 +112,6 @@ private:
 	vector<Player*> players;
 	Map* boardMap;
 	int getRandomNumber();
-	int infectionRateMarker;
 	int outbreakMarker;
 	vector<int> InfectionDeck;
 	bool yellowCureFound, blackCureFound, blueCureFound, redCureFound;
@@ -105,4 +122,10 @@ private:
 	int turn;
 	bool gameLost;
 	bool gameWon;
+	bool hasOneQuietNightEventCard = false; //for the one quiet night event card
+	bool isAQuarantineSpecialist = false; //for the case where a player is a quarantine specialist
+	vector<int> infectionRates;
+	int infectionRateMarker;//the index of the infection rate in the vector, not the actual value
+	bool wasVisited(Location, vector<Location>);
+	bool hasOutbreak(Location, string);
 };

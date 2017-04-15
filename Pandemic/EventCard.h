@@ -3,7 +3,6 @@
 
 class EventCard : public PlayerCard {
 
-
 public:
 	EventCard();
 	EventCard(int, string);
