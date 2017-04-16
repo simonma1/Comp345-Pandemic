@@ -375,7 +375,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 			}
 		}
-		if (player->dispatchMove() || AirliftEventAction::getMedicBool()) {
+		if (player->dispatchMove()) {
 			if (blackCureFound) {
 				while (currentLocation.getBlack() > 0) {
 					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "black");

@@ -12,10 +12,6 @@ void AirliftEventAction::act(Player * player) {
 	//The idea is to move a pawn to any city (this will be decided and checked on the board) as long as the permission is received from owner of the pawn
 	//(again a player will be prompted on the console).
 	cout << player->getRole()->getName() << " Is, due to an airlift event action, being moved to " + to_string(destinationId) << endl;
-	isMedic = false;
-	if (player->getRole()->getName() == "medic") {
-		isMedic = true;
-	}
 	player->getPlayerPawn()->setLocation(destinationId);
 
 	for (int i = 0; i < player->getPlayerCards().size(); i++) { // find which card is being discarded
@@ -28,9 +24,6 @@ void AirliftEventAction::act(Player * player) {
 	player->removePlayerCard(player->getPlayerCards()[cardPosition]->getId());
 }
 
-bool AirliftEventAction::getMedicBool() {
-	return isMedic;
-}
 
 string AirliftEventAction::toString() {
 	return "Move any 1 pawn to any city. Get permission before moving another player's pawn";
