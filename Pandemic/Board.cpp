@@ -347,9 +347,38 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		availableActions.push_back(new ScientistAction());
 		canPerformRoleAction = true;
 	}
-	if ((player->getRole()->getName().compare("Medic") == 0) ) {
-		availableActions.push_back(new MedicAction());
-		canPerformRoleAction = true;
+
+	//Check for Medic Role Action
+	if ((player->getRole()->getName() == "Medic")) {
+		Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+		int currentLocationId = currentLocation.getId();
+
+		if (blackCureFound || redCureFound || yellowCureFound || blueCureFound) {
+			if (blackCureFound) {
+				while (currentLocation.getBlack() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "black");
+				}
+			}
+			if (redCureFound) {
+				while (currentLocation.getRed() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "red");
+				}
+			}
+			if (yellowCureFound) {
+				while (currentLocation.getYellow() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "yellow");
+				}
+			}
+			if (blueCureFound) {
+				while (currentLocation.getBlue() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "blue");
+				}
+			}
+		}
+		else {
+			availableActions.push_back(new MedicAction(boardMap, currentLocation, currentLocationId));
+		}
+		
 	}
 	if ((player->getRole()->getName().compare("Researcher") == 0) ) {
 		availableActions.push_back(new ResearcherAction());
