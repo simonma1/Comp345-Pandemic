@@ -8,9 +8,11 @@ public:
 	AirliftEventAction(int, vector<PlayerCard*>*);
 	void act(Player *);
 	string toString();
+	static bool getMedicBool();
 
 private:
 	int destinationId;
 	vector<PlayerCard*>* playerCardDiscard;
 	int cardPosition;
+	static bool isMedic;
 };

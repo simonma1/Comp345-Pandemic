@@ -375,6 +375,28 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 			}
 		}
+		if (player->dispatchMove() || AirliftEventAction::getMedicBool()) {
+			if (blackCureFound) {
+				while (currentLocation.getBlack() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "black");
+				}
+			}
+			if (redCureFound) {
+				while (currentLocation.getRed() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "red");
+				}
+			}
+			if (yellowCureFound) {
+				while (currentLocation.getYellow() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "yellow");
+				}
+			}
+			if (blueCureFound) {
+				while (currentLocation.getBlue() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "blue");
+				}
+			}
+		}
 		else {
 			availableActions.push_back(new MedicAction(boardMap, currentLocation, currentLocationId));
 		}
