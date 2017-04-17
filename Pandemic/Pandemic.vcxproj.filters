@@ -1,310 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="AirliftEventAction.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BuildRSAction.cpp" />
+    <ClCompile Include="CardBuilder.cpp" />
+    <ClCompile Include="CardDirector.cpp" />
+    <ClCompile Include="CardManager.cpp" />
+    <ClCompile Include="CharterFlightAction.cpp" />
+    <ClCompile Include="CityCard.cpp" />
+    <ClCompile Include="ContingencyPlannerAction.cpp" />
+    <ClCompile Include="DirectFlightAction.cpp" />
+    <ClCompile Include="DiscoverCureAction.cpp" />
+    <ClCompile Include="DiseaseCubes.cpp" />
+    <ClCompile Include="DispatcherAction.cpp" />
+    <ClCompile Include="DriveAction.cpp" />
+    <ClCompile Include="EpidemicCard.cpp" />
+    <ClCompile Include="EventAction.cpp" />
+    <ClCompile Include="EventCard.cpp" />
+    <ClCompile Include="ForecastEventAction.cpp" />
+    <ClCompile Include="GovernmentGrantEventAction.cpp" />
+    <ClCompile Include="InfectionCard.cpp" />
+    <ClCompile Include="InfectionLogObserver.cpp" />
+    <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="Location.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MedicAction.cpp" />
+    <ClCompile Include="Observable.cpp" />
+    <ClCompile Include="OneQuietNightEventAction.cpp" />
+    <ClCompile Include="OperationsExpertBuildAction.cpp" />
+    <ClCompile Include="OperationsExpertMoveAction.cpp" />
+    <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Cards.cpp" />
+    <ClCompile Include="QuarantineSpecialistAction.cpp" />
+    <ClCompile Include="ReferenceCard.cpp" />
+    <ClCompile Include="ResearcherAction.cpp" />
+    <ClCompile Include="ResilientPopulationEventAction.cpp" />
+    <ClCompile Include="RoleAction.cpp" />
+    <ClCompile Include="ScientistAction.cpp" />
+    <ClCompile Include="ShareGiveAction.cpp" />
+    <ClCompile Include="ShareTakeAction.cpp" />
+    <ClCompile Include="ShuttleFlightAction.cpp" />
+    <ClCompile Include="TreatAction.cpp" />
+    <ClCompile Include="DispatcherShuttlePawnAction.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cards.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Location.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Loader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CityCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReferenceCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InfectionCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildRSAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CharterFlightAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DriveAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShuttleFlightAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DiscoverCureAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TreatAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectFlightAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoleAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShareGiveAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShareTakeAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CardManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EpidemicCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DiseaseCubes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DispatcherAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MedicAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QuarantineSpecialistAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResearcherAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScientistAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContingencyPlannerAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Observable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InfectionLogObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OperationsExpertMoveAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OperationsExpertBuildAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResilientPopulationEventAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GovernmentGrantEventAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AirliftEventAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ForecastEventAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OneQuietNightEventAction.cpp">
-    <ClCompile Include="CardBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CardDirector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="AirliftEventAction.h" />
+    <ClInclude Include="BuildRSAction.h" />
+    <ClInclude Include="CardBuilder.h" />
+    <ClInclude Include="CardDirector.h" />
+    <ClInclude Include="CardManager.h" />
+    <ClInclude Include="Cards.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="CharterFlightAction.h" />
+    <ClInclude Include="CityCard.h" />
+    <ClInclude Include="ContingencyPlannerAction.h" />
+    <ClInclude Include="DirectFlightAction.h" />
+    <ClInclude Include="DiscoverCureAction.h" />
+    <ClInclude Include="DiseaseCubes.h" />
+    <ClInclude Include="DispatcherAction.h" />
+    <ClInclude Include="DriveAction.h" />
+    <ClInclude Include="EpidemicCard.h" />
+    <ClInclude Include="EventAction.h" />
+    <ClInclude Include="EventCard.h" />
+    <ClInclude Include="ForecastEventAction.h" />
+    <ClInclude Include="GovernmentGrantEventAction.h" />
+    <ClInclude Include="InfectionCard.h" />
+    <ClInclude Include="InfectionLogObserver.h" />
+    <ClInclude Include="MedicAction.h" />
+    <ClInclude Include="MovementAction.h" />
+    <ClInclude Include="MovementCardAction.h" />
+    <ClInclude Include="MovementNoCardAction.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="OneQuietNightEventAction.h" />
+    <ClInclude Include="OperationsExpertAction.h" />
+    <ClInclude Include="OperationsExpertBuildAction.h" />
+    <ClInclude Include="OperationsExpertMoveAction.h" />
+    <ClInclude Include="OtherAction.h" />
+    <ClInclude Include="PlayerCards.h" />
+    <ClInclude Include="QuarantineSpecialistAction.h" />
+    <ClInclude Include="ReferenceCard.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="Loader.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Pawn.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ResearcherAction.h" />
+    <ClInclude Include="ResilientPopulationEventAction.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RoleAction.h" />
+    <ClInclude Include="ScientistAction.h" />
+    <ClInclude Include="ShareAction.h" />
+    <ClInclude Include="ShareGiveAction.h" />
+    <ClInclude Include="ShareTakeAction.h" />
+    <ClInclude Include="ShuttleFlightAction.h" />
+    <ClInclude Include="TreatAction.h" />
+    <ClInclude Include="DispatcherShuttlePawnAction.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Location.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Loader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CityCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ReferenceCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InfectionCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OtherAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoleAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TreatAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildRSAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiscoverCureAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShareAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementCardAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementNoCardAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectFlightAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CharterFlightAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DriveAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShuttleFlightAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShareGiveAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShareTakeAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerCards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EpidemicCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiseaseCubes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DispatcherAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MedicAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QuarantineSpecialistAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResearcherAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScientistAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContingencyPlannerAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OperationsExpertAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InfectionLogObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OperationsExpertBuildAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OperationsExpertMoveAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResilientPopulationEventAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GovernmentGrantEventAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ForecastEventAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AirliftEventAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OneQuietNightEventAction.h">
-    <ClInclude Include="CardBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardDirector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Pandemic.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="Pandemic.rc" />
   </ItemGroup>
 </Project>

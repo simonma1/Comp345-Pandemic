@@ -21,6 +21,7 @@
 #include "OperationsExpertBuildAction.h"
 #include "OperationsExpertMoveAction.h"
 #include "ContingencyPlannerAction.h"
+#include "DispatcherShuttlePawnAction.h"
 #include "MedicAction.h"
 #include "QuarantineSpecialistAction.h"
 #include "ResilientPopulationEventAction.h"
