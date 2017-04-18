@@ -4,6 +4,8 @@
 The board class will act as an intermediary between location and player
 */
 
+Board *Board::instance = 0;
+
 Board::Board()
 {
 	outbreakMarker = 0;
@@ -311,6 +313,19 @@ void Board::startInfection() {
 	
 	}
 
+}
+
+/*
+Board class created as a singleton to allow access to give it global scope and restrict to 1
+the number of Board object that can be created
+*/
+Board * Board::getInstance()
+{
+	if (!instance) {//If the object has not been created, creates an instance
+		instance = new Board;
+	}
+
+	return instance;//returns the instance of the board
 }
 
 //Returns the infection level which is the value at the index of the infection rate vector

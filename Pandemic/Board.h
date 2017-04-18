@@ -49,8 +49,6 @@ class Board
 {
 
 public:
-	Board();
-	Board(int,int, bool, bool, bool, bool);
 	~Board();
 	void addPlayer(Player* p);
 	void setMap(Map*);
@@ -99,6 +97,9 @@ public:
 	void setGameLost() { this->gameLost = true; };
 	void setGameWon() { this->gameWon = true; };
 
+	//Singleton functions
+	static Board* getInstance();
+
 	//Related to the infection rate
 	int getCurrentInfectionRate();
 	void incrementInfectionRate();
@@ -128,4 +129,8 @@ private:
 	int infectionRateMarker;//the index of the infection rate in the vector, not the actual value
 	bool wasVisited(Location, vector<Location>);
 	bool hasOutbreak(Location, string);
+	static Board* instance;//The singleton instance
+	Board();//constructor private to follow the singleton design
+	Board(int, int, bool, bool, bool, bool);
 };
+
