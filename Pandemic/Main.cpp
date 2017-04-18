@@ -142,17 +142,20 @@ int main()
 
 			if (actions.size() > 1) {
 				int actionChosen = 0;
-				do {
-					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
-					//Added this to intercept a user entering a string input by accident
-					while (std::cin.fail()) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
-					}
-					cin >> actionChosen;
-				} while (actionChosen < 1 || actionChosen > actions.size());
 				
+				cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+				cin >> actionChosen;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Added this to intercept a user entering a string input by accident
+				while (actionChosen < 1 || actionChosen > actions.size()) {
+					cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
+					cin >> actionChosen;
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				}
+
 				cout << "Selected action " + to_string(actionChosen) << endl;
 				actions[actionChosen - 1]->act(players[board->getTurn()]);
 			}
