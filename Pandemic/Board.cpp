@@ -468,6 +468,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		canPerformRoleAction = true;
 	}
 
+	//Quarantine Specialist Role Check
+
 	if ((player->getRole()->getName() == "Dispatcher")) {
 		availableActions.push_back(new DispatcherAction());
 		canPerformRoleAction = true;
@@ -476,7 +478,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	//Quarantine Specialist Role Check (simulation)
 	Location currentLocation2 = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
 	int currentLocationId2 = currentLocation2.getId();
-	if ((player->getRole()->getName().compare("Quarantine Specialist") == 0) ) {
+	if ( player->getRole()->getName() == "Quarantine Specialist" ) {
 		isAQuarantineSpecialist = true;
 		if (currentLocation2.getBlue() > 0)
 			availableActions.push_back(new QuarantineSpecialistAction(BLUE, boardMap, currentLocationId2));
@@ -491,13 +493,12 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 	//Contingency Planner Role Check 
 	bool eventAlreadyOnRole = false;
-	if ( (player->getRole()->getName().compare("Contingency Planner") == 0) && eventAlreadyOnRole == false ) {
+	if ( player->getRole()->getName() == "Contingency Planner" && eventAlreadyOnRole == false ) {
 		availableActions.push_back(new ContingencyPlannerAction(cardManager->getPlayerCardDiscard()));
 		canPerformRoleAction = true;
 		eventAlreadyOnRole = true;
 		//Last card in the discard once used will be an event card if this action is executed and should thus be deleted
-		//The card will be shown as being discarded twice but the second output indicates its being erased from the game
-		
+		//The card will be shown as being discarded twice but the second output indicates its being erased from the game6
 		if (getCardManager()->getPlayerCardDiscard() != NULL && getCardManager()->getPlayerCardDiscard()->size() > 0) {
 			if (getCardManager()->getPlayerCardDiscard()->at(getCardManager()->getPlayerCardDiscard()->size() - 1)->getType() == "event") {
 				cout << "The event card that was just picked up by way of the contingency planner action is to be deleted upon a second discarding." << endl;
@@ -537,6 +538,72 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 			}
 		}
 	}
+
+	string moveOwn; 
+	string givenPermission;
+	string destinationCityWithPawn;
+	string dispatcherDestinationDecision;
+	//the DispatcherShuttlePawnAction 
+	if (player->getRole()->getName() == "Dispatcher") {
+		//Ask player if you are allowed to move another player's pawn (this will be prompted before the player can do any of his actions to inquire if this dispatcher action can be done)
+		cout << "Do you want to move your pawn to any other city that contain's another pawn (Y for your own/N for another pawn)? Any other input will not let use this role action on this turn. Also, if you repeatedly say no to prompts, you will be moved nowhere but have used the action anyway." << endl;
+		cin >> moveOwn;
+		if (moveOwn == "Y" || moveOwn == "y") {
+			for (auto &otherPlayer : players) {
+				if (otherPlayer != player && actionTaken == false) {
+					cout << "Do you want to move your pawn to " << boardMap->getLocationAtId(otherPlayer->getPlayerPawn()->getCurrentLocation()).getCity() << "?" << endl;
+					cin >> dispatcherDestinationDecision;
+					if (dispatcherDestinationDecision == "Y" || dispatcherDestinationDecision == "y") {
+						availableActions.push_back(new DispatcherShuttlePawnAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), player));
+						canPerformRoleAction = true;
+						actionTaken = true;
+					}
+				}
+			}
+		}
+		else if (moveOwn == "N" || moveOwn == "n") {
+			//The first player who inputs Y will have their pawn moved.
+			for (auto &otherPlayer : players) {
+				if (otherPlayer != player) {
+					if (actionTaken == false) {
+						cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
+						cin >> givenPermission;
+						if (givenPermission == "Y" || givenPermission == "y") {
+							for (auto &yetAnotherPlayer : players) {
+								if (yetAnotherPlayer != otherPlayer && actionTaken == false) {
+									cout << "Do you want to move your pawn to " << boardMap->getLocationAtId(yetAnotherPlayer->getPlayerPawn()->getCurrentLocation()).getCity() << "?" << endl;
+									cin >> dispatcherDestinationDecision;
+									if (dispatcherDestinationDecision == "Y" || dispatcherDestinationDecision == "y") {
+										availableActions.push_back(new DispatcherShuttlePawnAction(yetAnotherPlayer->getPlayerPawn()->getCurrentLocation(), otherPlayer));
+										canPerformRoleAction = true;
+										actionTaken = true;
+									}
+								}
+							}
+						}
+						else if (givenPermission == "N" || givenPermission == "n") {
+							cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
+						}
+					}
+				}
+			}
+			//If you get here, no other player gave their permission and you can only move your own pawn
+			if (givenPermission == "N" || givenPermission == "n" && actionTaken == false) {
+				cout << "You will only be allowed to move your own pawn when you want." << endl;
+				for (auto &otherPlayer : players) {
+					if (otherPlayer != player && actionTaken == false) {
+						cout << "Do you want to move your pawn to " << boardMap->getLocationAtId(otherPlayer->getPlayerPawn()->getCurrentLocation()).getCity() << "?" << endl;
+						cin >> dispatcherDestinationDecision;
+						if (dispatcherDestinationDecision == "Y" || dispatcherDestinationDecision == "y") {
+							availableActions.push_back(new DispatcherShuttlePawnAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), player));
+							canPerformRoleAction = true;
+							actionTaken = true;
+						}
+					}
+				}
+			}
+		}
+	}
 	
 	//Event Card Actions Check
 	bool canPerformEventAction = false;
@@ -558,8 +625,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 					srand(time(NULL));
 					randomCity = rand() % boardMap->getMapLocation().size() + 1;
 					if (boardMap->getLocationAtId(randomCity).getId() != researchStations[i] && actionTaken == false) {
-						cout << player->getRole()->getName() << " Building a Research Station at" << boardMap->getLocationAtId(randomCity).getCity() << endl;
 						availableActions.push_back(new GovernmentGrantEventAction(&researchStations, cardManager->getPlayerCardDiscard(), randomCity));
+						cout << "\n" << player->getRole()->getName() << " would build a research station (if the Government Grant event card is used) in " << boardMap->getLocationAtId(randomCity).getCity() << "\n" << endl;
 						canPerformEventAction = false;
 						actionTaken = true;
 					}
@@ -574,7 +641,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				cout << "Since you have the event card Airlift, would you like to use it to move your own pawn (Y for your own/N for another pawn)? Bear in mind that any other input will not let use the card on this turn." << endl;
 				cin >> ownPawnOrOther;
 				if ((ownPawnOrOther == "Y" || ownPawnOrOther == "y") && actionTaken == false) {
-					availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
+					availableActions.push_back(new AirliftEventAction(randomCity, player, cardManager->getPlayerCardDiscard()));
 					canPerformEventAction = false;
 					actionTaken = true;
 				}
@@ -584,22 +651,25 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 						if (otherPlayer != player) {
 							//The idea here is that you get permission to move another player's pawn and if you get a yes, then you can move the pawn on this turn or a future turn
 							//the same applies to your own pawn
-							cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
-							cin >> permissionFromOther;
-							if ((permissionFromOther == "Y" || permissionFromOther == "y")  && actionTaken == false) {
-								availableActions.push_back(new AirliftEventAction(otherPlayer->getPlayerPawn()->getCurrentLocation(), cardManager->getPlayerCardDiscard()));
-								canPerformEventAction = false;
-								actionTaken = true;
-							}
-							else if (permissionFromOther == "N" || permissionFromOther == "n") {
-								cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
+							if (canPerformEventAction == true) {
+								cout << "Can I move the pawn of the " << otherPlayer->getRole()->getName() << "?" << endl;
+								cin >> permissionFromOther;
+								if (permissionFromOther == "Y" || permissionFromOther == "y") {
+									availableActions.push_back(new AirliftEventAction(randomCity, otherPlayer, cardManager->getPlayerCardDiscard()));
+									canPerformEventAction = false;
+									actionTaken = true;
+								}
+
+								else if (permissionFromOther == "N" || permissionFromOther == "n") {
+									cout << "Cannot move pawn as do not have permission from the " << otherPlayer->getRole()->getName() << "." << endl;
+								}
 							}
 						}
 					}
 					//If you get here, no other player gave their permission and you can only move your own pawn
 					if (permissionFromOther == "N" || permissionFromOther == "n" && actionTaken == false) {
 						cout << "You will only be allowed to move your own pawn when you want." << endl;
-						availableActions.push_back(new AirliftEventAction(randomCity, cardManager->getPlayerCardDiscard()));
+						availableActions.push_back(new AirliftEventAction(randomCity, player, cardManager->getPlayerCardDiscard()));
 						canPerformEventAction = false;
 						actionTaken = true;
 					}

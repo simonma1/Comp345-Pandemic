@@ -149,12 +149,10 @@ int main()
 						cin.clear();
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
-						//cin >> actionChosen;
 					}
 					cin >> actionChosen;
-					//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				} while (actionChosen < 1 || actionChosen > actions.size());
-
+				
 				cout << "Selected action " + to_string(actionChosen) << endl;
 				actions[actionChosen - 1]->act(players[board->getTurn()]);
 			}

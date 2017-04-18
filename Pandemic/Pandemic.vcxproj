@@ -123,6 +123,7 @@
     <ClCompile Include="DiscoverCureAction.cpp" />
     <ClCompile Include="DiseaseCubes.cpp" />
     <ClCompile Include="DispatcherAction.cpp" />
+    <ClCompile Include="DispatcherShuttlePawnAction.cpp" />
     <ClCompile Include="DriveAction.cpp" />
     <ClCompile Include="EpidemicCard.cpp" />
     <ClCompile Include="EventAction.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="DiscoverCureAction.h" />
     <ClInclude Include="DiseaseCubes.h" />
     <ClInclude Include="DispatcherAction.h" />
+    <ClInclude Include="DispatcherShuttlePawnAction.h" />
     <ClInclude Include="DriveAction.h" />
     <ClInclude Include="EpidemicCard.h" />
     <ClInclude Include="EventAction.h" />
