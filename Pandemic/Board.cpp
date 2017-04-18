@@ -211,10 +211,11 @@ void Board::setPlayerCardsFromLoad() {
 
 void Board::epidemicCardAction() {
 	incrementInfectionRate();
-	cardManager->getInfectionCardDeck()->at(cardManager->getInfectionCardDeck()->size() - 1);
+	bottomInfectionCard = cardManager->getInfectionCardDeck()->at(cardManager->getInfectionCardDeck()->size() - 1);
+	//if 
 	if (isBlackCured() || isBlueCured() || isRedCured() || isYellowCured()) {
 		if (isBlackCured()) {
-
+			
 		}
 		if (isBlueCured()) {
 
@@ -227,7 +228,12 @@ void Board::epidemicCardAction() {
 		}
 	}
 	else {
+		if () {
 
+		}
+		else {
+			outbreak();
+		}
 	}
 }
 

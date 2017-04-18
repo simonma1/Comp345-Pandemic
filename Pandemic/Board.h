@@ -28,6 +28,7 @@
 #include "AirliftEventAction.h"
 #include "ForecastEventAction.h"
 #include "OneQuietNightEventAction.h"
+#include "InfectionCard.h"
 #include <stack>
 #include <queue>
 #define BLUE "Blue"
@@ -110,6 +111,7 @@ public:
 	static const int MAXNUMBEROFPLAYERCARDS = 6;
 	
 private: 
+	InfectionCard* bottomInfectionCard;
 	vector<Player*> players;
 	Map* boardMap;
 	int getRandomNumber();
