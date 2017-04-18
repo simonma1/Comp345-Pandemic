@@ -30,7 +30,7 @@ int main()
 {
 	static const int MOVESPERTURN = 4;
 	Loader* loader;
-	Board* board = new Board;
+	Board* board = Board::getInstance();//Board created as a singleton
 	int startOrLoad=0;
 
 	
@@ -99,6 +99,7 @@ int main()
 
 	//Creates Reference card for the players. To be modified later on
 	
+	Board::getInstance();
 	players[0]->lookAtReferenceCard();
 
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
