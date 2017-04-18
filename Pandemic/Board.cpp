@@ -492,7 +492,7 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 		}
 		
 	}
-	if ((player->getRole()->getName()  == "Researcher") == 0) {
+	if ((player->getRole()->getName()  == "Researcher")) {
 		availableActions.push_back(new ResearcherAction());
 		canPerformRoleAction = true;
 	}
