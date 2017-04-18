@@ -11,8 +11,9 @@ EpidemicCard::EpidemicCard(int cardId, string cardName)
 	this->type = "epidemic";
 }
 
-void EpidemicCard::cardAction()
+void EpidemicCard::cardAction(Board boardMap)
 {
+
 }
 
 string EpidemicCard::toString() {
