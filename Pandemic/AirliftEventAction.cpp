@@ -25,6 +25,7 @@ void AirliftEventAction::act(Player * player) {
 	player->removePlayerCard(player->getPlayerCards()[cardPosition]->getId());
 }
 
+
 string AirliftEventAction::toString() {
 	return "Move any 1 pawn to any city. Get permission before moving another player's pawn";
 }

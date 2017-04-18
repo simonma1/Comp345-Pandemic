@@ -28,15 +28,18 @@
 #include "AirliftEventAction.h"
 #include "ForecastEventAction.h"
 #include "OneQuietNightEventAction.h"
+#include "InfectionCard.h"
 #include <stack>
 #include <queue>
 #define BLUE "Blue"
 #define BLACK "Black"
 #define RED "Red"
 #define YELLOW "Yellow"
+#define MIN_NUM_CARDS_FOR_SCIENTIST 4
 #define MIN_NUM_CARDS_FOR_CURE 5
 #define ATLANTA_ID 5
 #define MAX_ID_FOR_CITY_CARD 49
+#define MAX_NUM_INFECTIONS 3
 
 using namespace std;
 
@@ -67,6 +70,7 @@ public:
 	void distributePlayerCards();
 	int getTurn() { return turn; };
 	void setListOfRoles(vector<Pawn> roles) { listOfRoles = roles; };
+	void epidemicCardAction();
 
 	void startInfection();
 	void endOfTurnInfection();
@@ -110,6 +114,7 @@ public:
 	static const int MAXNUMBEROFPLAYERCARDS = 6;
 	
 private: 
+	InfectionCard* bottomInfectionCard;
 	vector<Player*> players;
 	Map* boardMap;
 	int getRandomNumber();

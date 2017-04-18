@@ -180,17 +180,25 @@ bool Board::hasOutbreak(Location loc, string virusColor) {
 
 void Board::drawPlayerCards() {
 	for (int i = 0; i < 2; i++) {
-		players[turn]->addPlayerCard(cardManager->drawPlayerCard());
+		PlayerCard* card = cardManager->drawPlayerCard();
+		if (card->getType() == "epidemic") {
+			epidemicCardAction();
+			cardManager->discardPlayerCard(card);
+		}
+		else {
+			players[turn]->addPlayerCard(card);
+		}
 	}
 
 	int numOfCards = players[turn]->getPlayerCards().size();
+
 
 	if(numOfCards > MAXNUMBEROFPLAYERCARDS) {
 		cout << "You must discard a card " << endl;
 
 		for (int i = 0; i < numOfCards; i++) {
 			cout << players[turn]->getPlayerCards().at(i)->getId() << ". ";
-			cout << players[turn]->getPlayerCards().at(i)->getType()<<endl;
+			cout << players[turn]->getPlayerCards().at(i)->getType()<<endl;			
 		}
 
 		cout << "Which card do you want to discard: " << endl;
@@ -208,10 +216,53 @@ void Board::setPlayerCardsFromLoad() {
 	cardManager->moveCardToDeck();
 }
 
+void Board::epidemicCardAction() {
+	incrementInfectionRate();
+	bottomInfectionCard = cardManager->getInfectionCardDeck()->at(cardManager->getInfectionCardDeck()->size() - 1);
+	string areaColor = bottomInfectionCard->getLocation().getArea();
+	int diseaseCubeCounter;
+
+	cout << "=============================================================================================================" << endl;
+	cout << "                                        EPIDEMIC STARTED IN " + boardMap->getLocationAtId(bottomInfectionCard->getLocationId()).getCity() + "!!!" << endl;
+	cout << "=============================================================================================================" << endl;
+
+	if (areaColor == BLACK && !isBlackCured() || areaColor == BLUE && !isBlueCured() || areaColor == YELLOW && !isYellowCured() || areaColor == RED && !isRedCured()) {
+		if (areaColor == BLACK) 
+			diseaseCubeCounter = boardMap->getLocationAtId(bottomInfectionCard->getLocationId()).getBlack();
+		else if (areaColor == BLUE)
+			diseaseCubeCounter = boardMap->getLocationAtId(bottomInfectionCard->getLocationId()).getBlue();
+		else if (areaColor == YELLOW)
+			diseaseCubeCounter = boardMap->getLocationAtId(bottomInfectionCard->getLocationId()).getYellow();
+		else if (areaColor == RED)
+			diseaseCubeCounter = boardMap->getLocationAtId(bottomInfectionCard->getLocationId()).getRed();
+		
+		if (diseaseCubeCounter == 0) {
+			int i = 0;
+			while (i < MAX_NUM_INFECTIONS) {
+				infectCity(boardMap->getLocationAtId(bottomInfectionCard->getLocationId()), areaColor);
+				i++;
+			}
+			cout << "EPIDEMIC COMPLETE!" << endl;
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+		}
+		else if (diseaseCubeCounter > 0 && diseaseCubeCounter <= MAX_NUM_INFECTIONS) {
+			int numInfections = (MAX_NUM_INFECTIONS + 1) - diseaseCubeCounter;
+			int i = 0;
+			while (i < numInfections) {
+				infectCity(boardMap->getLocationAtId(bottomInfectionCard->getLocationId()), areaColor); // in this case, the outbreak will be called at the final infection
+				i++;
+			}
+			cout << "EPIDEMIC COMPLETE!" << endl;
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+		}
+		cardManager->moveInfectionDiscardtoDeck(); // adds the cards back to the deck, but does not account for the "top of deck" criteria
+	}
+}
+
 void Board::outbreak(Location loc, string virusColor) {
 	if (isAQuarantineSpecialist == false) {
 		cout << "=============================================================================================================" << endl;
-		cout << "                                        STARTING AN OUTBREAK!!!" << endl;
+		cout << "                                        STARTING AN OUTBREAK IN " + loc.getCity() + "!!!" << endl;
 		cout << "=============================================================================================================" << endl;
 
 		queue<Location> outbreakQueue; // keeps track of the number of outbreaks remaining to handle
@@ -358,20 +409,66 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	//Checks if player can perform a specific role action
 	bool canPerformRoleAction = false;
 
-	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
-		availableActions.push_back(new ScientistAction());
-		canPerformRoleAction = true;
+	//Check for Medic Role Action
+	if ((player->getRole()->getName() == "Medic")) {
+		Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
+		int currentLocationId = currentLocation.getId();
+
+		if (blackCureFound || redCureFound || yellowCureFound || blueCureFound) {
+			if (blackCureFound) {
+				while (currentLocation.getBlack() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "black");
+				}
+			}
+			if (redCureFound) {
+				while (currentLocation.getRed() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "red");
+				}
+			}
+			if (yellowCureFound) {
+				while (currentLocation.getYellow() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "yellow");
+				}
+			}
+			if (blueCureFound) {
+				while (currentLocation.getBlue() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "blue");
+				}
+			}
+		}
+		if (player->dispatchMove()) {
+			if (blackCureFound) {
+				while (currentLocation.getBlack() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "black");
+				}
+			}
+			if (redCureFound) {
+				while (currentLocation.getRed() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "red");
+				}
+			}
+			if (yellowCureFound) {
+				while (currentLocation.getYellow() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "yellow");
+				}
+			}
+			if (blueCureFound) {
+				while (currentLocation.getBlue() > 0) {
+					boardMap->treat(boardMap->getLocationAtId(currentLocationId), "blue");
+				}
+			}
+		}
+		else {
+			availableActions.push_back(new MedicAction(boardMap, currentLocation, currentLocationId));
+		}
+		
 	}
-	if ((player->getRole()->getName().compare("Medic") == 0) ) {
-		availableActions.push_back(new MedicAction());
-		canPerformRoleAction = true;
-	}
-	if ((player->getRole()->getName().compare("Researcher") == 0) ) {
+	if ((player->getRole()->getName()  == "Researcher")) {
 		availableActions.push_back(new ResearcherAction());
 		canPerformRoleAction = true;
 	}
 
-	if ((player->getRole()->getName().compare("Dispatcher") == 0)) {
+	if ((player->getRole()->getName() == "Dispatcher")) {
 		availableActions.push_back(new DispatcherAction());
 		canPerformRoleAction = true;
 	}
@@ -562,7 +659,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 		
 		if (player->getPlayerCards().size() > 0) { // does the player have any cards
-			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
+			// need at least 5 cards for Researcher OR 4 cards for Scientist
+			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE || ((player->getRole()->getName().compare("Scientist") == 0) && player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_SCIENTIST)) {
 				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
 					if (card->getId() <= 48 && card->getId() > 0) {
 						string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
@@ -576,14 +674,29 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 
 				// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
-				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
-					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
-					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
-					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
-					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+				if ((player->getRole()->getName().compare("Scientist") == 0)) {
+					if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					
+				}
+				else {
+						// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
+					if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
+						 availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
+						availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
+						availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
+						availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					
+				}
 			}
 		}
 	}

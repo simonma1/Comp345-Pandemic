@@ -4,6 +4,13 @@
 void Player::movePawn(int destinationId)
 {
 	playerPawn->setLocation(destinationId);//Returns the current location for now
+	if (this->getRole()->getName() == "dispatcher") {
+		isDispatcher = true;
+	}
+}
+
+bool Player:: dispatchMove() {
+	return isDispatcher;
 }
 
 
