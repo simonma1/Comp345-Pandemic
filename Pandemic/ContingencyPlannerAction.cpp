@@ -25,5 +25,5 @@ void ContingencyPlannerAction::act(Player *player) {
 }
 
 string ContingencyPlannerAction::toString() {
-	return "As a Contingency Planner, take an event card from anywhere in the player discard pile.";
+	return "Contingency Planner: take an event card from anywhere in the player discard pile.";
 }

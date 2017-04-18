@@ -14,7 +14,7 @@ public:
 		actionCalled = isCalled;
 	}
 
-	static bool getActionCalled() {
+	   static bool getActionCalled() {
 		return actionCalled;
 	}
 	

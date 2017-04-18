@@ -155,6 +155,7 @@ int main()
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				}
+
 				cout << "Selected action " + to_string(actionChosen) << endl;
 				actions[actionChosen - 1]->act(players[board->getTurn()]);
 			}
