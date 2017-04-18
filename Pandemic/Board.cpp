@@ -189,6 +189,9 @@ void Board::drawPlayerCards() {
 		for (int i = 0; i < numOfCards; i++) {
 			cout << players[turn]->getPlayerCards().at(i)->getId() << ". ";
 			cout << players[turn]->getPlayerCards().at(i)->getType()<<endl;
+			if (players[turn]->getPlayerCards().at(i)->getType() == "epidemic") {
+				epidemicCardAction();
+			}
 		}
 
 		cout << "Which card do you want to discard: " << endl;
@@ -204,6 +207,28 @@ void Board::setPlayerCardsFromLoad() {
 	}
 	cardManager->setDiscardedPlayerCardsFromLoad();
 	cardManager->moveCardToDeck();
+}
+
+void Board::epidemicCardAction() {
+	incrementInfectionRate();
+	cardManager->getInfectionCardDeck()->at(cardManager->getInfectionCardDeck()->size() - 1);
+	if (isBlackCured() || isBlueCured() || isRedCured() || isYellowCured()) {
+		if (isBlackCured()) {
+
+		}
+		if (isBlueCured()) {
+
+		}
+		if (isRedCured()) {
+
+		}
+		if (isYellowCured()) {
+
+		}
+	}
+	else {
+
+	}
 }
 
 void Board::outbreak(Location loc, string virusColor) {

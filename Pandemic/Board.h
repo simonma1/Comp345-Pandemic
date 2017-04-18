@@ -69,6 +69,7 @@ public:
 	void distributePlayerCards();
 	int getTurn() { return turn; };
 	void setListOfRoles(vector<Pawn> roles) { listOfRoles = roles; };
+	void epidemicCardAction();
 
 	void startInfection();
 	void endOfTurnInfection();
