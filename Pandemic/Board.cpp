@@ -183,6 +183,7 @@ void Board::drawPlayerCards() {
 
 	int numOfCards = players[turn]->getPlayerCards().size();
 
+
 	if(numOfCards > MAXNUMBEROFPLAYERCARDS) {
 		cout << "You must discard a card " << endl;
 
@@ -212,28 +213,91 @@ void Board::setPlayerCardsFromLoad() {
 void Board::epidemicCardAction() {
 	incrementInfectionRate();
 	bottomInfectionCard = cardManager->getInfectionCardDeck()->at(cardManager->getInfectionCardDeck()->size() - 1);
-	//if 
-	if (isBlackCured() || isBlueCured() || isRedCured() || isYellowCured()) {
-		if (isBlackCured()) {
-			
-		}
-		if (isBlueCured()) {
+	string areaColor = bottomInfectionCard->getLocation().getArea();
+	int diseaseCubeCounter;
 
-		}
-		if (isRedCured()) {
+	cout << "=============================================================================================================" << endl;
+	cout << "                                        EPIDEMIC CARD STARTED!!!" << endl;
+	cout << "=============================================================================================================" << endl;
 
+	if (areaColor == "Black" & !isBlackCured()) {
+		diseaseCubeCounter = bottomInfectionCard->getLocation().getBlack();
+		if (diseaseCubeCounter == 0) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
 		}
-		if (isYellowCured()) {
-
+		else if (diseaseCubeCounter > 0 && diseaseCubeCounter < 3) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+			outbreak(bottomInfectionCard->getLocation(), areaColor);
 		}
+		cardManager->moveInfectionDiscardtoDeck();
 	}
-	else {
-		if () {
 
+	if (areaColor == "Red" & !isRedCured()) {
+		diseaseCubeCounter = bottomInfectionCard->getLocation().getRed();
+		if (diseaseCubeCounter == 0) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
 		}
-		else {
-			outbreak();
+		else if (diseaseCubeCounter > 0 && diseaseCubeCounter < 3) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+			outbreak(bottomInfectionCard->getLocation(), areaColor);
 		}
+		cardManager->moveInfectionDiscardtoDeck();
+	}
+
+	if (areaColor == "Yellow" & !isYellowCured()) {
+		diseaseCubeCounter = bottomInfectionCard->getLocation().getYellow();
+		if (diseaseCubeCounter == 0) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+		}
+		else if (diseaseCubeCounter > 0 && diseaseCubeCounter < 3) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+			outbreak(bottomInfectionCard->getLocation(), areaColor);
+		}
+		cardManager->moveInfectionDiscardtoDeck();
+	}
+
+	if (areaColor == "Blue" & !isBlueCured()) {
+		diseaseCubeCounter = bottomInfectionCard->getLocation().getBlue();
+		if (diseaseCubeCounter == 0) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+		}
+		else if (diseaseCubeCounter > 0 && diseaseCubeCounter < 3) {
+			while (diseaseCubeCounter < 3) {
+				bottomInfectionCard->getLocation().infect(areaColor, boardMap->getDiseaseCubes());
+				diseaseCubeCounter++;
+			}
+			cout << bottomInfectionCard->getCityName() << " now has 3 disease cubes in it" << endl;
+			outbreak(bottomInfectionCard->getLocation(), areaColor);
+		}
+		cardManager->moveInfectionDiscardtoDeck();
 	}
 }
 

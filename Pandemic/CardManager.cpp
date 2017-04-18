@@ -98,6 +98,15 @@ void CardManager::moveInfectionCardToDiscard(InfectionCard* infection, int cardI
 	infectionDiscard.insert(infectionDiscard.begin(), infection);
 }
 
+//Add discarded infection deck to top of infection deck after epidemic has been played
+void CardManager::moveInfectionDiscardtoDeck() {
+	cout << "Moving infection Discard pile to top of Infection Deck";
+	for (int i = 0; i < infectionDiscard.size(); i++) {
+		infectionCardDeck.insert(infectionCardDeck.begin(), infectionDiscard[i]);
+	}
+	infectionDiscard.clear();
+}
+
 //Moves the card from the default list of player card to the play deck 
 void CardManager::moveCardToDeck() {
 	for (auto& iter : playerCardList){//iterates through the map's object so only those remaining are accessed

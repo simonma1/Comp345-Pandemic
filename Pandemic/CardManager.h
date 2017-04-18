@@ -63,6 +63,7 @@ public:
 	void moveInfectionCardToDiscard(InfectionCard*, int);
 	int drawShuffledCard();
 	void moveCardToDeck();
+	void moveInfectionDiscardtoDeck();
 
 	//PlayerCard action
 	void distributeCards(Board* board);
