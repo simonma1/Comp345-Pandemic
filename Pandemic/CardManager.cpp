@@ -124,6 +124,10 @@ void CardManager::setPlayerCardsFromLoad(Player* player) {
 	}
 }
 
+void CardManager::discardPlayerCard(PlayerCard *playerCard) {
+	playerCardDiscard.push_back(playerCard);
+}
+
 void CardManager::setDiscardedPlayerCardsFromLoad() {
 	for (int i = 0; i < IdsOfPlayerCardToDiscard.size(); i++) {
 		int id = IdsOfPlayerCardToDiscard[i];

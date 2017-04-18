@@ -69,6 +69,7 @@ public:
 	void distributeCards(Board* board);
 	PlayerCard* drawPlayerCard();
 	void setPlayerCardsFromLoad(Player* player);
+	void discardPlayerCard(PlayerCard*);
 
 	string toString();
 
