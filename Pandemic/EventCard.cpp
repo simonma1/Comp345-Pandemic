@@ -1,8 +1,6 @@
 #include "EventCard.h"
 
-EventCard::EventCard()
-{
-}
+EventCard::EventCard() {}
 
 EventCard::EventCard(int cardId, string cardName)
 {

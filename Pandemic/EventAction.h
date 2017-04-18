@@ -1,7 +1,7 @@
 #pragma once
-#include "RoleAction.h"
+#include "Action.h"
 
-class OperationsExpertAction : public RoleAction {
+class EventAction : public Action {
 public:
 	virtual void act(Player *) = 0;
 	virtual string toString() = 0;

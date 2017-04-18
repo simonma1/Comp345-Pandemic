@@ -5,6 +5,8 @@
 #include "json.hpp"
 #include "EventCard.h"
 #include "EpidemicCard.h"
+#include "CardDirector.h"
+#include "CardBuilder.h"
 #include <fstream>
 using namespace std;
 using json = nlohmann::json;
@@ -20,10 +22,9 @@ private:
 public:
 	Loader(string filename);
 	vector<Player *> loadPlayers();
-	Board loadBoard();
 	void save(string filename, Board* board);
 	void save(string filename, vector<Player *> players);
 	void load(vector<Player*> &);
 	void loadBoardInfo(Board* board);
-	vector<Pawn> gameSetup(Map* initMap, CardManager* cardManager);
+	void gameSetup(Board*);
 };

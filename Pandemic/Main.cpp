@@ -16,16 +16,21 @@
 #include "ShareAction.h"
 #include "ShuttleFlightAction.h"
 #include "TreatAction.h"
+#include "OperationsExpertMoveAction.h"
 #include <vector>
+
 using namespace std;
 
 void saveGame(Loader*, string, Board*, vector<Player*>);
+
+//Initializing static variable for operations move expert (done here to avoid undefined external errors)
+bool OperationsExpertMoveAction::actionCalled = false;
 
 int main()
 {
 	static const int MOVESPERTURN = 4;
 	Loader* loader;
-	Board* board = new Board;
+	Board* board = Board::getInstance();//Board created as a singleton
 	int startOrLoad=0;
 
 	
@@ -94,6 +99,7 @@ int main()
 
 	//Creates Reference card for the players. To be modified later on
 	
+	Board::getInstance();
 	players[0]->lookAtReferenceCard();
 
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
@@ -138,8 +144,15 @@ int main()
 				int actionChosen = 0;
 				do {
 					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+					//Added this to intercept a user entering a string input by accident
+					while (std::cin.fail()) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
+						//cin >> actionChosen;
+					}
 					cin >> actionChosen;
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				} while (actionChosen < 1 || actionChosen > actions.size());
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
@@ -148,7 +161,6 @@ int main()
 			else {
 				cout << "I'm sorry, you currently do not have any actions available";
 			}
-
 
 			// Delete the created actions
 			for (int i = 0; i < actions.size(); i++) {
@@ -162,6 +174,9 @@ int main()
 
 		//Infect Cities
 		board->endOfTurnInfection();
+
+		//Resetting flag an operations expert move action
+		OperationsExpertMoveAction::setActionCalled(false);
 
 		// change the next player's turn
 		board->toggleTurn();
