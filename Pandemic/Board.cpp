@@ -438,11 +438,6 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 	//Checks if player can perform a specific role action
 	bool canPerformRoleAction = false;
 
-	if ( (player->getRole()->getName().compare("Scientist" ) == 0) ) {
-		availableActions.push_back(new ScientistAction());
-		canPerformRoleAction = true;
-	}
-
 	//Check for Medic Role Action
 	if ((player->getRole()->getName() == "Medic")) {
 		Location currentLocation = boardMap->getLocationAtId(player->getPlayerPawn()->getCurrentLocation());
@@ -693,7 +688,8 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 
 		
 		if (player->getPlayerCards().size() > 0) { // does the player have any cards
-			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE) { // need at least 5 cards
+			// need at least 5 cards for Researcher OR 4 cards for Scientist
+			if (player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_CURE || ((player->getRole()->getName().compare("Scientist") == 0) && player->getPlayerCards().size() >= MIN_NUM_CARDS_FOR_SCIENTIST)) {
 				for (auto &card : player->getPlayerCards()) { // count the number of cards with the same area as the reasearch station's area
 					if (card->getId() <= 48 && card->getId() > 0) {
 						string cardArea = boardMap->getMapLocation().at(card->getId()).getArea();
@@ -707,14 +703,29 @@ vector<Action*> Board::getPlayerAvailableActions(Player *player) {
 				}
 
 				// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
-				if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
-					availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
-					availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
-					availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
-				if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
-					availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+				if ((player->getRole()->getName().compare("Scientist") == 0)) {
+					if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_SCIENTIST)
+						availableActions.push_back(new ScientistAction());
+					
+				}
+				else {
+						// if the player has any number of area cards greater than or equal to 5, he can discover a cure for that area
+					if (blueAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blueCureFound)
+						 availableActions.push_back(new DiscoverCureAction(blueArea, &blueCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (blackAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !blackCureFound)
+						availableActions.push_back(new DiscoverCureAction(blackArea, &blackCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (redAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !redCureFound)
+						availableActions.push_back(new DiscoverCureAction(redArea, &redCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					if (yellowAreaCardCounter >= MIN_NUM_CARDS_FOR_CURE && !yellowCureFound)
+						availableActions.push_back(new DiscoverCureAction(yellowArea, &yellowCureFound, cardManager->getPlayerCardDiscard(), boardMap->getMapLocation()));
+					
+				}
 			}
 		}
 	}
