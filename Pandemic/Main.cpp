@@ -30,7 +30,7 @@ int main()
 {
 	static const int MOVESPERTURN = 4;
 	Loader* loader;
-	Board* board = new Board;
+	Board* board = Board::getInstance();//Board created as a singleton
 	int startOrLoad=0;
 
 	
@@ -99,6 +99,7 @@ int main()
 
 	//Creates Reference card for the players. To be modified later on
 	
+	Board::getInstance();
 	players[0]->lookAtReferenceCard();
 
 	int keepPlaying = 0; // using this to be able to get out of while loop for now (debugging)
@@ -141,18 +142,19 @@ int main()
 
 			if (actions.size() > 1) {
 				int actionChosen = 0;
-				do {
-					cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
-					//Added this to intercept a user entering a string input by accident
-					while (std::cin.fail()) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
-						//cin >> actionChosen;
-					}
+				
+				cout << "Please select the action number you would like to perform between 1 and " + to_string(actions.size()) + "  ";
+				cin >> actionChosen;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Added this to intercept a user entering a string input by accident
+				while (actionChosen < 1 || actionChosen > actions.size()) {
+					cout << "\nYou have entered an invalid input. Please enter a number between 1 and " + to_string(actions.size()) + "  ";
 					cin >> actionChosen;
-					//cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				} while (actionChosen < 1 || actionChosen > actions.size());
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				}
 
 				cout << "Selected action " + to_string(actionChosen) << endl;
 				actions[actionChosen - 1]->act(players[board->getTurn()]);

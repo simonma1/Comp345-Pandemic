@@ -8,5 +8,4 @@ public:
 	EpidemicCard(int, string);
 	void cardAction();
 	string toString();
-
 };

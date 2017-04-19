@@ -22,6 +22,7 @@ private:
 	vector<PlayerCard*> playerCards;
 	vector<int> playerCardId;
 	Pawn* playerPawn;//Each Player has a Pawn which will have a Location on the Board
+	bool isDispatcher;
 
 public:
 	Role* getRole() { return role; };
@@ -42,7 +43,7 @@ public:
 	void setPlayerCardId(vector<int> cardId) { this->playerCardId = cardId; };
 	vector<int> getPlayerCardId() { return playerCardId; }
 	string playerCardsToString();
-
+	bool dispatchMove();
 };
 
 
